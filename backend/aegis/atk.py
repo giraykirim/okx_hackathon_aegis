@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
 
+from .atk_evidence import ToolJournal, strict_json
 from .models import Capability, Observation, Proposal, new_id, utcnow
 from .service_models import ATKReceipt
 from .settings import ROOT, Settings
@@ -33,15 +34,65 @@ class ATK:
         self.settings = settings
         self.run_id = new_id()
         self.market_receipts: list[ATKReceipt] = []
+        self.journal = ToolJournal(self)
+        self.evidence_sink = None
         self.capabilities = {
             "ATK_MARKET": Capability(),
             "ATK_ACCOUNT": Capability(),
             "ATK_DEMO": Capability(),
+            **{
+                name: Capability()
+                for name in (
+                    "ATK_PACKAGE_INSTALLED",
+                    "ATK_MARKET_READ",
+                    "ATK_MCP_LIST_TOOLS",
+                    "ATK_MCP_CALL_TOOL",
+                    "ATK_TR_ROUTING",
+                    "ATK_DEMO_ACCOUNT_READ",
+                    "ATK_DEMO_ORDER_SUBMISSION",
+                    "ATK_ORDER_RECONCILIATION",
+                )
+            },
         }
 
     def begin_observation(self, run_id: str):
         self.run_id = run_id
         self.market_receipts = []
+        self.journal.entries = []
+        started, requested = time.perf_counter(), utcnow()
+        packages = {}
+        for package in ("okx-trade-cli", "okx-trade-mcp"):
+            try:
+                manifest = strict_json((ROOT / f"node_modules/@okx_ai/{package}/package.json").read_bytes())
+                packages[package] = (
+                    manifest["name"] == f"@okx_ai/{package}" and manifest["version"] == "1.4.8"
+                )
+            except (OSError, ValueError, KeyError):
+                packages[package] = False
+        evidence = self.journal.record(
+            "local:official-atk-package-inspection",
+            requested,
+            (time.perf_counter() - started) * 1000,
+            all(packages.values()),
+            response=packages,
+            packages=packages,
+            private_capabilities="NOT_TESTED until authenticated demo operation is actually observed",
+            demo_gate={
+                "enabled": self.settings.demo_enabled,
+                "region_confirmed": self.settings.demo_region_confirmed,
+                "isolated_demo_ready": bool(self.settings.demo_ready()),
+                "personal_profile_used": False,
+            },
+        )
+        self.capabilities["ATK_PACKAGE_INSTALLED"] = Capability(
+            status="PASS" if all(packages.values()) else "FAIL", evidence=[evidence], checked_at=utcnow()
+        )
+        for name in ("ATK_DEMO_ACCOUNT_READ", "ATK_DEMO_ORDER_SUBMISSION", "ATK_ORDER_RECONCILIATION"):
+            if self.capabilities[name].status == "NOT_TESTED":
+                self.capabilities[name] = Capability(evidence=[evidence], checked_at=utcnow())
+
+    def tool_events(self):
+        return self.journal.events()
 
     def child_environment(self, directory: Path, *, private: bool) -> dict[str, str]:
         env = {
@@ -70,6 +121,10 @@ class ATK:
     async def call(self, operation: str, *args: str):
         if operation not in OPERATIONS:
             raise ValueError("ATK operation is not allowlisted")
+        if operation not in PRIVATE and self.settings.atk_transport == "mcp":
+            if args:
+                raise ValueError("MCP public operation arguments are fixed")
+            return await self.call_mcp(operation)
         command = [
             shutil.which("node") or "node",
             "--import",
@@ -84,13 +139,13 @@ class ATK:
         ]
         requested_at, started = utcnow(), time.perf_counter()
         stdout_hash, result_hash, market_timestamp, error_type = None, None, None, None
-        status = "FAIL"
+        status, result = "FAIL", None
         try:
             stdout = await self.run_subprocess(command, private=operation in PRIVATE)
             stdout_hash = hashlib.sha256(stdout).hexdigest()
             if len(stdout) > 2_000_000:
                 raise ValueError("ATK response exceeded bounds")
-            result = json.loads(stdout)
+            result = strict_json(stdout)
             if not isinstance(result, list):
                 raise ValueError("Unexpected ATK JSON envelope")
             result_hash = hashlib.sha256(
@@ -104,6 +159,26 @@ class ATK:
             error_type = type(exc).__name__
             raise
         finally:
+            evidence_id = self.journal.record(
+                "@okx_ai/okx-trade-cli@1.4.8:" + operation,
+                requested_at,
+                (time.perf_counter() - started) * 1000,
+                status == "PASS",
+                response=result,
+                source_ts=market_timestamp if status == "PASS" else None,
+                transport="official-cli",
+                site=self.settings.okx_site,
+                payload_redacted=operation in PRIVATE,
+                error_type=error_type,
+            )
+            if operation == "ticker":
+                self.public_capabilities(status == "PASS", evidence_id)
+            if operation in {"place", "get"}:
+                name = "ATK_DEMO_ORDER_SUBMISSION" if operation == "place" else "ATK_ORDER_RECONCILIATION"
+                # A JSON envelope alone is insufficient: mark PASS only after semantic checks below.
+                self.capabilities[name] = Capability(
+                    status="FAIL", evidence=[evidence_id], checked_at=utcnow()
+                )
             if operation in {"ticker", "instruments"}:
                 self.market_receipts.append(
                     ATKReceipt(
@@ -123,6 +198,96 @@ class ATK:
                         error_type=error_type,
                     )
                 )
+
+    def public_capabilities(self, success: bool, evidence_id: str):
+        capability = Capability(
+            status="PASS" if success else "FAIL", evidence=[evidence_id], checked_at=utcnow()
+        )
+        self.capabilities["ATK_MARKET_READ"] = capability
+        if self.settings.okx_site == "tr":
+            self.capabilities["ATK_TR_ROUTING"] = capability
+
+    async def call_mcp(self, operation: str):
+        tool = {"ticker": "market_get_ticker", "instruments": "market_get_instruments"}[operation]
+        command = [
+            shutil.which("node") or "node",
+            str(ROOT / "aegis/atk-mcp-client.mjs"),
+            operation,
+            self.settings.okx_site,
+        ]
+        requested, started = utcnow(), time.perf_counter()
+        call, discovery = None, None
+        success, source_ts, capabilities = False, None, {}
+        try:
+            reply = strict_json(await self.run_subprocess(command, private=False))
+            discovery = reply.get("discovery")
+            if not isinstance(discovery, dict) or not isinstance(
+                discovery.get("result", {}).get("tools"), list
+            ):
+                raise ValueError("MCP discovery unavailable")
+            evidence_id = self.journal.record(
+                "@okx_ai/okx-trade-mcp@1.4.8:tools/list",
+                discovery["request_ts"],
+                discovery.get("latency_ms", "UNKNOWN"),
+                True,
+                response=discovery["result"],
+                transport="mcp-stdio",
+                site=self.settings.okx_site,
+                tools=discovery["result"]["tools"],
+                server_args=reply.get("server_args", []),
+            )
+            self.capabilities["ATK_MCP_LIST_TOOLS"] = Capability(
+                status="PASS", evidence=[evidence_id], checked_at=utcnow()
+            )
+            call = reply.get("call")
+            if not isinstance(call, dict) or not isinstance(call.get("result"), dict):
+                raise ValueError("MCP tool invocation unavailable")
+            result = call["result"]
+            data = result.get("structuredContent")
+            if isinstance(data, dict) and isinstance(data.get("capabilities"), dict):
+                capabilities = data["capabilities"]
+            if (
+                result.get("isError")
+                or not isinstance(data, dict)
+                or data.get("ok") is not True
+                or data.get("tool") != tool
+                or data.get("capabilities", {}).get("readOnly") is not True
+                or data.get("capabilities", {}).get("hasAuth") is not False
+                or not isinstance(data.get("data"), dict)
+            ):
+                raise ValueError("MCP public tool result rejected")
+            rows = data["data"].get("data")
+            if not isinstance(rows, list) or len(rows) != 1 or not isinstance(rows[0], dict):
+                raise ValueError("Unexpected MCP market rows")
+            if rows[0].get("instId") != "BTC-USDT":
+                raise ValueError("MCP symbol mismatch")
+            if operation == "ticker":
+                source_ts = datetime.fromtimestamp(int(rows[0]["ts"]) / 1000, timezone.utc)
+            success = True
+            return rows
+        finally:
+            evidence_id = self.journal.record(
+                "@okx_ai/okx-trade-mcp@1.4.8:" + tool if call else "mcp:session",
+                call["request_ts"] if call else requested,
+                call.get("latency_ms", "UNKNOWN") if call else (time.perf_counter() - started) * 1000,
+                success,
+                response=call.get("result") if call else None,
+                source_ts=source_ts,
+                transport="mcp-stdio",
+                site=self.settings.okx_site,
+                read_only=capabilities.get("readOnly", "UNKNOWN"),
+                has_auth=capabilities.get("hasAuth", "UNKNOWN"),
+                payload_redacted=False,
+            )
+            self.capabilities["ATK_MCP_CALL_TOOL"] = Capability(
+                status="PASS" if success else "FAIL", evidence=[evidence_id], checked_at=utcnow()
+            )
+            if discovery is None:
+                self.capabilities["ATK_MCP_LIST_TOOLS"] = Capability(
+                    status="FAIL", evidence=[evidence_id], checked_at=utcnow()
+                )
+            if operation == "ticker":
+                self.public_capabilities(success, evidence_id)
 
     async def run_subprocess(self, command: list[str], *, private: bool) -> bytes:
         with tempfile.TemporaryDirectory(prefix="aegis-atk-") as directory:
@@ -173,7 +338,7 @@ class ATK:
             status="PASS",
             checked_at=utcnow(),
             evidence=[
-                "Official @okx_ai/okx-trade-cli@1.4.8 ticker + instruments returned JSON",
+                "Official ATK " + self.settings.atk_transport + " ticker + instruments returned JSON",
                 "site=" + self.settings.okx_site,
                 "exchange_timestamp=" + observation.observed_at.isoformat(),
             ],
@@ -208,12 +373,30 @@ class ATK:
                         "cash-only account_known=" + str(observation.account_known),
                     ],
                 )
+                self.capabilities["ATK_DEMO_ACCOUNT_READ"] = Capability(
+                    status="PASS",
+                    checked_at=utcnow(),
+                    evidence=[
+                        e.details["tool_call"]["evidence_id"]
+                        for e in self.tool_events()
+                        if e.details["tool_call"]["tool_id"].endswith((":config", ":balance", ":orders"))
+                    ],
+                )
             except Exception as exc:
                 observation.account_known = False
                 self.capabilities["ATK_ACCOUNT"] = Capability(
                     status="FAIL",
                     checked_at=utcnow(),
                     evidence=["Demo account observation failed: " + type(exc).__name__],
+                )
+                self.capabilities["ATK_DEMO_ACCOUNT_READ"] = Capability(
+                    status="FAIL",
+                    checked_at=utcnow(),
+                    evidence=[
+                        e.details["tool_call"]["evidence_id"]
+                        for e in self.tool_events()
+                        if e.details["tool_call"]["tool_id"].endswith((":config", ":balance", ":orders"))
+                    ],
                 )
         return observation
 
@@ -249,6 +432,11 @@ class ATK:
         if row.get("sCode") != "0" or not row.get("ordId"):
             # Even a malformed/rejected acknowledgement is reconciled by client ID; never retry placement.
             raise ValueError("Order acknowledgement not confirmed")
+        self.capabilities["ATK_DEMO_ORDER_SUBMISSION"] = Capability(
+            status="PASS",
+            checked_at=utcnow(),
+            evidence=self.capabilities["ATK_DEMO_ORDER_SUBMISSION"].evidence,
+        )
         return row["ordId"]
 
     async def reconcile(
@@ -270,6 +458,11 @@ class ATK:
             raise ValueError("Venue order does not match intent")
         state = row["state"]
         if state in {"filled", "canceled", "mmp_canceled"}:
+            self.capabilities["ATK_ORDER_RECONCILIATION"] = Capability(
+                status="PASS",
+                checked_at=utcnow(),
+                evidence=self.capabilities["ATK_ORDER_RECONCILIATION"].evidence,
+            )
             self.capabilities["ATK_DEMO"] = Capability(
                 status="PASS",
                 checked_at=utcnow(),

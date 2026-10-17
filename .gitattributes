@@ -1,1 +1,1 @@
-contracts/*.yaml text eol=lf
+contracts/** text eol=lf

@@ -1,6 +1,8 @@
-from typing import Literal
+import re
+from decimal import Decimal
+from typing import Any, Literal
 
-from pydantic import AwareDatetime, Field
+from pydantic import AwareDatetime, Field, field_validator, model_validator
 
 from .models import Classification, Positive, StrictModel
 
@@ -10,6 +12,66 @@ class RiskRequest(StrictModel):
     action: Literal["BUY", "SELL"]
     quantity: Positive
     client_request_id: str | None = Field(default=None, max_length=64, pattern=r"^[a-zA-Z0-9_-]+$")
+
+
+class RiskEvaluationRequest(StrictModel):
+    request_id: str = Field(min_length=1, max_length=64, pattern=r"^[a-zA-Z0-9_-]+$")
+    symbol: Literal["BTC-USDT"]
+    proposed_action: Literal["BUY", "SELL", "NO_TRADE"]
+    proposed_notional: str = Field(max_length=32, pattern=r"^(0|[1-9][0-9]*)(\.[0-9]{1,12})?$")
+    requester_context: dict[str, Any] | None = None
+
+    @model_validator(mode="after")
+    def validate_notional(self):
+        value = Decimal(self.proposed_notional)
+        if value > Decimal("1000000000000000"):
+            raise ValueError("Notional exceeds input bounds")
+        if value == 0 and self.proposed_action != "NO_TRADE":
+            raise ValueError("Trading notional must be positive")
+        return self
+
+    @field_validator("requester_context")
+    @classmethod
+    def reject_private_context(cls, context):
+        def visit(value, depth=0):
+            if depth > 8:
+                raise ValueError("Requester context exceeds nesting limit")
+            if isinstance(value, dict):
+                for key, item in value.items():
+                    if re.search(
+                        r"balance|credential|secret|token|mnemonic|passphrase|private.?key|api.?key|authorization",
+                        key,
+                        re.I,
+                    ):
+                        raise ValueError("Requester context must not contain credentials or private balances")
+                    visit(item, depth + 1)
+            elif isinstance(value, list):
+                for item in value:
+                    visit(item, depth + 1)
+
+        visit(context)
+        return context
+
+
+class VerifiedChainReceipt(StrictModel):
+    chain_id: Literal[43113]
+    contract_address: str = Field(pattern=r"^0x[a-fA-F0-9]{40}$")
+    transaction_hash: str = Field(pattern=r"^0x[a-fA-F0-9]{64}$")
+    block_number: int = Field(ge=0)
+    digest: str = Field(pattern=r"^0x[a-fA-F0-9]{64}$")
+    verified: Literal[True]
+
+
+class RiskEvaluationResponse(StrictModel):
+    request_id: str
+    verdict: Literal["ALLOW_FOR_FURTHER_CHECKS", "BLOCK", "REVIEW", "UNAVAILABLE"]
+    execution_authorized: Literal[False] = False
+    reason_codes: list[str]
+    evidence_ids: list[str]
+    evaluated_at: AwareDatetime
+    source_mode: Literal["MOCK", "MARKET_ONLY"]
+    policy_version: Literal["risk-service-1.1.0"] = "risk-service-1.1.0"
+    chain_receipt: VerifiedChainReceipt | None = None
 
 
 class ATKReceipt(StrictModel):
@@ -97,7 +159,9 @@ class MarketplaceStatus(StrictModel):
 
 class ServiceInfo(StrictModel):
     name: Literal["AEGIS Risk Check Service"] = "AEGIS Risk Check Service"
-    version: Literal["1.0.0"] = "1.0.0"
+    version: Literal["1.1.0"] = "1.1.0"
+    notional_source_mode: Literal["MOCK", "MARKET_ONLY"]
+    legacy_quantity_supported: Literal[True] = True
     purpose: str = "Operational pre-trade assessment and monitoring for trading-agent developers"
     target_customer: str = "Teams building agentic trading applications and agent-platform operators"
     execution_authority: Literal[False] = False

@@ -6,6 +6,10 @@ from pathlib import Path
 from .models import Decision, Event, OrderStatus, Proposal, utcnow
 
 
+class RequestConflictError(ValueError):
+    pass
+
+
 class Store:
     def __init__(self, path: Path, secrets: list[str] | None = None):
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -21,10 +25,45 @@ class Store:
                 intent_id TEXT PRIMARY KEY, client_id TEXT UNIQUE, proposal TEXT, source_mode TEXT,
                 status TEXT, venue_order_id TEXT, venue_state TEXT, updated_at TEXT
             );
+            CREATE TABLE IF NOT EXISTS risk_evaluations (
+                namespace TEXT, request_id TEXT, fingerprint TEXT, body TEXT,
+                PRIMARY KEY (namespace, request_id)
+            );
         """)
 
     def close(self):
         self.db.close()
+
+    def evaluation(self, namespace: str, request_id: str, fingerprint: str) -> dict | None:
+        row = self.db.execute(
+            "SELECT fingerprint,body FROM risk_evaluations WHERE namespace=? AND request_id=?",
+            (namespace, request_id),
+        ).fetchone()
+        if row is None:
+            return None
+        if row["fingerprint"] != fingerprint:
+            raise RequestConflictError("Request ID already belongs to a different effective intent")
+        return json.loads(row["body"])
+
+    def save_evaluation(self, namespace: str, fingerprint: str, body: dict, events: list[Event]) -> dict:
+        self.db.execute("BEGIN IMMEDIATE")
+        try:
+            existing = self.evaluation(namespace, body["request_id"], fingerprint)
+            if existing is not None:
+                self.db.rollback()
+                return existing
+            for event in events:
+                self.event(event)
+            safe_body = self.sanitize(body)
+            self.db.execute(
+                "INSERT INTO risk_evaluations(namespace,request_id,fingerprint,body) VALUES (?,?,?,?)",
+                (namespace, body["request_id"], fingerprint, json.dumps(safe_body)),
+            )
+            self.db.commit()
+            return safe_body
+        except BaseException:
+            self.db.rollback()
+            raise
 
     def sanitize(self, value):
         if isinstance(value, dict):

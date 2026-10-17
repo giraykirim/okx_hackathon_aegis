@@ -50,6 +50,8 @@ class Agent:
             if (v := getattr(settings, name))
         ]
         self.store = Store(settings.db_path, secrets)
+        # Persist each completed/failed attempt immediately, including cancellation and private calls.
+        self.atk.evidence_sink = self.store.event
         self.lock = asyncio.Lock()
         self.wake = asyncio.Event()
         self.running = False
@@ -60,8 +62,22 @@ class Agent:
         self.last_classification: Classification | None = None
         self.last_cycle_at = None
         self.mock_execution_count = 0
+        self.cycle_id: str | None = None
 
     def emit(self, event_type: str, message: str, *, actor="agent", severity="INFO", details=None) -> str:
+        phases = {
+            "OBSERVE": "OBSERVE",
+            "CLASSIFY": "CLASSIFY",
+            "REASON": "REASON",
+            "RISK_GATE": "RISK_CHECK",
+            "EXECUTE": "ACT",
+            "NO_TRADE": "NO_TRADE",
+            "VERIFY": "VERIFY",
+            "AUDIT": "AUDIT",
+        }
+        details = dict(details or {})
+        if event_type in phases:
+            details.update(phase=phases[event_type], cycle_id=self.cycle_id)
         return self.store.event(
             Event(
                 run_id=self.run_id,
@@ -69,7 +85,7 @@ class Agent:
                 actor=actor,
                 severity=severity,
                 message=message,
-                details=details or {},
+                details=details,
                 source_mode=self.settings.source_mode,
             )
         )
@@ -109,6 +125,8 @@ class Agent:
         self.emit("START", "Autonomous cycle started")
 
     async def stop(self):
+        if self.stop_requested and not self.running and self.task is None:
+            return
         self.running = False
         self.stop_requested = True
         self.wake.set()
@@ -212,6 +230,9 @@ class Agent:
             observation.exposure_quote = Decimal("1001")
         if scenario == "invalid_quantity":
             proposal.quantity = Decimal("-1")
+        if scenario == "no_trade":
+            proposal.action = "NO_TRADE"
+            proposal.quantity = Decimal(0)
         return observation, laya, proposal
 
     def audit_market_receipts(self):
@@ -225,16 +246,78 @@ class Agent:
             )
 
     async def cycle(self, scenario: str | None = None) -> Decision:
+        async with self.lock:
+            self.cycle_id = new_id()
+            try:
+                return await self._cycle(scenario)
+            except TimeoutError:
+                self.running = False
+                self.stop_requested = True
+                self.wake.set()
+                self.last_observation = None
+                self.last_classification = None
+                evidence = [
+                    self.emit(
+                        "ERROR",
+                        "Cycle deadline exceeded; new execution blocked",
+                        actor="policy",
+                        severity="ERROR",
+                        details={"reason": "cycle_timeout"},
+                    )
+                ]
+                recovered = None
+                for row in self.store.unresolved():
+                    saved = self.store.db.execute(
+                        "SELECT body FROM decisions WHERE id=?", (row["client_id"],)
+                    ).fetchone()
+                    if saved:
+                        candidate = Decision.model_validate_json(saved["body"])
+                        if candidate.run_id == self.run_id:
+                            candidate.execution_status = "UNKNOWN"
+                            candidate.risk_reasons = list(
+                                dict.fromkeys(candidate.risk_reasons + ["cycle_timeout"])
+                            )
+                            candidate.evidence_ids.extend(evidence)
+                            self.store.finalize(candidate)
+                            recovered = candidate
+                decision = recovered or Decision(
+                    run_id=self.run_id,
+                    symbol="BTC-USDT",
+                    proposed_action="NO_TRADE",
+                    laya_label="REVIEW",
+                    laya_confidence=0,
+                    llm_summary="Cycle deadline exceeded; NO_TRADE",
+                    evidence_ids=evidence,
+                    risk_approved=False,
+                    risk_reasons=["cycle_timeout"],
+                    execution_status="NOT_SENT",
+                    source_mode=self.settings.source_mode,
+                    intent_id=new_id(),
+                    quantity="0",
+                )
+                self.store.finalize(decision)
+                self.emit(
+                    "AUDIT",
+                    "Cycle timeout persisted; unresolved submissions remain blocked",
+                    details={"decision_id": decision.id, "execution_status": decision.execution_status},
+                )
+                self.last_cycle_at = utcnow()
+                return decision
+
+    async def _cycle(self, scenario: str | None = None) -> Decision:
         if scenario and (self.settings.source_mode != "MOCK" or scenario not in SCENARIOS):
             raise ValueError("Scenarios are allowlisted and MOCK-only")
-        async with self.lock:
+        async with asyncio.timeout(self.settings.cycle_timeout_seconds):
+            if self.settings.source_mode != "MOCK":
+                self.atk.begin_observation(self.run_id)
             await self.reconcile_prior()
             evidence = []
             mode = self.settings.source_mode
             if mode == "MOCK":
-                observation, laya, proposal = self.mock_inputs(scenario or "normal")
+                observation, laya, proposal = self.mock_inputs(
+                    scenario or self.settings.mock_autonomous_scenario
+                )
             else:
-                self.atk.begin_observation(self.run_id)
                 try:
                     observation = await self.atk.observe()
                 except Exception as exc:

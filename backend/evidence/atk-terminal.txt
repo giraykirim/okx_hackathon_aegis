@@ -1,0 +1,273 @@
+AEGIS official ATK terminal proof (public data only)
+Commands run with an allowlisted environment and isolated OKX profiles/OAuth/log directory.
+MCP server is a separate child process: --modules market --read-only --site tr --demo.
+Public MCP tool arguments explicitly set demo=false. No account keys reach either child.
+
+$ node -v
+v24.13.1
+exit_code=0
+
+$ npm -v
+11.8.0
+exit_code=0
+
+$ python3 --version
+Python 3.12.13
+exit_code=0
+
+$ /Users/giraykirim/Desktop/okx_hackathon_aegis/backend/.venv/bin/python3 --version
+Python 3.12.13
+exit_code=0
+
+$ uname -sm
+Darwin arm64
+exit_code=0
+
+$ sysctl -n machdep.cpu.brand_string
+Apple M2
+exit_code=0
+
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		26.6.2
+BuildVersion:		25G83
+exit_code=0
+
+$ npm list -g --depth=0 --json
+{
+  "name": "lib",
+  "dependencies": {
+    "@okx_ai/okx-trade-cli": {
+      "version": "1.4.8",
+      "overridden": false
+    },
+    "@okx_ai/okx-trade-mcp": {
+      "version": "1.4.8",
+      "overridden": false
+    },
+    "@openai/codex": {
+      "version": "0.118.0",
+      "overridden": false
+    },
+    "corepack": {
+      "version": "0.34.6",
+      "overridden": false
+    },
+    "eas-cli": {
+      "version": "18.0.1",
+      "overridden": false
+    },
+    "npm": {
+      "version": "11.8.0",
+      "overridden": false
+    },
+    "pnpm": {
+      "version": "12.14.0",
+      "overridden": false
+    },
+    "uipro-cli": {
+      "version": "2.2.3",
+      "overridden": false
+    }
+  }
+}
+exit_code=0
+
+$ okx --version
+1.4.8 (343e3ffb)
+Pilot: not installed
+exit_code=0
+
+$ okx --help
+
+Usage: okx [--profile <name>] [--demo | --live] [--json] <module> <action> [args...]
+
+Global Options:
+  --profile <name>   Use a named profile from /var/folders/kf/55pnhnhn4wgdxl6sdm6_0g8m0000gn/T/aegis-official-proof-j40t2o7e/.okx/config.toml
+  --demo             Use simulated trading (demo) mode
+  --live             Force live trading mode (overrides profile demo=true; mutually exclusive with --demo)
+  --json             Output raw JSON
+  --env              With --json, wrap output as {env, profile, data}
+  --verbose          Show detailed network request/response info (stderr)
+  --version, -v      Show version
+  --help             Show this help
+
+Modules:
+  market      Market data (ticker, orderbook, candles, trades)
+  account     Account balance, positions, bills, and configuration
+  spot        Spot trading (orders, algo orders)
+  swap        Perpetual swap trading (orders, algo orders)
+  futures     Futures trading (orders, positions, algo orders, leverage)
+  option      Options trading (orders, positions, greeks)
+  earn        Earn products - Simple Earn, On-chain Earn, DCD, Flash Earn, and Auto-Earn
+  bot         Trading bot strategies (grid, dca)
+  event       Event contracts - binary outcome contracts (YES/NO, UP/DOWN)
+  smartmoney  Smart money analytics - trader leaderboard, consensus signals, and position analysis
+  config      Manage CLI configuration profiles
+  setup       Set up client integrations (Cursor, Windsurf, Claude, etc.)
+  pilot       Manage Pilot proxy resolver binary
+  news        Crypto news, sentiment analysis, and coin trend tracking
+  diagnose    Run network / MCP server diagnostics
+  skill       OKX Skills Marketplace - search, install, and manage agent skills
+  upgrade     Upgrade okx CLI and MCP server to the latest stable version
+  list-tools  List all available tools and their parameters (use --json for machine-readable output)
+
+Run "okx <module> --help" for module details.
+exit_code=0
+
+$ okx market ticker --help
+
+  Get latest ticker data for an instrument
+  Usage: okx market ticker <instId>
+exit_code=0
+
+$ okx-trade-mcp --version
+1.4.8 (343e3ffb)
+exit_code=0
+
+$ okx-trade-mcp --help
+
+Usage: okx-trade-mcp [options]
+
+Options:
+  --modules <list>     Comma-separated list of modules to load
+                       Available: market, spot, swap, futures, option, account,
+                                  event, news, smartmoney, skills,
+                                  earn.savings, earn.onchain, earn.dcd, earn.autoearn, earn.flash,
+                                  bot.grid, bot.dca
+                       Alias: "bot" = bot.grid + bot.dca
+                              "earn" / "earn.all" = all earn sub-modules
+                       Special: "all" loads all modules
+                       Default: spot,swap,option,account,bot.grid,skills
+
+  --profile <name>     Profile to load from /var/folders/kf/55pnhnhn4wgdxl6sdm6_0g8m0000gn/T/aegis-official-proof-j40t2o7e/.okx/config.toml
+                       Falls back to default_profile in config, then "default"
+  --site <site>        OKX site to connect to: global, eea, us, tr (default: global)
+                       global -> www.okx.com, eea -> eea.okx.com, us -> us.okx.com, tr -> tr.okx.com
+  --read-only          Expose only read/query tools and disable write operations
+  --demo               Enable simulated trading (injects x-simulated-trading: 1)
+  --live               Force live trading mode (overrides profile demo=true; mutually exclusive with --demo)
+  --no-log             Disable audit logging (default: logging enabled)
+  --log-level <level>  Minimum log level to write: error, warn, info, debug (default: info)
+  --help               Show this help message
+  --version            Show version
+
+Credentials (priority: env vars > /var/folders/kf/55pnhnhn4wgdxl6sdm6_0g8m0000gn/T/aegis-official-proof-j40t2o7e/.okx/config.toml > none):
+  OKX_API_KEY          OKX API key
+  OKX_SECRET_KEY       OKX secret key
+  OKX_PASSPHRASE       OKX passphrase
+
+Other Environment Variables:
+  OKX_SITE             OKX site: global, eea, us, tr (overridden by --site flag)
+  OKX_API_BASE_URL     Optional API base URL override (overrides --site mapping)
+  OKX_TIMEOUT_MS       Optional request timeout in milliseconds (default: 15000)
+exit_code=0
+
+$ okx config init --help
+
+  Initialize a new configuration profile interactively
+  Usage: okx config init [--lang zh]
+exit_code=0
+
+$ okx market ticker BTC-USDT --json
+[
+  {
+    "instType": "SPOT",
+    "instId": "BTC-USDT",
+    "last": "81666.6",
+    "lastSz": "0.04451421",
+    "askPx": "81666.6",
+    "askSz": "0.4694926",
+    "bidPx": "81666.5",
+    "bidSz": "0.84338063",
+    "open24h": "82199.6",
+    "high24h": "82928.5",
+    "low24h": "80809.5",
+    "volCcy24h": "374618998.805871715",
+    "vol24h": "4581.705185",
+    "ts": "1792234320069",
+    "sodUtc0": "81617.6",
+    "sodUtc8": "81354.5"
+  }
+]
+exit_code=0
+
+$ npm view @okx_ai/okx-trade-cli@1.4.8 version dist.integrity dist.tarball --json
+{
+  "version": "1.4.8",
+  "dist.integrity": "sha512-AbtzC/sRwks3faIuJHuaVo/c5SZYz6pbI9DVxV9D5GP7zouaw+O4DbQqiAHZvWesUJ0lUQhqiM5i2p9iFvW2ZQ==",
+  "dist.tarball": "https://registry.npmjs.org/@okx_ai/okx-trade-cli/-/okx-trade-cli-1.4.8.tgz"
+}
+exit_code=0
+
+$ npm view @okx_ai/okx-trade-mcp@1.4.8 version dist.integrity dist.tarball --json
+{
+  "version": "1.4.8",
+  "dist.integrity": "sha512-cZN0Qbmcb9NpIFyk5jOKVI/QmdrUzDK4vOsK+hHVx2XT9PILeOOmI4uq3Dvy14SEatX9alOcpYptnjdh4JwpzQ==",
+  "dist.tarball": "https://registry.npmjs.org/@okx_ai/okx-trade-mcp/-/okx-trade-mcp-1.4.8.tgz"
+}
+exit_code=0
+
+$ uv run python -m scripts.prove_atk  # FastAPI start/stop; key withheld
+run_id=5ea24c3fc1c54b9d930141a983b2a728
+PASS: real MCP tools/list + tools/call persisted in FastAPI timeline
+PASS: real market observation -> autonomous NO_TRADE -> NOT_SENT -> AUDIT; stopped
+{
+  "ATK_PACKAGE_INSTALLED": {
+    "status": "PASS",
+    "evidence": [
+      "e998a0913d2c4e7797117af0636b8379"
+    ],
+    "checked_at": "2026-10-17T10:52:02.542400Z"
+  },
+  "ATK_MARKET_READ": {
+    "status": "PASS",
+    "evidence": [
+      "1c91064f89504f2eb0bdf8b7e5fed510"
+    ],
+    "checked_at": "2026-10-17T10:52:03.356592Z"
+  },
+  "ATK_MCP_LIST_TOOLS": {
+    "status": "PASS",
+    "evidence": [
+      "6be926edf6be4205a0b278d2486cd93c"
+    ],
+    "checked_at": "2026-10-17T10:52:04.096772Z"
+  },
+  "ATK_MCP_CALL_TOOL": {
+    "status": "PASS",
+    "evidence": [
+      "91a43152bb384db78a4c1b71afa1c260"
+    ],
+    "checked_at": "2026-10-17T10:52:04.097086Z"
+  },
+  "ATK_TR_ROUTING": {
+    "status": "PASS",
+    "evidence": [
+      "1c91064f89504f2eb0bdf8b7e5fed510"
+    ],
+    "checked_at": "2026-10-17T10:52:03.356592Z"
+  },
+  "ATK_DEMO_ACCOUNT_READ": {
+    "status": "NOT_TESTED",
+    "evidence": [
+      "e998a0913d2c4e7797117af0636b8379"
+    ],
+    "checked_at": "2026-10-17T10:52:02.542410Z"
+  },
+  "ATK_DEMO_ORDER_SUBMISSION": {
+    "status": "NOT_TESTED",
+    "evidence": [
+      "e998a0913d2c4e7797117af0636b8379"
+    ],
+    "checked_at": "2026-10-17T10:52:02.542412Z"
+  },
+  "ATK_ORDER_RECONCILIATION": {
+    "status": "NOT_TESTED",
+    "evidence": [
+      "e998a0913d2c4e7797117af0636b8379"
+    ],
+    "checked_at": "2026-10-17T10:52:02.542414Z"
+  }
+}
+No account read, order submission, or reconciliation attempted.

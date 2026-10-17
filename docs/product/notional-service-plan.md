@@ -1,0 +1,10 @@
+# Notional service completion plan — Person 1
+
+Baseline: commit 674a0d2, 97 passing tests, frozen v2 SHA-256 a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae. Existing quantity-based service remains supported. No frontend, web3 or model-training changes.
+
+1. Add a strict string-notional request and advisory response alongside the legacy service request/response. The service OpenAPI will advertise both forms; v2 paths and all original components remain unchanged. Context is optional/null-safe, untrusted, not forwarded to models or stored; reject credential/balance-bearing context without reflecting it.
+2. Add server-configured MOCK service mode for the notional form only. Never infer trustworthy caller account state. Small valid intents return UNAVAILABLE; hard notional/risk violations return BLOCK. No execution authorization or optimistic ALLOW is generated. Keep real ATK behavior for legacy clients and default notional market mode.
+3. Persist request fingerprints, responses and correlated audit events atomically. Same request ID + effective intent returns the original response across restart; changed intent conflicts (409). Namespace by server mode, policy version and deployment credential digest. Untrusted context cannot alter idempotency or policy.
+4. Preserve existing event types and add normalized phase/cycle ID in Event.details. Add an explicit cycle deadline and deterministic/idempotent STOP. A server-configured no-trade MOCK autonomous scenario demonstrates the full flow; existing normal/mock fills and HALT scenario remain available.
+5. Test contract compatibility, null/malicious context, exact response fields, strict decimal strings, idempotency/conflicts/restart, service auth/limits, bounded cycle and start/stop, NO_TRADE/HALT timeline and actual SSE.
+6. Export an additive service 1.1 contract and full frozen integration snapshot with hashes, explicit request/response fixtures and a Person 3 handoff. Provide ONE_PAGER.md, isolated MOCK startup and actual HTTP/cURL proof. Run all checks before updating status claims.

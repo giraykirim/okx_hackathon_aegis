@@ -1,0 +1,7 @@
+{
+  "request_id": "mock-notional-fixture-001",
+  "symbol": "BTC-USDT",
+  "proposed_action": "BUY",
+  "proposed_notional": "10.00",
+  "requester_context": null
+}

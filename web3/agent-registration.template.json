@@ -1,0 +1,13 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AEGIS",
+  "description": "AEGIS — Autonomous Pre-Trade Risk-Checking & Self-Monitoring Trading Agent. Registered as an ERC-8004 agent identity on Avalanche Fuji (43113); Python risk engine, official OKX Agent Trade Kit (ATK) observations, LAYA operational classifier (CONTINUE/REVIEW/HALT), and EVREN bounded reasoning execute OFF-CHAIN. Live order execution is disabled.",
+  "image": null,
+  "services": [],
+  "x402Support": false,
+  "active": true,
+  "registrations": [],
+  "supportedTrust": [
+    "reputation"
+  ]
+}

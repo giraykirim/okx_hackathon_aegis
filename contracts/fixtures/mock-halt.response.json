@@ -1,0 +1,30 @@
+{
+  "id": "7fa2f20a9a294f2f98c27946ef20be52",
+  "timestamp": "2026-10-17T09:45:37.503212Z",
+  "run_id": "8094dc79dd0c43faa4931a00a6bb8555",
+  "symbol": "BTC-USDT",
+  "proposed_action": "BUY",
+  "laya_label": "HALT",
+  "laya_confidence": 1.0,
+  "llm_summary": "MOCK scripted proposal; no external model was called",
+  "evidence_ids": [
+    "9abc22ae3f104ff094e7a07e8cb19557",
+    "1f7b3c5e6b7345a58ca6463de5543674",
+    "2170eeb9d3b34666a6cacabeda00948e",
+    "5824d80233074d6aae6217f73a1e388a",
+    "0d523ac5889249a9adfe72ed5eaedd8b",
+    "d10a36d7ef9347469c9cad2747e75ff2"
+  ],
+  "risk_approved": false,
+  "risk_reasons": [
+    "approval_unavailable",
+    "laya_not_clear"
+  ],
+  "execution_status": "NOT_SENT",
+  "venue_order_id": null,
+  "source_mode": "MOCK",
+  "intent_id": "14312a600fa54abca5948e0315cc66ec",
+  "quantity": "0.0001",
+  "venue_state": null,
+  "limit_price": "50501.1"
+}

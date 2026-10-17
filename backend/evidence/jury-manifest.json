@@ -1,12 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "recorded_at": "2026-10-17T09:43:13.926952+00:00",
-  "validation_machine": {
-    "os": "Windows",
-    "architecture": "AMD64",
-    "python": "3.13.16",
-    "scope": "Local backend evidence only; not public deployment or model training proof"
-  },
+  "recorded_at": "2026-10-17T10:55:01.620363+00:00",
   "rubric_source": {
     "authority": "User-supplied official workbook excerpt in authorized amendment",
     "workbook": "Agentic_Hackathon_Judge_Criteria.xlsx",
@@ -28,32 +22,93 @@
   },
   "tests": {
     "status": "PASS",
-    "tests": 98,
+    "tests": 136,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "timestamps": [
-      "2026-10-17T12:43:00.571376+03:00"
+      "2026-10-17T13:51:30.644579+03:00"
     ]
   },
   "contracts": {
     "v2_status": "FROZEN_UNCHANGED",
     "v2_sha256": "a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae",
-    "additive": "contracts/service-openapi.yaml"
+    "additive": "contracts/service-openapi.yaml",
+    "person_3_bundle": "contracts/frozen/manifest.json"
   },
   "official_atk": {
     "status": "PASS",
-    "transport": "backend Node official CLI subprocess",
+    "transport": "backend MCP SDK stdio client -> official MCP server; official CLI for legacy service",
+    "capabilities": {
+      "ATK_PACKAGE_INSTALLED": {
+        "status": "PASS",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542400Z"
+      },
+      "ATK_MARKET_READ": {
+        "status": "PASS",
+        "evidence": [
+          "1c91064f89504f2eb0bdf8b7e5fed510"
+        ],
+        "checked_at": "2026-10-17T10:52:03.356592Z"
+      },
+      "ATK_MCP_LIST_TOOLS": {
+        "status": "PASS",
+        "evidence": [
+          "6be926edf6be4205a0b278d2486cd93c"
+        ],
+        "checked_at": "2026-10-17T10:52:04.096772Z"
+      },
+      "ATK_MCP_CALL_TOOL": {
+        "status": "PASS",
+        "evidence": [
+          "91a43152bb384db78a4c1b71afa1c260"
+        ],
+        "checked_at": "2026-10-17T10:52:04.097086Z"
+      },
+      "ATK_TR_ROUTING": {
+        "status": "PASS",
+        "evidence": [
+          "1c91064f89504f2eb0bdf8b7e5fed510"
+        ],
+        "checked_at": "2026-10-17T10:52:03.356592Z"
+      },
+      "ATK_DEMO_ACCOUNT_READ": {
+        "status": "NOT_TESTED",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542410Z"
+      },
+      "ATK_DEMO_ORDER_SUBMISSION": {
+        "status": "NOT_TESTED",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542412Z"
+      },
+      "ATK_ORDER_RECONCILIATION": {
+        "status": "NOT_TESTED",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542414Z"
+      }
+    },
+    "autonomous_run_id": "5ea24c3fc1c54b9d930141a983b2a728",
+    "evidence": "backend/evidence/atk-official.json",
     "receipts": [
       {
-        "id": "c32aaf627dba46c397ad10d667b31c41",
+        "id": "277573e02bb74b67a3c57af9f6a8624b",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
-          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "ticker",
           "BTC-USDT",
@@ -63,26 +118,26 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:43:10.553018Z",
-        "completed_at": "2026-10-17T09:43:11.099606Z",
-        "market_timestamp": "2026-10-17T09:43:10.883000Z",
+        "requested_at": "2026-10-17T10:52:06.020812Z",
+        "completed_at": "2026-10-17T10:52:06.565570Z",
+        "market_timestamp": "2026-10-17T10:52:05.468000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
+        "run_id": "75bb80b360e54d108d42144c9361fefe",
         "status": "PASS",
-        "result_sha256": "af260dd910823a3d4a8716c81630db7bcb8c39f2e79b7ccc8f645060f5af9fdf",
-        "stdout_sha256": "161e43d69b9c9dc7e0ad68579a0443cb84b150de1477354b3a147900057b2be3",
-        "elapsed_ms": 546.5881999116391,
+        "result_sha256": "0b330c442764b44fa6f19f61c1fdbad827bdd502214652923a472bc3a2f99f7c",
+        "stdout_sha256": "af5e8550a5e29df2a7c297befede3040e3227c17b52fd615d23f7b889e9c8337",
+        "elapsed_ms": 544.7625410015462,
         "error_type": null
       },
       {
-        "id": "d8d20074786b4c16be77d33d49a01678",
+        "id": "51916da81ca84d5eb15fe35dc91922ff",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
-          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "instruments",
           "--instType",
@@ -95,26 +150,26 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:43:11.101071Z",
-        "completed_at": "2026-10-17T09:43:11.659608Z",
+        "requested_at": "2026-10-17T10:52:06.565790Z",
+        "completed_at": "2026-10-17T10:52:07.018783Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
+        "run_id": "75bb80b360e54d108d42144c9361fefe",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-        "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
-        "elapsed_ms": 558.541200007312,
+        "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+        "elapsed_ms": 453.00091701210476,
         "error_type": null
       },
       {
-        "id": "2506f686849e45a1b04de796a8b5a0f9",
+        "id": "832fc9fe663f4cb39cf13a86c85dd78e",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
-          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "ticker",
           "BTC-USDT",
@@ -124,26 +179,26 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:43:11.673039Z",
-        "completed_at": "2026-10-17T09:43:12.370298Z",
-        "market_timestamp": "2026-10-17T09:43:11.868000Z",
+        "requested_at": "2026-10-17T10:52:07.023570Z",
+        "completed_at": "2026-10-17T10:52:07.531739Z",
+        "market_timestamp": "2026-10-17T10:52:06.669000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "10ed68749b8245d3810a88689ceb1f38",
+        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
         "status": "PASS",
-        "result_sha256": "fc66c9ddcbfd9bfc262abf3ab0305b4a13e40d18f2cb9373e741e2e64d73a5a6",
-        "stdout_sha256": "59a7840d4782b86277bcdd85705c6707623c2f6a6f74ba909af81f803a553b31",
-        "elapsed_ms": 697.26000004448,
+        "result_sha256": "6c4fa4c886676e514b8b553540d3d00e299b7d050b125eb9b19cab4f335dabbe",
+        "stdout_sha256": "ffdb12a48daba73afa0ab31a80dddea54fc44439d1eefb45ac1cb2b5ae620336",
+        "elapsed_ms": 508.17125001049135,
         "error_type": null
       },
       {
-        "id": "0348e6df4b9a419bb831db74fe371c7b",
+        "id": "1f3ebd369a4049d3ac82e6ad02335439",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
-          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "instruments",
           "--instType",
@@ -156,15 +211,15 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:43:12.372139Z",
-        "completed_at": "2026-10-17T09:43:13.068713Z",
+        "requested_at": "2026-10-17T10:52:07.531895Z",
+        "completed_at": "2026-10-17T10:52:08.071257Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "10ed68749b8245d3810a88689ceb1f38",
+        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-        "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
-        "elapsed_ms": 696.5769999660552,
+        "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+        "elapsed_ms": 539.3689170014113,
         "error_type": null
       }
     ]
@@ -174,6 +229,13 @@
     "scope": "local real HTTP operational assessment only",
     "execution_authority": false,
     "public_deployment": "NOT_TESTED"
+  },
+  "notional_mock_service": {
+    "status": "PASS",
+    "source_mode": "MOCK",
+    "execution_authorized": false,
+    "scope": "actual HTTP/SSE, autonomous NO_TRADE/HALT, idempotent STOP and persisted correlation",
+    "evidence": "backend/evidence/mock-contract-http.json"
   },
   "exchange_writes_attempted": 0,
   "live_execution": "DISABLED",
@@ -200,7 +262,7 @@
     "No isolated confirmed regional demo account",
     "No verified Fuji contracts/read-back"
   ],
-  "next_command": "cd backend; .\\.venv\\Scripts\\python.exe -m scripts.prove_service",
+  "next_command": "cd backend && uv run python -m scripts.prove_mock_contract --port 8001",
   "rubric": [
     {
       "id": "A",
@@ -389,43 +451,91 @@
     },
     {
       "path": "contracts/service-openapi.yaml",
-      "sha256": "3a2f7795028040f5912f502dd0455255b80970291c539b8ae6aabeeded2e670e"
+      "sha256": "1eacd0dbbaa9ec14f52fb548b5da4361df412924165e153c47f1eebc075bc5d9"
+    },
+    {
+      "path": "contracts/frozen/manifest.json",
+      "sha256": "43c7b7c32e5d19b14cb5b9562bf0facb01aab5adc5b85a51c115b076ff57ed1d"
+    },
+    {
+      "path": "contracts/frozen/aegis-v2-service-1.1.0.yaml",
+      "sha256": "761faf729d5a24da83ddba6a346e3dbebbd609793eb7a2ea3c342cb4ce0d2473"
+    },
+    {
+      "path": "contracts/PERSON3_HANDOFF.md",
+      "sha256": "f3d2c681ecad7ca6da76b117602ffcb62f617eaa32072710899b7b5b3768dcca"
+    },
+    {
+      "path": "contracts/fixtures/risk-notional-mock.request.json",
+      "sha256": "8ea3bb45594a5188b03f5ca411e4074410366a8c7f6f2dc0ab2260026818d098"
+    },
+    {
+      "path": "contracts/fixtures/risk-notional-mock.response.json",
+      "sha256": "dad9c6bd08671ab83c9de2b2224b043a22fa72386c4c38395b3223ac2ff75240"
+    },
+    {
+      "path": "backend/evidence/mock-contract-http.json",
+      "sha256": "500ee2980c3f2f65f368a6a57403ba0519c5089295c4c529992d9c297e148018"
+    },
+    {
+      "path": "backend/evidence/mock-curl.json",
+      "sha256": "e8811726b7a1ec844ac2cd1dd8b684fed8977599e39454d9101e798c79087086"
     },
     {
       "path": "backend/evidence/tests.xml",
-      "sha256": "ed2a1e0f8ac24cad8ac471bf2d7d60b1f251b2298836caa8f5f933b2357032fe"
+      "sha256": "b32f276bab89ccab2e898092f1e070356d91bcfa942e18a9a675aea8e3950cc2"
     },
     {
       "path": "backend/evidence/http-smoke.json",
-      "sha256": "a3e44de9f399d46f7d3ee47d2ee1b3ce7b1ca14cf548309ea2899412f5511d4e"
+      "sha256": "2e59ad9b3ceef94ec4616be5a169060aed318563668509e9b9c9b4735a5dd144"
     },
     {
       "path": "backend/evidence/amendment-http.json",
-      "sha256": "d3a73b39868986c86f6c53fc3ec82d8d67bf666e8827c742a07840f34ed7d788"
+      "sha256": "9115c66f0304c5f11070081926f8ea0e38904b4fd8edee2ab803592d4a550d04"
     },
     {
       "path": "backend/evidence/latest.json",
-      "sha256": "1da75d2ab5d8d4e7342847bbc66d8e5ca9e3139421fc149b8ea0822f7df26936"
+      "sha256": "a8bd93a69b322559d07b349e7e5cd55c45c1e1d32c0eb040887ec9e274600e41"
+    },
+    {
+      "path": "backend/evidence/atk-official.json",
+      "sha256": "55f9602f0638693a548f3d9a7ca705a487ede055369065a176a04a59d5d75836"
+    },
+    {
+      "path": "backend/evidence/atk-terminal.txt",
+      "sha256": "34bd104eaa4a3e63b5c65e2a1e54ebbd9d0b8fae0680f4c815efc868b6b2a9f0"
+    },
+    {
+      "path": "backend/evidence/atk-node-tests.tap",
+      "sha256": "7241b551e2af7ca7a8002129ddcbcc27b58f2efa1942c1db39fb9c3e9ee8a6d7"
+    },
+    {
+      "path": "docs/atk/CAPABILITIES.md",
+      "sha256": "9eafe4d1e89ea7c05f80d0f9b491dac2ffa66ad0cd338cc16d2063afb9c57653"
     },
     {
       "path": "docs/product/service.md",
-      "sha256": "424125718f17fd50458d14d4d2a0a65c31676c4edc39710a6920a6e450db1a97"
+      "sha256": "0964397af0cd0cfe177641688c5e43399f292f0f5d1684b4aa9c65f20883bc5b"
+    },
+    {
+      "path": "docs/product/ONE_PAGER.md",
+      "sha256": "a95db77ccae20ec651ac52f0fbe49aa896833dfe70844355a79fe436bad3e656"
     },
     {
       "path": "docs/product/demo-2-minutes.md",
-      "sha256": "cc29561d2c251cab721ff5dc4581c9a88a6b7a480d64646ab1f4736a3948bb04"
+      "sha256": "3e6d42490b052d804562ea21d43afdf7c2e2e741a3fdc6c36a6b16ff7d4bbce7"
     },
     {
       "path": "docs/product/okx-ai-listing.md",
-      "sha256": "94f5ba3babb508758707bc493fc5a0415fd6d523ba08818323eb5848bc4879fc"
+      "sha256": "c7a37eab35d7eb29e02c36384c5274d3f9eabdfe76b27abc8ca2ef3de9b3721c"
     },
     {
       "path": "docs/product/person3-handoff.md",
-      "sha256": "224b094596b6f5e3e14037302a317068f3a7f5ee04070f42ccf01c3f335ba619"
+      "sha256": "e426ee5563b2bc735f5227db40012a5967e81f98c1053d06cbfa67ab849ed5a0"
     },
     {
       "path": "docs/atk/evidence.md",
-      "sha256": "f9f1eea213ab7666ed78f456b50a0d7f99c7be6d5d08ef7d21132fac8a7c40e3"
+      "sha256": "c4a2c5c6b27b7f33708345e5bd9c06746870ba673b0b73338c93008fdac09a79"
     }
   ]
 }

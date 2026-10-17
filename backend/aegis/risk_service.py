@@ -11,6 +11,7 @@ from fastapi import HTTPException
 from .atk import ATK
 from .integrations import Models
 from .models import Capability, Classification, Event, Proposal, new_id, utcnow
+from .notional_service import NotionalService
 from .policy import check
 from .service_models import (
     MarketChecks,
@@ -49,6 +50,8 @@ class RiskService:
         public_settings = settings.model_copy(
             update={
                 "source_mode": "MARKET_ONLY",
+                # Preserve the frozen service's CLI-only ATKReceipt identity and payload.
+                "atk_transport": "cli",
                 "demo_enabled": False,
                 "demo_region_confirmed": False,
                 "okx_demo_api_key": None,
@@ -60,6 +63,7 @@ class RiskService:
         self.models = Models(public_settings)
         self.hits: deque[float] = deque()
         self.lock = asyncio.Lock()
+        self.notional = NotionalService(self)
 
     async def close(self):
         await self.models.close()
@@ -67,6 +71,7 @@ class RiskService:
     def info(self) -> ServiceInfo:
         key = self.settings.service_api_key
         return ServiceInfo(
+            notional_source_mode=self.settings.service_source_mode,
             auth=ServiceAuth(
                 configured=bool(key and key.get_secret_value()),
                 requests_per_minute=self.settings.service_requests_per_minute,
@@ -162,7 +167,7 @@ class RiskService:
                 for r in ("assessment_timeout", "assessment_unavailable", "market_observation_unavailable")
             )
             receipts = list(self.atk.market_receipts)
-            evidence_ids = []
+            evidence_ids = [self.store.event(event) for event in self.atk.tool_events()]
             for receipt in receipts:
                 evidence_ids.append(
                     self.store.event(

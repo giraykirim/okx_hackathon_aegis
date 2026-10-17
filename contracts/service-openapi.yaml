@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: AEGIS Risk Check Service — additive contract
-  version: 1.0.0
+  version: 1.1.0
 paths:
   /api/v1/risk/evaluate:
     post:
@@ -11,7 +11,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RiskRequest-Input'
+              anyOf:
+              - $ref: '#/components/schemas/RiskEvaluationRequest'
+              - $ref: '#/components/schemas/RiskRequest-Input'
+              title: Body
         required: true
       responses:
         '200':
@@ -19,11 +22,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RiskAssessment'
+                anyOf:
+                - $ref: '#/components/schemas/RiskEvaluationResponse'
+                - $ref: '#/components/schemas/RiskAssessment'
+                title: Response Evaluate Risk Api V1 Risk Evaluate Post
         '408':
           description: Request body deadline exceeded
         '413':
           description: Request exceeds 2048 bytes
+        '409':
+          description: Request ID already used for a different effective intent
         '401':
           description: Invalid service key
         '429':
@@ -51,6 +59,44 @@ paths:
                 $ref: '#/components/schemas/ServiceInfo'
 components:
   schemas:
+    RiskEvaluationRequest:
+      properties:
+        request_id:
+          type: string
+          maxLength: 64
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Request Id
+        symbol:
+          type: string
+          const: BTC-USDT
+          title: Symbol
+        proposed_action:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          - NO_TRADE
+          title: Proposed Action
+        proposed_notional:
+          type: string
+          maxLength: 32
+          pattern: ^(0|[1-9][0-9]*)(\.[0-9]{1,12})?$
+          title: Proposed Notional
+        requester_context:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Requester Context
+      additionalProperties: false
+      type: object
+      required:
+      - request_id
+      - symbol
+      - proposed_action
+      - proposed_notional
+      title: RiskEvaluationRequest
     RiskRequest-Input:
       properties:
         symbol:
@@ -83,6 +129,99 @@ components:
       - action
       - quantity
       title: RiskRequest
+    RiskEvaluationResponse:
+      properties:
+        request_id:
+          type: string
+          title: Request Id
+        verdict:
+          type: string
+          enum:
+          - ALLOW_FOR_FURTHER_CHECKS
+          - BLOCK
+          - REVIEW
+          - UNAVAILABLE
+          title: Verdict
+        execution_authorized:
+          type: boolean
+          const: false
+          title: Execution Authorized
+          default: false
+        reason_codes:
+          items:
+            type: string
+          type: array
+          title: Reason Codes
+        evidence_ids:
+          items:
+            type: string
+          type: array
+          title: Evidence Ids
+        evaluated_at:
+          type: string
+          format: date-time
+          title: Evaluated At
+        source_mode:
+          type: string
+          enum:
+          - MOCK
+          - MARKET_ONLY
+          title: Source Mode
+        policy_version:
+          type: string
+          const: risk-service-1.1.0
+          title: Policy Version
+          default: risk-service-1.1.0
+        chain_receipt:
+          anyOf:
+          - $ref: '#/components/schemas/VerifiedChainReceipt'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - request_id
+      - verdict
+      - reason_codes
+      - evidence_ids
+      - evaluated_at
+      - source_mode
+      title: RiskEvaluationResponse
+    VerifiedChainReceipt:
+      properties:
+        chain_id:
+          type: integer
+          const: 43113
+          title: Chain Id
+        contract_address:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+          title: Contract Address
+        transaction_hash:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{64}$
+          title: Transaction Hash
+        block_number:
+          type: integer
+          minimum: 0.0
+          title: Block Number
+        digest:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{64}$
+          title: Digest
+        verified:
+          type: boolean
+          const: true
+          title: Verified
+      additionalProperties: false
+      type: object
+      required:
+      - chain_id
+      - contract_address
+      - transaction_hash
+      - block_number
+      - digest
+      - verified
+      title: VerifiedChainReceipt
     RiskAssessment:
       properties:
         assessment_id:
@@ -434,9 +573,20 @@ components:
           default: AEGIS Risk Check Service
         version:
           type: string
-          const: 1.0.0
+          const: 1.1.0
           title: Version
-          default: 1.0.0
+          default: 1.1.0
+        notional_source_mode:
+          type: string
+          enum:
+          - MOCK
+          - MARKET_ONLY
+          title: Notional Source Mode
+        legacy_quantity_supported:
+          type: boolean
+          const: true
+          title: Legacy Quantity Supported
+          default: true
         purpose:
           type: string
           title: Purpose
@@ -479,6 +629,7 @@ components:
       additionalProperties: false
       type: object
       required:
+      - notional_source_mode
       - auth
       - limitations
       title: ServiceInfo

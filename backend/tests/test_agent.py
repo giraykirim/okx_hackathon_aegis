@@ -256,3 +256,51 @@ async def test_final_decision_and_intent_rollback_together_on_interruption(tmp_p
     assert row["status"] == "NOT_SENT"
     assert agent.store.decisions()[0]["execution_status"] == "NOT_SENT"
     await agent.close()
+
+
+@pytest.mark.asyncio
+async def test_configured_mock_no_trade_and_halt_have_complete_normalized_timeline(tmp_path):
+    agent = runtime(tmp_path, mock_autonomous_scenario="no_trade")
+    await agent.start()
+    for _ in range(100):
+        if agent.store.decisions():
+            break
+        await asyncio.sleep(0.01)
+    await agent.stop()
+    decision = agent.store.decisions()[0]
+    assert decision["proposed_action"] == "NO_TRADE" and decision["execution_status"] == "NOT_SENT"
+    phases = [e["details"].get("phase") for e in agent.store.events()]
+    assert [p for p in phases if p] == [
+        "OBSERVE",
+        "CLASSIFY",
+        "REASON",
+        "RISK_CHECK",
+        "NO_TRADE",
+        "VERIFY",
+        "AUDIT",
+    ]
+    assert agent.mock_execution_count == 0
+    stopped_event_count = len(agent.store.events())
+    await agent.stop()
+    assert len(agent.store.events()) == stopped_event_count
+    halt = await agent.cycle("laya_halt")
+    assert halt.laya_label == "HALT" and not halt.risk_approved
+    await agent.close()
+
+
+@pytest.mark.asyncio
+async def test_cycle_deadline_audits_and_stops_without_execution(tmp_path, monkeypatch):
+    from aegis.agent import Agent
+
+    agent = Agent(Settings(_env_file=None, db_path=tmp_path / "deadline.sqlite3", cycle_timeout_seconds=0.02))
+
+    async def slow():
+        await asyncio.sleep(0.1)
+        return inputs()[0]
+
+    monkeypatch.setattr(agent.atk, "observe", slow)
+    decision = await agent.cycle()
+    assert decision.execution_status == "NOT_SENT" and "cycle_timeout" in decision.risk_reasons
+    assert not agent.running and agent.stop_requested
+    assert agent.store.events()[-1]["type"] == "AUDIT"
+    await agent.close()

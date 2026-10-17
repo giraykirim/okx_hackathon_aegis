@@ -6,7 +6,7 @@ Before the demo, from `backend/`: install locked dependencies, run `uv run pytho
 |---|---|---|
 | 0:00–0:15 | “AEGIS is an operational pre-trade check for teams building trading agents. Models can abstain; deterministic policy retains execution authority.” | GET `/api/v1/service`; separate assessment-only scope, no trading authority |
 | 0:15–0:45 | Start one autonomous run with `uv run python -m scripts.http_smoke`. No per-step prompts follow. | Actual backend observe → classify/fallback → reason/fallback → policy → NO_TRADE → audit; persisted events and SSE resume |
-| 0:45–1:00 | Open the saved HTTP evidence or event timeline. Point to MARKET_ONLY and ATK_RECEIPT. | Exact official CLI argv, run ID, request/market timestamps, elapsed milliseconds, SHA-256; no claim of demo execution |
+| 0:45–1:00 | Open the saved HTTP evidence or event timeline. Point to MARKET_ONLY and tool_call (MCP), or ATK_RECEIPT (legacy CLI). | Official MCP discovery/call or CLI argv, run ID, measured timestamps/duration and SHA-256; no claim of demo execution |
 | 1:00–1:30 | Run `uv run python -m scripts.prove_service` once. Show the oversized intended action's HALT. | Real service calls fetch their own ATK data, reject caller trust flags, return false order permission and make zero trading decisions/orders |
 | 1:30–1:45 | Show the small intent's partial check, unknown account context and declared model availability. | REVIEW or a justified market HALT; never label missing LAYA/EVREN as a trained or authenticated success |
 | 1:45–2:00 | Show evidence manifest, target buyer and proposed pricing. State remaining deployment/model/on-chain gaps. | Frozen v2 + additive schema, reproducible tests, NOT_LISTED and NOT_TESTED entries; no self-awarded score |

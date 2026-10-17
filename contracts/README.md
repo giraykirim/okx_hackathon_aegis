@@ -2,6 +2,8 @@
 
 Person 1 owns the contracts. `openapi.yaml` is the frozen initial v2 artifact (SHA-256 `a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae`); all eleven existing routes and their schemas remain unchanged. The authorized amendment adds two routes in `service-openapi.yaml`, with no change to the frozen file. The runtime `/openapi.json` includes both. Person 3 coordination is recorded in `docs/product/person3-handoff.md`; no acknowledgment is assumed.
 
+Current handoff: `PERSON3_HANDOFF.md` plus `frozen/aegis-v2-service-1.1.0.yaml` and `frozen/manifest.json`. Service 1.1 supports the new notional/correlation contract alongside the original quantity form. `service-openapi-1.0.yaml` preserves the prior service artifact. Explicit input and actual captured MOCK output examples live under `fixtures/`. Original Event/Decision/health/SSE/snapshot contracts are unchanged; phase/cycle metadata is added only inside Event.details.
+
 Export the additive contract / check both from `backend/` (never rewrites frozen v2):
 
 ```sh

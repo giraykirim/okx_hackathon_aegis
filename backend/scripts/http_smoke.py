@@ -70,7 +70,11 @@ async def main():
                     assert streamed["id"] == expected["id"]
                     proof["checks"]["sse_resume"] = {"status": "PASS", "event_id": streamed["id"]}
                     break
-        proof["checks"]["autonomous_http_cycle"] = {"status": "PASS", "snapshot": snapshot, "events": events}
+        proof["checks"]["autonomous_http_cycle"] = {
+            "status": "PASS",
+            "snapshot": snapshot,
+            "events": [event for event in events if event["run_id"] == run_id],
+        }
     path: Path = ROOT / "evidence" / "http-smoke.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(proof, indent=2) + "\n")

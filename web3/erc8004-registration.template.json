@@ -1,0 +1,21 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AEGIS — Autonomous Pre-Trade Risk & Self-Monitoring Agent",
+  "description": "Off-chain autonomous trading risk gate and reusable pre-trade evaluation service. Uses official OKX Agent Trade Kit (ATK) market observations, LAYA operational risk classification (CONTINUE/REVIEW/HALT), bounded EVREN reasoning, and deterministic fail-closed Python policy enforcement. On-chain ERC-8004 identity registration only; Python/LAYA/EVREN runtime executes off-chain.",
+  "image": null,
+  "endpoints": [],
+  "registrations": [],
+  "supportedTrust": [
+    "reputation"
+  ],
+  "aegisMetadata": {
+    "chainId": 43113,
+    "network": "avalanche-fuji",
+    "offChainRuntime": true,
+    "onChainInference": false,
+    "liveExecutionEnabled": false,
+    "orderPermissionDelegation": false,
+    "publicOriginStatus": "PUBLIC_NOT_VERIFIED",
+    "note": "Public endpoints array is intentionally empty until an agreed public HTTPS origin is verified. Do not infer on-chain model execution or live trading from ERC-8004 registration."
+  }
+}
