@@ -1,5 +1,6 @@
 import json
 
+import pytest
 from fastapi.testclient import TestClient
 
 from aegis.settings import Settings
@@ -144,3 +145,23 @@ def test_secret_redaction_and_sse_cursor(tmp_path):
         assert TOKEN not in json.dumps(data)
         assert "hidden" not in json.dumps(data)
         assert [e["id"] for e in store.events(after=first.id)] == [second.id]
+
+
+@pytest.mark.parametrize("mode,started", [("MARKET_ONLY", True), ("OKX_DEMO", False)])
+def test_autostart_only_for_non_executing_modes(tmp_path, monkeypatch, mode, started):
+    from fastapi.testclient import TestClient
+
+    from aegis.agent import Agent
+    from aegis.app import create_app
+    from aegis.settings import Settings
+
+    calls = []
+
+    async def start(self):
+        calls.append(True)
+
+    monkeypatch.setattr(Agent, "start", start)
+    app = create_app(Settings(_env_file=None, db_path=tmp_path / "auto.sqlite3", source_mode=mode, autostart=True))
+    with TestClient(app):
+        pass
+    assert bool(calls) is started

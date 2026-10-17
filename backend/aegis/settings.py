@@ -36,6 +36,8 @@ class Settings(BaseSettings):
     max_exposure_quote: Decimal = Field(default=Decimal("1000"), gt=0, le=1_000_000, allow_inf_nan=False)
     # OKX_DEMO only: "advisory" lets a LAYA HALT veto while abstention/low confidence does not block.
     laya_gate_demo: Literal["advisory", "required"] = "advisory"
+    # Hosted read-only dashboards: start the loop at boot. Ignored unless MARKET_ONLY or MOCK.
+    autostart: bool = False
     mock_autonomous_scenario: Literal["normal", "no_trade", "laya_halt"] = "normal"
     okx_site: Literal["tr", "global", "eea", "us"] = "tr"
     atk_transport: Literal["mcp", "cli"] = "mcp"
@@ -66,7 +68,7 @@ class Settings(BaseSettings):
     evren_max_requests_per_run: int = Field(
         default=6,
         ge=1,
-        le=60,
+        le=5000,
         validation_alias=AliasChoices("EVREN_MAX_REQUESTS_PER_RUN", "AEGIS_EVREN_MAX_REQUESTS_PER_RUN"),
     )
     evren_max_requests_per_minute: int = Field(

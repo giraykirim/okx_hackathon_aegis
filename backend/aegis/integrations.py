@@ -12,6 +12,18 @@ from .settings import Settings
 
 MAX_RESPONSE_BYTES = 256 * 1024
 REQUEST_TIMEOUT_SECONDS = 60
+# The autonomous loop reuses a verified terms/catalog discovery instead of spending 2 calls per cycle.
+DISCOVERY_TTL_SECONDS = 600
+# OKX_DEMO: decide from deterministic ATK trend features; the Python policy remains final.
+DEMO_REASONING_PROMPT = (
+    "OKX DEMO MODE (simulated funds). Decide from market_features (15m official ATK candles). "
+    "BUY when trend and momentum agree upward (sma_8_vs_32_pct > 0 and return_1h_pct > 0); "
+    "SELL when they agree downward (sma_8_vs_32_pct < 0 and return_1h_pct < 0); otherwise NO_TRADE. "
+    "Prefer NO_TRADE when volatility_15m_pct > 1.0 or market_features is missing. "
+    'BUY/SELL quantity is exactly "0.0001"; NO_TRADE quantity is "0". '
+    "LAYA abstention or REVIEW is not by itself a reason to hold; LAYA HALT is. "
+    "The summary must cite the feature values that decided the action. "
+)
 
 
 class RequestCapReached(ValueError):
@@ -167,7 +179,9 @@ class Models:
         if self.owns_client:
             await self.client.aclose()
 
-    async def classify(self, state: Observation, run_id: str, correlation_id: str) -> Classification:
+    async def classify(
+        self, state: Observation, run_id: str, correlation_id: str, *, context: dict | None = None
+    ) -> Classification:
         self.run_id, self.correlation_id = run_id, correlation_id
         self.laya_metadata = self.unavailable()
         if self.settings.laya_url:
@@ -182,7 +196,8 @@ class Models:
                     provider="LAYA",
                     operation="classify",
                     json={
-                        "state": state.model_dump(mode="json"),
+                        # Operational context (post-proposal) when supplied; legacy Observation otherwise.
+                        "state": context if context is not None else state.model_dump(mode="json"),
                         "run_id": run_id,
                         "correlation_id": correlation_id,
                     },
@@ -287,7 +302,13 @@ class Models:
         await verify_features(self, run_id)
 
     async def reason(
-        self, state: Observation, laya: Classification, run_id: str, *, assessment: dict | None = None
+        self,
+        state: Observation,
+        laya: Classification,
+        run_id: str,
+        *,
+        assessment: dict | None = None,
+        market_features: dict | None = None,
     ) -> Proposal:
         self.run_id = run_id
         self.selected_model = None
@@ -295,7 +316,23 @@ class Models:
         if self.settings.evren_base_url and self.settings.evren_api_key:
             self.evren_metadata = self.unavailable("NO_VALID_RESPONSE", "EVREN")
             try:
-                base, headers = await self.discover_evren(run_id)
+                cached = getattr(self, "_agent_discovery", None)
+                if (
+                    assessment is None
+                    and cached is not None
+                    and time.monotonic() - cached[0] < DISCOVERY_TTL_SECONDS
+                ):
+                    _, base, headers, self.selected_model, self.available_models = cached
+                else:
+                    base, headers = await self.discover_evren(run_id)
+                    if assessment is None:
+                        self._agent_discovery = (
+                            time.monotonic(),
+                            base,
+                            headers,
+                            self.selected_model,
+                            self.available_models,
+                        )
                 selected = self.selected_model
                 response = await self.request_json(
                     "POST",
@@ -328,6 +365,8 @@ class Models:
                                         "Analyze only freshness, sizing, availability and missing account context. "
                                         "Return action NO_TRADE and quantity 0; do not alter the caller's intent. "
                                         if assessment is not None
+                                        else DEMO_REASONING_PROMPT
+                                        if self.settings.source_mode == "OKX_DEMO"
                                         else ""
                                     )
                                     + "Return ONLY a JSON object conforming to this schema: "
@@ -358,6 +397,11 @@ class Models:
                                         "run_id": run_id,
                                         "max_order_quote": "25",
                                         "max_total_exposure_quote": str(self.settings.max_exposure_quote),
+                                        **(
+                                            {"market_features": market_features}
+                                            if market_features is not None and assessment is None
+                                            else {}
+                                        ),
                                         **({"external_intent": assessment} if assessment is not None else {}),
                                     }
                                 ),

@@ -184,7 +184,10 @@ class Store:
 
     def run_budget(self, run_id: str) -> tuple[int, Decimal]:
         rows = self.db.execute(
-            "SELECT reserved_notional FROM run_claims WHERE run_id=?", (run_id,)
+            # A venue-rejected (FAILED) submission executed nothing, so it does not consume budget.
+            """SELECT c.reserved_notional FROM run_claims c LEFT JOIN intents i ON i.intent_id=c.intent_id
+            WHERE c.run_id=? AND COALESCE(i.status,'PENDING')!='FAILED'""",
+            (run_id,),
         ).fetchall()
         return len(rows), sum((Decimal(r["reserved_notional"]) for r in rows), Decimal("0"))
 

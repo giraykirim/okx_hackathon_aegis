@@ -23,7 +23,7 @@
     },
     {
       "path": "contracts/fixtures/README.md",
-      "sha256": "28e0107d0b7ffb6b86a9397297209e590522fd7cc1d72adf19cbed74e0395d67"
+      "sha256": "8050040b3eb74d1d36f2736ce7e00bfb3952b26772547c727a3f79e256552243"
     },
     {
       "path": "contracts/fixtures/mock-halt.request.json",

@@ -143,7 +143,7 @@ def test_extra_tool_commands_rejected():
 def test_gate_returns_an_exchange_tick_aligned_price_cap():
     result = gate()
     assert result.approved
-    assert result.limit_price == Decimal("50501.1")
+    assert result.limit_price == Decimal("50101.1")
     assert result.limit_price % Decimal("0.1") == 0
 
 

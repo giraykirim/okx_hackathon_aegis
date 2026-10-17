@@ -34,6 +34,7 @@ interface HeaderBarProps {
   onInspectProof: () => void;
   onOpenAdminModal: () => void;
   adminUnlocked: boolean;
+  executionEnabled?: boolean;
   onStartAgent?: () => void;
   onStopAgent?: () => void;
   controlBusy?: boolean;
@@ -51,6 +52,7 @@ export function HeaderBar({
   onInspectProof,
   onOpenAdminModal,
   adminUnlocked,
+  executionEnabled = false,
   onStartAgent,
   onStopAgent,
   controlBusy,
@@ -190,7 +192,11 @@ export function HeaderBar({
                 title="LIVE_EXECUTION_DISABLED · ORDER_PERMISSION_FALSE — Click to inspect protocol flags"
               >
                 <ShieldCheck className="h-3.5 w-3.5 text-[#4EE1C2]" />
-                <span>Read-only · Trading disabled</span>
+                <span>
+                  {executionEnabled && sourceMode === "OKX_DEMO"
+                    ? "Demo trading armed · Policy gated"
+                    : "Read-only · Trading disabled"}
+                </span>
                 <Info className="h-3 w-3 text-[#6E7785]" />
               </button>
 

@@ -3,6 +3,8 @@ from decimal import ROUND_CEILING, ROUND_FLOOR, Decimal
 
 from .models import Classification, GateResult, Observation, Proposal
 
+IOC_SLIPPAGE = Decimal("0.002")
+
 
 def check(
     observation: Observation,
@@ -72,12 +74,12 @@ def check(
     if not valid or quantity < observation.min_size or quantity % observation.lot_size != 0:
         reasons.append("invalid_quantity")
     if valid:
-        # Bind the venue's IOC execution price, then reserve an additional 1% fee allowance.
+        # Bind the IOC price inside OKX's price band (51137 rejects ~+0.5%), then reserve a 1% fee allowance.
         if proposal.action == "SELL":
-            raw_price = min(observation.bid, observation.price) * Decimal("0.99")
+            raw_price = min(observation.bid, observation.price) * (1 - IOC_SLIPPAGE)
             rounding = ROUND_FLOOR
         else:
-            raw_price = max(observation.ask, observation.price) * Decimal("1.01")
+            raw_price = max(observation.ask, observation.price) * (1 + IOC_SLIPPAGE)
             rounding = ROUND_CEILING
         limit_price = (raw_price / observation.tick_size).to_integral_value(
             rounding=rounding

@@ -3,8 +3,9 @@ import time
 from datetime import timedelta
 from decimal import Decimal
 
-from .atk import ATK
+from .atk import ATK, ATKCommandError
 from .integrations import Models
+from .laya_context import TrustedSignals, build_shadow_context
 from .models import (
     Capability,
     Classification,
@@ -65,6 +66,8 @@ class Agent:
         self.last_cycle_at = None
         self.mock_execution_count = 0
         self.cycle_id: str | None = None
+        # One trade per closed candle: the same signal must not trade again every cycle.
+        self.last_traded_candle: str | None = None
 
     def emit(self, event_type: str, message: str, *, actor="agent", severity="INFO", details=None) -> str:
         phases = {
@@ -90,6 +93,73 @@ class Agent:
                 details=details,
                 source_mode=self.settings.source_mode,
             )
+        )
+
+    def emit_classify(self, laya: Classification, mode: str, context: dict | None = None) -> str:
+        return self.emit(
+            "CLASSIFY",
+            "Operational risk classified",
+            actor="mock" if mode == "MOCK" else "laya",
+            details={
+                **laya.model_dump(mode="json"),
+                "integration": self.models.laya_metadata
+                if mode != "MOCK"
+                else {
+                    "availability": "SCRIPTED",
+                    "source": "INJECTED_MOCK",
+                    "model_version": laya.model_version,
+                },
+                "availability": "SCRIPTED"
+                if mode == "MOCK"
+                else "UNAVAILABLE"
+                if laya.model_version == "advisory-fallback"
+                else "AVAILABLE",
+                **(
+                    {"context_version": context["context_version"], "missing": context["missing"]}
+                    if context
+                    else {}
+                ),
+            },
+        )
+
+    def operational_context(self, observation: Observation, proposal: Proposal, approval: bool) -> dict:
+        """Trusted backend facts for LAYA; no balances, IDs, summaries or tool text enter the state."""
+        entries = self.atk.journal.entries + self.models.journal.entries
+        account_checked = self.atk.capabilities["ATK_ACCOUNT"].status == "PASS"
+        precheck = check(
+            observation,
+            Classification(
+                label="CONTINUE", confidence=1, abstained=False, model_version="precheck", latency_ms=0
+            ),
+            proposal,
+            now=utcnow(),
+            source_mode=self.settings.source_mode,
+            approval_available=True,
+            unresolved=False,
+            duplicate=False,
+            max_exposure_quote=self.settings.max_exposure_quote,
+        )
+        signals = TrustedSignals(
+            approval_available=approval,
+            api_timeout=any(not e["tool_call"]["success"] for e in entries) if entries else None,
+            # Single proposing agent (EVREN): there is no competing typed proposal to disagree with.
+            agents_disagree=False,
+            # The account read verified read+trade without withdraw in this cycle.
+            permission_revoked=False if account_checked else None,
+            # EVREN output passed strict schema validation and tool calls are rejected upstream.
+            injection_detected=False if self.models.capabilities["EVREN"].status == "PASS" else None,
+            # LAYA responses are rejected on version mismatch when an expected version is pinned.
+            deployment_integrity_failure=False if self.settings.laya_expected_version else None,
+            excess_exposure="excess_exposure" in precheck.reasons,
+        )
+        return build_shadow_context(
+            observation,
+            proposal,
+            settings=self.settings,
+            now=utcnow(),
+            signals=signals,
+            duplicate=self.store.duplicate(proposal.intent_id),
+            journal_statuses=[row["status"] for row in self.store.unresolved()],
         )
 
     def capabilities(self) -> dict:
@@ -316,6 +386,7 @@ class Agent:
             await self.reconcile_prior()
             evidence = []
             mode = self.settings.source_mode
+            features = None
             if mode == "MOCK":
                 observation, laya, proposal = self.mock_inputs(
                     scenario or self.settings.mock_autonomous_scenario
@@ -374,31 +445,50 @@ class Agent:
                 )
             )
             if mode != "MOCK":
-                laya = await self.models.classify(observation, self.run_id, self.cycle_id)
-            evidence.append(
-                self.emit(
-                    "CLASSIFY",
-                    "Operational risk classified",
-                    actor="mock" if mode == "MOCK" else "laya",
-                    details={
-                        **laya.model_dump(mode="json"),
-                        "integration": self.models.laya_metadata
-                        if mode != "MOCK"
-                        else {
-                            "availability": "SCRIPTED",
-                            "source": "INJECTED_MOCK",
-                            "model_version": laya.model_version,
-                        },
-                        "availability": "SCRIPTED"
-                        if mode == "MOCK"
-                        else "UNAVAILABLE"
-                        if laya.model_version == "advisory-fallback"
-                        else "AVAILABLE",
-                    },
+                # LAYA judges operational context after the proposal (see post-proposal stage below).
+                laya = Classification(
+                    label="REVIEW",
+                    confidence=0,
+                    abstained=True,
+                    model_version="pending-post-proposal",
+                    latency_ms=0,
                 )
-            )
+            else:
+                evidence.append(self.emit_classify(laya, mode))
             if mode != "MOCK":
-                proposal = await self.models.reason(observation, laya, self.run_id)
+                features = None
+                try:
+                    features = await self.atk.trend()
+                    evidence.append(
+                        self.emit(
+                            "OBSERVE",
+                            "Official ATK 15m candle trend features",
+                            actor="atk",
+                            details={"market_features": features},
+                        )
+                    )
+                except Exception as exc:
+                    evidence.append(
+                        self.emit(
+                            "OBSERVE",
+                            "Trend features unavailable; EVREN told features are missing",
+                            actor="atk",
+                            severity="WARNING",
+                            details={"error_type": type(exc).__name__},
+                        )
+                    )
+                proposal = await self.models.reason(observation, laya, self.run_id, market_features=features)
+                candle = features.get("candle_open_ts") if features else None
+                if proposal.action != "NO_TRADE" and candle and candle == self.last_traded_candle:
+                    proposal = proposal.model_copy(
+                        update={
+                            "action": "NO_TRADE",
+                            "quantity": Decimal(0),
+                            "summary": "Already traded on this closed 15m candle; waiting for the next one",
+                        }
+                    )
+                # Intent identity is backend-owned; a model-chosen ID could collide across cycles.
+                proposal = proposal.model_copy(update={"intent_id": new_id()})
             evidence.append(
                 self.emit(
                     "REASON",
@@ -421,13 +511,42 @@ class Agent:
                     },
                 )
             )
+            if mode != "MOCK" and proposal.action != "NO_TRADE":
+                # Model latency can outlast the 15s freshness bound; gate on a fresh venue read.
+                # A failed refresh keeps the old observation, so the stale-feed veto still applies.
+                try:
+                    observation = await self.atk.observe()
+                    evidence.append(
+                        self.emit(
+                            "OBSERVE",
+                            "Pre-gate ATK refresh after proposal",
+                            actor="atk",
+                            details=observation.model_dump(mode="json"),
+                        )
+                    )
+                except Exception as exc:
+                    evidence.append(
+                        self.emit(
+                            "OBSERVE",
+                            "Pre-gate refresh failed; gating on original observation",
+                            actor="atk",
+                            severity="WARNING",
+                            details={"error_type": type(exc).__name__},
+                        )
+                    )
+            approval = (mode == "MOCK" and scenario != "missing_approval") or self.settings.demo_ready()
+            approval = approval and not self.stop_requested
+            if mode != "MOCK":
+                context = self.operational_context(observation, proposal, approval)
+                laya = await self.models.classify(
+                    observation, self.run_id, self.cycle_id, context=context["state"]
+                )
+                evidence.append(self.emit_classify(laya, mode, context))
             for entry in self.atk.journal.entries + self.models.journal.entries:
                 tool_id = entry["tool_call"]["evidence_id"]
                 if tool_id not in evidence:
                     evidence.append(tool_id)
             self.last_observation, self.last_classification = observation, laya
-            approval = (mode == "MOCK" and scenario != "missing_approval") or self.settings.demo_ready()
-            approval = approval and not self.stop_requested
             run_orders, run_reserved = self.store.run_budget(self.run_id)
             policy_started = time.perf_counter()
             gate = check(
@@ -518,6 +637,7 @@ class Agent:
                         self.emit("VERIFY", "MOCK simulation only; exchange status NOT_SENT", actor="mock")
                     )
                 else:
+                    venue_rejected = False
                     try:
                         decision.venue_order_id = await self.atk.place(
                             proposal, decision.id, gate.limit_price
@@ -531,24 +651,37 @@ class Agent:
                             )
                         )
                     except Exception as exc:
+                        # An explicit venue error code means the venue answered; a timeout does not.
+                        venue_rejected = isinstance(exc, ATKCommandError) and exc.code is not None
                         evidence.append(
                             self.emit(
                                 "EXECUTE",
-                                "Submission outcome ambiguous; placement will not be retried",
+                                "Venue rejected submission; placement will not be retried"
+                                if venue_rejected
+                                else "Submission outcome ambiguous; placement will not be retried",
                                 actor="atk",
                                 severity="ERROR",
-                                details={"error_type": type(exc).__name__},
+                                details={
+                                    "error_type": type(exc).__name__,
+                                    "error_code": getattr(exc, "code", None),
+                                    "error_detail": getattr(exc, "detail", None),
+                                },
                             )
                         )
                     try:
                         status, venue_id, state = await self.atk.reconcile(
                             proposal, decision.id, gate.limit_price
                         )
+                        if status == "FAILED" and not venue_rejected:
+                            # Not found right after an ambiguous submit is not proof; recheck next cycle.
+                            status = "UNKNOWN"
                         decision.execution_status, decision.venue_order_id, decision.venue_state = (
                             status,
                             venue_id,
                             state,
                         )
+                        if status in {"VERIFIED", "PENDING"} and features:
+                            self.last_traded_candle = features.get("candle_open_ts")
                     except Exception:
                         decision.execution_status = "UNKNOWN"
                     evidence.append(

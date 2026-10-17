@@ -57,6 +57,18 @@ export default function DashboardPage() {
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
   const [adminModalOpen, setAdminModalOpen] = React.useState(false);
   const [adminSecret, setAdminSecret] = React.useState("");
+  // Local `next dev` on loopback skips the judge lock; the server enforces the same rule.
+  const localOperator = React.useSyncExternalStore(
+    () => () => {},
+    () =>
+      process.env.NODE_ENV === "development" &&
+      ["127.0.0.1", "localhost", "[::1]"].includes(window.location.hostname),
+    () => false
+  );
+  const operatorUnlocked = localOperator || Boolean(adminSecret);
+  const operatorHeaders: Record<string, string> = adminSecret
+    ? { "X-AEGIS-Admin-Secret": adminSecret }
+    : {};
   const [controlBusy, setControlBusy] = React.useState(false);
   const [controlError, setControlError] = React.useState<string | null>(null);
 
@@ -196,7 +208,7 @@ export default function DashboardPage() {
   };
 
   const handleStartAgent = async () => {
-    if (!adminSecret) {
+    if (!operatorUnlocked) {
       setAdminModalOpen(true);
       return;
     }
@@ -205,9 +217,7 @@ export default function DashboardPage() {
     try {
       const res = await fetch("/api/agent/start", {
         method: "POST",
-        headers: {
-          "X-AEGIS-Admin-Secret": adminSecret,
-        },
+        headers: operatorHeaders,
       });
       if (!res.ok) {
         const err = await res
@@ -225,7 +235,7 @@ export default function DashboardPage() {
   };
 
   const handleStopAgent = async () => {
-    if (!adminSecret) {
+    if (!operatorUnlocked) {
       setAdminModalOpen(true);
       return;
     }
@@ -234,9 +244,7 @@ export default function DashboardPage() {
     try {
       const res = await fetch("/api/agent/stop", {
         method: "POST",
-        headers: {
-          "X-AEGIS-Admin-Secret": adminSecret,
-        },
+        headers: operatorHeaders,
       });
       if (!res.ok) {
         const err = await res
@@ -256,7 +264,7 @@ export default function DashboardPage() {
   const handleTriggerLiveMockScenario = async (
     scenario: "stale_feed" | "unknown_order" | "duplicate_intent" | "laya_halt"
   ) => {
-    if (!adminSecret) {
+    if (!operatorUnlocked) {
       setAdminModalOpen(true);
       return;
     }
@@ -267,7 +275,7 @@ export default function DashboardPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-AEGIS-Admin-Secret": adminSecret,
+          ...operatorHeaders,
         },
         body: JSON.stringify({ scenario }),
       });
@@ -337,7 +345,8 @@ export default function DashboardPage() {
         activeScenario={activeScenarioId}
         onInspectProof={() => setProofModalOpen(true)}
         onOpenAdminModal={() => setAdminModalOpen(true)}
-        adminUnlocked={Boolean(adminSecret)}
+        adminUnlocked={operatorUnlocked}
+        executionEnabled={snapshot.execution_enabled}
         onStartAgent={handleStartAgent}
         onStopAgent={handleStopAgent}
         controlBusy={controlBusy}
@@ -402,7 +411,7 @@ export default function DashboardPage() {
         <ScenarioSwitcher
           activePreset={activePreset}
           onSelectPreset={handleSelectPreset}
-          adminUnlocked={Boolean(adminSecret)}
+          adminUnlocked={operatorUnlocked}
           backendSourceMode={snapshot.source_mode}
           onTriggerLiveMockScenario={handleTriggerLiveMockScenario}
           busy={controlBusy}

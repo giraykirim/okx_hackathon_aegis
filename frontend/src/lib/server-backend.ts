@@ -19,6 +19,16 @@ export function getBackendBaseUrl(): string {
   return raw.replace(/\/+$/, "");
 }
 
+const LOOPBACK_HOSTS = new Set(["127.0.0.1", "localhost", "[::1]"]);
+
+/** Local `next dev` on a loopback host is the operator's own machine; no judge lock there. */
+export function isLocalDevRequest(request: Request): boolean {
+  if (process.env.NODE_ENV !== "development") return false;
+  const host = (request.headers.get("host") || "").toLowerCase();
+  const hostname = host.startsWith("[") ? host.slice(0, host.indexOf("]") + 1) : host.split(":")[0];
+  return LOOPBACK_HOSTS.has(hostname);
+}
+
 export function isAdminAuthorized(request: Request): {
   authorized: boolean;
   reason?: string;
@@ -34,6 +44,10 @@ export function isAdminAuthorized(request: Request): {
       reason:
         "View-Only Judge Mode active: operator control credentials are not configured on this server.",
     };
+  }
+
+  if (isLocalDevRequest(request)) {
+    return { authorized: true, statusCode: 200 };
   }
 
   const providedSecret = request.headers.get("x-aegis-admin-secret") || "";

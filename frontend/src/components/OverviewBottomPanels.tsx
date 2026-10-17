@@ -110,6 +110,7 @@ export function OverviewBottomPanels({
     return <FileText className="h-3.5 w-3.5 text-[#9BA7B4]" />;
   };
 
+  const marketStatus = capabilities.ATK_MARKET?.status ?? "NOT_TESTED";
   const atkMarketPass =
     capabilities.ATK_MARKET?.status === "PASS" ||
     capabilities.ATK_MARKET_READ?.status === "PASS";
@@ -128,6 +129,9 @@ export function OverviewBottomPanels({
   const measuredPolicy = typeof policyMs === "number" && Number.isFinite(policyMs) && policyMs >= 0;
   const modelsConnected = backendLive && !isMock && layaStatus === "PASS" && evrenStatus === "PASS";
   const demoReady = backendLive && executionEnabled && sourceMode === "OKX_DEMO";
+  // A historical PASS never marks the exchange active unless demo execution is armed now.
+  const demoVerified = demoReady && demoStatus === "PASS";
+  const demoFailed = demoReady && demoStatus === "FAIL";
 
   const systemRows = [
     {
@@ -138,16 +142,22 @@ export function OverviewBottomPanels({
         ? "Last ATK read verified"
         : atkMarketPass
         ? "Historical ATK Evidence"
+        : backendLive && marketStatus === "NOT_TESTED"
+        ? "Awaiting first cycle"
         : "Unavailable",
       dot: isMock
         ? "bg-[#F59E0B]"
         : backendLive && atkMarketPass
         ? "bg-[#22C55E]"
+        : backendLive && marketStatus === "NOT_TESTED"
+        ? "bg-[#6E7785]"
         : "bg-[#F59E0B]",
       textClass: isMock
         ? "text-[#F59E0B]"
         : backendLive && atkMarketPass
         ? "text-[#4EE1C2]"
+        : backendLive && marketStatus === "NOT_TESTED"
+        ? "text-[#9BA7B4]"
         : "text-[#F59E0B]",
       meta: isMock
         ? "scripted"
@@ -172,14 +182,8 @@ export function OverviewBottomPanels({
           : isMock
           ? "Scripted (Mock)"
           : "Safe Fallback Active",
-      dot:
-        modelsConnected && !layaAbstained
-          ? "bg-[#22C55E]"
-          : "bg-[#F59E0B]",
-      textClass:
-        modelsConnected && !layaAbstained
-          ? "text-[#4EE1C2]"
-          : "text-[#F59E0B]",
+      dot: modelsConnected ? "bg-[#22C55E]" : "bg-[#F59E0B]",
+      textClass: modelsConnected ? "text-[#4EE1C2]" : "text-[#F59E0B]",
       meta: `${layaStatus} / ${evrenStatus}`,
     },
     {
@@ -195,9 +199,24 @@ export function OverviewBottomPanels({
     },
     {
       label: "Exchange (Live / Demo Trade)",
-      status: demoReady ? "Demo configured · Policy gated" : "Read-only · Safe",
-      dot: "bg-[#6E7785]",
-      textClass: "text-[#9BA7B4]",
+      status:
+        demoVerified
+          ? "Demo order verified"
+          : demoReady
+          ? "Demo configured · Policy gated"
+          : "Read-only · Safe",
+      dot:
+        demoVerified
+          ? "bg-[#22C55E]"
+          : demoFailed
+          ? "bg-[#EF4444]"
+          : "bg-[#6E7785]",
+      textClass:
+        demoVerified
+          ? "text-[#4EE1C2]"
+          : demoFailed
+          ? "text-[#EF4444]"
+          : "text-[#9BA7B4]",
       meta: `Order proof: ${demoStatus}`,
     },
   ];
