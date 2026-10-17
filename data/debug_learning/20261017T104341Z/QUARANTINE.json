@@ -1,0 +1,9 @@
+{
+  "debug_only": true,
+  "deliberate_label_leakage": true,
+  "real_task_training_allowed": false,
+  "human_gold": false,
+  "train_rows": 48,
+  "diagnostic_val_rows": 12,
+  "warning": "Never merge these rows, their checkpoints or metrics into operational training or final evaluation."
+}

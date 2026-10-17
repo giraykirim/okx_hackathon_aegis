@@ -2,6 +2,8 @@
 
 import hashlib
 import json
+import platform
+import sys
 import xml.etree.ElementTree as ET
 
 from aegis.models import utcnow
@@ -208,6 +210,12 @@ def main():
     manifest = {
         "schema_version": "1.0.0",
         "recorded_at": utcnow().isoformat(),
+        "validation_machine": {
+            "os": platform.system(),
+            "architecture": platform.machine(),
+            "python": platform.python_version(),
+            "scope": "Local backend evidence only; not public deployment or model training proof",
+        },
         "rubric_source": {
             "authority": "User-supplied official workbook excerpt in authorized amendment",
             "workbook": "Agentic_Hackathon_Judge_Criteria.xlsx",
@@ -261,7 +269,11 @@ def main():
             "No isolated confirmed regional demo account",
             "No verified Fuji contracts/read-back",
         ],
-        "next_command": "cd backend && uv run python -m scripts.prove_service",
+        "next_command": (
+            r"cd backend; .\.venv\Scripts\python.exe -m scripts.prove_service"
+            if sys.platform == "win32"
+            else "cd backend && uv run python -m scripts.prove_service"
+        ),
         "rubric": rubric,
         "artifacts": artifacts,
     }

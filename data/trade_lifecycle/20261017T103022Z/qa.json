@@ -1,0 +1,27 @@
+{
+  "rows": 720,
+  "class_counts": {
+    "CONTINUE": 240,
+    "REVIEW": 240,
+    "HALT": 240
+  },
+  "unique_states": 720,
+  "matrix": {
+    "order_types": 12,
+    "sides": 2,
+    "scenario_families": 15,
+    "variants": 2
+  },
+  "independent_scenario_families": 15,
+  "independent_market_captures": 1,
+  "synthetic_candidates_not_real_trades": true,
+  "human_review_complete": false,
+  "split_created": false,
+  "test_touched": false,
+  "exhaustive_all_trades": false,
+  "checks": {
+    "oracle_targets_match": true,
+    "balanced": true,
+    "unique": true
+  }
+}

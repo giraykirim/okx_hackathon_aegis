@@ -1,0 +1,23 @@
+{
+  "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+  "cases": 120,
+  "scenario_families": 12,
+  "orders_sent": 0,
+  "backend_calls_executed": 120,
+  "network_denial_verified": true,
+  "human_review_complete": false,
+  "independent_split_approved": false,
+  "backend_context_mapping_approved": false,
+  "origin": "SYNTHETIC_DERIVED_WITH_EXECUTED_OFFLINE_POLICY",
+  "snapshot_hashes": {
+    "aegis\\models.py": "f5a58de0e03fd6f6cb84244d44ec8666d42042ba2314db8cf2f92b63dc60e21f",
+    "aegis\\policy.py": "096d0a94d28f41b891885a282ff10aad364944b9a9220ce8524d466ebcb8d026",
+    "aegis\\__init__.py": "1783391751765043a685f22c279cdb054c579890d0ea4acbee6b734d9febca74"
+  },
+  "hashes": {
+    "backend_ack.json": "08e2e0960410453b5e07ed3d49f9ffef61ca91aee5e645762849944f2b6982c7",
+    "draft_cases.json": "c48449cd556077622d674b735eded33f9ddcf4412fa93c8378e866198b714938",
+    "offline_evidence.json": "47e8b6bf157b29a5e8a9492272a389a68afa8c1167428e59f393f652d98cb514",
+    "provenance.json": "e76e1f1158d53d8ce86cf591fd6b8337c87062c49ff576486aeef2cfe9d41195"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "total": 120,
+  "approved": 120,
+  "unresolved": 0,
+  "human_review_complete": true,
+  "training_approved": false,
+  "source_independence_approved": false,
+  "backend_context_mapping_approved": false,
+  "blind_first_pass": false,
+  "ai_assisted": true,
+  "label_counts": {
+    "HALT": 40,
+    "REVIEW": 40,
+    "CONTINUE": 40
+  },
+  "updated_at": "2026-10-17T11:22:31.413469+00:00"
+}

@@ -1,0 +1,902 @@
+[
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019994",
+    "px": "1181.09",
+    "sz": "0.0251",
+    "side": "buy",
+    "ts": "1792232486748",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019993",
+    "px": "1181.2",
+    "sz": "1.99997",
+    "side": "sell",
+    "ts": "1792232484354",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019992",
+    "px": "1181.22",
+    "sz": "0.03403",
+    "side": "sell",
+    "ts": "1792232484354",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019991",
+    "px": "1181.22",
+    "sz": "0.04",
+    "side": "sell",
+    "ts": "1792232484354",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019990",
+    "px": "1181.21",
+    "sz": "0.02728",
+    "side": "buy",
+    "ts": "1792232482419",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019989",
+    "px": "1181.12",
+    "sz": "1.20512",
+    "side": "sell",
+    "ts": "1792232479043",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019988",
+    "px": "1181.12",
+    "sz": "0.04503",
+    "side": "sell",
+    "ts": "1792232479043",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019987",
+    "px": "1180.95",
+    "sz": "0.10557",
+    "side": "sell",
+    "ts": "1792232474764",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019986",
+    "px": "1180.91",
+    "sz": "0.00676",
+    "side": "buy",
+    "ts": "1792232474730",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019985",
+    "px": "1180.91",
+    "sz": "0.02192",
+    "side": "buy",
+    "ts": "1792232474730",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019984",
+    "px": "1180.91",
+    "sz": "0.06964",
+    "side": "buy",
+    "ts": "1792232474730",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019983",
+    "px": "1180.91",
+    "sz": "0.05806",
+    "side": "buy",
+    "ts": "1792232474730",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019982",
+    "px": "1180.91",
+    "sz": "0.09634",
+    "side": "buy",
+    "ts": "1792232474730",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019981",
+    "px": "1180.91",
+    "sz": "0.43564",
+    "side": "buy",
+    "ts": "1792232474730",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019980",
+    "px": "1180.8",
+    "sz": "0.01666",
+    "side": "buy",
+    "ts": "1792232474730",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019979",
+    "px": "1180.8",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232473968",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019978",
+    "px": "1180.8",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232469472",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019977",
+    "px": "1180.76",
+    "sz": "1.17099",
+    "side": "buy",
+    "ts": "1792232467221",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019976",
+    "px": "1180.75",
+    "sz": "0.36394",
+    "side": "sell",
+    "ts": "1792232467219",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019975",
+    "px": "1180.76",
+    "sz": "0.21944",
+    "side": "buy",
+    "ts": "1792232467164",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019974",
+    "px": "1180.53",
+    "sz": "0.0432",
+    "side": "buy",
+    "ts": "1792232466893",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019973",
+    "px": "1180.53",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232466890",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019972",
+    "px": "1180.22",
+    "sz": "0.08107",
+    "side": "buy",
+    "ts": "1792232466427",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019971",
+    "px": "1180.22",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232466077",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019970",
+    "px": "1180.11",
+    "sz": "0.00502",
+    "side": "buy",
+    "ts": "1792232465603",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019969",
+    "px": "1180.11",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232465587",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019968",
+    "px": "1180.04",
+    "sz": "0.00391",
+    "side": "sell",
+    "ts": "1792232462055",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019967",
+    "px": "1180.1",
+    "sz": "0.039",
+    "side": "sell",
+    "ts": "1792232462055",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019966",
+    "px": "1180.1",
+    "sz": "0.001",
+    "side": "sell",
+    "ts": "1792232460129",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019965",
+    "px": "1180.11",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232456219",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019964",
+    "px": "1179.99",
+    "sz": "0.05912",
+    "side": "buy",
+    "ts": "1792232454810",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019963",
+    "px": "1179.99",
+    "sz": "0.01374",
+    "side": "buy",
+    "ts": "1792232454810",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019962",
+    "px": "1179.92",
+    "sz": "0.28991",
+    "side": "sell",
+    "ts": "1792232454617",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019961",
+    "px": "1179.93",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232454167",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019960",
+    "px": "1179.92",
+    "sz": "1.47025",
+    "side": "sell",
+    "ts": "1792232454112",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019959",
+    "px": "1179.76",
+    "sz": "0.06072",
+    "side": "buy",
+    "ts": "1792232452780",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019958",
+    "px": "1179.76",
+    "sz": "0.03915",
+    "side": "buy",
+    "ts": "1792232452693",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019957",
+    "px": "1179.87",
+    "sz": "0.042",
+    "side": "sell",
+    "ts": "1792232445294",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019956",
+    "px": "1179.87",
+    "sz": "0.001",
+    "side": "sell",
+    "ts": "1792232445294",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019955",
+    "px": "1179.75",
+    "sz": "0.01774",
+    "side": "buy",
+    "ts": "1792232442970",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019954",
+    "px": "1179.75",
+    "sz": "0.00967",
+    "side": "buy",
+    "ts": "1792232442970",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019953",
+    "px": "1179.75",
+    "sz": "0.02853",
+    "side": "buy",
+    "ts": "1792232442970",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019952",
+    "px": "1179.75",
+    "sz": "0.02687",
+    "side": "buy",
+    "ts": "1792232442955",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019951",
+    "px": "1179.75",
+    "sz": "0.03118",
+    "side": "buy",
+    "ts": "1792232442954",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019950",
+    "px": "1179.71",
+    "sz": "0.02031",
+    "side": "buy",
+    "ts": "1792232442685",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019949",
+    "px": "1179.71",
+    "sz": "0.03315",
+    "side": "buy",
+    "ts": "1792232442685",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019948",
+    "px": "1179.64",
+    "sz": "0.00347",
+    "side": "buy",
+    "ts": "1792232442649",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019947",
+    "px": "1179.64",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232442646",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019946",
+    "px": "1179.64",
+    "sz": "0.01729",
+    "side": "buy",
+    "ts": "1792232438346",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019945",
+    "px": "1179.63",
+    "sz": "0.1296",
+    "side": "buy",
+    "ts": "1792232438344",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019944",
+    "px": "1179.63",
+    "sz": "0.13512",
+    "side": "buy",
+    "ts": "1792232438344",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019943",
+    "px": "1179.61",
+    "sz": "0.202",
+    "side": "buy",
+    "ts": "1792232437631",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019942",
+    "px": "1179.61",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232434924",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019941",
+    "px": "1179.42",
+    "sz": "0.36394",
+    "side": "sell",
+    "ts": "1792232428430",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019940",
+    "px": "1179.27",
+    "sz": "0.00818",
+    "side": "buy",
+    "ts": "1792232428308",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019939",
+    "px": "1179.22",
+    "sz": "0.03549",
+    "side": "buy",
+    "ts": "1792232428300",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019938",
+    "px": "1179.22",
+    "sz": "0.09173",
+    "side": "buy",
+    "ts": "1792232428300",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019937",
+    "px": "1179.2",
+    "sz": "0.01866",
+    "side": "buy",
+    "ts": "1792232428300",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019936",
+    "px": "1179.19",
+    "sz": "0.00517",
+    "side": "buy",
+    "ts": "1792232428094",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019935",
+    "px": "1179.11",
+    "sz": "0.14101",
+    "side": "buy",
+    "ts": "1792232428092",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019934",
+    "px": "1179.11",
+    "sz": "0.13956",
+    "side": "buy",
+    "ts": "1792232428092",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019933",
+    "px": "1179",
+    "sz": "1.21106",
+    "side": "buy",
+    "ts": "1792232427693",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019932",
+    "px": "1179",
+    "sz": "2.14749",
+    "side": "buy",
+    "ts": "1792232427693",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019931",
+    "px": "1179",
+    "sz": "5.17226",
+    "side": "buy",
+    "ts": "1792232427693",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019930",
+    "px": "1179",
+    "sz": "1.05091",
+    "side": "buy",
+    "ts": "1792232427693",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019929",
+    "px": "1179",
+    "sz": "2.83257",
+    "side": "buy",
+    "ts": "1792232427692",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019928",
+    "px": "1179",
+    "sz": "0.66285",
+    "side": "buy",
+    "ts": "1792232427692",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019927",
+    "px": "1179",
+    "sz": "1.35309",
+    "side": "buy",
+    "ts": "1792232427692",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019926",
+    "px": "1179",
+    "sz": "1.99599",
+    "side": "buy",
+    "ts": "1792232427691",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019925",
+    "px": "1179",
+    "sz": "0.03331",
+    "side": "buy",
+    "ts": "1792232424670",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019924",
+    "px": "1179",
+    "sz": "0.03808",
+    "side": "buy",
+    "ts": "1792232424653",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019923",
+    "px": "1179",
+    "sz": "0.07024",
+    "side": "buy",
+    "ts": "1792232424652",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019922",
+    "px": "1179",
+    "sz": "0.12795",
+    "side": "buy",
+    "ts": "1792232424651",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019921",
+    "px": "1179",
+    "sz": "0.23208",
+    "side": "buy",
+    "ts": "1792232424650",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019920",
+    "px": "1178.99",
+    "sz": "0.32243",
+    "side": "sell",
+    "ts": "1792232424584",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019919",
+    "px": "1178.99",
+    "sz": "0.0141",
+    "side": "sell",
+    "ts": "1792232424584",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019918",
+    "px": "1178.99",
+    "sz": "0.62712",
+    "side": "sell",
+    "ts": "1792232424584",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019917",
+    "px": "1179",
+    "sz": "0.03167",
+    "side": "buy",
+    "ts": "1792232424580",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019916",
+    "px": "1179",
+    "sz": "0.05901",
+    "side": "buy",
+    "ts": "1792232424580",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019915",
+    "px": "1179",
+    "sz": "0.05759",
+    "side": "buy",
+    "ts": "1792232424579",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019914",
+    "px": "1179",
+    "sz": "0.0952",
+    "side": "buy",
+    "ts": "1792232424579",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019913",
+    "px": "1179",
+    "sz": "0.10631",
+    "side": "buy",
+    "ts": "1792232424578",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019912",
+    "px": "1179",
+    "sz": "1.707",
+    "side": "buy",
+    "ts": "1792232424572",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019911",
+    "px": "1178.9",
+    "sz": "0.00831",
+    "side": "sell",
+    "ts": "1792232424334",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019910",
+    "px": "1179",
+    "sz": "1",
+    "side": "buy",
+    "ts": "1792232424324",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019909",
+    "px": "1179",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232424323",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019908",
+    "px": "1178.81",
+    "sz": "0.47035",
+    "side": "sell",
+    "ts": "1792232423243",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019907",
+    "px": "1178.9",
+    "sz": "0.001",
+    "side": "buy",
+    "ts": "1792232422262",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019906",
+    "px": "1178.78",
+    "sz": "0.00902",
+    "side": "sell",
+    "ts": "1792232422254",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019905",
+    "px": "1178.43",
+    "sz": "0.01527",
+    "side": "buy",
+    "ts": "1792232414765",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019904",
+    "px": "1178.28",
+    "sz": "0.05874",
+    "side": "buy",
+    "ts": "1792232400057",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019903",
+    "px": "1178.36",
+    "sz": "0.02738",
+    "side": "sell",
+    "ts": "1792232400053",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019902",
+    "px": "1178.32",
+    "sz": "29.08192",
+    "side": "buy",
+    "ts": "1792232399456",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019901",
+    "px": "1178.39",
+    "sz": "1",
+    "side": "sell",
+    "ts": "1792232399455",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019900",
+    "px": "1178.46",
+    "sz": "5.85649",
+    "side": "sell",
+    "ts": "1792232399455",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019899",
+    "px": "1178.52",
+    "sz": "8.02899",
+    "side": "sell",
+    "ts": "1792232399455",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019898",
+    "px": "1178.52",
+    "sz": "1.57162",
+    "side": "sell",
+    "ts": "1792232399455",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019897",
+    "px": "1178.55",
+    "sz": "0.03288",
+    "side": "sell",
+    "ts": "1792232399455",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019896",
+    "px": "1178.66",
+    "sz": "8.0715",
+    "side": "sell",
+    "ts": "1792232399455",
+    "source": "0"
+  },
+  {
+    "instId": "ZEC-USDT",
+    "tradeId": "26019895",
+    "px": "1178.32",
+    "sz": "0.08879",
+    "side": "buy",
+    "ts": "1792232397383",
+    "source": "0"
+  }
+]

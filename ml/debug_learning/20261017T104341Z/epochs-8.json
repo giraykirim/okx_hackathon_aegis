@@ -1,0 +1,419 @@
+{
+  "epochs": 8,
+  "seed": 17,
+  "laya": "0.4.8",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "audit": {
+    "optimizer_steps": 347,
+    "gradient_samples": [
+      {
+        "step": 1,
+        "tensors": 31,
+        "norm_sum": 1.2268394626826193,
+        "finite": true
+      },
+      {
+        "step": 2,
+        "tensors": 31,
+        "norm_sum": 1.2318653341235404,
+        "finite": true
+      },
+      {
+        "step": 3,
+        "tensors": 31,
+        "norm_sum": 1.212591482312746,
+        "finite": true
+      },
+      {
+        "step": 4,
+        "tensors": 31,
+        "norm_sum": 1.2485184895367638,
+        "finite": true
+      },
+      {
+        "step": 5,
+        "tensors": 31,
+        "norm_sum": 1.3898700894624199,
+        "finite": true
+      },
+      {
+        "step": 6,
+        "tensors": 31,
+        "norm_sum": 1.4302097624640737,
+        "finite": true
+      },
+      {
+        "step": 7,
+        "tensors": 31,
+        "norm_sum": 1.5417285498397177,
+        "finite": true
+      },
+      {
+        "step": 8,
+        "tensors": 31,
+        "norm_sum": 1.2295763704523779,
+        "finite": true
+      },
+      {
+        "step": 64,
+        "tensors": 31,
+        "norm_sum": 1.5969849952234654,
+        "finite": true
+      },
+      {
+        "step": 128,
+        "tensors": 31,
+        "norm_sum": 1.7827389945159666,
+        "finite": true
+      },
+      {
+        "step": 192,
+        "tensors": 31,
+        "norm_sum": 0.12454849525693135,
+        "finite": true
+      },
+      {
+        "step": 256,
+        "tensors": 31,
+        "norm_sum": 0.06819346756969935,
+        "finite": true
+      },
+      {
+        "step": 320,
+        "tensors": 31,
+        "norm_sum": 0.7021805715539813,
+        "finite": true
+      }
+    ],
+    "nonfinite_loss": false,
+    "head_parameter_tensors": 35,
+    "encoder_parameter_tensors": 170,
+    "encoder_frozen": true,
+    "encoder_unchanged": true,
+    "head_tensors_changed": 31,
+    "epoch_loss": [
+      1.263411516493017,
+      0.9577908763153986,
+      0.5742128286404874,
+      0.07042667784974749,
+      0.3138064471203071,
+      0.0049594251333092195,
+      0.02327712899693973,
+      0.0014558159233723248
+    ]
+  },
+  "gpu_total_mib": 8187.5,
+  "real_task_success": false,
+  "production_approved": false,
+  "official_cli_args": [
+    "--data",
+    "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\data\\debug_learning\\20261017T104341Z\\train.jsonl",
+    "--eval",
+    "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\data\\debug_learning\\20261017T104341Z\\diagnostic_val.jsonl",
+    "--base",
+    "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\models\\aegis_laya_selected",
+    "--out",
+    "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\models\\debug_learning\\20261017T104341Z\\epochs-8",
+    "--epochs",
+    "8",
+    "--micro-batch",
+    "1",
+    "--grad-accum",
+    "1",
+    "--freeze-encoder",
+    "--loss",
+    "soft-ce",
+    "--device",
+    "cuda",
+    "--seed",
+    "17"
+  ],
+  "reload_predictions": [
+    {
+      "expected": "HALT",
+      "predicted": "HALT",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "CONTINUE",
+      "predicted": "CONTINUE",
+      "usage": {
+        "input_tokens": 130,
+        "output_tokens": 0,
+        "state_tokens": 37,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "CONTINUE",
+      "predicted": "CONTINUE",
+      "usage": {
+        "input_tokens": 130,
+        "output_tokens": 0,
+        "state_tokens": 37,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "CONTINUE",
+      "predicted": "CONTINUE",
+      "usage": {
+        "input_tokens": 130,
+        "output_tokens": 0,
+        "state_tokens": 37,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "REVIEW",
+      "predicted": "REVIEW",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "HALT",
+      "predicted": "HALT",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "CONTINUE",
+      "predicted": "CONTINUE",
+      "usage": {
+        "input_tokens": 130,
+        "output_tokens": 0,
+        "state_tokens": 37,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "HALT",
+      "predicted": "HALT",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "REVIEW",
+      "predicted": "REVIEW",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "REVIEW",
+      "predicted": "REVIEW",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "REVIEW",
+      "predicted": "REVIEW",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "expected": "HALT",
+      "predicted": "HALT",
+      "usage": {
+        "input_tokens": 129,
+        "output_tokens": 0,
+        "state_tokens": 36,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    }
+  ],
+  "confusion": {
+    "CONTINUE": {
+      "CONTINUE": 4
+    },
+    "REVIEW": {
+      "REVIEW": 4
+    },
+    "HALT": {
+      "HALT": 4
+    }
+  },
+  "correct": 12,
+  "truncated_rows": 0,
+  "debug_pass": true,
+  "checkpoint_hashes": {
+    "model.safetensors": "04538e70f690dc2898528eed5a5741b47f18309ee033e47b20e5a21c6c78291b",
+    "questions.json": "fe82b16065f45bbe49a027fbe620047f750fed628c1442ba5c9fe7322711fe26",
+    "rl_agent_config.json": "3e6a3414de7c837c855b4161a4efdca0f0493a81ba2ced3fbcdc3c214ae60cee",
+    "train_report.json": "b4a8f93a3354f478789867c4f5c8eecdfb559189aac7fe4c430e0fa9350f7cfd",
+    "encoder\\config.json": "8525cf5ff496c47b5feacf2464bc658c608102894f348f6171542d73de3bbf33",
+    "tokenizer\\tokenizer.json": "0b3214f8efe1327290428b84e5d344ff3f2442686c1b89fb7b42c13a79ce6779",
+    "tokenizer\\tokenizer_config.json": "e07bcb74963b20b1193332afd3541b36dea30db1e4183d4002d739d5a4dfd5d2"
+  },
+  "official_report": {
+    "eval_source": "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\data\\debug_learning\\20261017T104341Z\\diagnostic_val.jsonl",
+    "eval_mode": "held_out",
+    "is_held_out": true,
+    "eval_items": 12,
+    "note": "Metrics reflect independent held-out evaluation.",
+    "before": {
+      "items": 12,
+      "loss": 1.1021,
+      "accuracy": 0.3333,
+      "mean_confidence": 0.5831,
+      "ece": 0.466,
+      "brier": 0.6641,
+      "brier_top1": 0.2275,
+      "by_type": {
+        "choice": {
+          "items": 12,
+          "loss": 1.1021,
+          "accuracy": 0.3333,
+          "mean_confidence": 0.5831,
+          "ece": 0.466,
+          "brier": 0.6641,
+          "brier_top1": 0.2275
+        }
+      }
+    },
+    "after": {
+      "items": 12,
+      "loss": 0.0002,
+      "accuracy": 1.0,
+      "mean_confidence": 0.9998,
+      "ece": 0.0002,
+      "brier": 0.0,
+      "brier_top1": 0.0,
+      "by_type": {
+        "choice": {
+          "items": 12,
+          "loss": 0.0002,
+          "accuracy": 1.0,
+          "mean_confidence": 0.9998,
+          "ece": 0.0002,
+          "brier": 0.0,
+          "brier_top1": 0.0
+        }
+      }
+    },
+    "comparison": {
+      "delta_accuracy": 0.6667,
+      "delta_loss": -1.1019,
+      "delta_ece": -0.4658,
+      "delta_brier": -0.6641,
+      "delta_brier_top1": -0.2275,
+      "delta_mean_confidence": 0.4167
+    },
+    "calibration": {
+      "choice": {
+        "items": 4,
+        "temperature": 1.0,
+        "issues": [
+          "not fitted: 4 calibration items, fewer than 10, so the temperature stays 1.0"
+        ],
+        "accuracy": 1.0,
+        "mean_confidence": 0.9998834576356971
+      },
+      "score": {
+        "items": 0,
+        "temperature": 1.0,
+        "issues": []
+      },
+      "noul": {
+        "items": 0,
+        "temperature": 1.0,
+        "issues": []
+      }
+    },
+    "abstention_thresholds": {},
+    "training": {
+      "epochs": 8,
+      "micro_batch": 1,
+      "grad_accum": 1,
+      "encoder_lr": 2.5e-05,
+      "head_lr": 0.0001,
+      "min_lr": 1e-06,
+      "weight_decay": 0.01,
+      "grad_clip": 1.0,
+      "loss": "soft-ce",
+      "rl_samples": 4,
+      "sigma_start": 0.4,
+      "sigma_end": 0.1,
+      "w_sph": 0.75,
+      "w_rps": 1.0,
+      "shuffle_options": [],
+      "option_layout": null,
+      "freeze_encoder": true,
+      "calib_max": 400,
+      "calib_frac": 0.1,
+      "calib_seed": 20260922,
+      "seed": 17,
+      "max_len": null,
+      "head_max_len": null,
+      "amp": null,
+      "gradient_checkpointing": null,
+      "log_every": 100,
+      "label_smoothing": 0.0,
+      "text_column": "text",
+      "label_column": "label",
+      "question_id": "label",
+      "instructions": null,
+      "eval_data": "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\data\\debug_learning\\20261017T104341Z\\diagnostic_val.jsonl",
+      "target_error": 0.1,
+      "min_abstain_n": 10
+    }
+  },
+  "status": "PASS",
+  "wall_seconds": 46.53662699996494,
+  "peak_allocated_mib": 2322.54833984375,
+  "peak_reserved_mib": 2476.0
+}

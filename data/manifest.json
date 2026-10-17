@@ -1,0 +1,36 @@
+{
+  "version": "aegis-operational-v1",
+  "training_approved": false,
+  "counts": {
+    "train": {
+      "CONTINUE": 12,
+      "REVIEW": 12,
+      "HALT": 32
+    },
+    "val": {
+      "CONTINUE": 4,
+      "REVIEW": 4,
+      "HALT": 4
+    },
+    "test": {
+      "CONTINUE": 4,
+      "REVIEW": 4,
+      "HALT": 4
+    },
+    "challenge": {
+      "HALT": 12
+    }
+  },
+  "hashes": {
+    "train.jsonl": "a23aaa1bbad1d10105999c25d50f0ee82cbcc0e8bffe0c81c29e673e1156bad2",
+    "val.jsonl": "65b88638f1fe4a5aca8b9fbe1fa073341787527bf1a7c95bd5b12824e6efdd13",
+    "test.jsonl": "c8ba8991c1710f8e63cc3434c229cb17a6c8e42bca5223d16a847893c977fdc7",
+    "challenge.jsonl": "27a54a6a6b2b9699abe0eee8e818082b3139d27b9ca7c5a80b162607d87a540c",
+    "metadata.csv": "8e2cee8b4186595a0f02db56c806e485366f4d7e488d6098818bb960964b8409",
+    "sources.json": "3f4ac4b2f201053dbb1154734151ce3e2cf43edce3b23d84aa886187f9171fde",
+    "atk_public_sanitized.json": "a1a73a8d1f0dfe35daef9107b344ae9521810535569acdaad0d6982d1346a244"
+  },
+  "policy_sha256": "27ebb1de89abb6027de0e462e740e476461bf0050be2126ecf3bcfe3557b36aa",
+  "builder_sha256": "3a3358aba33eb39b234dfe655c20c404da15197685336ab345619e7f64827adc",
+  "source_capture_sha256": "d3a73b39868986c86f6c53fc3ec82d8d67bf666e8827c742a07840f34ed7d788"
+}

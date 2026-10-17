@@ -1,0 +1,18 @@
+{
+  "run": "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\ml\\debug_learning\\20261017T104341Z",
+  "attempts": [
+    {
+      "epochs": 8,
+      "debug_pass": true,
+      "correct": 12
+    }
+  ],
+  "protected_files_unchanged": true,
+  "control_passed": true,
+  "outcome": "DATA/INTEGRATION BLOCKED",
+  "backend_acknowledged": false,
+  "human_review_complete": false,
+  "real_task_training_started": false,
+  "production_approved": false,
+  "orders_sent": 0
+}

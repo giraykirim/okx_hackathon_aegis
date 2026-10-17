@@ -1,0 +1,4392 @@
+[
+  {
+    "case_id": "1e1b2c45622bbbccbfa3",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010000",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "c834f33296d3209036cd",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010001",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "9338672b274b328ec5fd",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010002",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "8e976cfe6b21954647b1",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010003",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "196534c0f660beb19fd8",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010004",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e5c5b72346c2686cf761",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010005",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "33640f00256df8c6fa03",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010006",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e17b4ec5983eb1f91286",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010007",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "ba54ae9622e391835d61",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010008",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "90b318ba568d4cd6032c",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "monitoring",
+    "parent_scenario_group": "monitoring",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010009",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Yalnızca piyasa izleniyor; yeni emir önerilmedi.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "91dc1617398e92ec709f",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010010",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "eaad5d6469a0ed0e9328",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010011",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "566033ee7a75c01d59f8",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010012",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "66bbf43e3368516d1511",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010013",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "0cc1d0293a6be7043f1a",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010014",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "7cc7a6edb1090f0cf8eb",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010015",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "855a7bd4495ea0a043bb",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010016",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "865c96d9a9d9453d62f9",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010017",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e6dcb518ecac9544d081",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010018",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "a47337a01df7d034d319",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "preflight",
+    "parent_scenario_group": "preflight",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010019",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Emir öncesi yerel kontroller için gerekli bağlam sağlandı.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "dc897f3c700241390bda",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010020",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "11790659835a8b2fee49",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010021",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "a3c98c3721a29339d2bd",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010022",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "794b3dc4c6241e9302c0",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010023",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "81cb4e9650b78eb966b9",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010024",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "d7ba2d4f318caec80934",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010025",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "9b68d03aaa2938339a90",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010026",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "994bf6df4ad8939d766f",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010027",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "ba645f88af8e13ad7dcc",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010028",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "709ddf2eb1609c7ce041",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "terminal",
+    "parent_scenario_group": "terminal",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010029",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Önceki olayın sorguyla terminal olduğu doğrulandı; yeni emir yok.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "007c480e10c6f406f97d",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010030",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "74d64bbea292b52dcb44",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010031",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "3e119fdabfcb79800efb",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010032",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "f8512fb4ade9d96cd574",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010033",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "71b4e4818ef262a4abc2",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010034",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "2e76a8d7296f5e2c7edd",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010035",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "21d8e999ef431bdf81f3",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010036",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "09add5eb1b7ab0b6ffa5",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010037",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "135ced34e4e01b36280e",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010038",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "07801af9cf67ea2e85c1",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "optional",
+    "parent_scenario_group": "optional",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": false,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010039",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Ek açıklama notu yok; gerekli kontrollerin verileri mevcut.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "7d2dd2888c0f943a7354",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010040",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "70f3ec249127814f1734",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010041",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "057bbc89f1e2d79e6cde",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010042",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e09ac8fab56a61d8cd7d",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010043",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "f3b1b3192b48d12408c2",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010044",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "0a02b5a4bca0ed52baf5",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010045",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "45add662a5b22fdfac11",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010046",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "59a03a03f85bfe8b7546",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010047",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "202846a42db8a1036235",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010048",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "d4ad82ef702f93119036",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "account_missing",
+    "parent_scenario_group": "account_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010049",
+      "account_known": false,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; hesap durumu bilinmiyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unknown_account"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "050476b0f8a82d187623",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010050",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "4445c9f4bc714212630a",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010051",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "2f5f4ad2257ecfae38ca",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010052",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "70e31b63d12d4197ad8e",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010053",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "d3a5326fe9859b1ada7b",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010054",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "b9cec0ea21516f1efe5b",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010055",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "0deebe514dc354a6891f",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010056",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "5744cee15019e492bfb4",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010057",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e4f98d82ea650dfaf4f3",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010058",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "00ed760037bf3d5d47e4",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "approval_missing",
+    "parent_scenario_group": "approval_missing",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010059",
+      "account_known": true,
+      "approval_available": false,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Bir emir öneriliyor; ayrı kullanıcı onayı henüz mevcut değil.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "approval_unavailable"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "7a4defd5e3d47d78266d",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010060",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "a53af65982bfb2dd70d9",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010061",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "4ed6b20445fade0df531",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010062",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "d9d87ff802da8a64c22a",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010063",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "54ff652b1dbf79eede39",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010064",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "a190e6b6a1d01d9423c0",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010065",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "77ea043bab88b699cdaa",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010066",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "bf9deb3a98c7bbe91717",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010067",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "00dc86dbb0758c811523",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010068",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "40ec1afefda6ebcba961",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "read_timeout",
+    "parent_scenario_group": "read_timeout",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010069",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": true,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Submit çağrısı yapılmadı; önceki bilgi okuma isteği timeout oldu.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e95e14e1f6400e5e3887",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010070",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "1e74f7dcd4e674e68765",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010071",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "66c75219e2267b4f2f2e",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010072",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e938ec4e3d706a5a0f76",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010073",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "18df1f733778b83171b2",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010074",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "623bf31e0858a186b6a9",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010075",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "34d7c159c9cf409f7a6e",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010076",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "756cf30651dff7c5b8b7",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010077",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "4bade6e0145f2109a052",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010078",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "523742ae7c78b8dbc628",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "disagreement",
+    "parent_scenario_group": "disagreement",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010079",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": true,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "İki analiz kaynağı mevcut bağlam hakkında birbiriyle çelişiyor.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "9c49407413049c012728",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010080",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e9ce67833397824dade1",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010081",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "3c7cac7cdd5b7f046fd0",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010082",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "06a8a78ff3943f811850",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010083",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "50cbd55961a9785f7e01",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010084",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "c09461022826ee92bceb",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010085",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "44a1b384ee9923d7ad83",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010086",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "8277674f0dacfefc5acb",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010087",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "c193ded1e8cb468e6525",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010088",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "52e918d616df803d5e9f",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "stale",
+    "parent_scenario_group": "stale",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 40,
+      "quantity": "0.00010089",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Piyasa kaydının yaşı güncel veri sınırını aşıyor.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "stale_feed"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "d8db9f803db2140473be",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010090",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "a41ff25899ba33f2b6fd",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010091",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "2b743766b17b64f2e464",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010092",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "9a0c9f609d95159bc7db",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010093",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "6fd4830438d8b98a6e7b",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010094",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "7deccd5c5c4f6aa3a953",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010095",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "70a7cc9eebccc5e2a0c2",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010096",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e068a75df60daa2b4315",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010097",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "bfbb59800964af9658eb",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010098",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "1dd6667153c47a53dd73",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "duplicate",
+    "parent_scenario_group": "duplicate",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010099",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Aynı istem daha önce kaydedilmiş; duplicate sinyali doğrulandı.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "duplicate_intent"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "329751cf283fb8e74cdf",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010100",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "cc067b1e0f0c394c01a0",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010101",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "84b90d696db7a23a43e5",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010102",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "4efae94d2caf17fdbe60",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010103",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e28d2710016c2709b800",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010104",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "e69e6ea971fd11c6d6ec",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010105",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "dc155f52ca29ab6c076f",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010106",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "cc4eeebf5538e246b886",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010107",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "fd429a0e4a54c2e9f26a",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010108",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "a4f8fcafb212cc133992",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "unknown_submit",
+    "parent_scenario_group": "unknown_submit",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010109",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "permission_revoked": false,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Submit sonrası yanıt alınamadı; emrin borsaya ulaşıp ulaşmadığı belirsiz.",
+      "backend_approved": false,
+      "backend_reasons": [
+        "unresolved_prior_order"
+      ],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "634056b05a85aefcc987",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010110",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "buy",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "b9a230ee54bdc23f4787",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010111",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "market",
+      "side": "sell",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "4046ab68c01332698ed7",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010112",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "buy",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "70687a5b1849a5bb21bf",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010113",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "limit",
+      "side": "sell",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "590cd76f4f52d6b59696",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010114",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "buy",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "083f0a280d9ab0ef24f0",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010115",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "post_only",
+      "side": "sell",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "de3df3eec9c9d99a7491",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010116",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "buy",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "9a5350a1531d2cc85481",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010117",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "fok",
+      "side": "sell",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "96e34a0f773176a0be18",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010118",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "buy",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  },
+  {
+    "case_id": "6aa400f174aab3899cf5",
+    "split": "UNASSIGNED",
+    "origin": "SYNTHETIC_DERIVED",
+    "backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+    "source_capture_group": "offline-policy-review-1c9cf35",
+    "source_event_group": "revoked",
+    "parent_scenario_group": "revoked",
+    "context": {
+      "symbol": "BTC-USDT",
+      "site": "tr",
+      "source_mode": "MOCK",
+      "intent_requested": true,
+      "feed_age_seconds": 2,
+      "quantity": "0.00010119",
+      "account_known": true,
+      "approval_available": true,
+      "api_timeout": false,
+      "agents_disagree": false,
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "permission_revoked": true,
+      "injection_detected": false,
+      "deployment_integrity_failure": false,
+      "excess_exposure": false
+    },
+    "review_context": {
+      "order_type": "ioc",
+      "side": "sell",
+      "description": "Güvenilir kontrol katmanı işlem yetkisinin geri alındığını bildirdi.",
+      "backend_approved": true,
+      "backend_reasons": [],
+      "backend_order_type_aware": false
+    }
+  }
+]

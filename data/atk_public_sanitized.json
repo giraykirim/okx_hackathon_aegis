@@ -1,0 +1,46 @@
+[
+  {
+    "operation": "ticker",
+    "site": "tr",
+    "source_mode": "MARKET_ONLY",
+    "status": "PASS",
+    "requested_at": "2026-10-17T09:43:10.553018Z",
+    "market_timestamp": "2026-10-17T09:43:10.883000Z",
+    "result_sha256": "af260dd910823a3d4a8716c81630db7bcb8c39f2e79b7ccc8f645060f5af9fdf",
+    "elapsed_ms": 546.5881999116391,
+    "origin_sha256": "d3a73b39868986c86f6c53fc3ec82d8d67bf666e8827c742a07840f34ed7d788"
+  },
+  {
+    "operation": "instruments",
+    "site": "tr",
+    "source_mode": "MARKET_ONLY",
+    "status": "PASS",
+    "requested_at": "2026-10-17T09:43:11.101071Z",
+    "market_timestamp": null,
+    "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+    "elapsed_ms": 558.541200007312,
+    "origin_sha256": "d3a73b39868986c86f6c53fc3ec82d8d67bf666e8827c742a07840f34ed7d788"
+  },
+  {
+    "operation": "ticker",
+    "site": "tr",
+    "source_mode": "MARKET_ONLY",
+    "status": "PASS",
+    "requested_at": "2026-10-17T09:43:11.673039Z",
+    "market_timestamp": "2026-10-17T09:43:11.868000Z",
+    "result_sha256": "fc66c9ddcbfd9bfc262abf3ab0305b4a13e40d18f2cb9373e741e2e64d73a5a6",
+    "elapsed_ms": 697.26000004448,
+    "origin_sha256": "d3a73b39868986c86f6c53fc3ec82d8d67bf666e8827c742a07840f34ed7d788"
+  },
+  {
+    "operation": "instruments",
+    "site": "tr",
+    "source_mode": "MARKET_ONLY",
+    "status": "PASS",
+    "requested_at": "2026-10-17T09:43:12.372139Z",
+    "market_timestamp": null,
+    "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+    "elapsed_ms": 696.5769999660552,
+    "origin_sha256": "d3a73b39868986c86f6c53fc3ec82d8d67bf666e8827c742a07840f34ed7d788"
+  }
+]

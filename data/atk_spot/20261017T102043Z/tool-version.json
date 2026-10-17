@@ -1,0 +1,7 @@
+{
+  "package": "@okx_ai/okx-trade-cli",
+  "version": "1.4.8",
+  "credential_home": "isolated temporary empty directory",
+  "site": "tr",
+  "market_environment": "public live market data; no private endpoint or execution"
+}

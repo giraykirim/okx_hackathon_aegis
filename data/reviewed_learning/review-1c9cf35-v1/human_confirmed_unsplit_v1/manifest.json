@@ -1,0 +1,48 @@
+{
+  "created_utc": "2026-10-17T11:24:15.767685+00:00",
+  "human_reviews": 120,
+  "label_counts": {
+    "CONTINUE": 40,
+    "REVIEW": 40,
+    "HALT": 40
+  },
+  "ai_assisted": true,
+  "blind_review": false,
+  "policy_version": "aegis-operational-v1",
+  "policy_disagreements": [],
+  "user_adjudicated_stale_case_ids": [
+    "9c49407413049c012728",
+    "e9ce67833397824dade1",
+    "3c7cac7cdd5b7f046fd0",
+    "06a8a78ff3943f811850",
+    "50cbd55961a9785f7e01",
+    "c09461022826ee92bceb",
+    "44a1b384ee9923d7ad83",
+    "8277674f0dacfefc5acb",
+    "c193ded1e8cb468e6525",
+    "52e918d616df803d5e9f"
+  ],
+  "ledger_chain_valid": true,
+  "ledger_revision": 130,
+  "ledger_sha256": "94ff4f7ee06c5359babcee15df61ed336507a4a901dd5bfcc8395100cdee595e",
+  "source_file_sha256": "fe77a64e2318afaddd428c1b8820797946bd39cb20fa6c8224c087cc053d4070",
+  "source_capture_groups": 1,
+  "scenario_families": 12,
+  "approved_training_split": false,
+  "final_test_independent": false,
+  "final_test_blind_review": false,
+  "person1_context_mapping_approved": false,
+  "training_started": false,
+  "production_approved": false,
+  "execution_authority": false,
+  "remaining_blocks": [
+    "Single synthetic source batch; do not randomly split relatives across train/val/test",
+    "All current reviews AI-assisted; independent blind validation/test still needed",
+    "Person 1 trusted context mapping/runtime adapter not acknowledged or deployed"
+  ],
+  "hashes": {
+    "candidates.jsonl": "7caf5a87f3b62832f0a63b8d33d4a64eee105bbaa256e00a2bc3a365ce7df207",
+    "metadata.json": "c3eb537922f3e31a842138c2b9fa2f61fa8c8f3fedd0771da8be56183443a0d4"
+  },
+  "dataset_scope": "Human-confirmed development candidates; UNSPLIT, NOT gold final-test or training-approved bundle"
+}

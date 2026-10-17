@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-17T09:31:41.637046+00:00",
+  "recorded_at": "2026-10-17T09:43:10.411839+00:00",
   "transport": "actual local HTTP",
   "public_deployment_status": "NOT_TESTED",
   "exchange_writes_attempted": 0,
@@ -15,9 +15,9 @@
     "small_intent": {
       "status": "PASS",
       "response": {
-        "assessment_id": "bd8032749ad94df9a4dc8689832ee658",
-        "timestamp": "2026-10-17T09:31:41.666780Z",
-        "run_id": "bd8032749ad94df9a4dc8689832ee658",
+        "assessment_id": "fbbd7c4ea34d4cc4a41783e808450f48",
+        "timestamp": "2026-10-17T09:43:10.551180Z",
+        "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -39,17 +39,17 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T09:31:41.126000Z",
+          "market_timestamp": "2026-10-17T09:43:10.883000Z",
           "receipts": [
             {
-              "id": "4c2506b4ef0341d79694d28fd6523e39",
+              "id": "c32aaf627dba46c397ad10d667b31c41",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "ticker",
                 "BTC-USDT",
@@ -59,26 +59,26 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:41.666911Z",
-              "completed_at": "2026-10-17T09:31:42.388226Z",
-              "market_timestamp": "2026-10-17T09:31:41.126000Z",
+              "requested_at": "2026-10-17T09:43:10.553018Z",
+              "completed_at": "2026-10-17T09:43:11.099606Z",
+              "market_timestamp": "2026-10-17T09:43:10.883000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "bd8032749ad94df9a4dc8689832ee658",
+              "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
               "status": "PASS",
-              "result_sha256": "40fb4002f182d41dc13a0637843dfc6a77921a37df05ebe2bbe007817e64b226",
-              "stdout_sha256": "011119fc532f4235f23f8a4e0874f62cb89016ff452ff43aa539b421066e7c50",
-              "elapsed_ms": 721.3207090098877,
+              "result_sha256": "af260dd910823a3d4a8716c81630db7bcb8c39f2e79b7ccc8f645060f5af9fdf",
+              "stdout_sha256": "161e43d69b9c9dc7e0ad68579a0443cb84b150de1477354b3a147900057b2be3",
+              "elapsed_ms": 546.5881999116391,
               "error_type": null
             },
             {
-              "id": "b1cdd74edb634b9c98078fff87a4abde",
+              "id": "d8d20074786b4c16be77d33d49a01678",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "instruments",
                 "--instType",
@@ -91,15 +91,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:42.388570Z",
-              "completed_at": "2026-10-17T09:31:42.949709Z",
+              "requested_at": "2026-10-17T09:43:11.101071Z",
+              "completed_at": "2026-10-17T09:43:11.659608Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "bd8032749ad94df9a4dc8689832ee658",
+              "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-              "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 561.1447499977658,
+              "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
+              "elapsed_ms": 558.541200007312,
               "error_type": null
             }
           ]
@@ -107,7 +107,7 @@
         "market_checks": {
           "status": "PASS",
           "reasons": [],
-          "policy_limit_price": "82500.3"
+          "policy_limit_price": "82489.2"
         },
         "classification": {
           "label": "REVIEW",
@@ -126,18 +126,18 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "4b4f92f7f3414033a5881021787a33cf",
-          "52fe62dd41fe46808fcd093cae253fbe"
+          "66af664dd4534f7d8ddd5c0caa5132e1",
+          "0addca5a11514d1e99c131e8a0fe30ae"
         ],
-        "assessment_sha256": "e3e35837a8bd4c3b58ee9271eee94712d86f1fef6b5f4f629b7e6c84f94a93ff"
+        "assessment_sha256": "4213bd9e35c0a27229148acb711f365b1d9713ad3ee80af6fbc4fad223238b0b"
       }
     },
     "excess_notional": {
       "status": "PASS",
       "response": {
-        "assessment_id": "5647b919af6e4d9b8851e8376369486e",
-        "timestamp": "2026-10-17T09:31:42.955306Z",
-        "run_id": "5647b919af6e4d9b8851e8376369486e",
+        "assessment_id": "10ed68749b8245d3810a88689ceb1f38",
+        "timestamp": "2026-10-17T09:43:11.671341Z",
+        "run_id": "10ed68749b8245d3810a88689ceb1f38",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -160,17 +160,17 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T09:31:43.133000Z",
+          "market_timestamp": "2026-10-17T09:43:11.868000Z",
           "receipts": [
             {
-              "id": "643e4c6a32804e1cb9e584fb1db6383d",
+              "id": "2506f686849e45a1b04de796a8b5a0f9",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "ticker",
                 "BTC-USDT",
@@ -180,26 +180,26 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:42.955441Z",
-              "completed_at": "2026-10-17T09:31:43.491960Z",
-              "market_timestamp": "2026-10-17T09:31:43.133000Z",
+              "requested_at": "2026-10-17T09:43:11.673039Z",
+              "completed_at": "2026-10-17T09:43:12.370298Z",
+              "market_timestamp": "2026-10-17T09:43:11.868000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "5647b919af6e4d9b8851e8376369486e",
+              "run_id": "10ed68749b8245d3810a88689ceb1f38",
               "status": "PASS",
-              "result_sha256": "b4b4a7d137fdd7499d56115fd83367f57ba60fd415f7afa540a8a6260d310908",
-              "stdout_sha256": "8597f27947fbe888136d7f42afde63690b8566d6a69d416631efbbef2c9ad184",
-              "elapsed_ms": 536.523374990793,
+              "result_sha256": "fc66c9ddcbfd9bfc262abf3ab0305b4a13e40d18f2cb9373e741e2e64d73a5a6",
+              "stdout_sha256": "59a7840d4782b86277bcdd85705c6707623c2f6a6f74ba909af81f803a553b31",
+              "elapsed_ms": 697.26000004448,
               "error_type": null
             },
             {
-              "id": "b0b09035f75c41cfa6e77b40c7dfe7e3",
+              "id": "0348e6df4b9a419bb831db74fe371c7b",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "instruments",
                 "--instType",
@@ -212,15 +212,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:43.492159Z",
-              "completed_at": "2026-10-17T09:31:44.035430Z",
+              "requested_at": "2026-10-17T09:43:12.372139Z",
+              "completed_at": "2026-10-17T09:43:13.068713Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "5647b919af6e4d9b8851e8376369486e",
+              "run_id": "10ed68749b8245d3810a88689ceb1f38",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-              "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 543.2776249945164,
+              "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
+              "elapsed_ms": 696.5769999660552,
               "error_type": null
             }
           ]
@@ -230,7 +230,7 @@
           "reasons": [
             "excess_order_notional"
           ],
-          "policy_limit_price": "82500.3"
+          "policy_limit_price": "82489.2"
         },
         "classification": {
           "label": "REVIEW",
@@ -249,25 +249,25 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "818a0cd31af545cdad4991a54c72ec2c",
-          "50e9355fd6584278b4f394ee561b098c"
+          "e1aa4a051fc44db695fce06fafe471cf",
+          "f47f31e4128a45dbb46aa8645611e0cb"
         ],
-        "assessment_sha256": "166c93073c84eddf94e432f3b0a52a66f60a6c308097beed0527097cfb3c08b2"
+        "assessment_sha256": "ad2fb3c39c831743bd239b1b8d9016ca1397f93c77908056014d2cdbf0e2c12f"
       }
     },
     "no_trading_side_effects": {
       "status": "PASS",
       "before": {
-        "decisions": 3,
-        "vetoed": 3,
+        "decisions": 2,
+        "vetoed": 2,
         "verified_exchange_orders": 0,
         "mock_executions": 0,
         "unresolved_orders": 0,
         "pnl": null
       },
       "after": {
-        "decisions": 3,
-        "vetoed": 3,
+        "decisions": 2,
+        "vetoed": 2,
         "verified_exchange_orders": 0,
         "mock_executions": 0,
         "unresolved_orders": 0,
@@ -317,22 +317,22 @@
   },
   "events": [
     {
-      "id": "4b4f92f7f3414033a5881021787a33cf",
-      "timestamp": "2026-10-17T09:31:42.949974Z",
-      "run_id": "bd8032749ad94df9a4dc8689832ee658",
+      "id": "66af664dd4534f7d8ddd5c0caa5132e1",
+      "timestamp": "2026-10-17T09:43:11.659920Z",
+      "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "4c2506b4ef0341d79694d28fd6523e39",
+        "id": "c32aaf627dba46c397ad10d667b31c41",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
-          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
           "market",
           "ticker",
           "BTC-USDT",
@@ -342,36 +342,36 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:31:41.666911Z",
-        "completed_at": "2026-10-17T09:31:42.388226Z",
-        "market_timestamp": "2026-10-17T09:31:41.126000Z",
+        "requested_at": "2026-10-17T09:43:10.553018Z",
+        "completed_at": "2026-10-17T09:43:11.099606Z",
+        "market_timestamp": "2026-10-17T09:43:10.883000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "bd8032749ad94df9a4dc8689832ee658",
+        "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
         "status": "PASS",
-        "result_sha256": "40fb4002f182d41dc13a0637843dfc6a77921a37df05ebe2bbe007817e64b226",
-        "stdout_sha256": "011119fc532f4235f23f8a4e0874f62cb89016ff452ff43aa539b421066e7c50",
-        "elapsed_ms": 721.3207090098877,
+        "result_sha256": "af260dd910823a3d4a8716c81630db7bcb8c39f2e79b7ccc8f645060f5af9fdf",
+        "stdout_sha256": "161e43d69b9c9dc7e0ad68579a0443cb84b150de1477354b3a147900057b2be3",
+        "elapsed_ms": 546.5881999116391,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "52fe62dd41fe46808fcd093cae253fbe",
-      "timestamp": "2026-10-17T09:31:42.950232Z",
-      "run_id": "bd8032749ad94df9a4dc8689832ee658",
+      "id": "0addca5a11514d1e99c131e8a0fe30ae",
+      "timestamp": "2026-10-17T09:43:11.662880Z",
+      "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "b1cdd74edb634b9c98078fff87a4abde",
+        "id": "d8d20074786b4c16be77d33d49a01678",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
-          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
           "market",
           "instruments",
           "--instType",
@@ -384,31 +384,31 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:31:42.388570Z",
-        "completed_at": "2026-10-17T09:31:42.949709Z",
+        "requested_at": "2026-10-17T09:43:11.101071Z",
+        "completed_at": "2026-10-17T09:43:11.659608Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "bd8032749ad94df9a4dc8689832ee658",
+        "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-        "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 561.1447499977658,
+        "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
+        "elapsed_ms": 558.541200007312,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "d9cf42361b154e0d87653da9e3964c8b",
-      "timestamp": "2026-10-17T09:31:42.950675Z",
-      "run_id": "bd8032749ad94df9a4dc8689832ee658",
+      "id": "44aa32afa74449bc9b0d929a5ce52f0e",
+      "timestamp": "2026-10-17T09:43:11.665163Z",
+      "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
       "type": "SERVICE_ASSESSMENT",
       "severity": "WARNING",
       "actor": "risk-service",
       "message": "Assessment recorded; no order permission or execution authority",
       "details": {
-        "assessment_id": "bd8032749ad94df9a4dc8689832ee658",
-        "timestamp": "2026-10-17T09:31:41.666780Z",
-        "run_id": "bd8032749ad94df9a4dc8689832ee658",
+        "assessment_id": "fbbd7c4ea34d4cc4a41783e808450f48",
+        "timestamp": "2026-10-17T09:43:10.551180Z",
+        "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -430,17 +430,17 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T09:31:41.126000Z",
+          "market_timestamp": "2026-10-17T09:43:10.883000Z",
           "receipts": [
             {
-              "id": "4c2506b4ef0341d79694d28fd6523e39",
+              "id": "c32aaf627dba46c397ad10d667b31c41",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "ticker",
                 "BTC-USDT",
@@ -450,26 +450,26 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:41.666911Z",
-              "completed_at": "2026-10-17T09:31:42.388226Z",
-              "market_timestamp": "2026-10-17T09:31:41.126000Z",
+              "requested_at": "2026-10-17T09:43:10.553018Z",
+              "completed_at": "2026-10-17T09:43:11.099606Z",
+              "market_timestamp": "2026-10-17T09:43:10.883000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "bd8032749ad94df9a4dc8689832ee658",
+              "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
               "status": "PASS",
-              "result_sha256": "40fb4002f182d41dc13a0637843dfc6a77921a37df05ebe2bbe007817e64b226",
-              "stdout_sha256": "011119fc532f4235f23f8a4e0874f62cb89016ff452ff43aa539b421066e7c50",
-              "elapsed_ms": 721.3207090098877,
+              "result_sha256": "af260dd910823a3d4a8716c81630db7bcb8c39f2e79b7ccc8f645060f5af9fdf",
+              "stdout_sha256": "161e43d69b9c9dc7e0ad68579a0443cb84b150de1477354b3a147900057b2be3",
+              "elapsed_ms": 546.5881999116391,
               "error_type": null
             },
             {
-              "id": "b1cdd74edb634b9c98078fff87a4abde",
+              "id": "d8d20074786b4c16be77d33d49a01678",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "instruments",
                 "--instType",
@@ -482,15 +482,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:42.388570Z",
-              "completed_at": "2026-10-17T09:31:42.949709Z",
+              "requested_at": "2026-10-17T09:43:11.101071Z",
+              "completed_at": "2026-10-17T09:43:11.659608Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "bd8032749ad94df9a4dc8689832ee658",
+              "run_id": "fbbd7c4ea34d4cc4a41783e808450f48",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-              "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 561.1447499977658,
+              "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
+              "elapsed_ms": 558.541200007312,
               "error_type": null
             }
           ]
@@ -498,7 +498,7 @@
         "market_checks": {
           "status": "PASS",
           "reasons": [],
-          "policy_limit_price": "82500.3"
+          "policy_limit_price": "82489.2"
         },
         "classification": {
           "label": "REVIEW",
@@ -517,30 +517,30 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "4b4f92f7f3414033a5881021787a33cf",
-          "52fe62dd41fe46808fcd093cae253fbe"
+          "66af664dd4534f7d8ddd5c0caa5132e1",
+          "0addca5a11514d1e99c131e8a0fe30ae"
         ],
-        "assessment_sha256": "e3e35837a8bd4c3b58ee9271eee94712d86f1fef6b5f4f629b7e6c84f94a93ff"
+        "assessment_sha256": "4213bd9e35c0a27229148acb711f365b1d9713ad3ee80af6fbc4fad223238b0b"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "818a0cd31af545cdad4991a54c72ec2c",
-      "timestamp": "2026-10-17T09:31:44.035719Z",
-      "run_id": "5647b919af6e4d9b8851e8376369486e",
+      "id": "e1aa4a051fc44db695fce06fafe471cf",
+      "timestamp": "2026-10-17T09:43:13.068914Z",
+      "run_id": "10ed68749b8245d3810a88689ceb1f38",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "643e4c6a32804e1cb9e584fb1db6383d",
+        "id": "2506f686849e45a1b04de796a8b5a0f9",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
-          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
           "market",
           "ticker",
           "BTC-USDT",
@@ -550,36 +550,36 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:31:42.955441Z",
-        "completed_at": "2026-10-17T09:31:43.491960Z",
-        "market_timestamp": "2026-10-17T09:31:43.133000Z",
+        "requested_at": "2026-10-17T09:43:11.673039Z",
+        "completed_at": "2026-10-17T09:43:12.370298Z",
+        "market_timestamp": "2026-10-17T09:43:11.868000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "5647b919af6e4d9b8851e8376369486e",
+        "run_id": "10ed68749b8245d3810a88689ceb1f38",
         "status": "PASS",
-        "result_sha256": "b4b4a7d137fdd7499d56115fd83367f57ba60fd415f7afa540a8a6260d310908",
-        "stdout_sha256": "8597f27947fbe888136d7f42afde63690b8566d6a69d416631efbbef2c9ad184",
-        "elapsed_ms": 536.523374990793,
+        "result_sha256": "fc66c9ddcbfd9bfc262abf3ab0305b4a13e40d18f2cb9373e741e2e64d73a5a6",
+        "stdout_sha256": "59a7840d4782b86277bcdd85705c6707623c2f6a6f74ba909af81f803a553b31",
+        "elapsed_ms": 697.26000004448,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "50e9355fd6584278b4f394ee561b098c",
-      "timestamp": "2026-10-17T09:31:44.036046Z",
-      "run_id": "5647b919af6e4d9b8851e8376369486e",
+      "id": "f47f31e4128a45dbb46aa8645611e0cb",
+      "timestamp": "2026-10-17T09:43:13.071619Z",
+      "run_id": "10ed68749b8245d3810a88689ceb1f38",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "b0b09035f75c41cfa6e77b40c7dfe7e3",
+        "id": "0348e6df4b9a419bb831db74fe371c7b",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
-          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
           "market",
           "instruments",
           "--instType",
@@ -592,31 +592,31 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:31:43.492159Z",
-        "completed_at": "2026-10-17T09:31:44.035430Z",
+        "requested_at": "2026-10-17T09:43:12.372139Z",
+        "completed_at": "2026-10-17T09:43:13.068713Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "5647b919af6e4d9b8851e8376369486e",
+        "run_id": "10ed68749b8245d3810a88689ceb1f38",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-        "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 543.2776249945164,
+        "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
+        "elapsed_ms": 696.5769999660552,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "8482aa1b32014d8abd456c7773f06767",
-      "timestamp": "2026-10-17T09:31:44.036524Z",
-      "run_id": "5647b919af6e4d9b8851e8376369486e",
+      "id": "fee56891c25c4ea6a7df6b258ab0a479",
+      "timestamp": "2026-10-17T09:43:13.073815Z",
+      "run_id": "10ed68749b8245d3810a88689ceb1f38",
       "type": "SERVICE_ASSESSMENT",
       "severity": "WARNING",
       "actor": "risk-service",
       "message": "Assessment recorded; no order permission or execution authority",
       "details": {
-        "assessment_id": "5647b919af6e4d9b8851e8376369486e",
-        "timestamp": "2026-10-17T09:31:42.955306Z",
-        "run_id": "5647b919af6e4d9b8851e8376369486e",
+        "assessment_id": "10ed68749b8245d3810a88689ceb1f38",
+        "timestamp": "2026-10-17T09:43:11.671341Z",
+        "run_id": "10ed68749b8245d3810a88689ceb1f38",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -639,17 +639,17 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T09:31:43.133000Z",
+          "market_timestamp": "2026-10-17T09:43:11.868000Z",
           "receipts": [
             {
-              "id": "643e4c6a32804e1cb9e584fb1db6383d",
+              "id": "2506f686849e45a1b04de796a8b5a0f9",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "ticker",
                 "BTC-USDT",
@@ -659,26 +659,26 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:42.955441Z",
-              "completed_at": "2026-10-17T09:31:43.491960Z",
-              "market_timestamp": "2026-10-17T09:31:43.133000Z",
+              "requested_at": "2026-10-17T09:43:11.673039Z",
+              "completed_at": "2026-10-17T09:43:12.370298Z",
+              "market_timestamp": "2026-10-17T09:43:11.868000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "5647b919af6e4d9b8851e8376369486e",
+              "run_id": "10ed68749b8245d3810a88689ceb1f38",
               "status": "PASS",
-              "result_sha256": "b4b4a7d137fdd7499d56115fd83367f57ba60fd415f7afa540a8a6260d310908",
-              "stdout_sha256": "8597f27947fbe888136d7f42afde63690b8566d6a69d416631efbbef2c9ad184",
-              "elapsed_ms": 536.523374990793,
+              "result_sha256": "fc66c9ddcbfd9bfc262abf3ab0305b4a13e40d18f2cb9373e741e2e64d73a5a6",
+              "stdout_sha256": "59a7840d4782b86277bcdd85705c6707623c2f6a6f74ba909af81f803a553b31",
+              "elapsed_ms": 697.26000004448,
               "error_type": null
             },
             {
-              "id": "b0b09035f75c41cfa6e77b40c7dfe7e3",
+              "id": "0348e6df4b9a419bb831db74fe371c7b",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
-                "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
                 "market",
                 "instruments",
                 "--instType",
@@ -691,15 +691,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T09:31:43.492159Z",
-              "completed_at": "2026-10-17T09:31:44.035430Z",
+              "requested_at": "2026-10-17T09:43:12.372139Z",
+              "completed_at": "2026-10-17T09:43:13.068713Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "5647b919af6e4d9b8851e8376369486e",
+              "run_id": "10ed68749b8245d3810a88689ceb1f38",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-              "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 543.2776249945164,
+              "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
+              "elapsed_ms": 696.5769999660552,
               "error_type": null
             }
           ]
@@ -709,7 +709,7 @@
           "reasons": [
             "excess_order_notional"
           ],
-          "policy_limit_price": "82500.3"
+          "policy_limit_price": "82489.2"
         },
         "classification": {
           "label": "REVIEW",
@@ -728,10 +728,10 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "818a0cd31af545cdad4991a54c72ec2c",
-          "50e9355fd6584278b4f394ee561b098c"
+          "e1aa4a051fc44db695fce06fafe471cf",
+          "f47f31e4128a45dbb46aa8645611e0cb"
         ],
-        "assessment_sha256": "166c93073c84eddf94e432f3b0a52a66f60a6c308097beed0527097cfb3c08b2"
+        "assessment_sha256": "ad2fb3c39c831743bd239b1b8d9016ca1397f93c77908056014d2cdbf0e2c12f"
       },
       "source_mode": "MARKET_ONLY"
     }

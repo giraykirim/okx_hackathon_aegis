@@ -1,0 +1,25 @@
+[
+  {
+    "file": "instruments.json",
+    "requested_at": "2026-10-17T10:20:43.672453+00:00",
+    "command": [
+      "market",
+      "instruments",
+      "--instType",
+      "SPOT"
+    ],
+    "success": false,
+    "error_type": "RuntimeError"
+  },
+  {
+    "file": "tickers.json",
+    "requested_at": "2026-10-17T10:20:46.843746+00:00",
+    "command": [
+      "market",
+      "tickers",
+      "SPOT"
+    ],
+    "success": false,
+    "error_type": "RuntimeError"
+  }
+]

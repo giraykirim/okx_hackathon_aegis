@@ -1,0 +1,91 @@
+{
+  "stage": "select",
+  "seed": 17,
+  "laya": "0.4.8",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "human_review_pending": true,
+  "production_approved": false,
+  "train_sha256": "a23aaa1bbad1d10105999c25d50f0ee82cbcc0e8bffe0c81c29e673e1156bad2",
+  "val_sha256": "65b88638f1fe4a5aca8b9fbe1fa073341787527bf1a7c95bd5b12824e6efdd13",
+  "selected": "base",
+  "selection_rule": "VAL accuracy improvement and no HALT->CONTINUE regression",
+  "version": "f38a07fa01dbf242cc120da859b2cffa18eb8631b28db88d2e54e14876a15c3e",
+  "hashes": {
+    "encoder\\config.json": "bf3ab80598fdccf414855a2ce80f22859e4492d06ca8a62ddd1cfb63972f8979",
+    "model.safetensors": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "questions.json": "8caa8e6f75f6b381f60ef9bb23a751be95baeb2ca1b655daf27b45c903d261f8",
+    "rl_agent_config.json": "ae287b56bbcf5f8c4f4541ae9dfd00c914c4c48b940b8398c3058af37ba92bbd",
+    "tokenizer\\tokenizer.json": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+    "tokenizer\\tokenizer_config.json": "50044de60daaa73df97d262e15a40d4faf0160e7d742df64b377877a1320dd12"
+  },
+  "test_used": false,
+  "selected_reload": {
+    "n": 1,
+    "accuracy": 1.0,
+    "halt_to_continue_count": 0,
+    "halt_denominator": 0,
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 1
+      },
+      "REVIEW": {},
+      "HALT": {}
+    },
+    "warmup_ms": 533.7617000332102,
+    "warmup_answer": {
+      "model": "laya-rl-agent",
+      "answers": {
+        "operational_state": {
+          "type": "choice",
+          "choice": "CONTINUE",
+          "probabilities": {
+            "CONTINUE": 0.4526,
+            "REVIEW": 0.2183,
+            "HALT": 0.3291
+          },
+          "confidence": 0.0381,
+          "answer_confidence": 0.4526,
+          "action": {
+            "act_probability": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 245,
+        "output_tokens": 0,
+        "state_tokens": 152,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    "median_latency_ms": 39.25360005814582,
+    "max_latency_ms": 39.25360005814582,
+    "predictions": [
+      {
+        "expected": "CONTINUE",
+        "answer": {
+          "type": "choice",
+          "choice": "CONTINUE",
+          "probabilities": {
+            "CONTINUE": 0.4526,
+            "REVIEW": 0.2183,
+            "HALT": 0.3291
+          },
+          "confidence": 0.0381,
+          "answer_confidence": 0.4526,
+          "action": {
+            "act_probability": 1.0
+          }
+        },
+        "latency_ms": 39.25360005814582
+      }
+    ]
+  },
+  "status": "PASS",
+  "wall_seconds": 8.847186799976043,
+  "peak_allocated_mib": 2317.9580078125,
+  "peak_reserved_mib": 2520.0
+}

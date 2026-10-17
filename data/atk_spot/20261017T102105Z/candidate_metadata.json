@@ -1,0 +1,1102 @@
+[
+  {
+    "row": 0,
+    "symbol": "BTC-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 1,
+    "symbol": "BTC-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 2,
+    "symbol": "BTC-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 3,
+    "symbol": "BTC-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 4,
+    "symbol": "BTC-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 5,
+    "symbol": "BTC-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 6,
+    "symbol": "BTC-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 7,
+    "symbol": "BTC-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 8,
+    "symbol": "BTC-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 9,
+    "symbol": "BTC-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 10,
+    "symbol": "BTC-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 11,
+    "symbol": "ETH-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 12,
+    "symbol": "ETH-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 13,
+    "symbol": "ETH-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 14,
+    "symbol": "ETH-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 15,
+    "symbol": "ETH-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 16,
+    "symbol": "ETH-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 17,
+    "symbol": "ETH-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 18,
+    "symbol": "ETH-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 19,
+    "symbol": "ETH-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 20,
+    "symbol": "ETH-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 21,
+    "symbol": "ETH-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 22,
+    "symbol": "SOL-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 23,
+    "symbol": "SOL-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 24,
+    "symbol": "SOL-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 25,
+    "symbol": "SOL-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 26,
+    "symbol": "SOL-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 27,
+    "symbol": "SOL-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 28,
+    "symbol": "SOL-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 29,
+    "symbol": "SOL-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 30,
+    "symbol": "SOL-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 31,
+    "symbol": "SOL-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 32,
+    "symbol": "SOL-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 33,
+    "symbol": "USDC-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 34,
+    "symbol": "USDC-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 35,
+    "symbol": "USDC-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 36,
+    "symbol": "USDC-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 37,
+    "symbol": "USDC-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 38,
+    "symbol": "USDC-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 39,
+    "symbol": "USDC-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 40,
+    "symbol": "USDC-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 41,
+    "symbol": "USDC-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 42,
+    "symbol": "USDC-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 43,
+    "symbol": "USDC-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 44,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 45,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 46,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 47,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 48,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 49,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 50,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 51,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 52,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 53,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 54,
+    "symbol": "ZEC-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 55,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 56,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 57,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 58,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 59,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 60,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 61,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 62,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 63,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 64,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 65,
+    "symbol": "NEAR-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 66,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 67,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 68,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 69,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 70,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 71,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 72,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 73,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 74,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 75,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 76,
+    "symbol": "DOGE-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 77,
+    "symbol": "XRP-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 78,
+    "symbol": "XRP-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 79,
+    "symbol": "XRP-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 80,
+    "symbol": "XRP-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 81,
+    "symbol": "XRP-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 82,
+    "symbol": "XRP-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 83,
+    "symbol": "XRP-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 84,
+    "symbol": "XRP-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 85,
+    "symbol": "XRP-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 86,
+    "symbol": "XRP-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 87,
+    "symbol": "XRP-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 88,
+    "symbol": "FIL-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 89,
+    "symbol": "FIL-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 90,
+    "symbol": "FIL-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 91,
+    "symbol": "FIL-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 92,
+    "symbol": "FIL-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 93,
+    "symbol": "FIL-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 94,
+    "symbol": "FIL-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 95,
+    "symbol": "FIL-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 96,
+    "symbol": "FIL-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 97,
+    "symbol": "FIL-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 98,
+    "symbol": "FIL-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 99,
+    "symbol": "WLD-USDT",
+    "scenario_family": "captured_monitoring",
+    "origin": "SOURCE_DOCUMENTED_PUBLIC_CAPTURE",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 100,
+    "symbol": "WLD-USDT",
+    "scenario_family": "stale_feed",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 101,
+    "symbol": "WLD-USDT",
+    "scenario_family": "agent_disagreement",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 102,
+    "symbol": "WLD-USDT",
+    "scenario_family": "unknown_order",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 103,
+    "symbol": "WLD-USDT",
+    "scenario_family": "duplicate_intent",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 104,
+    "symbol": "WLD-USDT",
+    "scenario_family": "revoked_permission",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 105,
+    "symbol": "WLD-USDT",
+    "scenario_family": "tool_injection",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 106,
+    "symbol": "WLD-USDT",
+    "scenario_family": "api_timeout",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 107,
+    "symbol": "WLD-USDT",
+    "scenario_family": "malformed_quantity",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 108,
+    "symbol": "WLD-USDT",
+    "scenario_family": "missing_timestamp",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  },
+  {
+    "row": 109,
+    "symbol": "WLD-USDT",
+    "scenario_family": "unauthorized_live",
+    "origin": "SYNTHETIC_DERIVED",
+    "label_source": "aegis-operational-v1",
+    "human_review_status": "PENDING_HUMAN_REVIEW",
+    "group_id": "20261017T102105Z",
+    "source_sha256": "41a6f51c42b29f3a7fe33f441c77e79dd81b9b53e7651c05c9f858e8ae0325ec"
+  }
+]

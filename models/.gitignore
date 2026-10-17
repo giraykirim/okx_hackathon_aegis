@@ -1,0 +1,7 @@
+# Large local experiment artifacts; publish only with an explicit model release plan.
+hf-cache/
+aegis_laya_smoke/
+aegis_laya_head/
+aegis_laya_selected/
+debug_learning/
+reviewed_learning/

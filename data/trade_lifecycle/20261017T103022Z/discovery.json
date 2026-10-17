@@ -1,0 +1,11 @@
+{
+  "command": [
+    "okx",
+    "list-tools",
+    "--json"
+  ],
+  "package_version": "1.4.8",
+  "capabilities_sha256": "c8c0236d7b01bd1a83f6d9af336ca3775bf73e150b78600c6e89e5bb25fb33f3",
+  "private_endpoints_called": false,
+  "authenticated": false
+}

@@ -1,0 +1,24 @@
+{
+  "policy": {
+    "url": "https://github.com/giraykirim/okx_hackathon_aegis/blob/674a0d2c32acf55c30764dd92b15ada43ac65059/backend/aegis/policy.py",
+    "claim_type": "POLICY_REFERENCE",
+    "facts": "Deterministic backend checks freshness, intent, quantities, account context and execution mode. Operational labels are an ML policy proposal, not a replacement for this gate."
+  },
+  "knight_2012": {
+    "url": "https://www.sec.gov/newsroom/press-releases/2013-222",
+    "claim_type": "SOURCE_DOCUMENTED",
+    "facts": "The SEC described a deployment/control failure that caused erroneous orders. The source does not supply LAYA labels or AEGIS data.",
+    "retrieval_method": "official primary-source web retrieval; Parallel FindAll unavailable"
+  },
+  "cloudflare_2019": {
+    "url": "https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/",
+    "claim_type": "SOURCE_DOCUMENTED",
+    "facts": "Cloudflare described a WAF regular-expression deployment causing CPU exhaustion and an outage. This is not an OKX incident or a labeled trading example.",
+    "retrieval_method": "official primary-source web retrieval; Parallel FindAll unavailable"
+  },
+  "atk_local": {
+    "url": "local://backend/evidence/amendment-http.json",
+    "claim_type": "OBSERVED_ATK",
+    "facts": "Actual backend public market assessments. Export only allowlisted market facts, relative time and hashes. No identity, argv, filesystem path, original run ID or credentials enter model inputs."
+  }
+}

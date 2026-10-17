@@ -1,0 +1,47 @@
+{
+  "discovered_spot_commands": [
+    "spot_get_orders",
+    "spot_get_order",
+    "spot_get_fills",
+    "spot_place_order",
+    "spot_amend_order",
+    "spot_cancel_order",
+    "spot_batch_orders",
+    "spot_set_leverage",
+    "spot_get_algo_orders",
+    "spot_place_algo_order",
+    "spot_place_algo_order",
+    "spot_amend_algo_order",
+    "spot_cancel_algo_order"
+  ],
+  "regular_order_types": [
+    "market",
+    "limit",
+    "post_only",
+    "fok",
+    "ioc"
+  ],
+  "algo_order_types": [
+    "conditional",
+    "oco",
+    "move_order_stop",
+    "trigger",
+    "chase",
+    "iceberg",
+    "twap"
+  ],
+  "modeled": "preflight, submit ack/timeout, read reconciliation, valid partial-fill subset, terminal, cancel/amend ack",
+  "not_covered": [
+    "batch mixed per-item failures",
+    "attached TP/SL activation races",
+    "fee/currency/discount variations",
+    "self-trade prevention variants",
+    "quote-sized market buys",
+    "precision/min-size boundary matrix",
+    "margin/leverage",
+    "derivatives",
+    "actual demo account behavior"
+  ],
+  "exhaustive": false,
+  "all_private_behavior_unverified": true
+}

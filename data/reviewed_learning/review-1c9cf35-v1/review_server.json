@@ -1,0 +1,6 @@
+{
+  "pid": 16696,
+  "url": "http://127.0.0.1:8768",
+  "dataset_sha256": "c48449cd556077622d674b735eded33f9ddcf4412fa93c8378e866198b714938",
+  "purpose": "Human review only; no model/order/auth endpoints"
+}

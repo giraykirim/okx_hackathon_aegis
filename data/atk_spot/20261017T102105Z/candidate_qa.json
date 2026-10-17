@@ -1,0 +1,19 @@
+{
+  "schema_rows": 110,
+  "counts": {
+    "CONTINUE": 1,
+    "HALT": 106,
+    "REVIEW": 3
+  },
+  "unique_state_rows": 110,
+  "metadata_rows": 110,
+  "split": "UNASSIGNED_SINGLE_CAPTURE_GROUP",
+  "human_review_complete": false,
+  "test_contamination_prevented_by": "No existing dataset changed; no training or split performed",
+  "known_shortcut_risk": "unsupported symbols dominate HALT; cannot infer model generalization",
+  "source_urls": [
+    "https://github.com/okx/agent-tradekit",
+    "https://www.okx.com/docs-v5/en/#order-book-trading-market-data",
+    "https://github.com/NandhaKishorM/laya/blob/main/docs/finetune.md"
+  ]
+}

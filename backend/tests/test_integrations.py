@@ -218,6 +218,17 @@ def test_atk_child_environment_does_not_inherit_secrets_or_overrides(monkeypatch
     assert env["OKX_SITE"] == "tr"
 
 
+def test_windows_child_environment_keeps_systemroot_only(monkeypatch, tmp_path):
+    import aegis.atk as atk_module
+
+    monkeypatch.setattr(atk_module.sys, "platform", "win32")
+    monkeypatch.setenv("SystemRoot", r"C:\Windows")
+    monkeypatch.setenv("UNRELATED_SECRET", "must-not-inherit")
+    env = atk_module.ATK(Settings()).child_environment(tmp_path, private=False)
+    assert env["SystemRoot"] == r"C:\Windows"
+    assert "UNRELATED_SECRET" not in env
+
+
 @pytest.mark.asyncio
 async def test_atk_preserves_exchange_timestamp(monkeypatch):
     from aegis.atk import ATK

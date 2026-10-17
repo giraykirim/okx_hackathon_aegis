@@ -1,0 +1,23 @@
+{
+  "stage": "dry-run",
+  "seed": 17,
+  "laya": "0.4.8",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "human_review_pending": true,
+  "production_approved": false,
+  "train_sha256": "a23aaa1bbad1d10105999c25d50f0ee82cbcc0e8bffe0c81c29e673e1156bad2",
+  "val_sha256": "65b88638f1fe4a5aca8b9fbe1fa073341787527bf1a7c95bd5b12824e6efdd13",
+  "official_command_args": [
+    "--data",
+    "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\data\\train.jsonl",
+    "--base",
+    "english",
+    "--dry-run"
+  ],
+  "status": "PASS",
+  "wall_seconds": 6.35783100000117,
+  "peak_allocated_mib": 0.0,
+  "peak_reserved_mib": 0.0
+}

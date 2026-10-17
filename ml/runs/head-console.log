@@ -1,0 +1,33 @@
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]
+Fetching 5 files: 100%|##########| 5/5 [00:00<00:00, 848.50it/s]
+eval items 12 from C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\data\val.jsonl (skipped {}, 0 overlapping training/calibration items)
+train items 51, calibration items 5, eval items 12 (C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\data\val.jsonl), skipped {}, device cuda
+optimizer budget: 51 train item(s), effective batch up to 4 (micro_batch 1 x grad_accum 4), 52 optimizer updates over 4 epoch(s)
+epoch 1/4 mean loss 1.1396
+epoch 2/4 mean loss 1.1151
+epoch 3/4 mean loss 1.0873
+epoch 4/4 mean loss 1.0807
+C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\aegis\.venv\Lib\site-packages\laya\train_cli.py:221: RuntimeWarning: laya.train: choice calibration: not fitted: 5 calibration items, fewer than 10, so the temperature stays 1.0
+  summary = finetune(
+
+=== Evaluation (before vs after fine-tuning on 12 held-out items from C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\data\val.jsonl) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.6667         0.6667         +0.0000       
+Loss                   0.9423         0.9317         -0.0106       
+ECE                    0.2300         0.2500         +0.0200       
+Brier (multi-class)    0.5583         0.5521         -0.0062       
+Brier (top-1)          0.2643         0.2601         -0.0042       
+Mean Confidence        0.4367         0.4537         +0.0170       
+-----------------------------------------------------------------
+
+Training complete! Model saved to C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\models\aegis_laya_head
+{
+  "stage": "head",
+  "status": "PASS",
+  "wall_seconds": 27.67906110000331,
+  "peak_allocated_mib": 2329.9130859375,
+  "selected": null,
+  "error": null
+}

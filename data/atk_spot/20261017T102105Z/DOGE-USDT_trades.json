@@ -1,0 +1,902 @@
+[
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638293",
+    "px": "0.08031",
+    "sz": "34.588469",
+    "side": "buy",
+    "ts": "1792232498745",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638292",
+    "px": "0.08031",
+    "sz": "1398.892479",
+    "side": "sell",
+    "ts": "1792232495002",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638291",
+    "px": "0.08032",
+    "sz": "0.000001",
+    "side": "buy",
+    "ts": "1792232491364",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638290",
+    "px": "0.08032",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232491364",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638289",
+    "px": "0.08031",
+    "sz": "1183.556584",
+    "side": "buy",
+    "ts": "1792232491361",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638288",
+    "px": "0.08031",
+    "sz": "1183.65003",
+    "side": "buy",
+    "ts": "1792232491361",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638287",
+    "px": "0.08031",
+    "sz": "455.484995",
+    "side": "buy",
+    "ts": "1792232491361",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638286",
+    "px": "0.08031",
+    "sz": "365.415912",
+    "side": "buy",
+    "ts": "1792232491361",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638285",
+    "px": "0.0803",
+    "sz": "339.85056",
+    "side": "buy",
+    "ts": "1792232486556",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638284",
+    "px": "0.0803",
+    "sz": "1912.792132",
+    "side": "buy",
+    "ts": "1792232486556",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638283",
+    "px": "0.0803",
+    "sz": "1459.566218",
+    "side": "buy",
+    "ts": "1792232486556",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638282",
+    "px": "0.0803",
+    "sz": "2618.92705",
+    "side": "buy",
+    "ts": "1792232486556",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638281",
+    "px": "0.0803",
+    "sz": "11",
+    "side": "buy",
+    "ts": "1792232486556",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638280",
+    "px": "0.0803",
+    "sz": "480.94645",
+    "side": "buy",
+    "ts": "1792232483424",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638279",
+    "px": "0.08029",
+    "sz": "1184.147624",
+    "side": "buy",
+    "ts": "1792232481929",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638278",
+    "px": "0.08029",
+    "sz": "1184.241117",
+    "side": "buy",
+    "ts": "1792232481929",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638277",
+    "px": "0.08029",
+    "sz": "79.250256",
+    "side": "buy",
+    "ts": "1792232481929",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638276",
+    "px": "0.08029",
+    "sz": "567.03197",
+    "side": "buy",
+    "ts": "1792232481928",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638275",
+    "px": "0.08028",
+    "sz": "448.181365",
+    "side": "buy",
+    "ts": "1792232472315",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638274",
+    "px": "0.08028",
+    "sz": "99.476278",
+    "side": "buy",
+    "ts": "1792232472315",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638273",
+    "px": "0.08027",
+    "sz": "1184.739106",
+    "side": "buy",
+    "ts": "1792232470255",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638272",
+    "px": "0.08027",
+    "sz": "1184.832645",
+    "side": "buy",
+    "ts": "1792232470255",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638271",
+    "px": "0.08027",
+    "sz": "1868.460389",
+    "side": "buy",
+    "ts": "1792232470255",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638270",
+    "px": "0.08027",
+    "sz": "512.893982",
+    "side": "buy",
+    "ts": "1792232470255",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638269",
+    "px": "0.08027",
+    "sz": "243.564471",
+    "side": "buy",
+    "ts": "1792232466079",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638268",
+    "px": "0.08027",
+    "sz": "1954.697022",
+    "side": "buy",
+    "ts": "1792232466079",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638267",
+    "px": "0.08027",
+    "sz": "336.738507",
+    "side": "buy",
+    "ts": "1792232466079",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638266",
+    "px": "0.08027",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232466079",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638265",
+    "px": "0.08026",
+    "sz": "4906",
+    "side": "buy",
+    "ts": "1792232458207",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638264",
+    "px": "0.08026",
+    "sz": "655.120857",
+    "side": "buy",
+    "ts": "1792232458207",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638263",
+    "px": "0.08026",
+    "sz": "1700.250304",
+    "side": "buy",
+    "ts": "1792232458207",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638262",
+    "px": "0.08025",
+    "sz": "1185.424618",
+    "side": "buy",
+    "ts": "1792232458191",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638261",
+    "px": "0.08025",
+    "sz": "976.847766",
+    "side": "buy",
+    "ts": "1792232458191",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638260",
+    "px": "0.08025",
+    "sz": "11",
+    "side": "buy",
+    "ts": "1792232458191",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638259",
+    "px": "0.08025",
+    "sz": "197.483266",
+    "side": "buy",
+    "ts": "1792232458190",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638258",
+    "px": "0.08025",
+    "sz": "396.760124",
+    "side": "buy",
+    "ts": "1792232458190",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638257",
+    "px": "0.08024",
+    "sz": "8986.663342",
+    "side": "sell",
+    "ts": "1792232433515",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638256",
+    "px": "0.08024",
+    "sz": "206.555061",
+    "side": "sell",
+    "ts": "1792232432809",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638255",
+    "px": "0.08024",
+    "sz": "334.870388",
+    "side": "buy",
+    "ts": "1792232428428",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638254",
+    "px": "0.08023",
+    "sz": "900.6606",
+    "side": "buy",
+    "ts": "1792232420691",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638253",
+    "px": "0.08023",
+    "sz": "334.86064",
+    "side": "buy",
+    "ts": "1792232415342",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638252",
+    "px": "0.08023",
+    "sz": "92.09936",
+    "side": "buy",
+    "ts": "1792232415342",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638251",
+    "px": "0.08023",
+    "sz": "224.354979",
+    "side": "buy",
+    "ts": "1792232414750",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638250",
+    "px": "0.08023",
+    "sz": "24.814513",
+    "side": "buy",
+    "ts": "1792232410846",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638249",
+    "px": "0.08025",
+    "sz": "2228.239875",
+    "side": "buy",
+    "ts": "1792232391668",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638248",
+    "px": "0.08025",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232391668",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638247",
+    "px": "0.08025",
+    "sz": "901.096574",
+    "side": "buy",
+    "ts": "1792232390283",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638246",
+    "px": "0.08025",
+    "sz": "1348",
+    "side": "buy",
+    "ts": "1792232390283",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638245",
+    "px": "0.08024",
+    "sz": "335.992023",
+    "side": "buy",
+    "ts": "1792232390283",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638244",
+    "px": "0.08024",
+    "sz": "12.829012",
+    "side": "buy",
+    "ts": "1792232386552",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638243",
+    "px": "0.08023",
+    "sz": "546.179733",
+    "side": "buy",
+    "ts": "1792232385677",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638242",
+    "px": "0.08022",
+    "sz": "252.878599",
+    "side": "sell",
+    "ts": "1792232362540",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638241",
+    "px": "0.08022",
+    "sz": "10940",
+    "side": "sell",
+    "ts": "1792232362540",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638240",
+    "px": "0.08023",
+    "sz": "14.026922",
+    "side": "buy",
+    "ts": "1792232362352",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638239",
+    "px": "0.08023",
+    "sz": "10",
+    "side": "sell",
+    "ts": "1792232355024",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638238",
+    "px": "0.08024",
+    "sz": "4906",
+    "side": "sell",
+    "ts": "1792232350468",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638237",
+    "px": "0.08025",
+    "sz": "12.08172",
+    "side": "buy",
+    "ts": "1792232348443",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638236",
+    "px": "0.08025",
+    "sz": "23.104609",
+    "side": "buy",
+    "ts": "1792232348443",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638235",
+    "px": "0.08024",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232336805",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638234",
+    "px": "0.08024",
+    "sz": "4906",
+    "side": "sell",
+    "ts": "1792232306058",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638233",
+    "px": "0.08024",
+    "sz": "548.479561",
+    "side": "sell",
+    "ts": "1792232298469",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638232",
+    "px": "0.08024",
+    "sz": "7570",
+    "side": "buy",
+    "ts": "1792232298467",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638231",
+    "px": "0.08024",
+    "sz": "311.316051",
+    "side": "buy",
+    "ts": "1792232298467",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638230",
+    "px": "0.08024",
+    "sz": "2154.30646",
+    "side": "buy",
+    "ts": "1792232292325",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638229",
+    "px": "0.08024",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232292325",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638228",
+    "px": "0.08023",
+    "sz": "607",
+    "side": "buy",
+    "ts": "1792232292325",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638227",
+    "px": "0.08023",
+    "sz": "9051.149688",
+    "side": "buy",
+    "ts": "1792232292325",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638226",
+    "px": "0.08023",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232292325",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638225",
+    "px": "0.08022",
+    "sz": "0.000126",
+    "side": "buy",
+    "ts": "1792232292325",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638224",
+    "px": "0.08022",
+    "sz": "463.350659",
+    "side": "buy",
+    "ts": "1792232289304",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638223",
+    "px": "0.08022",
+    "sz": "0.000041",
+    "side": "buy",
+    "ts": "1792232289304",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638222",
+    "px": "0.08022",
+    "sz": "1185.92336",
+    "side": "buy",
+    "ts": "1792232289298",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638221",
+    "px": "0.08022",
+    "sz": "1186.017034",
+    "side": "buy",
+    "ts": "1792232289298",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638220",
+    "px": "0.08022",
+    "sz": "873.597606",
+    "side": "buy",
+    "ts": "1792232289298",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638219",
+    "px": "0.08021",
+    "sz": "0.000096",
+    "side": "buy",
+    "ts": "1792232260264",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638218",
+    "px": "0.08021",
+    "sz": "1186.516119",
+    "side": "buy",
+    "ts": "1792232260263",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638217",
+    "px": "0.08021",
+    "sz": "1780.137303",
+    "side": "buy",
+    "ts": "1792232260263",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638216",
+    "px": "0.08021",
+    "sz": "266.674978",
+    "side": "buy",
+    "ts": "1792232260263",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638215",
+    "px": "0.08021",
+    "sz": "2145.915098",
+    "side": "buy",
+    "ts": "1792232242885",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638214",
+    "px": "0.08021",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232242885",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638213",
+    "px": "0.0802",
+    "sz": "317.581047",
+    "side": "buy",
+    "ts": "1792232242885",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638212",
+    "px": "0.0802",
+    "sz": "15",
+    "side": "buy",
+    "ts": "1792232242885",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638211",
+    "px": "0.08019",
+    "sz": "0.000007",
+    "side": "buy",
+    "ts": "1792232241414",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638210",
+    "px": "0.08019",
+    "sz": "459.5336",
+    "side": "buy",
+    "ts": "1792232241413",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638209",
+    "px": "0.08018",
+    "sz": "569.593414",
+    "side": "buy",
+    "ts": "1792232234858",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638208",
+    "px": "0.08018",
+    "sz": "4829.917229",
+    "side": "buy",
+    "ts": "1792232234858",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638207",
+    "px": "0.08018",
+    "sz": "12689.686541",
+    "side": "buy",
+    "ts": "1792232234858",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638206",
+    "px": "0.08017",
+    "sz": "7668.212003",
+    "side": "sell",
+    "ts": "1792232215314",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638205",
+    "px": "0.08019",
+    "sz": "607.959576",
+    "side": "sell",
+    "ts": "1792232200725",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638204",
+    "px": "0.08019",
+    "sz": "428.084632",
+    "side": "sell",
+    "ts": "1792232179511",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638203",
+    "px": "0.08019",
+    "sz": "9.999917",
+    "side": "sell",
+    "ts": "1792232179511",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638202",
+    "px": "0.08019",
+    "sz": "0.000083",
+    "side": "buy",
+    "ts": "1792232179509",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638201",
+    "px": "0.08019",
+    "sz": "439.2068",
+    "side": "buy",
+    "ts": "1792232179508",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638200",
+    "px": "0.08018",
+    "sz": "968",
+    "side": "sell",
+    "ts": "1792232172935",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638199",
+    "px": "0.08019",
+    "sz": "2821.065",
+    "side": "sell",
+    "ts": "1792232170159",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638198",
+    "px": "0.08019",
+    "sz": "438.084549",
+    "side": "sell",
+    "ts": "1792232170158",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638197",
+    "px": "0.0802",
+    "sz": "56020.975492",
+    "side": "buy",
+    "ts": "1792232170154",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638196",
+    "px": "0.0802",
+    "sz": "4796.277509",
+    "side": "buy",
+    "ts": "1792232170154",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638195",
+    "px": "0.0802",
+    "sz": "8765.974512",
+    "side": "buy",
+    "ts": "1792232170154",
+    "source": "0"
+  },
+  {
+    "instId": "DOGE-USDT",
+    "tradeId": "447638194",
+    "px": "0.0802",
+    "sz": "25940.566866",
+    "side": "buy",
+    "ts": "1792232170154",
+    "source": "0"
+  }
+]

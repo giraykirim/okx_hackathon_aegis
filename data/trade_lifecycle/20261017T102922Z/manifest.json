@@ -1,0 +1,18 @@
+{
+  "version": "spot-lifecycle-candidate-v1",
+  "created_utc": "2026-10-17T10:29:23.530082+00:00",
+  "hashes": {
+    "atk_capabilities.json": "e07eb04fa600295be1bfe9ea82a9d41b47d6a1f82ac52bd9a097ba3f04c8fab4",
+    "candidates.jsonl": "7b4be2b6a73cf9975f9e92d3c73669f32ada6422c40afe8636e65a736186eceb",
+    "discovery.json": "a01e09a2d9e64fb65163dcef9cabda68e41ec5ab2c02bc350be46ebdaeae0a63",
+    "fixtures.json": "6098f9fa9a9faf6d29dfa929395e9ab0674bf32994c9873aca79ae53fb7d84c2",
+    "metadata.csv": "340c82a3fa8dbbc8a64266e263efadf8c9d7513e9238f4903efe685e6314011a",
+    "metadata.json": "eecd731a47b3746668e810c5bf6f006e2a9929885bb81930b6992d683b45d169",
+    "qa.json": "3dd42fe527bcada06824a67a7bc8f32ed18b1811b3b03c6b52e2ca59e4896769",
+    "source_mapping.json": "7605971544278f5401abc0e52512b69e58a604e6a64d8ed4427ea1551b1a1ece"
+  },
+  "source_mode": "OFFLINE_SIMULATION_ANCHORED_TO_PUBLIC_CAPTURE",
+  "orders_sent": 0,
+  "training_approved": false,
+  "review_status": "PENDING_HUMAN_REVIEW"
+}

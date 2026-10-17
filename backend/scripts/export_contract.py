@@ -16,7 +16,7 @@ SERVICE_ROUTES = {"/api/v1/risk/evaluate", "/api/v1/service"}
 def check_frozen_v2(schema):
     if hashlib.sha256(V2_PATH.read_bytes()).hexdigest() != FROZEN_V2_SHA256:
         raise ValueError("Frozen v2 contract bytes changed")
-    frozen = yaml.safe_load(V2_PATH.read_text())
+    frozen = yaml.safe_load(V2_PATH.read_text(encoding="utf-8"))
     for path, expected in frozen["paths"].items():
         if schema["paths"].get(path) != expected:
             raise ValueError("Existing v2 route changed: " + path)
@@ -65,11 +65,13 @@ def main():
     check_frozen_v2(schema)
     additive = additive_schema(schema)
     if args.check:
-        if not SERVICE_PATH.exists() or yaml.safe_load(SERVICE_PATH.read_text()) != additive:
+        if not SERVICE_PATH.exists() or yaml.safe_load(SERVICE_PATH.read_text(encoding="utf-8")) != additive:
             raise SystemExit("FAIL: additive service contract differs from the application")
         print("PASS: frozen v2 unchanged; existing routes/schemas and additive service contract match")
         return
-    SERVICE_PATH.write_text(yaml.safe_dump(additive, sort_keys=False, allow_unicode=True))
+    SERVICE_PATH.write_text(
+        yaml.safe_dump(additive, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n"
+    )
     print("Preserved frozen v2; exported contracts/service-openapi.yaml")
 
 

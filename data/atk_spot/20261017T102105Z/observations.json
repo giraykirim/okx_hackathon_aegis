@@ -1,0 +1,102 @@
+[
+  {
+    "symbol": "BTC-USDT",
+    "observed_at": "2026-10-17T10:21:12.700155+00:00",
+    "feed_age_seconds": 4.39817138671875,
+    "spread_bps": 0.012250465671539382,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "ETH-USDT",
+    "observed_at": "2026-10-17T10:21:18.234081+00:00",
+    "feed_age_seconds": 4.830094970703125,
+    "spread_bps": 0.04103818397917836,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "SOL-USDT",
+    "observed_at": "2026-10-17T10:21:23.791577+00:00",
+    "feed_age_seconds": 4.983588134765625,
+    "spread_bps": 0.9537889265096957,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "USDC-USDT",
+    "observed_at": "2026-10-17T10:21:29.491745+00:00",
+    "feed_age_seconds": 4.985755859375,
+    "spread_bps": 0.0998696700789816,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "ZEC-USDT",
+    "observed_at": "2026-10-17T10:21:35.088316+00:00",
+    "feed_age_seconds": 4.880333740234375,
+    "spread_bps": 0.761946689129291,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "NEAR-USDT",
+    "observed_at": "2026-10-17T10:21:40.684618+00:00",
+    "feed_age_seconds": 4.88063671875,
+    "spread_bps": 3.8850038850034574,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "DOGE-USDT",
+    "observed_at": "2026-10-17T10:21:46.077047+00:00",
+    "feed_age_seconds": 4.8260595703125,
+    "spread_bps": 1.2452524749405394,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "XRP-USDT",
+    "observed_at": "2026-10-17T10:21:52.142644+00:00",
+    "feed_age_seconds": 5.341662109375,
+    "spread_bps": 0.7654916370037814,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "FIL-USDT",
+    "observed_at": "2026-10-17T10:21:57.481630+00:00",
+    "feed_age_seconds": 4.730648681640625,
+    "spread_bps": 0.8833532087823951,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  },
+  {
+    "symbol": "WLD-USDT",
+    "observed_at": "2026-10-17T10:22:02.830063+00:00",
+    "feed_age_seconds": 4.77607470703125,
+    "spread_bps": 3.864734299516483,
+    "book_valid": true,
+    "source_mode": "MARKET_ONLY",
+    "site": "tr",
+    "intent_requested": false
+  }
+]

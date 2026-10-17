@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 import signal
+import sys
 import tempfile
 import time
 from datetime import datetime, timezone
@@ -51,6 +52,10 @@ class ATK:
             "OKX_SITE": self.settings.okx_site,
             "OKX_TIMEOUT_MS": "10000",
         }
+        if sys.platform == "win32":
+            # Windows Node/OpenSSL needs SystemRoot to initialize its random source.
+            # Do not inherit the rest of the parent environment or its credentials.
+            env["SystemRoot"] = os.environ.get("SystemRoot", r"C:\Windows")
         if private:
             if not self.settings.demo_ready():
                 raise RuntimeError("Isolated demo credentials and regional confirmation required")
@@ -68,7 +73,7 @@ class ATK:
         command = [
             shutil.which("node") or "node",
             "--import",
-            str(ROOT / "aegis/atk-isolation.mjs"),
+            (ROOT / "aegis/atk-isolation.mjs").as_uri(),
             str(ROOT / "node_modules/@okx_ai/okx-trade-cli/dist/index.js"),
             *OPERATIONS[operation],
             *args,
@@ -128,14 +133,17 @@ class ATK:
                 cwd=ROOT,
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
-                start_new_session=True,
+                start_new_session=sys.platform != "win32",
             )
             try:
                 stdout, _stderr = await asyncio.wait_for(process.communicate(), timeout=20)
             except BaseException:
                 if process.returncode is None:
                     try:
-                        os.killpg(process.pid, signal.SIGKILL)
+                        if sys.platform == "win32":
+                            process.kill()
+                        else:
+                            os.killpg(process.pid, signal.SIGKILL)
                     except ProcessLookupError:
                         pass
                     await process.communicate()

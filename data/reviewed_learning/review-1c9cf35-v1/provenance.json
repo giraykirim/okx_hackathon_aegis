@@ -1,0 +1,1922 @@
+[
+  {
+    "case_id": "1e1b2c45622bbbccbfa3",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "c834f33296d3209036cd",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "9338672b274b328ec5fd",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "8e976cfe6b21954647b1",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "196534c0f660beb19fd8",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e5c5b72346c2686cf761",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "33640f00256df8c6fa03",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e17b4ec5983eb1f91286",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "ba54ae9622e391835d61",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "90b318ba568d4cd6032c",
+    "scenario_family": "monitoring",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "91dc1617398e92ec709f",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "eaad5d6469a0ed0e9328",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "566033ee7a75c01d59f8",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "66bbf43e3368516d1511",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "0cc1d0293a6be7043f1a",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "7cc7a6edb1090f0cf8eb",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "855a7bd4495ea0a043bb",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "865c96d9a9d9453d62f9",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e6dcb518ecac9544d081",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "a47337a01df7d034d319",
+    "scenario_family": "preflight",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "dc897f3c700241390bda",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "11790659835a8b2fee49",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "a3c98c3721a29339d2bd",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "794b3dc4c6241e9302c0",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "81cb4e9650b78eb966b9",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "d7ba2d4f318caec80934",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "9b68d03aaa2938339a90",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "994bf6df4ad8939d766f",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "ba645f88af8e13ad7dcc",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "709ddf2eb1609c7ce041",
+    "scenario_family": "terminal",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "007c480e10c6f406f97d",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "74d64bbea292b52dcb44",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "3e119fdabfcb79800efb",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "f8512fb4ade9d96cd574",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "71b4e4818ef262a4abc2",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "2e76a8d7296f5e2c7edd",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "21d8e999ef431bdf81f3",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "09add5eb1b7ab0b6ffa5",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "135ced34e4e01b36280e",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "07801af9cf67ea2e85c1",
+    "scenario_family": "optional",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "7d2dd2888c0f943a7354",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "70f3ec249127814f1734",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "057bbc89f1e2d79e6cde",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e09ac8fab56a61d8cd7d",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "f3b1b3192b48d12408c2",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "0a02b5a4bca0ed52baf5",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "45add662a5b22fdfac11",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "59a03a03f85bfe8b7546",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "202846a42db8a1036235",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "d4ad82ef702f93119036",
+    "scenario_family": "account_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "050476b0f8a82d187623",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "4445c9f4bc714212630a",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "2f5f4ad2257ecfae38ca",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "70e31b63d12d4197ad8e",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "d3a5326fe9859b1ada7b",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "b9cec0ea21516f1efe5b",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "0deebe514dc354a6891f",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "5744cee15019e492bfb4",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e4f98d82ea650dfaf4f3",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "00ed760037bf3d5d47e4",
+    "scenario_family": "approval_missing",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "7a4defd5e3d47d78266d",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "a53af65982bfb2dd70d9",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "4ed6b20445fade0df531",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "d9d87ff802da8a64c22a",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "54ff652b1dbf79eede39",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "a190e6b6a1d01d9423c0",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "77ea043bab88b699cdaa",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "bf9deb3a98c7bbe91717",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "00dc86dbb0758c811523",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "40ec1afefda6ebcba961",
+    "scenario_family": "read_timeout",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e95e14e1f6400e5e3887",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "1e74f7dcd4e674e68765",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "66c75219e2267b4f2f2e",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e938ec4e3d706a5a0f76",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "18df1f733778b83171b2",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "623bf31e0858a186b6a9",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "34d7c159c9cf409f7a6e",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "756cf30651dff7c5b8b7",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "4bade6e0145f2109a052",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "523742ae7c78b8dbc628",
+    "scenario_family": "disagreement",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "9c49407413049c012728",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e9ce67833397824dade1",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "3c7cac7cdd5b7f046fd0",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "06a8a78ff3943f811850",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "50cbd55961a9785f7e01",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "c09461022826ee92bceb",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "44a1b384ee9923d7ad83",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "8277674f0dacfefc5acb",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "c193ded1e8cb468e6525",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "52e918d616df803d5e9f",
+    "scenario_family": "stale",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "d8db9f803db2140473be",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "a41ff25899ba33f2b6fd",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "2b743766b17b64f2e464",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "9a0c9f609d95159bc7db",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "6fd4830438d8b98a6e7b",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "7deccd5c5c4f6aa3a953",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "70a7cc9eebccc5e2a0c2",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e068a75df60daa2b4315",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "bfbb59800964af9658eb",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "1dd6667153c47a53dd73",
+    "scenario_family": "duplicate",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "329751cf283fb8e74cdf",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "cc067b1e0f0c394c01a0",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "84b90d696db7a23a43e5",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "4efae94d2caf17fdbe60",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e28d2710016c2709b800",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "e69e6ea971fd11c6d6ec",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "dc155f52ca29ab6c076f",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "cc4eeebf5538e246b886",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "fd429a0e4a54c2e9f26a",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "a4f8fcafb212cc133992",
+    "scenario_family": "unknown_submit",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "634056b05a85aefcc987",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "b9a230ee54bdc23f4787",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "4046ab68c01332698ed7",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "70687a5b1849a5bb21bf",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "590cd76f4f52d6b59696",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "083f0a280d9ab0ef24f0",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "de3df3eec9c9d99a7491",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "9a5350a1531d2cc85481",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "96e34a0f773176a0be18",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  },
+  {
+    "case_id": "6aa400f174aab3899cf5",
+    "scenario_family": "revoked",
+    "human_review_status": "PENDING",
+    "not_in_backend_policy": [
+      "site",
+      "api_timeout",
+      "agents_disagree",
+      "permission_revoked",
+      "injection_detected",
+      "deployment_integrity_failure",
+      "excess_exposure"
+    ],
+    "all_operational_facts_injected": true,
+    "independent_incident": false
+  }
+]

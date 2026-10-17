@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "offline_reload": true,
+  "hashes_match": true,
+  "dataset_hashes_unchanged": true,
+  "test_model_evaluation": false,
+  "selected": "base",
+  "version": "f38a07fa01dbf242cc120da859b2cffa18eb8631b28db88d2e54e14876a15c3e",
+  "latency_ms": 523.6025999765843,
+  "peak_allocated_mib": 2317.81884765625,
+  "answer": {
+    "model": "laya-rl-agent",
+    "answers": {
+      "operational_state": {
+        "type": "choice",
+        "choice": "CONTINUE",
+        "probabilities": {
+          "CONTINUE": 0.498,
+          "REVIEW": 0.2181,
+          "HALT": 0.2839
+        },
+        "confidence": 0.0563,
+        "answer_confidence": 0.498,
+        "action": {
+          "act_probability": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 244,
+      "output_tokens": 0,
+      "state_tokens": 151,
+      "state_tokens_dropped": 0,
+      "truncated": false,
+      "truncated_questions": []
+    }
+  },
+  "execution_authority": false,
+  "production_approved": false
+}

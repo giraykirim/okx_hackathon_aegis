@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "transport": "HTTPX_MOCK_TRANSPORT_NOT_LAN",
+  "pinned_backend_commit": "1c9cf359d522e2f67c77e13418b7127c21ef2e40",
+  "backend_integrations_sha256": "09bf1ce6e74ccfa63724c60ae3bbb6a4f65212603732c24d1b494633121c373a",
+  "current_remote_commit_checked": "7d6b7e4d9b9daa068e02d50df3b57b3e28339315",
+  "backend_integration_changed_between_commits": false,
+  "client_response_validated": {
+    "label": "REVIEW",
+    "confidence": 0.0,
+    "abstained": true,
+    "model_version": "aegis-context-unavailable-v1",
+    "latency_ms": 0.0
+  },
+  "observations": [
+    {
+      "envelope_keys": [
+        "correlation_id",
+        "run_id",
+        "state"
+      ],
+      "missing_context": [
+        "agents_disagree",
+        "api_timeout",
+        "approval_available",
+        "deployment_integrity_failure",
+        "duplicate_intent",
+        "excess_exposure",
+        "injection_detected",
+        "intent_requested",
+        "permission_revoked",
+        "quantity",
+        "site",
+        "source_mode",
+        "unknown_order"
+      ],
+      "reasons": [
+        "trusted_context_mapping_not_approved",
+        "missing_trusted_context:agents_disagree",
+        "missing_trusted_context:api_timeout",
+        "missing_trusted_context:approval_available",
+        "missing_trusted_context:deployment_integrity_failure",
+        "missing_trusted_context:duplicate_intent",
+        "missing_trusted_context:excess_exposure",
+        "missing_trusted_context:injection_detected",
+        "missing_trusted_context:intent_requested",
+        "missing_trusted_context:permission_revoked",
+        "missing_trusted_context:quantity",
+        "missing_trusted_context:site",
+        "missing_trusted_context:source_mode",
+        "missing_trusted_context:unknown_order"
+      ],
+      "run_ids_not_in_model_state": true
+    }
+  ],
+  "real_network": false,
+  "real_laya_inference": false,
+  "deployed": false,
+  "person1_context_mapping_approved": false,
+  "execution_authority": false,
+  "limitation": "Wire compatibility and safe abstention only. Trusted context adapter still requires Person 1 agreement and runtime integration."
+}

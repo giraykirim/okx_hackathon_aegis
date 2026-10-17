@@ -1,0 +1,40 @@
+{
+  "structural_status": "PASS",
+  "training_approved": false,
+  "errors": [],
+  "warnings": [
+    "All labels await genuine human review; no gold dataset or trained-model result is claimed.",
+    "Synthetic templates have shared field vocabulary; family isolation is not semantic independence.",
+    "Challenge recombines familiar hazards and is a stress test, not an independent external benchmark.",
+    "Four local receipt-derived rows share one capture; they are not four independent incidents.",
+    "Parallel FindAll unavailable; only two primary-source incidents researched."
+  ],
+  "counts": {
+    "train": {
+      "CONTINUE": 12,
+      "REVIEW": 12,
+      "HALT": 32
+    },
+    "val": {
+      "CONTINUE": 4,
+      "REVIEW": 4,
+      "HALT": 4
+    },
+    "test": {
+      "CONTINUE": 4,
+      "REVIEW": 4,
+      "HALT": 4
+    },
+    "challenge": {
+      "HALT": 12
+    }
+  },
+  "groups": {
+    "train": 14,
+    "val": 3,
+    "test": 3,
+    "challenge": 1
+  },
+  "review_pending": 92,
+  "test_model_evaluation": "NOT_RUN"
+}

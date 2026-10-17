@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-17T09:31:44.181543+00:00",
+  "recorded_at": "2026-10-17T09:43:05.895357+00:00",
   "exchange_writes_attempted": 0,
   "checks": {
     "ATK_MARKET": {
@@ -7,15 +7,15 @@
       "evidence": [
         "Official @okx_ai/okx-trade-cli@1.4.8 ticker + instruments returned JSON",
         "site=tr",
-        "exchange_timestamp=2026-10-17T09:31:44.128000+00:00"
+        "exchange_timestamp=2026-10-17T09:43:06.095000+00:00"
       ],
-      "checked_at": "2026-10-17T09:31:45.521991Z",
+      "checked_at": "2026-10-17T09:43:07.364794Z",
       "observation": {
         "symbol": "BTC-USDT",
-        "observed_at": "2026-10-17T09:31:44.128000Z",
-        "price": "81682",
-        "ask": "81683.4",
-        "bid": "81683.3",
+        "observed_at": "2026-10-17T09:43:06.095000Z",
+        "price": "81672.4",
+        "ask": "81672.4",
+        "bid": "81672.3",
         "min_size": "0.00002",
         "lot_size": "1E-8",
         "tick_size": "0.1",
@@ -27,23 +27,23 @@
         "account_observed_at": null,
         "external_open_orders": false
       },
-      "feed_age_seconds": 1.396948,
+      "feed_age_seconds": 1.298718,
       "decision": {
-        "id": "c75dff2df54e48a0806a83881e49c9f4",
-        "timestamp": "2026-10-17T09:31:45.524128Z",
-        "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+        "id": "1b8a5723842d4570ae3789d588a2d0dc",
+        "timestamp": "2026-10-17T09:43:07.385573Z",
+        "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
         "symbol": "BTC-USDT",
         "proposed_action": "NO_TRADE",
         "laya_label": "REVIEW",
         "laya_confidence": 0.0,
         "llm_summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
         "evidence_ids": [
-          "b278effbba2a46879fc5de6d175dd1f1",
-          "3b2e5344adb14fb99e65296420e17a31",
-          "73930514bf0f4f52b8e4a4c73e3075d3",
-          "232df3a7eb714fd99072cafb5d98d172",
-          "95f63d3cc887416683a30f3d94a2fe7d",
-          "23232ab0642248ccafb4f3620c5e7318"
+          "ab89ec890f2145d982aa1f6cc1ef8785",
+          "8463c6a33d3546cfa80bacd04fe43a71",
+          "9322eac81a5a4e03b47a9378a82ec573",
+          "5d7cb5c59fe34a53a18f00e81fdb6d92",
+          "c3048852f607497d89313b4931c31610",
+          "a7f35f13691e486ca0b6acbeec03e4f6"
         ],
         "risk_approved": false,
         "risk_reasons": [
@@ -57,29 +57,29 @@
         "execution_status": "NOT_SENT",
         "venue_order_id": null,
         "source_mode": "MARKET_ONLY",
-        "intent_id": "b5ca5fa52d7a4427866dcc7f7fefa804",
+        "intent_id": "85db09b2cc214228b275cbd01e8bae07",
         "quantity": "0",
         "venue_state": null,
         "limit_price": null
       },
       "events": [
         {
-          "id": "9d47385ebbef4cb1bb9067cd35b57dca",
-          "timestamp": "2026-10-17T09:31:45.522107Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "2b0930709b6d4b6a9ebaa80895da6d62",
+          "timestamp": "2026-10-17T09:43:07.364902Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "ATK_RECEIPT",
           "severity": "INFO",
           "actor": "atk",
           "message": "Official ATK market subprocess receipt",
           "details": {
-            "id": "7dd758d242fd499c86438d71818e45f9",
+            "id": "104f30b83c4b4974bab6856360ac0115",
             "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
             "operation": "ticker",
             "command": [
-              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
               "--import",
-              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
               "market",
               "ticker",
               "BTC-USDT",
@@ -89,36 +89,36 @@
               "--json"
             ],
             "site": "tr",
-            "requested_at": "2026-10-17T09:31:44.197264Z",
-            "completed_at": "2026-10-17T09:31:45.005018Z",
-            "market_timestamp": "2026-10-17T09:31:44.128000Z",
+            "requested_at": "2026-10-17T09:43:05.992176Z",
+            "completed_at": "2026-10-17T09:43:06.681721Z",
+            "market_timestamp": "2026-10-17T09:43:06.095000Z",
             "source_mode": "MARKET_ONLY",
-            "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+            "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
             "status": "PASS",
-            "result_sha256": "0c48698608e3ba10d38f7bac4ed0e932f2dd32ea5f7647996f5c0be0ff23c7a0",
-            "stdout_sha256": "d0e942ddcf580bb2ac854d6e14e5bc73a7bbd93b96dcc99f78af225bb615506c",
-            "elapsed_ms": 807.7600420074305,
+            "result_sha256": "aa9a70fc27d2b209e74850d020875a06e2d4e96331a734b78bc19afa61eeaf6f",
+            "stdout_sha256": "0e72fd8a8a9acf952ccf11df22423f51cd1b494defbeba32dad0d480ae8a6992",
+            "elapsed_ms": 689.5400999346748,
             "error_type": null
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "4001bdf1a4ed4970a13919b6d616cb8c",
-          "timestamp": "2026-10-17T09:31:45.522861Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "23bea1b56dbf4b7c83af5ae115bc5f49",
+          "timestamp": "2026-10-17T09:43:07.376133Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "ATK_RECEIPT",
           "severity": "INFO",
           "actor": "atk",
           "message": "Official ATK market subprocess receipt",
           "details": {
-            "id": "bc73d7ff32f947c7a08b281ee4d6fc35",
+            "id": "771f8c3d922c4c3686a33f5881c1088d",
             "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
             "operation": "instruments",
             "command": [
-              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "C:\\Users\\hackathon\\AppData\\Local\\HackathonTools\\node\\node-v24.22.0-win-x64\\node.EXE",
               "--import",
-              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
-              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "file:///C:/Users/hackathon/Documents/Codex/2026-10-16/bu-bilgisayar-d-n-al-nm/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\backend\\node_modules\\@okx_ai\\okx-trade-cli\\dist\\index.js",
               "market",
               "instruments",
               "--instType",
@@ -131,33 +131,33 @@
               "--json"
             ],
             "site": "tr",
-            "requested_at": "2026-10-17T09:31:45.005417Z",
-            "completed_at": "2026-10-17T09:31:45.521852Z",
+            "requested_at": "2026-10-17T09:43:06.683284Z",
+            "completed_at": "2026-10-17T09:43:07.364657Z",
             "market_timestamp": null,
             "source_mode": "MARKET_ONLY",
-            "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+            "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
             "status": "PASS",
             "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
-            "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-            "elapsed_ms": 516.4455829944927,
+            "stdout_sha256": "8ecbe7fd6e2b2c7b02c6dbf82e3ee2eb504b190b7f5cfcd2a0ee0805b634cbf6",
+            "elapsed_ms": 681.3769000582397,
             "error_type": null
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "b278effbba2a46879fc5de6d175dd1f1",
-          "timestamp": "2026-10-17T09:31:45.523264Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "ab89ec890f2145d982aa1f6cc1ef8785",
+          "timestamp": "2026-10-17T09:43:07.377961Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "OBSERVE",
           "severity": "INFO",
           "actor": "atk",
           "message": "Official ATK market observation",
           "details": {
             "symbol": "BTC-USDT",
-            "observed_at": "2026-10-17T09:31:44.128000Z",
-            "price": "81682",
-            "ask": "81683.4",
-            "bid": "81683.3",
+            "observed_at": "2026-10-17T09:43:06.095000Z",
+            "price": "81672.4",
+            "ask": "81672.4",
+            "bid": "81672.3",
             "min_size": "0.00002",
             "lot_size": "1E-8",
             "tick_size": "0.1",
@@ -172,9 +172,9 @@
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "3b2e5344adb14fb99e65296420e17a31",
-          "timestamp": "2026-10-17T09:31:45.523477Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "8463c6a33d3546cfa80bacd04fe43a71",
+          "timestamp": "2026-10-17T09:43:07.379777Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "CLASSIFY",
           "severity": "INFO",
           "actor": "laya",
@@ -190,9 +190,9 @@
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "73930514bf0f4f52b8e4a4c73e3075d3",
-          "timestamp": "2026-10-17T09:31:45.523685Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "9322eac81a5a4e03b47a9378a82ec573",
+          "timestamp": "2026-10-17T09:43:07.381643Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "REASON",
           "severity": "INFO",
           "actor": "evren",
@@ -201,16 +201,16 @@
             "action": "NO_TRADE",
             "symbol": "BTC-USDT",
             "quantity": "0",
-            "intent_id": "b5ca5fa52d7a4427866dcc7f7fefa804",
+            "intent_id": "85db09b2cc214228b275cbd01e8bae07",
             "summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
             "availability": "FALLBACK"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "232df3a7eb714fd99072cafb5d98d172",
-          "timestamp": "2026-10-17T09:31:45.523971Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "5d7cb5c59fe34a53a18f00e81fdb6d92",
+          "timestamp": "2026-10-17T09:43:07.383725Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "RISK_GATE",
           "severity": "WARNING",
           "actor": "policy",
@@ -230,9 +230,9 @@
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "95f63d3cc887416683a30f3d94a2fe7d",
-          "timestamp": "2026-10-17T09:31:45.524144Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "c3048852f607497d89313b4931c31610",
+          "timestamp": "2026-10-17T09:43:07.385607Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "NO_TRADE",
           "severity": "INFO",
           "actor": "policy",
@@ -250,9 +250,9 @@
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "23232ab0642248ccafb4f3620c5e7318",
-          "timestamp": "2026-10-17T09:31:45.524321Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "a7f35f13691e486ca0b6acbeec03e4f6",
+          "timestamp": "2026-10-17T09:43:07.387364Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "VERIFY",
           "severity": "INFO",
           "actor": "policy",
@@ -264,15 +264,15 @@
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "5d5dad1f618f49c2aa352afc857adf7e",
-          "timestamp": "2026-10-17T09:31:45.524741Z",
-          "run_id": "9d22a588472d45e7b16ecda927c5f8cd",
+          "id": "544cefcff1474ef1ae1394ca42bdc389",
+          "timestamp": "2026-10-17T09:43:07.391843Z",
+          "run_id": "bd7e8c35652a492a8ddaec57ce91a5e5",
           "type": "AUDIT",
           "severity": "INFO",
           "actor": "agent",
           "message": "Cycle persisted",
           "details": {
-            "decision_id": "c75dff2df54e48a0806a83881e49c9f4",
+            "decision_id": "1b8a5723842d4570ae3789d588a2d0dc",
             "execution_status": "NOT_SENT"
           },
           "source_mode": "MARKET_ONLY"
@@ -281,33 +281,33 @@
     },
     "MARKET_ONLY_NO_TRADE": {
       "status": "PASS",
-      "decision_id": "c75dff2df54e48a0806a83881e49c9f4"
+      "decision_id": "1b8a5723842d4570ae3789d588a2d0dc"
     },
     "AUTONOMOUS_MOCK": {
       "status": "PASS",
       "decision": {
-        "id": "6d42c24ce64c437a9b1d34d8427c1874",
-        "timestamp": "2026-10-17T09:31:45.549266Z",
-        "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+        "id": "61f9bc12ae3c4fe295a231cfb19482c8",
+        "timestamp": "2026-10-17T09:43:07.477943Z",
+        "run_id": "e2609a594189499f90b4ab7be3a4a687",
         "symbol": "BTC-USDT",
         "proposed_action": "BUY",
         "laya_label": "CONTINUE",
         "laya_confidence": 1.0,
         "llm_summary": "MOCK scripted proposal; no external model was called",
         "evidence_ids": [
-          "9dcd50bc6d52428ca3f0bc8c4d7cec95",
-          "fb9b552ad7e94d239f1ba0cb97cdbc56",
-          "223a32cfd4734b7b9a2b6c23cbffd4b3",
-          "2505eaae5c74478db119dafe84c8db6d",
-          "ec089f7318bf422c9759a1689100d438",
-          "f0d101b9b2c644f88d1212dcb5fe16b6"
+          "3bf05db988804940ab0b6630a655685e",
+          "5cf248f9bee64316a9e2cf15fc1ec58c",
+          "5bcf41da7a5449daab4682c01b580493",
+          "71e3beda09fa4653a408ad49f82d6a6d",
+          "20ef7abaec7c4ff88430af9be333fbc5",
+          "807ebc533cdf4a719880cdebedb4a438"
         ],
         "risk_approved": true,
         "risk_reasons": [],
         "execution_status": "NOT_SENT",
         "venue_order_id": null,
         "source_mode": "MOCK",
-        "intent_id": "139d99cabdde4e8c87eee6075f28544a",
+        "intent_id": "7d370ea670ff4414acf10787de15eef9",
         "quantity": "0.0001",
         "venue_state": "MOCK_FILLED",
         "limit_price": "50501.1"
@@ -318,21 +318,21 @@
     "UNSAFE_SCENARIO": {
       "status": "PASS",
       "decision": {
-        "id": "b0f706527369452cbcfa95507791056c",
-        "timestamp": "2026-10-17T09:31:45.567169Z",
-        "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+        "id": "2531702f89d149f1a655de4e0a1a8a1c",
+        "timestamp": "2026-10-17T09:43:07.516581Z",
+        "run_id": "09247bac1df44bf1b90c88518ccc6500",
         "symbol": "BTC-USDT",
         "proposed_action": "BUY",
         "laya_label": "CONTINUE",
         "laya_confidence": 1.0,
         "llm_summary": "MOCK scripted proposal; no external model was called",
         "evidence_ids": [
-          "1c913b1da85d4b7194a824663d0e6f1c",
-          "57523ca72b05410d9ad6e1052d8876fb",
-          "323f5d989b0b4c9c946a6ff70778488f",
-          "fbf8aeab9dfc4d88a0c2529fccd8fd40",
-          "aaf156c5ffe5466a9e2ea872315b315f",
-          "8c502119b36d467d8204cf78faed4760"
+          "db22e74f15b34c46bf6a68e65bb67951",
+          "fe65d336003546ac8587aff98b62cb90",
+          "e2ad68bef5504714b916c0ac17a5f4ff",
+          "f8addbc10f9740b7b69d3cfedf820460",
+          "b626983141f3461ea05153147c70d4b9",
+          "a87f55bb957c43ef8bc6aa085c390bf3"
         ],
         "risk_approved": false,
         "risk_reasons": [
@@ -341,7 +341,7 @@
         "execution_status": "NOT_SENT",
         "venue_order_id": null,
         "source_mode": "MOCK",
-        "intent_id": "db6687fa1f454d38995682748051be79",
+        "intent_id": "fb0fd202564d41efa112fe16bb18ff68",
         "quantity": "0.0001",
         "venue_state": null,
         "limit_price": "50501.1"
@@ -350,9 +350,9 @@
     "MOCK_AUDIT": {
       "events": [
         {
-          "id": "1c629b5c95ab460aaa945a8d7630f63d",
-          "timestamp": "2026-10-17T09:31:45.548391Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "44744aaebc7640fe9820a0c7e60d3d96",
+          "timestamp": "2026-10-17T09:43:07.468761Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "START",
           "severity": "INFO",
           "actor": "agent",
@@ -361,16 +361,16 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "9dcd50bc6d52428ca3f0bc8c4d7cec95",
-          "timestamp": "2026-10-17T09:31:45.548638Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "3bf05db988804940ab0b6630a655685e",
+          "timestamp": "2026-10-17T09:43:07.470754Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "OBSERVE",
           "severity": "INFO",
           "actor": "mock",
           "message": "Scripted MOCK observation",
           "details": {
             "symbol": "BTC-USDT",
-            "observed_at": "2026-10-17T09:31:45.548588Z",
+            "observed_at": "2026-10-17T09:43:07.470672Z",
             "price": "50000",
             "ask": "50001",
             "bid": "49999",
@@ -388,9 +388,9 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "fb9b552ad7e94d239f1ba0cb97cdbc56",
-          "timestamp": "2026-10-17T09:31:45.548789Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "5cf248f9bee64316a9e2cf15fc1ec58c",
+          "timestamp": "2026-10-17T09:43:07.472547Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "CLASSIFY",
           "severity": "INFO",
           "actor": "mock",
@@ -406,9 +406,9 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "223a32cfd4734b7b9a2b6c23cbffd4b3",
-          "timestamp": "2026-10-17T09:31:45.548926Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "5bcf41da7a5449daab4682c01b580493",
+          "timestamp": "2026-10-17T09:43:07.474303Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "REASON",
           "severity": "INFO",
           "actor": "mock",
@@ -417,16 +417,16 @@
             "action": "BUY",
             "symbol": "BTC-USDT",
             "quantity": "0.0001",
-            "intent_id": "139d99cabdde4e8c87eee6075f28544a",
+            "intent_id": "7d370ea670ff4414acf10787de15eef9",
             "summary": "MOCK scripted proposal; no external model was called",
             "availability": "SCRIPTED"
           },
           "source_mode": "MOCK"
         },
         {
-          "id": "2505eaae5c74478db119dafe84c8db6d",
-          "timestamp": "2026-10-17T09:31:45.549103Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "71e3beda09fa4653a408ad49f82d6a6d",
+          "timestamp": "2026-10-17T09:43:07.476142Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "RISK_GATE",
           "severity": "INFO",
           "actor": "policy",
@@ -439,22 +439,22 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "ec089f7318bf422c9759a1689100d438",
-          "timestamp": "2026-10-17T09:31:45.549479Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "20ef7abaec7c4ff88430af9be333fbc5",
+          "timestamp": "2026-10-17T09:43:07.480085Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "EXECUTE",
           "severity": "INFO",
           "actor": "mock",
           "message": "MOCK executor simulated a fill; no exchange order sent",
           "details": {
-            "decision_id": "6d42c24ce64c437a9b1d34d8427c1874"
+            "decision_id": "61f9bc12ae3c4fe295a231cfb19482c8"
           },
           "source_mode": "MOCK"
         },
         {
-          "id": "f0d101b9b2c644f88d1212dcb5fe16b6",
-          "timestamp": "2026-10-17T09:31:45.549598Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "807ebc533cdf4a719880cdebedb4a438",
+          "timestamp": "2026-10-17T09:43:07.482299Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "VERIFY",
           "severity": "INFO",
           "actor": "mock",
@@ -463,23 +463,23 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "f36cd0c0f97e403fb2c9ae608f12cdbc",
-          "timestamp": "2026-10-17T09:31:45.549879Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "ab1f43adf62c49fbba07b90fe3c35282",
+          "timestamp": "2026-10-17T09:43:07.485974Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "AUDIT",
           "severity": "INFO",
           "actor": "agent",
           "message": "Cycle persisted",
           "details": {
-            "decision_id": "6d42c24ce64c437a9b1d34d8427c1874",
+            "decision_id": "61f9bc12ae3c4fe295a231cfb19482c8",
             "execution_status": "NOT_SENT"
           },
           "source_mode": "MOCK"
         },
         {
-          "id": "1d127e63c5e64f8786de0d50d477cb02",
-          "timestamp": "2026-10-17T09:31:45.559708Z",
-          "run_id": "1c9d1997de214e61beb9b9b47dd00073",
+          "id": "d96389acb27e42d299df2da762b491ca",
+          "timestamp": "2026-10-17T09:43:07.488013Z",
+          "run_id": "e2609a594189499f90b4ab7be3a4a687",
           "type": "STOP",
           "severity": "INFO",
           "actor": "agent",
@@ -488,16 +488,16 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "1c913b1da85d4b7194a824663d0e6f1c",
-          "timestamp": "2026-10-17T09:31:45.566487Z",
-          "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+          "id": "db22e74f15b34c46bf6a68e65bb67951",
+          "timestamp": "2026-10-17T09:43:07.505466Z",
+          "run_id": "09247bac1df44bf1b90c88518ccc6500",
           "type": "OBSERVE",
           "severity": "INFO",
           "actor": "mock",
           "message": "Scripted MOCK observation",
           "details": {
             "symbol": "BTC-USDT",
-            "observed_at": "2026-10-17T09:30:45.566422Z",
+            "observed_at": "2026-10-17T09:42:07.505299Z",
             "price": "50000",
             "ask": "50001",
             "bid": "49999",
@@ -515,9 +515,9 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "57523ca72b05410d9ad6e1052d8876fb",
-          "timestamp": "2026-10-17T09:31:45.566749Z",
-          "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+          "id": "fe65d336003546ac8587aff98b62cb90",
+          "timestamp": "2026-10-17T09:43:07.511024Z",
+          "run_id": "09247bac1df44bf1b90c88518ccc6500",
           "type": "CLASSIFY",
           "severity": "INFO",
           "actor": "mock",
@@ -533,9 +533,9 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "323f5d989b0b4c9c946a6ff70778488f",
-          "timestamp": "2026-10-17T09:31:45.566881Z",
-          "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+          "id": "e2ad68bef5504714b916c0ac17a5f4ff",
+          "timestamp": "2026-10-17T09:43:07.512896Z",
+          "run_id": "09247bac1df44bf1b90c88518ccc6500",
           "type": "REASON",
           "severity": "INFO",
           "actor": "mock",
@@ -544,16 +544,16 @@
             "action": "BUY",
             "symbol": "BTC-USDT",
             "quantity": "0.0001",
-            "intent_id": "db6687fa1f454d38995682748051be79",
+            "intent_id": "fb0fd202564d41efa112fe16bb18ff68",
             "summary": "MOCK scripted proposal; no external model was called",
             "availability": "SCRIPTED"
           },
           "source_mode": "MOCK"
         },
         {
-          "id": "fbf8aeab9dfc4d88a0c2529fccd8fd40",
-          "timestamp": "2026-10-17T09:31:45.567044Z",
-          "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+          "id": "f8addbc10f9740b7b69d3cfedf820460",
+          "timestamp": "2026-10-17T09:43:07.514790Z",
+          "run_id": "09247bac1df44bf1b90c88518ccc6500",
           "type": "RISK_GATE",
           "severity": "WARNING",
           "actor": "policy",
@@ -568,9 +568,9 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "aaf156c5ffe5466a9e2ea872315b315f",
-          "timestamp": "2026-10-17T09:31:45.567179Z",
-          "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+          "id": "b626983141f3461ea05153147c70d4b9",
+          "timestamp": "2026-10-17T09:43:07.516609Z",
+          "run_id": "09247bac1df44bf1b90c88518ccc6500",
           "type": "NO_TRADE",
           "severity": "INFO",
           "actor": "policy",
@@ -583,9 +583,9 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "8c502119b36d467d8204cf78faed4760",
-          "timestamp": "2026-10-17T09:31:45.567303Z",
-          "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+          "id": "a87f55bb957c43ef8bc6aa085c390bf3",
+          "timestamp": "2026-10-17T09:43:07.518437Z",
+          "run_id": "09247bac1df44bf1b90c88518ccc6500",
           "type": "VERIFY",
           "severity": "INFO",
           "actor": "policy",
@@ -597,15 +597,15 @@
           "source_mode": "MOCK"
         },
         {
-          "id": "9e8aa4a589b94bf4beee936bd5367a51",
-          "timestamp": "2026-10-17T09:31:45.567580Z",
-          "run_id": "06e7f9c310b942b59c0da09d0e1f75c3",
+          "id": "8e8bf74b97464fae844e8b478bd0a1bd",
+          "timestamp": "2026-10-17T09:43:07.522201Z",
+          "run_id": "09247bac1df44bf1b90c88518ccc6500",
           "type": "AUDIT",
           "severity": "INFO",
           "actor": "agent",
           "message": "Cycle persisted",
           "details": {
-            "decision_id": "b0f706527369452cbcfa95507791056c",
+            "decision_id": "2531702f89d149f1a655de4e0a1a8a1c",
             "execution_status": "NOT_SENT"
           },
           "source_mode": "MOCK"

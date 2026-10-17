@@ -1,0 +1,29 @@
+eval items 12 from C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\data\debug_learning\20261017T104341Z\diagnostic_val.jsonl (skipped {}, 0 overlapping training/calibration items)
+train items 44, calibration items 4, eval items 12 (C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\data\debug_learning\20261017T104341Z\diagnostic_val.jsonl), skipped {}, device cuda
+optimizer budget: 44 train item(s), effective batch up to 1 (micro_batch 1 x grad_accum 1), 352 optimizer updates over 8 epoch(s)
+C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\aegis\.venv\Lib\site-packages\laya\train.py:724: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+epoch 1/8 mean loss 1.2634
+epoch 2/8 mean loss 0.9578
+epoch 3/8 mean loss 0.5742
+epoch 4/8 mean loss 0.0704
+epoch 5/8 mean loss 0.3138
+epoch 6/8 mean loss 0.0050
+epoch 7/8 mean loss 0.0233
+epoch 8/8 mean loss 0.0015
+C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\aegis\.venv\Lib\site-packages\laya\train_cli.py:221: RuntimeWarning: laya.train: choice calibration: not fitted: 4 calibration items, fewer than 10, so the temperature stays 1.0
+  summary = finetune(
+
+=== Evaluation (before vs after fine-tuning on 12 held-out items from C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\data\debug_learning\20261017T104341Z\diagnostic_val.jsonl) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.3333         1.0000         +0.6667       
+Loss                   1.1021         0.0002         -1.1019       
+ECE                    0.4660         0.0002         -0.4658       
+Brier (multi-class)    0.6641         0.0000         -0.6641       
+Brier (top-1)          0.2275         0.0000         -0.2275       
+Mean Confidence        0.5831         0.9998         +0.4167       
+-----------------------------------------------------------------
+
+Training complete! Model saved to C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\models\debug_learning\20261017T104341Z\epochs-8
+{"status": "PASS", "correct": 12, "debug_pass": true, "wall_seconds": 46.53662699996494, "peak_allocated_mib": 2322.54833984375}

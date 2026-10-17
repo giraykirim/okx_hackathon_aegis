@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-10-17T10:43:41.166032+00:00",
+  "protected_hashes": {
+    "data\\challenge.jsonl": "27a54a6a6b2b9699abe0eee8e818082b3139d27b9ca7c5a80b162607d87a540c",
+    "data\\test.jsonl": "c8ba8991c1710f8e63cc3434c229cb17a6c8e42bca5223d16a847893c977fdc7",
+    "data\\trade_lifecycle\\20261017T103022Z\\atk_capabilities.json": "c8c0236d7b01bd1a83f6d9af336ca3775bf73e150b78600c6e89e5bb25fb33f3",
+    "data\\trade_lifecycle\\20261017T103022Z\\candidates.jsonl": "0117b209e694f807fe103b9e56f8d1668c69f2e56c5d75f8a356b8bc8cb681e5",
+    "data\\trade_lifecycle\\20261017T103022Z\\coverage.json": "f9d7c851b22f32b90c91d747774f4f75b2373c77d236f46887f7c7e02e901c49",
+    "data\\trade_lifecycle\\20261017T103022Z\\DATASET_CARD.md": "c9016117abaf10b51c798a70dd3f4763a529b15465eb4b5d830fbb923f09fb5a",
+    "data\\trade_lifecycle\\20261017T103022Z\\discovery.json": "37802f727b620a47d85570affe75a0ef36a810d18c2fd5f71534364a793b16bb",
+    "data\\trade_lifecycle\\20261017T103022Z\\fixtures.json": "bb3d2baf85eae55408bc33a7acf6fcb1d52b12590b60e329434ce7848c36fb4b",
+    "data\\trade_lifecycle\\20261017T103022Z\\human_review.csv": "a712ed4626e7de567163bd51be57f982ccefb31970f2cb7943cdd47eb8a5e9b0",
+    "data\\trade_lifecycle\\20261017T103022Z\\laya_shadow.json": "0b1219c4ab8022bf663f8ee377f7b666717f4bcad783838952a557d9358cfdbd",
+    "data\\trade_lifecycle\\20261017T103022Z\\manifest.json": "580d97ae7546d32d2ff31392f0a1fd0dac0a48873b3c7bc4d8ee213966ee7a00",
+    "data\\trade_lifecycle\\20261017T103022Z\\metadata.csv": "340c82a3fa8dbbc8a64266e263efadf8c9d7513e9238f4903efe685e6314011a",
+    "data\\trade_lifecycle\\20261017T103022Z\\metadata.json": "eecd731a47b3746668e810c5bf6f006e2a9929885bb81930b6992d683b45d169",
+    "data\\trade_lifecycle\\20261017T103022Z\\qa.json": "3dd42fe527bcada06824a67a7bc8f32ed18b1811b3b03c6b52e2ca59e4896769",
+    "data\\trade_lifecycle\\20261017T103022Z\\source_mapping.json": "baf35f119b7b0995e432ec725a4d7fdb1ac2b493f0cb670b4bdd95a91d4e3235",
+    "data\\train.jsonl": "a23aaa1bbad1d10105999c25d50f0ee82cbcc0e8bffe0c81c29e673e1156bad2",
+    "data\\val.jsonl": "65b88638f1fe4a5aca8b9fbe1fa073341787527bf1a7c95bd5b12824e6efdd13",
+    "models\\aegis_laya_selected\\encoder\\config.json": "bf3ab80598fdccf414855a2ce80f22859e4492d06ca8a62ddd1cfb63972f8979",
+    "models\\aegis_laya_selected\\model.safetensors": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c",
+    "models\\aegis_laya_selected\\questions.json": "8caa8e6f75f6b381f60ef9bb23a751be95baeb2ca1b655daf27b45c903d261f8",
+    "models\\aegis_laya_selected\\rl_agent_config.json": "ae287b56bbcf5f8c4f4541ae9dfd00c914c4c48b940b8398c3058af37ba92bbd",
+    "models\\aegis_laya_selected\\selection.json": "4a92dbbd4c099cb58092d739ccb700b4c90999fdbe6b570a0436ced60b66f78f",
+    "models\\aegis_laya_selected\\tokenizer\\tokenizer.json": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+    "models\\aegis_laya_selected\\tokenizer\\tokenizer_config.json": "50044de60daaa73df97d262e15a40d4faf0160e7d742df64b377877a1320dd12"
+  },
+  "debug_hashes": {
+    "diagnostic_val.jsonl": "c30449720f66d6e4a44f82496731ddeebaeefdbc3d9b2e42502478d5811f7043",
+    "QUARANTINE.json": "db1931e2900211c75f5d0e9a04fcc3b7f430e5dd97364b3dc2f889ba53e2bd1d",
+    "train.jsonl": "8c912aa0554487ee63a018fdd7dfb5bc152b821120be3a078dc1237163b0ca40"
+  },
+  "python": "3.13.16 (tags/v3.13.16:cbc944f, Sep 30 2026, 19:17:50) [MSC v.1944 64 bit (AMD64)]",
+  "execution_authority": false,
+  "production_approved": false
+}

@@ -81,6 +81,17 @@ If TR demo cannot be confirmed, continue real MARKET_ONLY observations and show 
 
 ## Verify and reproduce evidence
 
+On Windows, with the local MARKET_ONLY server running and its agent stopped:
+
+```powershell
+.\scripts\jury_check.ps1
+```
+
+This reruns the tests, contract checks, public ATK proof, autonomous HTTP smoke and
+assessment-service proof before rebuilding the jury manifest with local machine
+metadata. It does not establish public deployment, trained-model performance or
+Fuji registration. The agent is stopped again after the HTTP smoke.
+
 ```sh
 uv run pytest -q
 uv run ruff check .
