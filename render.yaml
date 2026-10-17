@@ -1,0 +1,65 @@
+# Render Blueprint: read-only hosted AEGIS (no exchange keys, MARKET_ONLY, never trades).
+# Render → New → Blueprint → this repository. Free plan: services sleep when idle and the
+# SQLite audit log is ephemeral. Fill the `sync: false` values in the Render dashboard.
+services:
+  - type: web
+    name: aegis-backend
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: codex/person1-laya-coordination
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    dockerCommand: uvicorn aegis.app:app --host 0.0.0.0 --port 10000 --workers 1 --no-access-log
+    healthCheckPath: /api/health
+    envVars:
+      - key: AEGIS_SOURCE_MODE
+        value: MARKET_ONLY
+      - key: AEGIS_AUTOSTART
+        value: "true"
+      - key: AEGIS_CYCLE_SECONDS
+        value: "60"
+      - key: AEGIS_OKX_SITE
+        value: tr
+      - key: AEGIS_DB_PATH
+        value: /data/aegis.sqlite3
+      - key: AEGIS_SERVICE_API_KEY
+        generateValue: true
+      - key: EVREN_BASE_URL
+        value: https://evren-llmapi.ssyz.org.tr/v1
+      - key: EVREN_API_KEY
+        sync: false
+      - key: EVREN_MODEL
+        value: deepseek-v4.1-flash
+      - key: EVREN_TIMEOUT_SECONDS
+        value: "30"
+      - key: EVREN_MAX_TOKENS
+        value: "2048"
+      - key: EVREN_MAX_REQUESTS_PER_RUN
+        value: "5000"
+
+  - type: web
+    name: aegis-risk
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: codex/person1-laya-coordination
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    dockerCommand: uvicorn aegis.public_app:app --host 0.0.0.0 --port 10000 --workers 1 --no-access-log --proxy-headers
+    healthCheckPath: /api/health
+    envVars:
+      - key: AEGIS_OKX_SITE
+        value: tr
+      - key: AEGIS_SERVICE_PUBLIC_TIER
+        value: "true"
+      - key: AEGIS_SERVICE_PUBLIC_REQUESTS_PER_MINUTE
+        value: "3"
+      - key: AEGIS_SERVICE_API_KEY
+        generateValue: true
+      - key: EVREN_BASE_URL
+        value: https://evren-llmapi.ssyz.org.tr/v1
+      - key: EVREN_API_KEY
+        sync: false
+      - key: EVREN_MODEL
+        value: deepseek-v4.1-flash
