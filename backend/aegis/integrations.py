@@ -11,7 +11,7 @@ from .models import Capability, Classification, Event, Observation, Proposal, ne
 from .settings import Settings
 
 MAX_RESPONSE_BYTES = 256 * 1024
-REQUEST_TIMEOUT_SECONDS = 15
+REQUEST_TIMEOUT_SECONDS = 60
 
 
 class RequestCapReached(ValueError):
@@ -357,7 +357,7 @@ class Models:
                                         "laya": self.safe_report(laya.model_dump(mode="json")),
                                         "run_id": run_id,
                                         "max_order_quote": "25",
-                                        "max_total_exposure_quote": "1000",
+                                        "max_total_exposure_quote": str(self.settings.max_exposure_quote),
                                         **({"external_intent": assessment} if assessment is not None else {}),
                                     }
                                 ),

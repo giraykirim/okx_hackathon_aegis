@@ -11,14 +11,17 @@
       "serviceName": "Pre-trade Risk Check",
       "serviceType": "A2MCP",
       "fee": "0",
-      "endpoint": "https://tears-forms-inexpensive-geometry.trycloudflare.com/api/v1/risk/evaluate",
-      "serviceDescription": "Evaluates a proposed BTC-USDT intent using server-side market facts and deterministic policy; always advisory.\nrequest_id(string, required): idempotency key; symbol(string, required): BTC-USDT; proposed_action(string, required): BUY, SELL or NO_TRADE; proposed_notional(string, required): USDT Decimal; requester_context(object, optional): untrusted context, default null\nPOST\ncurl -X POST https://tears-forms-inexpensive-geometry.trycloudflare.com/api/v1/risk/evaluate -H 'Content-Type: application/json' -H \"X-AEGIS-Key: $AEGIS_PILOT_KEY\" -d '{\"request_id\":\"pilot-check-001\",\"symbol\":\"BTC-USDT\",\"proposed_action\":\"BUY\",\"proposed_notional\":\"10\"}'"
+      "endpoint": "https://aegis-risk-service.fly.dev/api/v1/a2mcp/risk/evaluate",
+      "serviceDescription": "Evaluates a proposed BTC-USDT intent using server-side market facts and deterministic policy; always advisory.\nrequest_id(string, required): idempotency key; symbol(string, required): BTC-USDT; proposed_action(string, required): BUY, SELL or NO_TRADE; proposed_notional(string, required): USDT Decimal; requester_context(object, optional): untrusted context, default null\nPOST\ncurl -X POST https://aegis-risk-service.fly.dev/api/v1/a2mcp/risk/evaluate -H 'Content-Type: application/json' -d '{\"request_id\":\"pilot-check-001\",\"symbol\":\"BTC-USDT\",\"proposed_action\":\"BUY\",\"proposed_notional\":\"10\"}'"
     }
   ],
   "blockers": [
     "Avatar upload required by verified CLI help",
-    "Endpoint is a temporary tunnel, not durable hosting",
-    "Marketplace delivery of private caller authentication is not verified; unauthenticated evaluation returns HTTP 401"
+    "Fly.io app not yet deployed by owner; endpoint host is the planned fly.dev name until `fly deploy` and an independent HTTPS self-check succeed"
   ],
-  "credentials_included": false
+  "credentials_included": false,
+  "resolved": [
+    "Caller auth: OKX does not forward provider keys; free key-less A2MCP route (MARKET_ONLY, 3/min shared bucket, keyed route unchanged) returns HTTP 200 without credentials",
+    "Durable hosting: Docker image with official ATK CLI + Fly.io config (Singapore) prepared and locally smoke-tested"
+  ]
 }
