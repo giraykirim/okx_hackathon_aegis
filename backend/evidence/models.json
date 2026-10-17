@@ -1,0 +1,48 @@
+{
+  "recorded_at": "2026-10-17T12:12:58.139106+00:00",
+  "run_id": "68c348e5c6d6432fa7927ae1cd5428d3",
+  "configured": {
+    "evren": false,
+    "evren_model_selected": false,
+    "laya": false
+  },
+  "capabilities": {
+    "EVREN": {
+      "status": "NOT_TESTED",
+      "evidence": [],
+      "checked_at": null
+    },
+    "LAYA": {
+      "status": "NOT_TESTED",
+      "evidence": [],
+      "checked_at": null
+    },
+    "EVREN_DISCOVERY": {
+      "status": "NOT_TESTED",
+      "evidence": [],
+      "checked_at": null
+    },
+    "EVREN_STRUCTURED_OUTPUT": {
+      "status": "NOT_TESTED",
+      "evidence": [],
+      "checked_at": null
+    },
+    "EVREN_TOOL_CALLING": {
+      "status": "NOT_TESTED",
+      "evidence": [],
+      "checked_at": null
+    }
+  },
+  "model": null,
+  "laya": {
+    "availability": "UNAVAILABLE",
+    "source": "NOT_CONFIGURED",
+    "reason_code": "NOT_CONFIGURED",
+    "model": null,
+    "model_version": null
+  },
+  "events": [],
+  "model_tools_executed": 0,
+  "exchange_writes_attempted": 0,
+  "scope": "Observed per-model response-format/tool-call behavior only; no tool execution or enforcement guarantee"
+}

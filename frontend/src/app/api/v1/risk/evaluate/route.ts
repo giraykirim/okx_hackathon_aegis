@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
-import { RECORDED_SERVICE_ASSESSMENTS } from "@/lib/fixtures";
+import {
+  RECORDED_NOTIONAL_ASSESSMENTS,
+  RECORDED_SERVICE_ASSESSMENTS,
+} from "@/lib/fixtures";
 import { fetchBackendJson, isAdminAuthorized } from "@/lib/server-backend";
-import type { RiskAssessment } from "@/lib/types";
+import type { NotionalRiskResponse, RiskAssessment } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +14,10 @@ export async function POST(request: Request) {
     action?: string;
     quantity?: string | number;
     client_request_id?: string | null;
+    request_id?: string;
+    proposed_action?: string;
+    proposed_notional?: string;
+    requester_context?: Record<string, unknown> | null;
   } = {};
 
   try {
@@ -19,20 +26,25 @@ export async function POST(request: Request) {
     return NextResponse.json({ detail: "Invalid JSON payload" }, { status: 400 });
   }
 
+  const isNotionalContract = typeof body.proposed_notional === "string";
+
   // Only allow live backend evaluation when operator admin secret + service key are configured
   const serviceKey = process.env.AEGIS_SERVICE_API_KEY;
   const adminCheck = isAdminAuthorized(request);
 
   if (serviceKey && adminCheck.authorized) {
-    const res = await fetchBackendJson<RiskAssessment>("/api/v1/risk/evaluate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-AEGIS-Key": serviceKey,
-      },
-      body: JSON.stringify(body),
-      timeoutMs: 12000,
-    });
+    const res = await fetchBackendJson<RiskAssessment | NotionalRiskResponse>(
+      "/api/v1/risk/evaluate",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-AEGIS-Key": serviceKey,
+        },
+        body: JSON.stringify(body),
+        timeoutMs: 12000,
+      }
+    );
 
     if (res.ok && res.data) {
       return NextResponse.json(res.data, {
@@ -47,7 +59,24 @@ export async function POST(request: Request) {
     );
   }
 
-  // View-only Judge mode: return recorded real HTTP proof from `backend/evidence/amendment-http.json`
+  if (isNotionalContract) {
+    const notionalNum = Number(body.proposed_notional ?? 0);
+    const selectedNotional =
+      notionalNum > 25
+        ? RECORDED_NOTIONAL_ASSESSMENTS.excess_50_usdt
+        : body.request_id === "mock-notional-fixture-001"
+        ? RECORDED_NOTIONAL_ASSESSMENTS.mock_10_usdt
+        : RECORDED_NOTIONAL_ASSESSMENTS.market_10_usdt;
+
+    return NextResponse.json(selectedNotional, {
+      headers: {
+        "X-AEGIS-Backend-Status": "RECORDED_PROOF",
+        "X-AEGIS-Proof-Source": "backend/evidence/notional-market-http.json",
+      },
+    });
+  }
+
+  // View-only Judge mode (Legacy Quantity Contract): return recorded real HTTP proof from `backend/evidence/amendment-http.json`
   const qtyNum = Number(body.quantity ?? 0);
   const selected =
     qtyNum >= 0.5

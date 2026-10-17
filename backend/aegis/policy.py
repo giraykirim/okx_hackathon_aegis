@@ -14,9 +14,21 @@ def check(
     approval_available: bool,
     unresolved: bool,
     duplicate: bool,
+    run_reserved_notional: Decimal = Decimal("0"),
+    run_order_count: int = 0,
+    max_run_notional: Decimal = Decimal("25"),
+    max_run_orders: int = 1,
 ) -> GateResult:
     """Final authority. Operational CONTINUE is only one prerequisite."""
     reasons = []
+    if proposal.symbol != "BTC-USDT" or observation.symbol != "BTC-USDT":
+        reasons.append("symbol_not_allowed")
+    try:
+        observation = Observation.model_validate(observation.model_dump())
+        classification = Classification.model_validate(classification.model_dump())
+        proposal = Proposal.model_validate(proposal.model_dump())
+    except (ValueError, TypeError):
+        return GateResult(approved=False, reasons=reasons + ["corrupt_data"])
     age = (now - observation.observed_at).total_seconds()
     if source_mode not in {"MOCK", "MARKET_ONLY", "OKX_DEMO"}:
         reasons.append("live_forbidden")
@@ -73,6 +85,8 @@ def check(
         )
         if notional > 25:
             reasons.append("excess_order_notional")
+        if run_order_count >= max_run_orders or run_reserved_notional + notional > max_run_notional:
+            reasons.append("run_budget_exhausted")
         projected = observation.exposure_quote + (notional if proposal.action == "BUY" else Decimal("0"))
         if projected > 1000:
             reasons.append("excess_exposure")

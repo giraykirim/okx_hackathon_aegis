@@ -1,6 +1,7 @@
 import json
 import re
 import sqlite3
+from decimal import Decimal
 from pathlib import Path
 
 from .models import Decision, Event, OrderStatus, Proposal, utcnow
@@ -28,6 +29,10 @@ class Store:
             CREATE TABLE IF NOT EXISTS risk_evaluations (
                 namespace TEXT, request_id TEXT, fingerprint TEXT, body TEXT,
                 PRIMARY KEY (namespace, request_id)
+            );
+            CREATE TABLE IF NOT EXISTS run_claims (
+                run_id TEXT, intent_id TEXT UNIQUE, reserved_notional TEXT,
+                PRIMARY KEY (run_id, intent_id)
             );
         """)
 
@@ -129,7 +134,16 @@ class Store:
         ]
 
     def claim(
-        self, proposal: Proposal, client_id: str, source_mode: str, pending_decision: Decision | None = None
+        self,
+        proposal: Proposal,
+        client_id: str,
+        source_mode: str,
+        pending_decision: Decision | None = None,
+        *,
+        run_id: str | None = None,
+        reserved_notional: Decimal | None = None,
+        max_run_notional: Decimal = Decimal("25"),
+        max_run_orders: int = 1,
     ) -> bool:
         """Atomically prevent duplicate or concurrent unresolved external submissions."""
         self.db.execute("BEGIN IMMEDIATE")
@@ -137,6 +151,17 @@ class Store:
             if self.duplicate(proposal.intent_id) or self.unresolved():
                 self.db.rollback()
                 return False
+            if run_id is not None:
+                if reserved_notional is None or not reserved_notional.is_finite() or reserved_notional <= 0:
+                    raise ValueError("A finite policy reservation is required")
+                count, reserved = self.run_budget(run_id)
+                if count >= max_run_orders or reserved + reserved_notional > max_run_notional:
+                    self.db.rollback()
+                    return False
+                self.db.execute(
+                    "INSERT INTO run_claims(run_id,intent_id,reserved_notional) VALUES (?,?,?)",
+                    (run_id, proposal.intent_id, str(reserved_notional)),
+                )
             self.db.execute(
                 """INSERT INTO intents(intent_id,client_id,proposal,source_mode,status,updated_at)
                 VALUES (?,?,?,?,?,?)""",
@@ -156,6 +181,12 @@ class Store:
         except BaseException:
             self.db.rollback()
             raise
+
+    def run_budget(self, run_id: str) -> tuple[int, Decimal]:
+        rows = self.db.execute(
+            "SELECT reserved_notional FROM run_claims WHERE run_id=?", (run_id,)
+        ).fetchall()
+        return len(rows), sum((Decimal(r["reserved_notional"]) for r in rows), Decimal("0"))
 
     def order_status(
         self,

@@ -20,10 +20,6 @@ export function AdminUnlockModal({
 }: AdminUnlockModalProps) {
   const [draft, setDraft] = React.useState(adminSecret);
 
-  React.useEffect(() => {
-    setDraft(adminSecret);
-  }, [adminSecret]);
-
   if (!open) return null;
 
   return (

@@ -55,8 +55,9 @@ class ATK:
             },
         }
 
-    def begin_observation(self, run_id: str):
+    def begin_observation(self, run_id: str, correlation_id: str | None = None):
         self.run_id = run_id
+        self.correlation_id = correlation_id or run_id
         self.market_receipts = []
         self.journal.entries = []
         started, requested = time.perf_counter(), utcnow()
@@ -323,6 +324,8 @@ class ATK:
         instrument = (await self.call("instruments"))[0]
         if ticker["instId"] != "BTC-USDT" or instrument["instId"] != "BTC-USDT":
             raise ValueError("ATK symbol mismatch")
+        if instrument.get("baseCcy") != "BTC" or instrument.get("quoteCcy") != "USDT":
+            raise ValueError("ATK base/quote currency mismatch or unavailable")
         observation = Observation(
             symbol="BTC-USDT",
             observed_at=datetime.fromtimestamp(int(ticker["ts"]) / 1000, timezone.utc),

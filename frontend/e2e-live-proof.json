@@ -1,0 +1,215 @@
+{
+  "generated_at": "2026-10-17T11:40:09.158Z",
+  "started_at": "2026-10-17T11:39:33.940Z",
+  "status": "PASS",
+  "summary": "Live end-to-end integration verified between Next.js App Router frontend routes and Person 1 FastAPI backend (MARKET_ONLY + MOCK) plus Avalanche Fuji 43113 RPC read-back.",
+  "market_only_e2e": {
+    "backend_health": {
+      "http_status": 200,
+      "source_mode": "MARKET_ONLY"
+    },
+    "autonomous_cycle_control": {
+      "start_http_status": 200,
+      "start_running": true,
+      "stop_http_status": 200,
+      "stop_running": false,
+      "run_id": "a3888cf7097f43b49f6460eec475d1db"
+    },
+    "live_atk_observation": {
+      "observed_at": "2026-10-17T11:39:35.072000Z",
+      "symbol": "BTC-USDT",
+      "price": "81588.7",
+      "bid": "81588.6",
+      "ask": "81588.7",
+      "account_known": false
+    },
+    "latest_decision": {
+      "id": "2acdf7a7d5a14a8f9b280690045a4770",
+      "proposed_action": "NO_TRADE",
+      "risk_approved": false,
+      "execution_status": "NOT_SENT",
+      "risk_reasons": [
+        "execution_disabled",
+        "approval_unavailable",
+        "unknown_account",
+        "laya_not_clear",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ]
+    },
+    "capabilities_count": 14,
+    "capabilities_pass": [
+      "ATK_MARKET",
+      "ATK_PACKAGE_INSTALLED",
+      "ATK_MARKET_READ",
+      "ATK_MCP_LIST_TOOLS",
+      "ATK_MCP_CALL_TOOL",
+      "ATK_TR_ROUTING"
+    ],
+    "capabilities_not_tested": [
+      "ATK_ACCOUNT",
+      "ATK_DEMO",
+      "ATK_DEMO_ACCOUNT_READ",
+      "ATK_DEMO_ORDER_SUBMISSION",
+      "ATK_ORDER_RECONCILIATION",
+      "EVREN",
+      "LAYA",
+      "ERC8004"
+    ],
+    "events_captured": 14,
+    "decisions_captured": 1,
+    "metrics": {
+      "decisions": 1,
+      "vetoed": 1,
+      "verified_exchange_orders": 0,
+      "pnl": null
+    },
+    "service_info": {
+      "name": "AEGIS Risk Check Service",
+      "version": "1.1.0",
+      "execution_authority": false,
+      "okx_ai_listing_status": "NOT_LISTED"
+    },
+    "service_v1_1_notional_10usdt": {
+      "http_status": 200,
+      "backend_status_header": "LIVE",
+      "request_id": "e2e-notional-market-10usdt",
+      "verdict": "UNAVAILABLE",
+      "execution_authorized": false,
+      "reason_codes": [
+        "ACCOUNT_DATA_UNAVAILABLE",
+        "EXECUTION_NOT_AUTHORIZED",
+        "SERVER_MARKET_OBSERVED"
+      ],
+      "source_mode": "MARKET_ONLY",
+      "policy_version": "risk-service-1.1.0",
+      "chain_receipt": null
+    },
+    "service_v1_0_quantity_0001btc": {
+      "http_status": 200,
+      "backend_status_header": "LIVE",
+      "assessment_id": "5e431c48d0794e5c855b1de757b06630",
+      "assessment": "REVIEW",
+      "order_permission": false,
+      "execution_authority": false,
+      "reasons": [
+        "execution_disabled",
+        "approval_unavailable",
+        "unknown_account",
+        "laya_not_clear"
+      ],
+      "source_mode": "MARKET_ONLY"
+    }
+  },
+  "mock_mode_e2e": {
+    "scenarios": {
+      "normal": {
+        "http_status": 200,
+        "source_mode": "MOCK",
+        "risk_approved": true,
+        "execution_status": "NOT_SENT",
+        "risk_reasons": []
+      },
+      "stale_feed": {
+        "http_status": 200,
+        "source_mode": "MOCK",
+        "risk_approved": false,
+        "execution_status": "NOT_SENT",
+        "risk_reasons": [
+          "stale_feed"
+        ]
+      },
+      "laya_halt": {
+        "http_status": 200,
+        "source_mode": "MOCK",
+        "risk_approved": false,
+        "execution_status": "NOT_SENT",
+        "risk_reasons": [
+          "laya_not_clear"
+        ]
+      },
+      "unknown_order": {
+        "http_status": 200,
+        "source_mode": "MOCK",
+        "risk_approved": false,
+        "execution_status": "NOT_SENT",
+        "risk_reasons": [
+          "unresolved_prior_order"
+        ]
+      },
+      "duplicate_intent": {
+        "http_status": 200,
+        "source_mode": "MOCK",
+        "risk_approved": true,
+        "execution_status": "NOT_SENT",
+        "risk_reasons": []
+      }
+    },
+    "service_v1_1_notional_10usdt": {
+      "http_status": 200,
+      "backend_status_header": "LIVE",
+      "request_id": "e2e-notional-mock-10usdt",
+      "verdict": "UNAVAILABLE",
+      "execution_authorized": false,
+      "reason_codes": [
+        "ACCOUNT_DATA_UNAVAILABLE",
+        "EXECUTION_NOT_AUTHORIZED",
+        "MOCK_DATA_ONLY",
+        "REAL_MARKET_DATA_UNAVAILABLE",
+        "LAYA_UNAVAILABLE",
+        "EVREN_FALLBACK"
+      ],
+      "source_mode": "MOCK"
+    },
+    "service_v1_1_notional_50usdt_excess": {
+      "http_status": 200,
+      "backend_status_header": "LIVE",
+      "request_id": "e2e-notional-mock-50usdt",
+      "verdict": "BLOCK",
+      "execution_authorized": false,
+      "reason_codes": [
+        "ACCOUNT_DATA_UNAVAILABLE",
+        "EXECUTION_NOT_AUTHORIZED",
+        "EXCESS_ORDER_NOTIONAL",
+        "MOCK_DATA_ONLY",
+        "REAL_MARKET_DATA_UNAVAILABLE",
+        "LAYA_UNAVAILABLE",
+        "EVREN_FALLBACK"
+      ],
+      "source_mode": "MOCK"
+    }
+  },
+  "avalanche_fuji_e2e": {
+    "http_status": 200,
+    "rpc_connected": true,
+    "chain_id": 43113,
+    "block_number": 59596568,
+    "identity_registry_has_bytecode": true,
+    "reputation_registry_has_bytecode": true,
+    "reputation_note": "Verified ReputationRegistry.getIdentityRegistry() -> 0x8004A818BFB912233c491871b3d84c89A494BD9e. No agentId minted yet; self-feedback is forbidden.",
+    "registration_descriptor_type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+    "registration_active": true
+  },
+  "remaining_external_not_tested": [
+    {
+      "capability": "ATK_DEMO_ACCOUNT_READ / ATK_DEMO_ORDER_SUBMISSION / ATK_ORDER_RECONCILIATION",
+      "status": "NOT_TESTED",
+      "reason": "Requires isolated OKX Demo API credentials (AEGIS_OKX_DEMO_*) and regional TR demo confirmation (OKX TR 50110 restriction)."
+    },
+    {
+      "capability": "EVREN (Authenticated Generation)",
+      "status": "NOT_TESTED",
+      "reason": "Requires local AEGIS_EVREN_API_KEY; deterministic NO_TRADE fallback is verified and active."
+    },
+    {
+      "capability": "LAYA (Remote RTX 4070 Inference)",
+      "status": "NOT_TESTED",
+      "reason": "Requires LAN AEGIS_LAYA_URL connection to Person 2's RTX 4070; advisory-fallback (REVIEW, abstained=true) is verified and active."
+    },
+    {
+      "capability": "ERC-8004 On-Chain Broadcast (register & RiskDecisionRegistry deploy)",
+      "status": "NOT_TESTED",
+      "reason": "Fuji 43113 IdentityRegistry & ReputationRegistry bytecode and dry-run simulation (agentId=264) PASS; live broadcast awaits funded FUJI_TEST_WALLET_PRIVATE_KEY."
+    }
+  ]
+}

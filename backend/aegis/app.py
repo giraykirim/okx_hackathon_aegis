@@ -88,7 +88,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def lifespan(app: FastAPI):
         app.state.agent = Agent(settings or Settings())
         app.state.control_lock = asyncio.Lock()
-        app.state.risk_service = RiskService(app.state.agent.settings, app.state.agent.store)
+        app.state.risk_service = RiskService(
+            app.state.agent.settings,
+            app.state.agent.store,
+            evren_budget=app.state.agent.models.evren_budget,
+        )
         yield
         await app.state.risk_service.close()
         await app.state.agent.close()

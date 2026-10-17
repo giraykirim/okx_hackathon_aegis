@@ -48,7 +48,14 @@ async def test_evren_uses_only_account_discovered_model():
         )
 
     async with httpx.AsyncClient(transport=httpx.MockTransport(handle)) as client:
-        models = Models(Settings(evren_base_url="https://provider.invalid/v1", evren_api_key="local"), client)
+        models = Models(
+            Settings(
+                evren_base_url="https://provider.invalid/v1",
+                evren_api_key="local",
+                evren_model="actual-account-model",
+            ),
+            client,
+        )
         obs, classification, _, _ = inputs()
         proposal = await models.reason(obs, classification, "run")
     assert proposal.action == "NO_TRADE"
@@ -255,6 +262,8 @@ async def test_atk_preserves_exchange_timestamp(monkeypatch):
                 "lotSz": "0.00000001",
                 "tickSz": "0.1",
                 "state": "live",
+                "baseCcy": "BTC",
+                "quoteCcy": "USDT",
             }
         ]
 

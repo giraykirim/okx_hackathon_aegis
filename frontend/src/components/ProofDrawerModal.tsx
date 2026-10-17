@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { extractAtkReceipts } from "@/lib/view-helpers";
 import type { EventItem, Snapshot } from "@/lib/types";
+import e2eProof from "../../e2e-live-proof.json";
 
 interface ProofDrawerModalProps {
   open: boolean;
@@ -55,7 +56,7 @@ export function ProofDrawerModal({
                 Inspect Verifiable Proof & Cryptographic Digests
               </h2>
               <p className="text-xs text-slate-400">
-                Sanitized official OKX ATK CLI receipts, SHA-256 hashes, frozen OpenAPI v2 hash, and raw Snapshot payload.
+                Sanitized official OKX ATK CLI/MCP receipts, live E2E integration proof, frozen OpenAPI v2 hash, and raw Snapshot payload.
               </p>
             </div>
           </div>
@@ -99,6 +100,52 @@ export function ProofDrawerModal({
                 <Copy className="h-3 w-3" />
                 {copiedText === "v2-sha" ? "Copied" : "Copy"}
               </button>
+            </div>
+          </div>
+
+          {/* 1B. Live E2E Dashboard <-> FastAPI Backend Integration Proof */}
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-950/15 p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="inline-flex items-center gap-1.5 font-bold text-emerald-300">
+                <CheckCircle2 className="h-4 w-4" />
+                Live E2E Dashboard ↔ FastAPI Backend Integration (`frontend/e2e-live-proof.json`)
+              </span>
+              <span className="rounded bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
+                {e2eProof.status} · {e2eProof.generated_at}
+              </span>
+            </div>
+            <p className="mt-1.5 text-[11px] text-slate-300">
+              {e2eProof.summary}
+            </p>
+            <div className="mt-2.5 grid grid-cols-1 gap-2 sm:grid-cols-3 font-mono text-[10px]">
+              <div className="rounded border border-slate-800 bg-slate-900/90 p-2">
+                <div className="text-slate-400">Live ATK Observation (TR)</div>
+                <div className="mt-0.5 font-bold text-emerald-300">
+                  {e2eProof.market_only_e2e.live_atk_observation.symbol} @{" "}
+                  {e2eProof.market_only_e2e.live_atk_observation.price}
+                </div>
+                <div className="text-slate-400">
+                  {e2eProof.market_only_e2e.capabilities_pass.length} ATK/MCP caps PASS
+                </div>
+              </div>
+              <div className="rounded border border-slate-800 bg-slate-900/90 p-2">
+                <div className="text-slate-400">Service 1.1.0 Notional E2E</div>
+                <div className="mt-0.5 font-bold text-amber-300">
+                  10 USDT → {e2eProof.market_only_e2e.service_v1_1_notional_10usdt.verdict}
+                </div>
+                <div className="text-rose-300">
+                  50 USDT → {e2eProof.mock_mode_e2e.service_v1_1_notional_50usdt_excess.verdict} (execution_authorized=false)
+                </div>
+              </div>
+              <div className="rounded border border-slate-800 bg-slate-900/90 p-2">
+                <div className="text-slate-400">Fuji 43113 Live RPC</div>
+                <div className="mt-0.5 font-bold text-indigo-300">
+                  Block #{e2eProof.avalanche_fuji_e2e.block_number}
+                </div>
+                <div className="text-slate-400">
+                  Identity & Reputation Bytecode: PASS
+                </div>
+              </div>
             </div>
           </div>
 

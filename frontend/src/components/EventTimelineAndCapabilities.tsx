@@ -2,13 +2,9 @@
 
 import React from "react";
 import {
-  Activity,
-  AlertCircle,
-  CheckCircle2,
   ChevronDown,
   ChevronRight,
   Radio,
-  ShieldAlert,
 } from "lucide-react";
 import type { Capability, EventItem, Metrics } from "@/lib/types";
 

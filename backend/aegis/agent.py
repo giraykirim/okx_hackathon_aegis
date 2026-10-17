@@ -52,6 +52,7 @@ class Agent:
         self.store = Store(settings.db_path, secrets)
         # Persist each completed/failed attempt immediately, including cancellation and private calls.
         self.atk.evidence_sink = self.store.event
+        self.models.evidence_sink = self.store.event
         self.lock = asyncio.Lock()
         self.wake = asyncio.Event()
         self.running = False
@@ -77,7 +78,7 @@ class Agent:
         }
         details = dict(details or {})
         if event_type in phases:
-            details.update(phase=phases[event_type], cycle_id=self.cycle_id)
+            details.update(phase=phases[event_type], cycle_id=self.cycle_id, correlation_id=self.cycle_id)
         return self.store.event(
             Event(
                 run_id=self.run_id,
@@ -308,8 +309,9 @@ class Agent:
         if scenario and (self.settings.source_mode != "MOCK" or scenario not in SCENARIOS):
             raise ValueError("Scenarios are allowlisted and MOCK-only")
         async with asyncio.timeout(self.settings.cycle_timeout_seconds):
+            self.models.begin_cycle(self.run_id, self.cycle_id)
             if self.settings.source_mode != "MOCK":
-                self.atk.begin_observation(self.run_id)
+                self.atk.begin_observation(self.run_id, self.cycle_id)
             await self.reconcile_prior()
             evidence = []
             mode = self.settings.source_mode
@@ -371,7 +373,7 @@ class Agent:
                 )
             )
             if mode != "MOCK":
-                laya = await self.models.classify(observation, self.run_id, evidence[0])
+                laya = await self.models.classify(observation, self.run_id, self.cycle_id)
             evidence.append(
                 self.emit(
                     "CLASSIFY",
@@ -379,6 +381,13 @@ class Agent:
                     actor="mock" if mode == "MOCK" else "laya",
                     details={
                         **laya.model_dump(mode="json"),
+                        "integration": self.models.laya_metadata
+                        if mode != "MOCK"
+                        else {
+                            "availability": "SCRIPTED",
+                            "source": "INJECTED_MOCK",
+                            "model_version": laya.model_version,
+                        },
                         "availability": "SCRIPTED"
                         if mode == "MOCK"
                         else "UNAVAILABLE"
@@ -396,6 +405,13 @@ class Agent:
                     actor="mock" if mode == "MOCK" else "evren",
                     details={
                         **proposal.model_dump(mode="json"),
+                        "integration": self.models.evren_metadata
+                        if mode != "MOCK"
+                        else {
+                            "availability": "SCRIPTED",
+                            "source": "INJECTED_MOCK",
+                            "model": None,
+                        },
                         "availability": "SCRIPTED"
                         if mode == "MOCK"
                         else "AVAILABLE"
@@ -404,9 +420,14 @@ class Agent:
                     },
                 )
             )
+            for entry in self.atk.journal.entries + self.models.journal.entries:
+                tool_id = entry["tool_call"]["evidence_id"]
+                if tool_id not in evidence:
+                    evidence.append(tool_id)
             self.last_observation, self.last_classification = observation, laya
             approval = (mode == "MOCK" and scenario != "missing_approval") or self.settings.demo_ready()
             approval = approval and not self.stop_requested
+            run_orders, run_reserved = self.store.run_budget(self.run_id)
             gate = check(
                 observation,
                 laya,
@@ -416,6 +437,10 @@ class Agent:
                 approval_available=approval,
                 unresolved=bool(self.store.unresolved()) or scenario == "unknown_order",
                 duplicate=self.store.duplicate(proposal.intent_id),
+                run_order_count=run_orders,
+                run_reserved_notional=run_reserved,
+                max_run_orders=self.settings.max_run_orders,
+                max_run_notional=self.settings.max_run_notional,
             )
             evidence.append(
                 self.emit(
@@ -423,7 +448,15 @@ class Agent:
                     "Order approved" if gate.approved else "Order vetoed",
                     actor="policy",
                     severity="INFO" if gate.approved else "WARNING",
-                    details=gate.model_dump(),
+                    details={
+                        **gate.model_dump(),
+                        "run_budget": {
+                            "orders_reserved": run_orders,
+                            "notional_reserved": str(run_reserved),
+                            "max_orders": self.settings.max_run_orders,
+                            "max_notional": str(self.settings.max_run_notional),
+                        },
+                    },
                 )
             )
             decision = Decision(
@@ -445,7 +478,21 @@ class Agent:
             if gate.approved:
                 if mode == "OKX_DEMO":
                     decision.execution_status = "PENDING"
-                if not self.store.claim(proposal, decision.id, mode, pending_decision=decision):
+                reserved_notional = (
+                    proposal.quantity
+                    * max(gate.limit_price, observation.ask, observation.price)
+                    * Decimal("1.01")
+                )
+                if not self.store.claim(
+                    proposal,
+                    decision.id,
+                    mode,
+                    pending_decision=decision,
+                    run_id=self.run_id,
+                    reserved_notional=reserved_notional,
+                    max_run_orders=self.settings.max_run_orders,
+                    max_run_notional=self.settings.max_run_notional,
+                ):
                     decision.risk_approved = False
                     decision.execution_status = "NOT_SENT"
                     decision.risk_reasons.append("atomic_claim_denied")
@@ -526,7 +573,18 @@ class Agent:
             self.emit(
                 "AUDIT",
                 "Cycle persisted",
-                details={"decision_id": decision.id, "execution_status": decision.execution_status},
+                details={
+                    "decision_id": decision.id,
+                    "execution_status": decision.execution_status,
+                    "intent_id": decision.intent_id,
+                    "verdict": "ALLOW_DEMO_ONLY"
+                    if decision.risk_approved
+                    else "HALT"
+                    if proposal.action != "NO_TRADE"
+                    else "NO_TRADE",
+                    "risk_reasons": decision.risk_reasons,
+                    "input_source": mode,
+                },
             )
             self.last_cycle_at = utcnow()
             return decision
