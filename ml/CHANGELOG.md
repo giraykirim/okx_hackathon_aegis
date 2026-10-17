@@ -33,3 +33,38 @@ System-wide changes: NONE. User PATH changes: NONE. Dependencies installed: NONE
 Generated files and cleanup scope are listed in P2-01-STATUS.md. Revert only this P2-01 addition after backing up annotations/evidence and verifying no teammate changes overlap. Do not remove pre-existing backend changes or the earlier GPU environment as part of this P2 cleanup. Normal Python bytecode caches were generated under owned folders. No cleanup was run.
 
 2026-10-17 reviewed-development diagnostic COMPLETED: new reviewed_development.py and five safety tests; 94 total offline tests plus ruff PASS. User training/context/data approval statement recorded, but actual one-source/non-blind provenance remains truthful. Official LAYA0.4.8 CUDA head-only soft-CE8epochs micro1/accum1 seeds17/29, run20261017T114335800999Z: 108optimizer-train/12calibration,864scheduled/859observed updates;31head tensors changed, encoder frozen/unchanged. Dependent-fit only: base40/120, seed17=75/120 H->C10/R->C7, seed29=74/120 H->C0/R->C3. Quantity-only invariance changed60/28 decisions, restoring10H->C forseed29; disjoint quantity/label intervals and missing scenarios documented. No selection/promotion or final test; old data/review/base hashes unchanged. New ignored models/reviewed_development run, ml logs/audits, work summary and outputs/AEGIS-120-EGITIM-RAPORU.md/AEGIS-120-EGITIM-SONUCU.json. No backend/contract/auth/order/package/system/PATH changes. Cleanup only these new artifacts after backup/overlap review; not executed.
+
+
+## 2026-10-17 16:50 TRT — Label policy v2 (Antigravity / Claude, Person 2)
+
+- Added `ml/label_policy_v2.py` (`aegis-operational-v2-human-preserved`) implementing the
+  Person 1 coordination agreement (branch `codex/person1-laya-coordination`, 4ff56b7 / da8d0c2):
+  finite stale (>15 s) / future (<-2 s) feed -> REVIEW (user extended to no-intent too);
+  no-intent + permission_revoked=null stays CONTINUE.
+- Finding: v1 disagreed with **48** human labels in frozen v2-r169, not 20. The extra 32 are
+  intent=true with one null safety flag (human REVIEW, v1 CONTINUE because null was read as
+  false). The 20-case audit only listed human-vs-candidate-rule differences, so these were missed.
+  v2 adds the conservative rule "intent + unknown safety flag -> REVIEW".
+- Result: v2 matches all 161/161 human labels; all 5 Person 1 groups confirmed.
+- `ml/label_policy.py` (v1) intentionally unchanged (evidence bundles pin its SHA). No labels,
+  ledgers, datasets, checkpoints, service or backend changed. No training. Not deployed.
+- Tests: `scripts/ml/test_label_policy_v2.py`; full ML suite 249/249 OK; ruff clean.
+- Revert: delete the two new files.
+
+## 2026-10-17 17:18 TRT — V2 (161-row) quarantined development training (Antigravity, Person 2)
+
+- Added `scripts/ml/reviewed_development_v2.py`, `scripts/ml/test_reviewed_development_v2.py`, and
+  `ml/PERSON1_POLICY_V2_NOTE.md`.
+- Verified all 161 human-reviewed rows in `human_confirmed_unsplit_v2-r169` against
+  `ml/label_policy_v2.py` (`aegis-operational-v2-human-preserved`): 161/161 match (0 disagreements).
+- Ran official LAYA 0.4.8 CUDA head-only soft-CE 8-epoch training (seeds 17, 29, micro-batch 1,
+  grad-accum 1) and quantity-invariance diagnostic in `ml/reviewed_development/v2-20261017T141303599045Z`
+  (checkpoints git-ignored under `models/reviewed_development/v2-20261017T141303599045Z`):
+  - Base fit: 36/161 (22.36%), Macro-F1 0.1218, H->C 49, R->C 76.
+  - Seed 17 & Seed 29 fit: 76/161 (47.20%), Macro-F1 0.2138, H->C 0, R->C 0, CONTINUE recall 0.0.
+  - Quantity invariance: 39/39 profiles invariant across all 4 quantities (0 changed predictions vs
+    60 and 28 in V1), confirming V2's crossed-quantity design eliminated V1's quantity shortcut and
+    exposing the frozen-encoder majority-class prior limit on compact JSON booleans.
+- Outcome remains `DATA/INTEGRATION BLOCKED` for model promotion; `models/aegis_laya_selected` (base)
+  and live LAN service (`0.0.0.0:8770`, PID 23216) untouched; 143 protected file hashes verified unchanged.
+- Reports written to `outputs/AEGIS-V2-161-EGITIM-RAPORU.md` and `outputs/AEGIS-V2-161-EGITIM-SONUCU.json`.
