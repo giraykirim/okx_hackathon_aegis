@@ -1,0 +1,25 @@
+# AEGIS public dashboard. Backend reached privately; secrets via `fly secrets set`:
+# AEGIS_BACKEND_URL, AEGIS_SERVICE_API_KEY. Never set AEGIS_CONTROL_TOKEN here (view-only site).
+app = "aegis-okx-dashboard"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  AEGIS_PUBLIC_ORIGIN = "https://aegis-okx-dashboard.fly.dev"
+  FUJI_RPC_URL = "https://avalanche-fuji-c-chain-rpc.publicnode.com"
+  RISK_DECISION_REGISTRY_ADDRESS = "0x5ae5642cd6a02e0834b3fba822d442429aeadc5f"
+  RISK_DECISION_SAMPLE_SHA256 = "0x0fa71a805298f0f63ce6b994a9aa12bdc7a22e8560d903ef13cd6556ec3e6d26"
+  RISK_DECISION_SAMPLE_TX_HASH = "0xcb226fb049a7052ca8889d585dfcb3a1cf66528e318a60c7ff2c9b43a67de2f1"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

@@ -93,6 +93,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             app.state.agent.store,
             evren_budget=app.state.agent.models.evren_budget,
         )
+        agent_settings = app.state.agent.settings
+        if agent_settings.autostart and agent_settings.source_mode in {"MARKET_ONLY", "MOCK"}:
+            await app.state.agent.start()
         yield
         await app.state.risk_service.close()
         await app.state.agent.close()

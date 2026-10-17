@@ -1,0 +1,30 @@
+# AEGIS agent backend for the hosted dashboard. Private: no public service, reached only by the
+# dashboard over Fly's private network (aegis-okx-backend.internal:8000). MARKET_ONLY, never trades.
+# Secrets: fly secrets set -c fly.backend.toml AEGIS_SERVICE_API_KEY=... EVREN_API_KEY=... EVREN_MODEL=...
+app = "aegis-okx-backend"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[processes]
+  app = "uvicorn aegis.app:app --host :: --port 8000 --workers 1 --no-access-log"
+
+[env]
+  AEGIS_SOURCE_MODE = "MARKET_ONLY"
+  AEGIS_AUTOSTART = "true"
+  AEGIS_CYCLE_SECONDS = "60"
+  AEGIS_OKX_SITE = "tr"
+  AEGIS_DB_PATH = "/data/aegis.sqlite3"
+  EVREN_BASE_URL = "https://evren-llmapi.ssyz.org.tr/v1"
+  EVREN_TIMEOUT_SECONDS = "30"
+  EVREN_MAX_TOKENS = "2048"
+  EVREN_MAX_REQUESTS_PER_RUN = "5000"
+
+[[mounts]]
+  source = "aegis_backend_data"
+  destination = "/data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

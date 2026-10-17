@@ -1,6 +1,6 @@
 # AEGIS public Risk Service. Singapore: EVREN refuses Hong Kong egress (OKX A2MCP hosting guide).
 # Secrets (never in this file): fly secrets set AEGIS_SERVICE_API_KEY=... EVREN_API_KEY=... EVREN_MODEL=...
-app = "aegis-risk-service"
+app = "aegis-okx-risk"
 primary_region = "sin"
 
 [build]
