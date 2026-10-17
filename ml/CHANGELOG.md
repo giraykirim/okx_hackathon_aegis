@@ -68,3 +68,12 @@ Generated files and cleanup scope are listed in P2-01-STATUS.md. Revert only thi
 - Outcome remains `DATA/INTEGRATION BLOCKED` for model promotion; `models/aegis_laya_selected` (base)
   and live LAN service (`0.0.0.0:8770`, PID 23216) untouched; 143 protected file hashes verified unchanged.
 - Reports written to `outputs/AEGIS-V2-161-EGITIM-RAPORU.md` and `outputs/AEGIS-V2-161-EGITIM-SONUCU.json`.
+
+## 2026-10-17 19:41 TRT — V2 Tuned Discriminative Head/Scorer + 5-Fold Group-CV (Antigravity, Person 2)
+
+- Added `scripts/ml/reviewed_development_v2_tuned.py` and `scripts/ml/test_reviewed_development_v2_tuned.py` (3 new unit tests; full ML suite 256/256 OK).
+- Completed quarantined run `ml/reviewed_development/v2-tuned-20261017T154300341044Z` on `human_confirmed_unsplit_v2-r169` under `ml/label_policy_v2.py` (`fp32`, `head_lr=5e-5`, `scorer_lr=5e-4`, class-balanced weights, fail-closed safety margin, quantity-invariance penalty):
+  - `seed-17` (reloaded via `laya.load().predict()`): `116/161` (`72.05%` accuracy), `Macro-F1 = 0.7289`, `CONTINUE recall = 77.78%` (`28/36`), `HALT->CONTINUE = 0`, `REVIEW->CONTINUE = 8`.
+  - `seed-29` (reloaded via `laya.load().predict()`): `98/161` (`60.87%` accuracy), `Macro-F1 = 0.6016`, `CONTINUE recall = 47.22%` (`17/36`), `HALT->CONTINUE = 0`, `REVIEW->CONTINUE = 6`.
+  - 5-fold stratified profile-grouped OOF evaluation (zero valid-quantity profile leakage): `72/161` (`44.72%`), `Macro-F1 = 0.4327`, `HALT->CONTINUE = 0`, `CONTINUE recall = 30.56%`.
+- `models/aegis_laya_selected` (`base`) and live LAN service (`0.0.0.0:8770`, PID 23216) remain untouched; all 143 protected file hashes verified unchanged.

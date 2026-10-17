@@ -1,0 +1,98 @@
+{
+  "run": "ml\\reviewed_development\\v2-tuned-20261017T154300341044Z",
+  "dataset": "human_confirmed_unsplit_v2-r169",
+  "policy_version": "aegis-operational-v2-human-preserved",
+  "training_mode": "DISCRIMINATIVE_HEAD_SCORER_FP32_SAFETY_INVARIANT",
+  "precompute_encoder_seconds": 8.865215199999511,
+  "seed_17": {
+    "accuracy": 0.7204968944099379,
+    "correct": 116,
+    "macro_f1": 0.7289450799384575,
+    "halt_to_continue": 0,
+    "review_to_continue": 8,
+    "continue_recall": 0.7777777777777778,
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 28,
+        "REVIEW": 8,
+        "HALT": 0
+      },
+      "REVIEW": {
+        "CONTINUE": 8,
+        "REVIEW": 53,
+        "HALT": 15
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 14,
+        "HALT": 35
+      }
+    },
+    "invariant_profiles": 29,
+    "changed_predictions": 17,
+    "wall_seconds": 589.6810880999546
+  },
+  "seed_29": {
+    "accuracy": 0.6086956521739131,
+    "correct": 98,
+    "macro_f1": 0.6015662570108821,
+    "halt_to_continue": 0,
+    "review_to_continue": 6,
+    "continue_recall": 0.4722222222222222,
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 17,
+        "REVIEW": 3,
+        "HALT": 16
+      },
+      "REVIEW": {
+        "CONTINUE": 6,
+        "REVIEW": 35,
+        "HALT": 35
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 3,
+        "HALT": 46
+      }
+    },
+    "invariant_profiles": 26,
+    "changed_predictions": 20,
+    "wall_seconds": 584.5921675000573
+  },
+  "group_cv_5fold_oof": {
+    "accuracy": 0.4472049689440994,
+    "correct": 72,
+    "macro_f1": 0.4327002022892768,
+    "halt_to_continue": 0,
+    "review_to_continue": 18,
+    "continue_recall": 0.3055555555555556,
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 11,
+        "REVIEW": 17,
+        "HALT": 8
+      },
+      "REVIEW": {
+        "CONTINUE": 18,
+        "REVIEW": 29,
+        "HALT": 29
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 17,
+        "HALT": 32
+      }
+    },
+    "invariant_profiles": 26,
+    "changed_predictions": 21,
+    "wall_seconds": 2312.0519597000675
+  },
+  "diagnostic_completed": true,
+  "protected_files_unchanged": true,
+  "production_approved": false,
+  "execution_authority": false,
+  "selected_checkpoint_replaced": false,
+  "final_test_opened": false,
+  "orders_sent": 0
+}
