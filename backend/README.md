@@ -44,7 +44,9 @@ uv run python -m scripts.init_local
 uv run uvicorn aegis.app:app --host 127.0.0.1 --port 8000 --workers 1 --no-access-log
 ```
 
-Open [API docs](http://127.0.0.1:8000/docs) and [snapshot](http://127.0.0.1:8000/api/snapshot). `init_local` creates a mode-0600, git-ignored `.env` with a random local control token and preserves existing configuration. Never commit it. No trading keys are included. The default is MARKET_ONLY, stopped until an authenticated start request. CLI/MCP packages are pinned to official 1.4.8; actual calls use the CLI subprocess, with no Python direct-OKX-REST substitute. MCP is installed for interoperability but is not the transport claimed by this implementation.
+Open [API docs](http://127.0.0.1:8000/docs) and [snapshot](http://127.0.0.1:8000/api/snapshot). `init_local` creates a mode-0600, git-ignored `.env` with a random local control token and preserves existing configuration. Never commit it. No trading keys are included. The default is MARKET_ONLY, stopped until an authenticated start request. Official CLI/MCP packages are pinned to 1.4.8. Autonomous public observations use a real MCP SDK stdio client: `tools/list`, schema/annotation validation, then `market_get_ticker` and `market_get_instruments`. Each operation launches a separate bounded official server with `--modules market --read-only --site tr --demo`; public arguments set `demo=false`. No exchange keys are required or inherited. `AEGIS_ATK_TRANSPORT=cli` selects the official CLI fallback explicitly; there is no automatic retry through another transport. The existing assessment service retains CLI transport for its frozen CLI receipt format. No direct exchange REST adapter is substituted.
+
+Run `uv run python -m scripts.prove_atk` against the stopped local server to capture real CLI + backend MCP evidence, autonomous NO_TRADE, SSE replay, installed help and the eight-capability report. See [ATK evidence](../docs/atk/evidence.md), [capability report](../docs/atk/CAPABILITIES.md) and `backend/evidence/atk-terminal.txt`. All new evidence uses existing Event.details; frozen Event/Decision schemas remain unchanged.
 
 To start without displaying the token:
 

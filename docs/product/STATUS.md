@@ -1,8 +1,8 @@
 # Current amendment status
 
-Recorded: 2026-10-17T09:50:04.582587+00:00
+Recorded: 2026-10-17T10:55:01.620363+00:00
 
-PASS: 123 offline tests; lint/format and contract checks are run separately. Frozen v2 is unchanged. Real local HTTP risk service, official backend ATK receipts/hashes, caller-spoof rejection, separate auth, sizing HALT, autonomous loop and SSE proof are captured. No exchange writes were attempted. Assessment does not grant order permission.
+PASS: 136 offline tests; lint/format and contract checks are run separately. Frozen v2 is unchanged. Real local HTTP risk service, official backend ATK receipts/hashes, caller-spoof rejection, separate auth, sizing HALT, autonomous loop and SSE proof are captured. No exchange writes were attempted. Assessment does not grant order permission.
 
 PASS: service 1.1 notional request/response, standalone deterministic MOCK HTTP/cURL, NO_TRADE/HALT phase timeline, idempotent STOP/correlation across restart and malicious-context rejection. Exact frozen Person 3 schemas, hashes and explicit fixtures are in contracts/PERSON3_HANDOFF.md. The previous quantity form remains supported.
 

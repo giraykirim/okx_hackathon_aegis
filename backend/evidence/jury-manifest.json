@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "recorded_at": "2026-10-17T09:50:04.582587+00:00",
+  "recorded_at": "2026-10-17T10:55:01.620363+00:00",
   "rubric_source": {
     "authority": "User-supplied official workbook excerpt in authorized amendment",
     "workbook": "Agentic_Hackathon_Judge_Criteria.xlsx",
@@ -22,12 +22,12 @@
   },
   "tests": {
     "status": "PASS",
-    "tests": 123,
+    "tests": 136,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "timestamps": [
-      "2026-10-17T12:50:01.125985+03:00"
+      "2026-10-17T13:51:30.644579+03:00"
     ]
   },
   "contracts": {
@@ -38,10 +38,70 @@
   },
   "official_atk": {
     "status": "PASS",
-    "transport": "backend Node official CLI subprocess",
+    "transport": "backend MCP SDK stdio client -> official MCP server; official CLI for legacy service",
+    "capabilities": {
+      "ATK_PACKAGE_INSTALLED": {
+        "status": "PASS",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542400Z"
+      },
+      "ATK_MARKET_READ": {
+        "status": "PASS",
+        "evidence": [
+          "1c91064f89504f2eb0bdf8b7e5fed510"
+        ],
+        "checked_at": "2026-10-17T10:52:03.356592Z"
+      },
+      "ATK_MCP_LIST_TOOLS": {
+        "status": "PASS",
+        "evidence": [
+          "6be926edf6be4205a0b278d2486cd93c"
+        ],
+        "checked_at": "2026-10-17T10:52:04.096772Z"
+      },
+      "ATK_MCP_CALL_TOOL": {
+        "status": "PASS",
+        "evidence": [
+          "91a43152bb384db78a4c1b71afa1c260"
+        ],
+        "checked_at": "2026-10-17T10:52:04.097086Z"
+      },
+      "ATK_TR_ROUTING": {
+        "status": "PASS",
+        "evidence": [
+          "1c91064f89504f2eb0bdf8b7e5fed510"
+        ],
+        "checked_at": "2026-10-17T10:52:03.356592Z"
+      },
+      "ATK_DEMO_ACCOUNT_READ": {
+        "status": "NOT_TESTED",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542410Z"
+      },
+      "ATK_DEMO_ORDER_SUBMISSION": {
+        "status": "NOT_TESTED",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542412Z"
+      },
+      "ATK_ORDER_RECONCILIATION": {
+        "status": "NOT_TESTED",
+        "evidence": [
+          "e998a0913d2c4e7797117af0636b8379"
+        ],
+        "checked_at": "2026-10-17T10:52:02.542414Z"
+      }
+    },
+    "autonomous_run_id": "5ea24c3fc1c54b9d930141a983b2a728",
+    "evidence": "backend/evidence/atk-official.json",
     "receipts": [
       {
-        "id": "a297a753db7f4309853673d8ce18ff98",
+        "id": "277573e02bb74b67a3c57af9f6a8624b",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
@@ -58,19 +118,19 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:48:23.413363Z",
-        "completed_at": "2026-10-17T09:48:23.959795Z",
-        "market_timestamp": "2026-10-17T09:48:23.122000Z",
+        "requested_at": "2026-10-17T10:52:06.020812Z",
+        "completed_at": "2026-10-17T10:52:06.565570Z",
+        "market_timestamp": "2026-10-17T10:52:05.468000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "639ea9c09f3840279d931f40b4ac387b",
+        "run_id": "75bb80b360e54d108d42144c9361fefe",
         "status": "PASS",
-        "result_sha256": "03a501ac3e8b1054ff63ce08ad913ba3367ca4536fdb320ef5812015b35c26ff",
-        "stdout_sha256": "a34671a0dcf98f15ce9ed7de70102255a7b4b39319714798ae2dc9cc213fd09b",
-        "elapsed_ms": 546.4362080092542,
+        "result_sha256": "0b330c442764b44fa6f19f61c1fdbad827bdd502214652923a472bc3a2f99f7c",
+        "stdout_sha256": "af5e8550a5e29df2a7c297befede3040e3227c17b52fd615d23f7b889e9c8337",
+        "elapsed_ms": 544.7625410015462,
         "error_type": null
       },
       {
-        "id": "23e6989ddb2b4139915dea9e794c3f70",
+        "id": "51916da81ca84d5eb15fe35dc91922ff",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
@@ -90,19 +150,19 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:48:23.960128Z",
-        "completed_at": "2026-10-17T09:48:24.400617Z",
+        "requested_at": "2026-10-17T10:52:06.565790Z",
+        "completed_at": "2026-10-17T10:52:07.018783Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "639ea9c09f3840279d931f40b4ac387b",
+        "run_id": "75bb80b360e54d108d42144c9361fefe",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
         "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 440.49316699965857,
+        "elapsed_ms": 453.00091701210476,
         "error_type": null
       },
       {
-        "id": "048bd414a8344ade8f776ff8999e4907",
+        "id": "832fc9fe663f4cb39cf13a86c85dd78e",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
@@ -119,19 +179,19 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:48:24.404794Z",
-        "completed_at": "2026-10-17T09:48:24.943660Z",
-        "market_timestamp": "2026-10-17T09:48:24.470000Z",
+        "requested_at": "2026-10-17T10:52:07.023570Z",
+        "completed_at": "2026-10-17T10:52:07.531739Z",
+        "market_timestamp": "2026-10-17T10:52:06.669000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "108eb1b0f03b4f2dbc592f2171952d3d",
+        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
         "status": "PASS",
-        "result_sha256": "04e89add7d178052f7782509037f064613933b2305c02ab4305ad7d80d04d7e4",
-        "stdout_sha256": "2f40b20d34ad35a9162467f8e1ab8be57c4a8ee0200abb62821731a95916e74f",
-        "elapsed_ms": 538.869625001098,
+        "result_sha256": "6c4fa4c886676e514b8b553540d3d00e299b7d050b125eb9b19cab4f335dabbe",
+        "stdout_sha256": "ffdb12a48daba73afa0ab31a80dddea54fc44439d1eefb45ac1cb2b5ae620336",
+        "elapsed_ms": 508.17125001049135,
         "error_type": null
       },
       {
-        "id": "f95d241a4d464c7aaef171345473ef7b",
+        "id": "1f3ebd369a4049d3ac82e6ad02335439",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
@@ -151,15 +211,15 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T09:48:24.943883Z",
-        "completed_at": "2026-10-17T09:48:25.396324Z",
+        "requested_at": "2026-10-17T10:52:07.531895Z",
+        "completed_at": "2026-10-17T10:52:08.071257Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "108eb1b0f03b4f2dbc592f2171952d3d",
+        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
         "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 452.44620900484733,
+        "elapsed_ms": 539.3689170014113,
         "error_type": null
       }
     ]
@@ -423,19 +483,35 @@
     },
     {
       "path": "backend/evidence/tests.xml",
-      "sha256": "2f678ac6f9c041f522e4e9566f545e944255187cbfdec27f93e75ecc70e00a78"
+      "sha256": "b32f276bab89ccab2e898092f1e070356d91bcfa942e18a9a675aea8e3950cc2"
     },
     {
       "path": "backend/evidence/http-smoke.json",
-      "sha256": "8b0e2067140538bd6ebae00048f97486f17bdc50057cdd26f2f074550a455022"
+      "sha256": "2e59ad9b3ceef94ec4616be5a169060aed318563668509e9b9c9b4735a5dd144"
     },
     {
       "path": "backend/evidence/amendment-http.json",
-      "sha256": "02bb5b1fa2ff52cc7da7b7826f9b3e4c675bbf33f19944b9db5bb50ce3c32622"
+      "sha256": "9115c66f0304c5f11070081926f8ea0e38904b4fd8edee2ab803592d4a550d04"
     },
     {
       "path": "backend/evidence/latest.json",
       "sha256": "a8bd93a69b322559d07b349e7e5cd55c45c1e1d32c0eb040887ec9e274600e41"
+    },
+    {
+      "path": "backend/evidence/atk-official.json",
+      "sha256": "55f9602f0638693a548f3d9a7ca705a487ede055369065a176a04a59d5d75836"
+    },
+    {
+      "path": "backend/evidence/atk-terminal.txt",
+      "sha256": "34bd104eaa4a3e63b5c65e2a1e54ebbd9d0b8fae0680f4c815efc868b6b2a9f0"
+    },
+    {
+      "path": "backend/evidence/atk-node-tests.tap",
+      "sha256": "7241b551e2af7ca7a8002129ddcbcc27b58f2efa1942c1db39fb9c3e9ee8a6d7"
+    },
+    {
+      "path": "docs/atk/CAPABILITIES.md",
+      "sha256": "9eafe4d1e89ea7c05f80d0f9b491dac2ffa66ad0cd338cc16d2063afb9c57653"
     },
     {
       "path": "docs/product/service.md",
@@ -447,7 +523,7 @@
     },
     {
       "path": "docs/product/demo-2-minutes.md",
-      "sha256": "49f911c9787109fbcf4bc6a40d8d1f06331ea7d004a48f706639dce854a0ef63"
+      "sha256": "3e6d42490b052d804562ea21d43afdf7c2e2e741a3fdc6c36a6b16ff7d4bbce7"
     },
     {
       "path": "docs/product/okx-ai-listing.md",
@@ -459,7 +535,7 @@
     },
     {
       "path": "docs/atk/evidence.md",
-      "sha256": "f03aa01aa45bded8fea35000250456f9224510c039365991d35ee658bdc5d7b5"
+      "sha256": "c4a2c5c6b27b7f33708345e5bd9c06746870ba673b0b73338c93008fdac09a79"
     }
   ]
 }

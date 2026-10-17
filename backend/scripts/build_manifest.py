@@ -15,6 +15,9 @@ def main():
     proof = json.loads((ROOT / "evidence/amendment-http.json").read_text())
     http = json.loads((ROOT / "evidence/http-smoke.json").read_text())
     mock = json.loads((ROOT / "evidence/mock-contract-http.json").read_text())
+    atk = json.loads((ROOT / "evidence/atk-official.json").read_text())
+    assert atk["decision"]["execution_status"] == "NOT_SENT" and atk["exchange_writes_attempted"] == 0
+    assert atk["capabilities"]["ATK_MCP_CALL_TOOL"]["status"] == "PASS"
     assert all(check["status"] == "PASS" for check in mock["checks"].values())
     test_report = ET.parse(ROOT / "evidence/tests.xml").getroot()
     suites = list(test_report.iter("testsuite"))
@@ -205,6 +208,10 @@ def main():
         "backend/evidence/http-smoke.json",
         "backend/evidence/amendment-http.json",
         "backend/evidence/latest.json",
+        "backend/evidence/atk-official.json",
+        "backend/evidence/atk-terminal.txt",
+        "backend/evidence/atk-node-tests.tap",
+        "docs/atk/CAPABILITIES.md",
         "docs/product/service.md",
         "docs/product/ONE_PAGER.md",
         "docs/product/demo-2-minutes.md",
@@ -241,7 +248,10 @@ def main():
         },
         "official_atk": {
             "status": "PASS",
-            "transport": "backend Node official CLI subprocess",
+            "transport": "backend MCP SDK stdio client -> official MCP server; official CLI for legacy service",
+            "capabilities": atk["capabilities"],
+            "autonomous_run_id": atk["run_id"],
+            "evidence": "backend/evidence/atk-official.json",
             "receipts": receipts,
         },
         "external_service": {

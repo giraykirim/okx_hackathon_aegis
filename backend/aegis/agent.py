@@ -50,6 +50,8 @@ class Agent:
             if (v := getattr(settings, name))
         ]
         self.store = Store(settings.db_path, secrets)
+        # Persist each completed/failed attempt immediately, including cancellation and private calls.
+        self.atk.evidence_sink = self.store.event
         self.lock = asyncio.Lock()
         self.wake = asyncio.Event()
         self.running = False
@@ -306,6 +308,8 @@ class Agent:
         if scenario and (self.settings.source_mode != "MOCK" or scenario not in SCENARIOS):
             raise ValueError("Scenarios are allowlisted and MOCK-only")
         async with asyncio.timeout(self.settings.cycle_timeout_seconds):
+            if self.settings.source_mode != "MOCK":
+                self.atk.begin_observation(self.run_id)
             await self.reconcile_prior()
             evidence = []
             mode = self.settings.source_mode
@@ -314,7 +318,6 @@ class Agent:
                     scenario or self.settings.mock_autonomous_scenario
                 )
             else:
-                self.atk.begin_observation(self.run_id)
                 try:
                     observation = await self.atk.observe()
                 except Exception as exc:

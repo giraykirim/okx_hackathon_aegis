@@ -34,7 +34,7 @@ async def test_receipt_contains_actual_command_timestamps_hash_elapsed_and_run(m
         return Process()
 
     monkeypatch.setattr("asyncio.create_subprocess_exec", spawn)
-    atk = ATK(Settings(_env_file=None))
+    atk = ATK(Settings(_env_file=None, atk_transport="cli"))
     atk.begin_observation("actual-server-run")
     assert await atk.call("ticker") == ticker
     receipt = atk.market_receipts[0]
@@ -62,7 +62,7 @@ async def test_failed_atk_receipt_contains_no_provider_error(monkeypatch):
         return Process()
 
     monkeypatch.setattr("asyncio.create_subprocess_exec", spawn)
-    atk = ATK(Settings(_env_file=None))
+    atk = ATK(Settings(_env_file=None, atk_transport="cli"))
     atk.begin_observation("failed-run")
     with pytest.raises(RuntimeError):
         await atk.call("ticker")

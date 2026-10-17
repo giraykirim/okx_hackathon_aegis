@@ -87,6 +87,8 @@ class NotionalService:
             )
             for r in receipts
         ]
+        if mode != "MOCK":
+            events = service.atk.tool_events() + events
         audit = Event(
             run_id=request.request_id,
             type="SERVICE_ASSESSMENT",

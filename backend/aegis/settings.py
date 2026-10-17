@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     cycle_timeout_seconds: float = Field(default=180, gt=0, le=300)
     mock_autonomous_scenario: Literal["normal", "no_trade", "laya_halt"] = "normal"
     okx_site: Literal["tr", "global", "eea", "us"] = "tr"
+    atk_transport: Literal["mcp", "cli"] = "mcp"
     demo_enabled: bool = False
     demo_region_confirmed: bool = False
     okx_demo_api_key: SecretStr | None = None

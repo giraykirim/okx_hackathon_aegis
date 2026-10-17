@@ -50,6 +50,8 @@ class RiskService:
         public_settings = settings.model_copy(
             update={
                 "source_mode": "MARKET_ONLY",
+                # Preserve the frozen service's CLI-only ATKReceipt identity and payload.
+                "atk_transport": "cli",
                 "demo_enabled": False,
                 "demo_region_confirmed": False,
                 "okx_demo_api_key": None,
@@ -165,7 +167,7 @@ class RiskService:
                 for r in ("assessment_timeout", "assessment_unavailable", "market_observation_unavailable")
             )
             receipts = list(self.atk.market_receipts)
-            evidence_ids = []
+            evidence_ids = [self.store.event(event) for event in self.atk.tool_events()]
             for receipt in receipts:
                 evidence_ids.append(
                     self.store.event(
