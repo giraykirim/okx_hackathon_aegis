@@ -299,6 +299,15 @@ export default function ActivityPage() {
           agentName: "EVREN Reasoner",
           context: "Bounded Proposal Schema",
         };
+      case "TRADE_COURT":
+      case "COUNCIL":
+        return {
+          icon: <Brain className="h-4 w-4 text-[#4EE1C2]" />,
+          box: "border-[#4EE1C2]/30 bg-[#4EE1C2]/10",
+          dot: "bg-[#4EE1C2]",
+          agentName: "TradeCourt Council",
+          context: "Multi-Seat Advisory Deliberation",
+        };
       case "RISK_GATE":
       case "RISK_CHECK":
         return {

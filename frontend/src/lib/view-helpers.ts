@@ -11,11 +11,17 @@
  * - Distinguish Local Audit Digest (off-chain SHA-256) from On-chain Audit Proof (Fuji tx verified).
  */
 
+import { MOCK_TRADE_COURT_SESSIONS } from "./fixtures";
 import type {
   ATKReceipt,
   AuditProofState,
   Capability,
   Classification,
+  CouncilLifecycleState,
+  CouncilMemberStance,
+  CouncilMemberVerdict,
+  CouncilSeatId,
+  CouncilSeatStatus,
   Decision,
   Erc8004RegistrationState,
   EventItem,
@@ -25,6 +31,7 @@ import type {
   RuntimeConnectionState,
   Snapshot,
   SourceMode,
+  TradeCourtSession,
 } from "./types";
 
 export interface PipelineStepView {
@@ -1170,4 +1177,633 @@ export function explainRiskReason(reason: string): {
     ruleId: reason,
     ...entry,
   };
+}
+
+function parseOptionalCouncilSeat(
+  raw: Record<string, unknown>,
+  fallbackSeatId: CouncilSeatId,
+  fallbackTitle: string,
+  fallbackSubtitle: string,
+  forceMock: boolean
+): CouncilMemberVerdict {
+  const validSeatIds: CouncilSeatId[] = [
+    "REGIME_MAGISTRATE",
+    "OPPORTUNITY_ADVOCATE",
+    "RISK_PROSECUTOR",
+    "PRESIDING_ARBITER",
+  ];
+  const rawSeatId =
+    typeof raw.seat_id === "string"
+      ? (raw.seat_id as CouncilSeatId)
+      : typeof raw.seatId === "string"
+      ? (raw.seatId as CouncilSeatId)
+      : fallbackSeatId;
+  const seatId = validSeatIds.includes(rawSeatId) ? rawSeatId : fallbackSeatId;
+
+  const validStatuses: CouncilSeatStatus[] = [
+    "COMPLETED",
+    "DEGRADED",
+    "SKIPPED",
+    "UNAVAILABLE",
+    "LOADING",
+    "MOCK_SCRIPTED",
+  ];
+  const rawStatus =
+    typeof raw.status === "string"
+      ? (raw.status.toUpperCase() as CouncilSeatStatus)
+      : "UNAVAILABLE";
+  const isSeatMock =
+    forceMock ||
+    raw.is_mock === true ||
+    raw.isMockData === true ||
+    raw.actor === "mock" ||
+    rawStatus === "MOCK_SCRIPTED";
+
+  const status: CouncilSeatStatus = isSeatMock
+    ? seatId === "PRESIDING_ARBITER"
+      ? "COMPLETED"
+      : "MOCK_SCRIPTED"
+    : validStatuses.includes(rawStatus)
+    ? rawStatus
+    : "UNAVAILABLE";
+
+  const validStances: CouncilMemberStance[] = [
+    "APPROVE",
+    "CAUTION",
+    "VETO",
+    "ABSTAIN",
+  ];
+  const rawStance =
+    typeof raw.stance === "string"
+      ? (raw.stance.toUpperCase() as CouncilMemberStance)
+      : "ABSTAIN";
+  const stance: CouncilMemberStance = validStances.includes(rawStance)
+    ? rawStance
+    : "ABSTAIN";
+
+  const rawConfidence =
+    typeof raw.confidence === "number" && !isSeatMock && status === "COMPLETED"
+      ? raw.confidence
+      : null;
+  const rawLatency =
+    typeof raw.latency_ms === "number" &&
+    raw.latency_ms > 0 &&
+    !isSeatMock &&
+    status === "COMPLETED"
+      ? raw.latency_ms
+      : typeof raw.latencyMs === "number" &&
+        raw.latencyMs > 0 &&
+        !isSeatMock &&
+        status === "COMPLETED"
+      ? raw.latencyMs
+      : null;
+
+  const rawModel =
+    typeof raw.model_name === "string"
+      ? raw.model_name
+      : typeof raw.modelName === "string"
+      ? raw.modelName
+      : typeof raw.model === "string"
+      ? raw.model
+      : null;
+
+  const modelName = isSeatMock
+    ? seatId === "PRESIDING_ARBITER"
+      ? "policy-deterministic-v2"
+      : "MOCK_SCRIPTED (No External Model Call)"
+    : rawModel;
+
+  const flaggedRules = Array.isArray(raw.flagged_rules)
+    ? raw.flagged_rules.filter((r): r is string => typeof r === "string")
+    : Array.isArray(raw.flaggedRules)
+    ? raw.flaggedRules.filter((r): r is string => typeof r === "string")
+    : [];
+
+  return {
+    seatId,
+    roleTitle:
+      typeof raw.role_title === "string"
+        ? raw.role_title
+        : typeof raw.roleTitle === "string"
+        ? raw.roleTitle
+        : fallbackTitle,
+    subtitle:
+      typeof raw.subtitle === "string" ? raw.subtitle : fallbackSubtitle,
+    modelName,
+    actor:
+      seatId === "PRESIDING_ARBITER"
+        ? "policy"
+        : isSeatMock
+        ? "mock"
+        : seatId === "REGIME_MAGISTRATE"
+        ? "laya"
+        : "evren",
+    status,
+    stance,
+    confidence: rawConfidence,
+    latencyMs: rawLatency,
+    rationale:
+      typeof raw.rationale === "string" && raw.rationale.trim().length > 0
+        ? raw.rationale
+        : typeof raw.summary === "string" && raw.summary.trim().length > 0
+        ? raw.summary
+        : "No seat rationale recorded.",
+    flaggedRules,
+    evidenceId:
+      typeof raw.evidence_id === "string"
+        ? raw.evidence_id
+        : typeof raw.evidenceId === "string"
+        ? raw.evidenceId
+        : null,
+    isAdvisoryOnly: seatId !== "PRESIDING_ARBITER",
+    isMockData: isSeatMock,
+  };
+}
+
+/**
+ * Derives the TradeCourt Council session state from:
+ * 1. An isolated `mockPreviewState` override (when visually testing the 5 Council states), OR
+ * 2. Optional backend `TRADE_COURT` / `COUNCIL` events or `REASON.details.council` payloads over `/api/events` & `/api/stream`, OR
+ * 3. Current backend `CLASSIFY` (LAYA) + `REASON` (EVREN) + `RISK_GATE` (Policy) events and `Snapshot`.
+ *
+ * Truthfulness Rules:
+ * - Never presents MOCK data or scripted scenarios as real EVREN inference.
+ * - Never invents latency or confidence numbers when models are UNAVAILABLE or MOCK.
+ * - Always preserves the architectural invariant: Advisory Council seats have zero execution authority;
+ *   the deterministic Python Risk Gate holds 100% hard veto authority.
+ */
+export function deriveTradeCourtSession(params: {
+  snapshot: Snapshot | null;
+  events: EventItem[];
+  mockPreviewState?: CouncilLifecycleState | null;
+}): TradeCourtSession {
+  const { snapshot, events, mockPreviewState } = params;
+
+  if (mockPreviewState && MOCK_TRADE_COURT_SESSIONS[mockPreviewState]) {
+    return MOCK_TRADE_COURT_SESSIONS[mockPreviewState];
+  }
+
+  const mode: SourceMode = snapshot?.source_mode ?? "MARKET_ONLY";
+  const targetRunId =
+    snapshot?.latest_decision?.run_id || snapshot?.run_id || "unknown-run";
+  const runEvents = events.filter(
+    (e) => !targetRunId || e.run_id === targetRunId
+  );
+  const activeEvents = runEvents.length > 0 ? runEvents : events;
+
+  const findLatestEvent = (typesOrPhases: string[]) => {
+    for (let i = activeEvents.length - 1; i >= 0; i--) {
+      const ev = activeEvents[i];
+      const phase =
+        typeof ev.details?.phase === "string" ? ev.details.phase : undefined;
+      if (
+        typesOrPhases.includes(ev.type) ||
+        (phase && typesOrPhases.includes(phase))
+      ) {
+        return ev;
+      }
+    }
+    return undefined;
+  };
+
+  const classifyEv = findLatestEvent(["CLASSIFY"]);
+  const reasonEv = findLatestEvent(["REASON"]);
+  const gateEv = findLatestEvent(["RISK_GATE", "RISK_CHECK"]);
+  const explicitCouncilEv = findLatestEvent(["TRADE_COURT", "COUNCIL"]);
+
+  const cls = snapshot?.classification ?? null;
+  const dec = snapshot?.latest_decision ?? null;
+  const isMockMode = mode === "MOCK" || dec?.source_mode === "MOCK";
+
+  const cycleId =
+    (typeof explicitCouncilEv?.details?.cycle_id === "string"
+      ? explicitCouncilEv.details.cycle_id
+      : typeof reasonEv?.details?.cycle_id === "string"
+      ? reasonEv.details.cycle_id
+      : typeof gateEv?.details?.cycle_id === "string"
+      ? gateEv.details.cycle_id
+      : null) ?? null;
+
+  // 1. Check if backend provided an explicit optional `council` or `trade_court` payload
+  const rawCouncilPayload =
+    (explicitCouncilEv?.details?.council as Record<string, unknown> | undefined) ??
+    (explicitCouncilEv?.details?.trade_court as Record<string, unknown> | undefined) ??
+    (explicitCouncilEv?.details as Record<string, unknown> | undefined) ??
+    (reasonEv?.details?.council as Record<string, unknown> | undefined) ??
+    (reasonEv?.details?.trade_court as Record<string, unknown> | undefined);
+
+  const rawSeatsArray = Array.isArray(rawCouncilPayload?.seats)
+    ? (rawCouncilPayload?.seats as Record<string, unknown>[])
+    : Array.isArray(rawCouncilPayload?.members)
+    ? (rawCouncilPayload?.members as Record<string, unknown>[])
+    : null;
+
+  if (rawCouncilPayload && rawSeatsArray && rawSeatsArray.length > 0) {
+    const validStates: CouncilLifecycleState[] = [
+      "LOADING",
+      "UNAVAILABLE",
+      "SKIPPED",
+      "COMPLETED",
+      "DEGRADED",
+    ];
+    const rawState =
+      typeof rawCouncilPayload.state === "string"
+        ? (rawCouncilPayload.state.toUpperCase() as CouncilLifecycleState)
+        : "COMPLETED";
+    const state: CouncilLifecycleState = validStates.includes(rawState)
+      ? rawState
+      : "COMPLETED";
+
+    const isPayloadMock =
+      isMockMode ||
+      rawCouncilPayload.is_mock === true ||
+      rawCouncilPayload.isMockFixture === true ||
+      rawCouncilPayload.availability === "SCRIPTED";
+
+    const seatDefaults: Array<{
+      id: CouncilSeatId;
+      title: string;
+      sub: string;
+    }> = [
+      {
+        id: "REGIME_MAGISTRATE",
+        title: "1. Regime Magistrate",
+        sub: "Operational Regime & Microstructure Check",
+      },
+      {
+        id: "OPPORTUNITY_ADVOCATE",
+        title: "2. Opportunity Advocate",
+        sub: "Bounded Thesis & Sizing Proposal Seat",
+      },
+      {
+        id: "RISK_PROSECUTOR",
+        title: "3. Risk Prosecutor",
+        sub: "Adversarial Counter-Thesis & Safety Audit Seat",
+      },
+      {
+        id: "PRESIDING_ARBITER",
+        title: "4. Presiding Arbiter (Risk Gate)",
+        sub: "Deterministic Python Execution Boundary",
+      },
+    ];
+
+    const parsedSeats = rawSeatsArray.map((item, idx) => {
+      const def = seatDefaults[idx] ?? seatDefaults[seatDefaults.length - 1];
+      return parseOptionalCouncilSeat(
+        item,
+        def.id,
+        def.title,
+        def.sub,
+        isPayloadMock
+      );
+    });
+
+    const totalMs =
+      typeof rawCouncilPayload.total_deliberation_ms === "number" &&
+      !isPayloadMock
+        ? rawCouncilPayload.total_deliberation_ms
+        : null;
+
+    return {
+      sessionId:
+        (typeof rawCouncilPayload.session_id === "string"
+          ? rawCouncilPayload.session_id
+          : explicitCouncilEv?.id || reasonEv?.id) ?? "council-session",
+      runId: targetRunId,
+      cycleId,
+      timestamp:
+        explicitCouncilEv?.timestamp ||
+        reasonEv?.timestamp ||
+        dec?.timestamp ||
+        null,
+      state,
+      isMockFixture: isPayloadMock,
+      sourceMode: isPayloadMock ? "MOCK" : mode,
+      symbol: "BTC-USDT",
+      proposedAction: dec?.proposed_action ?? "NO_TRADE",
+      proposedQuantity: dec?.quantity ?? "0",
+      consensusStance:
+        dec?.risk_approved === true
+          ? "PROCEED_TO_GATE"
+          : dec?.proposed_action === "NO_TRADE"
+          ? "NO_TRADE"
+          : "HALT",
+      finalGateApproved: Boolean(dec?.risk_approved),
+      headline:
+        typeof rawCouncilPayload.headline === "string"
+          ? rawCouncilPayload.headline
+          : isPayloadMock
+          ? "MOCK COUNCIL DELIBERATION — Scripted Scenario (No External EVREN Inference)"
+          : "TradeCourt Multi-Seat Pre-Trade Deliberation",
+      summary:
+        typeof rawCouncilPayload.summary === "string"
+          ? rawCouncilPayload.summary
+          : dec?.llm_summary ||
+            "Bounded TradeCourt deliberation handed off to deterministic Python Risk Gate.",
+      authorityNotice: isPayloadMock
+        ? "SCRIPTED MOCK SCENARIO — No external EVREN or LAYA model was called. Python Risk Gate holds 100% hard veto authority."
+        : "Advisory Council Only — Deterministic Python Risk Gate retains 100% final execution authority (order_permission=false).",
+      seats: parsedSeats,
+      activeRiskReasons: dec?.risk_reasons ?? [],
+      totalDeliberationMs: totalMs,
+    };
+  }
+
+  // 2. Graceful Derivation from existing CLASSIFY + REASON + RISK_GATE events & Snapshot
+  const layaView = describeLayaModelState(
+    cls,
+    snapshot?.capabilities,
+    classifyEv
+  );
+  const evrenView = describeEvrenModelState(
+    dec,
+    snapshot?.capabilities,
+    reasonEv
+  );
+
+  // Check if cycle is currently in-flight with no decision yet
+  if (snapshot?.running && !dec && !gateEv) {
+    return {
+      ...MOCK_TRADE_COURT_SESSIONS.LOADING,
+      sessionId: `live-loading-${targetRunId.slice(0, 8)}`,
+      runId: targetRunId,
+      cycleId,
+      isMockFixture: isMockMode,
+      sourceMode: mode,
+      headline: "TradeCourt Deliberation In Flight — Awaiting Seat Outputs",
+      summary:
+        "Cycle started; awaiting bounded LAYA classification and EVREN reasoning before deterministic Risk Gate check.",
+      authorityNotice:
+        "No order permission is ever granted while Council deliberation is in-flight (`order_permission=false`).",
+    };
+  }
+
+  // Determine overall CouncilLifecycleState
+  const isLayaHalted = cls?.label === "HALT";
+  const isSkippedByHalt =
+    isLayaHalted &&
+    (!dec ||
+      dec.proposed_action === "NO_TRADE" ||
+      dec.risk_reasons.includes("laya_not_clear"));
+
+  let state: CouncilLifecycleState;
+  if (isSkippedByHalt) {
+    state = "SKIPPED";
+  } else if (
+    !layaView.isAvailable &&
+    !layaView.isScriptedMock &&
+    !evrenView.isAvailable &&
+    !evrenView.isScriptedMock
+  ) {
+    state = "UNAVAILABLE";
+  } else if (
+    (layaView.isAvailable && !evrenView.isAvailable) ||
+    (!layaView.isAvailable && evrenView.isAvailable)
+  ) {
+    state = "DEGRADED";
+  } else {
+    state = "COMPLETED";
+  }
+
+  // Seat 1: Regime Magistrate (LAYA)
+  const seat1Status: CouncilSeatStatus = layaView.isScriptedMock
+    ? "MOCK_SCRIPTED"
+    : layaView.isAvailable
+    ? "COMPLETED"
+    : "UNAVAILABLE";
+  const seat1Stance: CouncilMemberStance = !cls
+    ? "ABSTAIN"
+    : cls.label === "HALT"
+    ? "VETO"
+    : cls.label === "REVIEW" || cls.abstained
+    ? "CAUTION"
+    : "APPROVE";
+
+  const seat1: CouncilMemberVerdict = {
+    seatId: "REGIME_MAGISTRATE",
+    roleTitle: "1. Regime Magistrate",
+    subtitle: "LAYA Operational Regime Classifier",
+    modelName: layaView.isScriptedMock
+      ? "MOCK_SCRIPTED (No LAYA Call)"
+      : cls?.model_version || null,
+    actor: layaView.isScriptedMock ? "mock" : "laya",
+    status: seat1Status,
+    stance: seat1Stance,
+    confidence:
+      layaView.isAvailable && !layaView.isScriptedMock && cls
+        ? cls.confidence
+        : null,
+    latencyMs: layaView.measuredDurationMs,
+    rationale: `${layaView.statusTitle} (${layaView.actionLabel}): ${layaView.subtitle}`,
+    flaggedRules:
+      cls?.label !== "CONTINUE" || cls?.abstained ? ["laya_not_clear"] : [],
+    evidenceId: classifyEv?.id ?? null,
+    isAdvisoryOnly: true,
+    isMockData: isMockMode || layaView.isScriptedMock,
+  };
+
+  // Seat 2: Opportunity Advocate (EVREN Thesis Seat)
+  const seat2Status: CouncilSeatStatus = isSkippedByHalt
+    ? "SKIPPED"
+    : evrenView.isScriptedMock
+    ? "MOCK_SCRIPTED"
+    : evrenView.isAvailable
+    ? "COMPLETED"
+    : "UNAVAILABLE";
+
+  const seat2Stance: CouncilMemberStance = isSkippedByHalt
+    ? "ABSTAIN"
+    : !dec || !evrenView.isAvailable
+    ? evrenView.isScriptedMock && dec?.proposed_action !== "NO_TRADE"
+      ? "APPROVE"
+      : "ABSTAIN"
+    : dec.proposed_action === "BUY" || dec.proposed_action === "SELL"
+    ? "APPROVE"
+    : "CAUTION";
+
+  const reasonIntegration = reasonEv?.details?.integration as
+    | Record<string, unknown>
+    | undefined;
+  const evrenModelId =
+    typeof reasonIntegration?.model === "string"
+      ? reasonIntegration.model
+      : null;
+
+  const seat2: CouncilMemberVerdict = {
+    seatId: "OPPORTUNITY_ADVOCATE",
+    roleTitle: "2. Opportunity Advocate",
+    subtitle: "EVREN Bounded Thesis & Sizing Seat",
+    modelName: isSkippedByHalt
+      ? null
+      : evrenView.isScriptedMock
+      ? "MOCK_SCRIPTED (No EVREN Inference)"
+      : evrenModelId,
+    actor: evrenView.isScriptedMock ? "mock" : "evren",
+    status: seat2Status,
+    stance: seat2Stance,
+    confidence: null,
+    latencyMs: evrenView.measuredDurationMs,
+    rationale: isSkippedByHalt
+      ? "Skipped — Upstream LAYA operational HALT short-circuited thesis generation."
+      : evrenView.isScriptedMock
+      ? `[MOCK SCRIPTED — Not Real EVREN] Scripted ${
+          dec?.proposed_action ?? "NO_TRADE"
+        } (${dec?.quantity ?? "0"} BTC) proposal to test downstream deterministic Risk Gate.`
+      : evrenView.isAvailable
+      ? `Proposed ${dec?.proposed_action ?? "NO_TRADE"} (${
+          dec?.quantity ?? "0"
+        } BTC): ${dec?.llm_summary ?? ""}`
+      : "EVREN endpoint not connected; deterministic NO_TRADE fallback (`quantity=0`) active.",
+    flaggedRules:
+      dec?.proposed_action === "NO_TRADE" ? ["no_trade_proposed"] : [],
+    evidenceId: reasonEv?.id ?? null,
+    isAdvisoryOnly: true,
+    isMockData: isMockMode || evrenView.isScriptedMock,
+  };
+
+  // Seat 3: Risk Prosecutor (EVREN Adversarial Counter-Thesis Seat)
+  const seat3Status: CouncilSeatStatus = isSkippedByHalt
+    ? "SKIPPED"
+    : evrenView.isScriptedMock
+    ? "MOCK_SCRIPTED"
+    : evrenView.isAvailable
+    ? "COMPLETED"
+    : "UNAVAILABLE";
+
+  const policyViolations = (dec?.risk_reasons ?? []).filter(
+    (r) => r !== "no_trade_proposed"
+  );
+  const seat3Stance: CouncilMemberStance = isSkippedByHalt
+    ? "ABSTAIN"
+    : !evrenView.isAvailable && !evrenView.isScriptedMock
+    ? "ABSTAIN"
+    : policyViolations.length > 0
+    ? "VETO"
+    : "CAUTION";
+
+  const seat3: CouncilMemberVerdict = {
+    seatId: "RISK_PROSECUTOR",
+    roleTitle: "3. Risk Prosecutor",
+    subtitle: "Adversarial Counter-Thesis & Safety Audit Seat",
+    modelName: isSkippedByHalt
+      ? null
+      : evrenView.isScriptedMock
+      ? "MOCK_SCRIPTED (No EVREN Inference)"
+      : evrenModelId,
+    actor: evrenView.isScriptedMock ? "mock" : "evren",
+    status: seat3Status,
+    stance: seat3Stance,
+    confidence: null,
+    latencyMs: null,
+    rationale: isSkippedByHalt
+      ? "Skipped — Pre-council operational HALT already blocked trade consideration."
+      : evrenView.isScriptedMock
+      ? `[MOCK SCRIPTED — Not Real EVREN] Adversarial check flags active risk conditions (${
+          policyViolations.join(", ") || "none"
+        }) for deterministic gate enforcement.`
+      : evrenView.isAvailable
+      ? "Adversarial safety pass completed; deferring binding rule enforcement to Python Risk Gate."
+      : "Dedicated TradeCourt prosecutor seat awaiting backend Council event stream; deferring 100% to deterministic Python Risk Gate.",
+    flaggedRules: policyViolations,
+    evidenceId: reasonEv?.id ?? null,
+    isAdvisoryOnly: true,
+    isMockData: isMockMode || evrenView.isScriptedMock,
+  };
+
+  // Seat 4: Presiding Arbiter (Deterministic Python Risk Gate)
+  const gateApproved = Boolean(dec?.risk_approved);
+  const seat4: CouncilMemberVerdict = {
+    seatId: "PRESIDING_ARBITER",
+    roleTitle: "4. Presiding Arbiter (Risk Gate)",
+    subtitle: "Deterministic Python Execution Boundary",
+    modelName: "policy-deterministic-v2",
+    actor: "policy",
+    status: dec ? "COMPLETED" : "UNAVAILABLE",
+    stance: gateApproved ? "APPROVE" : "VETO",
+    confidence: null,
+    latencyMs: eventDurationFromEvents(gateEv, reasonEv),
+    rationale: !dec
+      ? "Deterministic Python policy gate standing by in fail-closed posture."
+      : gateApproved
+      ? `All hard checks passed. Policy limit price: ${dec.limit_price ?? "N/A"}`
+      : dec.proposed_action === "NO_TRADE"
+      ? `Fail-closed NO_TRADE enforced (${dec.risk_reasons.join(
+          ", "
+        )}). Zero exchange writes attempted (NOT_SENT).`
+      : `Hard deterministic VETO blocked proposed ${dec.proposed_action} (${
+          dec.quantity
+        } BTC) due to: ${dec.risk_reasons.join(", ")}.`,
+    flaggedRules: dec?.risk_reasons ?? [],
+    evidenceId: gateEv?.id ?? dec?.id ?? null,
+    isAdvisoryOnly: false,
+    isMockData: isMockMode,
+  };
+
+  const headline =
+    state === "UNAVAILABLE"
+      ? "Advisory AI Seats Unavailable — Deterministic Python Risk Gate Enforcing Fail-Closed NO_TRADE"
+      : state === "SKIPPED"
+      ? "Council Deliberation Short-Circuited — Upstream LAYA Operational HALT"
+      : state === "DEGRADED"
+      ? "Degraded Council Posture — Partial Model Fallback; Fail-Closed Policy Active"
+      : isMockMode
+      ? `MOCK SCENARIO (${dec?.risk_reasons[0] ?? "scripted"}) — Scripted Proposal Vetoed by Deterministic Risk Gate`
+      : "TradeCourt Council Deliberation Completed";
+
+  const summary =
+    state === "UNAVAILABLE"
+      ? "LAYA and EVREN endpoints are currently not connected in MARKET_ONLY mode. AEGIS does not fabricate model verdicts; the Presiding Arbiter (Python Risk Gate) independently enforces fail-closed NO_TRADE."
+      : state === "SKIPPED"
+      ? "Regime Magistrate emitted HALT (`laya_not_clear`). Downstream thesis and prosecutor seats were skipped, and the Presiding Arbiter blocked execution (`NOT_SENT`)."
+      : isMockMode
+      ? "Displaying scripted MOCK scenario deliberation. No real EVREN or LAYA inference occurred. The deterministic Python Risk Gate vetoed the unsafe proposal."
+      : dec?.llm_summary ||
+        "Council seats evaluated market and regime state; deterministic Python Risk Gate holds final execution authority.";
+
+  return {
+    sessionId: dec?.id || `council-${targetRunId.slice(0, 12)}`,
+    runId: targetRunId,
+    cycleId,
+    timestamp:
+      gateEv?.timestamp || reasonEv?.timestamp || dec?.timestamp || null,
+    state,
+    isMockFixture: isMockMode,
+    sourceMode: mode,
+    symbol: "BTC-USDT",
+    proposedAction: dec?.proposed_action ?? "NO_TRADE",
+    proposedQuantity: dec?.quantity ?? "0",
+    consensusStance: gateApproved
+      ? "PROCEED_TO_GATE"
+      : dec?.proposed_action === "NO_TRADE"
+      ? "NO_TRADE"
+      : "HALT",
+    finalGateApproved: gateApproved,
+    headline,
+    summary,
+    authorityNotice: isMockMode
+      ? "SCRIPTED MOCK SCENARIO — Not Real EVREN Inference. Deterministic Python Risk Gate retains 100% hard veto authority."
+      : "Advisory Council Only — Model seats never authorize orders. Deterministic Python Risk Gate retains 100% execution authority (`order_permission=false`).",
+    seats: [seat1, seat2, seat3, seat4],
+    activeRiskReasons: dec?.risk_reasons ?? [],
+    totalDeliberationMs:
+      layaView.measuredDurationMs !== null ||
+      evrenView.measuredDurationMs !== null
+        ? Number(
+            (
+              (layaView.measuredDurationMs ?? 0) +
+              (evrenView.measuredDurationMs ?? 0)
+            ).toFixed(2)
+          )
+        : null,
+  };
+}
+
+function eventDurationFromEvents(
+  ev: EventItem | undefined,
+  prevEv: EventItem | undefined
+): number | null {
+  if (typeof ev?.details?.duration_ms === "number") {
+    return Number(ev.details.duration_ms.toFixed(2));
+  }
+  return diffMs(prevEv?.timestamp, ev?.timestamp);
 }

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  MOCK_TRADE_COURT_SESSIONS,
   RECORDED_EVENTS_MARKET_ONLY,
   RECORDED_METRICS_MARKET_ONLY,
   RECORDED_MOCK_SCENARIOS,
@@ -17,6 +18,7 @@ import {
   deriveDecisionSemantics,
   deriveErc8004RegistrationState,
   deriveRuntimeStatusModel,
+  deriveTradeCourtSession,
   describeEvrenModelState,
   describeLayaModelState,
   explainRiskReason,
@@ -392,4 +394,134 @@ describe("AEGIS Final Frontend Audit, Truthfulness & Null-Safety Suite", () => {
     expect(stale.ruleId).toBe("stale_feed");
     expect(stale.title).toContain("Stale");
   });
+
+  it("13. isolates all 5 MOCK TradeCourt Council states and never presents MOCK data as real EVREN inference", () => {
+    const states = [
+      "COMPLETED",
+      "DEGRADED",
+      "SKIPPED",
+      "UNAVAILABLE",
+      "LOADING",
+    ] as const;
+
+    for (const st of states) {
+      const session = deriveTradeCourtSession({
+        snapshot: RECORDED_SNAPSHOT_MARKET_ONLY,
+        events: RECORDED_EVENTS_MARKET_ONLY,
+        mockPreviewState: st,
+      });
+      expect(session.state).toBe(st);
+      expect(session.isMockFixture).toBe(true);
+      expect(session.sourceMode).toBe("MOCK");
+      expect(session.seats).toHaveLength(4);
+      expect(session.seats.every((s) => s.isMockData)).toBe(true);
+      // Presiding Arbiter is always the only non-advisory binding seat
+      const arbiter = session.seats.find(
+        (s) => s.seatId === "PRESIDING_ARBITER"
+      )!;
+      expect(arbiter.isAdvisoryOnly).toBe(false);
+    }
+    expect(MOCK_TRADE_COURT_SESSIONS.COMPLETED.isMockFixture).toBe(true);
+  });
+
+  it("14. derives TradeCourt Council states from runtime events and parses optional backend council payloads", () => {
+    // 1. Default MARKET_ONLY with LAYA/EVREN unavailable -> UNAVAILABLE state
+    const marketSession = deriveTradeCourtSession({
+      snapshot: RECORDED_SNAPSHOT_MARKET_ONLY,
+      events: RECORDED_EVENTS_MARKET_ONLY,
+    });
+    expect(marketSession.state).toBe("UNAVAILABLE");
+    expect(marketSession.isMockFixture).toBe(false);
+    expect(marketSession.seats[0].status).toBe("UNAVAILABLE");
+    expect(marketSession.seats[1].status).toBe("UNAVAILABLE");
+    expect(marketSession.seats[3].status).toBe("COMPLETED");
+
+    // 2. LAYA HALT scenario -> SKIPPED state
+    const haltSession = deriveTradeCourtSession({
+      snapshot: RECORDED_MOCK_SCENARIOS.laya_halt.snapshot,
+      events: RECORDED_MOCK_SCENARIOS.laya_halt.events,
+    });
+    expect(haltSession.state).toBe("SKIPPED");
+    expect(haltSession.isMockFixture).toBe(true);
+    expect(haltSession.seats[1].status).toBe("SKIPPED");
+    expect(haltSession.seats[2].status).toBe("SKIPPED");
+
+    // 3. Optional backend REASON.details.council payload
+    const customCouncilEvents: EventItem[] = [
+      ...RECORDED_EVENTS_MARKET_ONLY.filter((e) => e.type !== "REASON"),
+      {
+        id: "ev-council-live",
+        timestamp: "2026-10-17T12:00:00Z",
+        run_id: RECORDED_SNAPSHOT_MARKET_ONLY.run_id,
+        source_mode: "MARKET_ONLY",
+        type: "REASON",
+        severity: "INFO",
+        actor: "evren",
+        message: "Typed proposal received",
+        details: {
+          action: "NO_TRADE",
+          symbol: "BTC-USDT",
+          quantity: "0",
+          intent_id: "b5ca5fa52d7a4427866dcc7f7fefa804",
+          summary: "Council consensus NO_TRADE",
+          availability: "AVAILABLE",
+          council: {
+            session_id: "live-council-001",
+            state: "DEGRADED",
+            headline: "Live Degraded Council Test",
+            summary: "One seat timed out; fail-closed NO_TRADE.",
+            total_deliberation_ms: 215.4,
+            is_mock: false,
+            seats: [
+              {
+                seat_id: "REGIME_MAGISTRATE",
+                status: "COMPLETED",
+                stance: "CAUTION",
+                confidence: 0.84,
+                latency_ms: 19.2,
+                model_name: "laya-v1",
+                rationale: "Regime is REVIEW.",
+                flagged_rules: ["laya_not_clear"],
+              },
+              {
+                seat_id: "OPPORTUNITY_ADVOCATE",
+                status: "DEGRADED",
+                stance: "ABSTAIN",
+                rationale: "Timed out.",
+                flagged_rules: ["no_trade_proposed"],
+              },
+              {
+                seat_id: "RISK_PROSECUTOR",
+                status: "COMPLETED",
+                stance: "VETO",
+                latency_ms: 196.2,
+                model_name: "evren-v1",
+                rationale: "Block entry.",
+                flagged_rules: ["laya_not_clear"],
+              },
+              {
+                seat_id: "PRESIDING_ARBITER",
+                status: "COMPLETED",
+                stance: "VETO",
+                rationale: "Hard gate enforced.",
+                flagged_rules: ["laya_not_clear"],
+              },
+            ],
+          },
+        },
+      },
+    ];
+
+    const parsedSession = deriveTradeCourtSession({
+      snapshot: RECORDED_SNAPSHOT_MARKET_ONLY,
+      events: customCouncilEvents,
+    });
+    expect(parsedSession.state).toBe("DEGRADED");
+    expect(parsedSession.isMockFixture).toBe(false);
+    expect(parsedSession.totalDeliberationMs).toBe(215.4);
+    expect(parsedSession.seats[0].confidence).toBe(0.84);
+    expect(parsedSession.seats[1].status).toBe("DEGRADED");
+    expect(parsedSession.seats[3].isAdvisoryOnly).toBe(false);
+  });
 });
+

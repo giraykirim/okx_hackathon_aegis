@@ -306,4 +306,69 @@ export type PipelineStageStatus =
   | "NOT_TESTED"
   | "IDLE";
 
+// --- Optional TradeCourt Council Contract (Frontend Integration-Ready) ---
 
+export type CouncilLifecycleState =
+  | "LOADING"
+  | "UNAVAILABLE"
+  | "SKIPPED"
+  | "COMPLETED"
+  | "DEGRADED";
+
+export type CouncilSeatId =
+  | "REGIME_MAGISTRATE"
+  | "OPPORTUNITY_ADVOCATE"
+  | "RISK_PROSECUTOR"
+  | "PRESIDING_ARBITER";
+
+export type CouncilMemberStance =
+  | "APPROVE"
+  | "CAUTION"
+  | "VETO"
+  | "ABSTAIN";
+
+export type CouncilSeatStatus =
+  | "COMPLETED"
+  | "DEGRADED"
+  | "SKIPPED"
+  | "UNAVAILABLE"
+  | "LOADING"
+  | "MOCK_SCRIPTED";
+
+export interface CouncilMemberVerdict {
+  seatId: CouncilSeatId;
+  roleTitle: string;
+  subtitle: string;
+  modelName: string | null;
+  actor: "laya" | "evren" | "policy" | "mock";
+  status: CouncilSeatStatus;
+  stance: CouncilMemberStance;
+  confidence: number | null;
+  latencyMs: number | null;
+  rationale: string;
+  flaggedRules: string[];
+  evidenceId: string | null;
+  isAdvisoryOnly: boolean;
+  isMockData: boolean;
+}
+
+export interface TradeCourtSession {
+  sessionId: string;
+  runId: string;
+  cycleId: string | null;
+  timestamp: string | null;
+  state: CouncilLifecycleState;
+  isMockFixture: boolean;
+  sourceMode: SourceMode;
+  symbol: "BTC-USDT";
+  proposedAction: ProposedAction;
+  proposedQuantity: string;
+  consensusStance: "NO_TRADE" | "REVIEW" | "PROCEED_TO_GATE" | "HALT";
+  finalGateApproved: boolean;
+  headline: string;
+  summary: string;
+  authorityNotice: string;
+  seats: CouncilMemberVerdict[];
+  activeRiskReasons: string[];
+  totalDeliberationMs: number | null;
+}

@@ -13,6 +13,7 @@ import {
   type DemoPresetKey,
   ScenarioSwitcher,
 } from "@/components/ScenarioSwitcher";
+import { TradeCourtCouncil } from "@/components/TradeCourtCouncil";
 import {
   RECORDED_EVENTS_MARKET_ONLY,
   RECORDED_METRICS_MARKET_ONLY,
@@ -423,6 +424,13 @@ export default function DashboardPage() {
           steps={pipelineSteps}
           selectedStepKey={selectedStepKey}
           onSelectStep={handleSelectStep}
+        />
+
+        {/* TradeCourt Council Deliberation Bench (Live Event Stream + Isolated Mock Inspector) */}
+        <TradeCourtCouncil
+          snapshot={snapshot}
+          events={events}
+          onInspectEvidenceId={handleInspectEvidenceId}
         />
 
         {/* 4 Metric Cards with Honest History Indicators */}
