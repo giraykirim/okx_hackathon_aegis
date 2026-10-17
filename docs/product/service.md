@@ -1,5 +1,7 @@
 # AEGIS Risk Check Service
 
+Current deployment, retention, notional curl and one-week pilot details: [SERVICE_OPERATIONS.md](SERVICE_OPERATIONS.md). The MARKET_ONLY notional path now invokes the same Python policy gate; account data remains unavailable and assessment-derived sizing is never executable. No public runtime is deployed.
+
 Current service version is 1.1.0. The recommended contract is now `{request_id,symbol,proposed_action,proposed_notional,requester_context?}`; decimal notional is a quote-USDT string. It returns `{request_id,verdict,execution_authorized:false,reason_codes,evidence_ids,evaluated_at,source_mode,policy_version,chain_receipt}`. Context is untrusted, ignored and never logged/forwarded. No path returns ALLOW while trustworthy account data is unavailable. UNAVAILABLE and hard-policy BLOCK are explicit. Chain receipt is null. See [current frozen handoff](../../contracts/PERSON3_HANDOFF.md) and [fixtures with actual cURL](../../contracts/fixtures/README.md).
 
 `AEGIS_SERVICE_SOURCE_MODE` is selected by the server for this new form: MOCK is deterministic, makes no external calls and declares real data unavailable; MARKET_ONLY fetches real public ATK data but still withholds account approval. Identical effective requests replay the original stored result across restart; changed intent with the same request ID conflicts. The prior `action`/base `quantity` form, described below, remains supported with its original richer assessment response and real-market observer. Do not mix fields from the two forms.

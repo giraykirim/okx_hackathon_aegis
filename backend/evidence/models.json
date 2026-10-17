@@ -1,10 +1,10 @@
 {
-  "recorded_at": "2026-10-17T12:12:58.139106+00:00",
-  "run_id": "68c348e5c6d6432fa7927ae1cd5428d3",
+  "recorded_at": "2026-10-17T14:20:25.402922+00:00",
+  "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
   "configured": {
-    "evren": false,
-    "evren_model_selected": false,
-    "laya": false
+    "evren": true,
+    "evren_model_selected": true,
+    "laya": true
   },
   "capabilities": {
     "EVREN": {
@@ -13,35 +13,2322 @@
       "checked_at": null
     },
     "LAYA": {
-      "status": "NOT_TESTED",
-      "evidence": [],
-      "checked_at": null
+      "status": "PASS",
+      "evidence": [
+        "909d957bb2f9434e9312e03cfeeb0fe5"
+      ],
+      "checked_at": "2026-10-17T14:20:25.402902Z"
     },
     "EVREN_DISCOVERY": {
-      "status": "NOT_TESTED",
-      "evidence": [],
-      "checked_at": null
+      "status": "PASS",
+      "evidence": [
+        "b547abbc7f5f4b7b9a30b3c338eda02f"
+      ],
+      "checked_at": "2026-10-17T14:20:02.716457Z"
     },
     "EVREN_STRUCTURED_OUTPUT": {
-      "status": "NOT_TESTED",
-      "evidence": [],
-      "checked_at": null
+      "status": "FAIL",
+      "evidence": [
+        "c1ce2920677e4d54889f1ae1b41832ef"
+      ],
+      "checked_at": "2026-10-17T14:20:17.718599Z"
     },
     "EVREN_TOOL_CALLING": {
-      "status": "NOT_TESTED",
-      "evidence": [],
-      "checked_at": null
+      "status": "PASS",
+      "evidence": [
+        "7794d9d005854c40b2008328ed1ce217"
+      ],
+      "checked_at": "2026-10-17T14:20:23.639445Z"
     }
   },
-  "model": null,
+  "model": "deepseek-v4.1-flash",
   "laya": {
-    "availability": "UNAVAILABLE",
-    "source": "NOT_CONFIGURED",
-    "reason_code": "NOT_CONFIGURED",
+    "availability": "AVAILABLE",
+    "source": "LAN",
+    "reason_code": "VALIDATED",
     "model": null,
-    "model_version": null
+    "model_version": "aegis-laya-base-f38a07fa01db",
+    "reported_label": "REVIEW",
+    "advisory_only": true
   },
-  "events": [],
+  "events": [
+    {
+      "id": "04f09c3d3c5049bfa6e741dad49d2424",
+      "timestamp": "2026-10-17T14:20:25.402983Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "local:official-atk-package-inspection",
+          "request_ts": "2026-10-17T14:20:23.639513+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 0.7709170022280887,
+          "success": true,
+          "response_hash": "a0137159c5494ffb9d01dee754380a077ec3aca0c6f755b87e4a98185553b6a2",
+          "status_code": "UNKNOWN",
+          "evidence_id": "04f09c3d3c5049bfa6e741dad49d2424"
+        },
+        "packages": {
+          "okx-trade-cli": true,
+          "okx-trade-mcp": true
+        },
+        "private_capabilities": "NOT_TESTED until authenticated demo operation is actually observed",
+        "demo_gate": {
+          "enabled": false,
+          "region_confirmed": false,
+          "isolated_demo_ready": false,
+          "personal_profile_used": false
+        },
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "bade54461fab42939c18fa57c1f1c031",
+      "timestamp": "2026-10-17T14:20:25.403004Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:tools/list",
+          "request_ts": "2026-10-17T14:20:23.988Z",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 3.0181249999999977,
+          "success": true,
+          "response_hash": "25a51b0a70bf73d6ed437207db2c4f685afba81d8afae79f31f44621ec7449df",
+          "status_code": "UNKNOWN",
+          "evidence_id": "bade54461fab42939c18fa57c1f1c031"
+        },
+        "transport": "mcp-stdio",
+        "site": "tr",
+        "tools": [
+          {
+            "name": "market_get_ticker",
+            "title": "Get Ticker",
+            "description": "Get ticker data for a single instrument.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT, BTC-USDT-SWAP"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Ticker",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_tickers",
+            "title": "Get All Tickers",
+            "description": "Get ticker data for all instruments of a given type.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION",
+                    "MARGIN",
+                    "EVENTS"
+                  ]
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "Underlying, e.g. BTC-USD. Required for OPTION"
+                },
+                "instFamily": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Get All Tickers",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_orderbook",
+            "title": "Get Order Book",
+            "description": "Get the order book (bids/asks) for an instrument.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT"
+                },
+                "sz": {
+                  "type": "number",
+                  "description": "Depth per side, default 1, max 400"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Order Book",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_candles",
+            "title": "Get Candlesticks",
+            "description": "Get candlestick (OHLCV) data for an instrument. Automatically retrieves historical data (back to 2021) when requesting older time ranges. Use the `after` parameter to paginate back in time (the old `history` parameter has been removed). IMPORTANT: Before fetching with `after`/`before`, estimate the number of candles: time_range_ms / bar_interval_ms. If the estimate exceeds ~500 candles, inform the user of the estimated count and ask for confirmation before proceeding.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "1m",
+                    "3m",
+                    "5m",
+                    "15m",
+                    "30m",
+                    "1H",
+                    "2H",
+                    "4H",
+                    "6H",
+                    "12H",
+                    "1D",
+                    "2D",
+                    "3D",
+                    "1W",
+                    "1M",
+                    "3M"
+                  ],
+                  "description": "Default 1m"
+                },
+                "after": {
+                  "type": "string",
+                  "description": "Pagination: before this timestamp (ms)"
+                },
+                "before": {
+                  "type": "string",
+                  "description": "Pagination: after this timestamp (ms)"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results (default 100)"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Candlesticks",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_instruments",
+            "title": "List Instruments",
+            "description": "Get tradable instruments for a given type. Returns contract specs: min order size, lot size, tick size, contract value, settlement currency, listing/expiry time. Essential before placing orders.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION",
+                    "MARGIN",
+                    "EVENTS"
+                  ]
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "Filter by ID, e.g. BTC-USDT-SWAP"
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "Required for OPTION, e.g. BTC-USD"
+                },
+                "instFamily": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "seriesId": {
+                  "type": "string",
+                  "description": "Required for EVENTS type, e.g. BTC-ABOVE-DAILY"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "List Instruments",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_funding_rate",
+            "title": "Get Funding Rate",
+            "description": "Get funding rate for a perpetual SWAP instrument. IMPORTANT: instId must end with -SWAP (e.g. BTC-USDT-SWAP). Spot IDs like BTC-USDT are NOT valid. history=false (default): current rate + next estimated rate; history=true: historical rates.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Perpetual swap instrument ID, must end with -SWAP (e.g. BTC-USDT-SWAP). Spot IDs like BTC-USDT will be rejected."
+                },
+                "history": {
+                  "type": "boolean",
+                  "description": "true=fetch historical rates"
+                },
+                "after": {
+                  "type": "string",
+                  "description": "Pagination (history): before this timestamp (ms)"
+                },
+                "before": {
+                  "type": "string",
+                  "description": "Pagination (history): after this timestamp (ms)"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "History records (default 20, max 100)"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Funding Rate",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_mark_price",
+            "title": "Get Mark Price",
+            "description": "Get mark price for SWAP, FUTURES, or MARGIN instruments. Used for liquidation calculations and unrealized PnL.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "MARGIN",
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION"
+                  ]
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT-SWAP"
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "instFamily": {
+                  "type": "string"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Get Mark Price",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_trades",
+            "title": "Get Recent Trades",
+            "description": "Get recent trades for an instrument. Default 20 records, max 500.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Default 20, max 500"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Recent Trades",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_index_ticker",
+            "title": "Get Index Ticker",
+            "description": "Get index ticker data (e.g. BTC-USD, ETH-USD index prices). Independent of any single exchange.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD. Omit for all indices"
+                },
+                "quoteCcy": {
+                  "type": "string",
+                  "description": "e.g. USD or USDT"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              }
+            },
+            "annotations": {
+              "title": "Get Index Ticker",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_index_candles",
+            "title": "Get Index Candlesticks",
+            "description": "Get candlestick data for an index (e.g. BTC-USD index). history=false: recent up to 1440 bars; history=true: older data.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Index ID, e.g. BTC-USD"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "1m",
+                    "3m",
+                    "5m",
+                    "15m",
+                    "30m",
+                    "1H",
+                    "2H",
+                    "4H",
+                    "6H",
+                    "12H",
+                    "1D",
+                    "2D",
+                    "3D",
+                    "1W",
+                    "1M",
+                    "3M"
+                  ],
+                  "description": "Default 1m"
+                },
+                "after": {
+                  "type": "string",
+                  "description": "Pagination: before this timestamp (ms)"
+                },
+                "before": {
+                  "type": "string",
+                  "description": "Pagination: after this timestamp (ms)"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results (default 100)"
+                },
+                "history": {
+                  "type": "boolean",
+                  "description": "true=older historical data"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Index Candlesticks",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_price_limit",
+            "title": "Get Price Limit",
+            "description": "Get the current price limit (upper and lower bands) for a SWAP or FUTURES instrument. Orders outside these limits will be rejected.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "SWAP or FUTURES ID, e.g. BTC-USDT-SWAP"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Price Limit",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_open_interest",
+            "title": "Get Open Interest",
+            "description": "Get open interest for SWAP, FUTURES, or OPTION instruments. Useful for gauging market sentiment and positioning.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION"
+                  ]
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT-SWAP"
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "instFamily": {
+                  "type": "string"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Get Open Interest",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_stock_tokens",
+            "title": "List Stock Tokens",
+            "description": "[Deprecated: use market_get_instruments_by_category with instCategory=\"3\" instead] Get all stock token instruments (instCategory=3). Stock tokens track real-world stock prices on OKX (e.g. AAPL-USDT-SWAP).",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP"
+                  ],
+                  "description": "Instrument type. Default: SWAP"
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "Optional: filter by specific instrument ID, e.g. AAPL-USDT-SWAP"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": []
+            },
+            "annotations": {
+              "title": "List Stock Tokens",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_instruments_by_category",
+            "title": "List Instruments by Category",
+            "description": "Discover tradeable instruments by asset category. Stock tokens (instCategory=3, e.g. AAPL-USDT-SWAP, TSLA-USDT-SWAP), Metals (4, e.g. XAUUSDT-USDT-SWAP for gold), Commodities (5, e.g. OIL-USDT-SWAP for crude oil), Forex (6, e.g. EURUSDT-USDT-SWAP for EUR/USD), Bonds (7, e.g. US30Y-USDT-SWAP for crude oil). Use this to find instIds before querying prices or placing orders. Filters client-side by instCategory.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instCategory": {
+                  "type": "string",
+                  "enum": [
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ],
+                  "description": "Asset category: 3=Stock tokens, 4=Metals, 5=Commodities, 6=Forex, 7=Bonds"
+                },
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP"
+                  ],
+                  "description": "Instrument type. Default: SWAP"
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "Optional: filter by specific instrument ID"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instCategory"
+              ]
+            },
+            "annotations": {
+              "title": "List Instruments by Category",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_filter",
+            "title": "Screen Instruments",
+            "description": "Screen / rank instruments across SPOT, SWAP, or FUTURES by multi-dimensional criteria: price range, 24h change %, market cap, 24h volume (USD), funding rate (SWAP), open interest (USD), listing time. Returns ranked rows with full ticker snapshot. Use to find top movers, high-OI contracts, newly listed tokens, etc. No credentials required. Do NOT use to get OI change rankings across contracts - use market_filter_oi_change instead. Do NOT use to get OI time series for a single instrument - use market_get_oi_history instead.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP",
+                    "FUTURES"
+                  ],
+                  "description": "Instrument type to scan. OPTION is not supported."
+                },
+                "baseCcy": {
+                  "type": "string",
+                  "description": "Filter by base currency, e.g. BTC"
+                },
+                "quoteCcy": {
+                  "type": "string",
+                  "description": "Filter by quote currency. Comma-separated list supported, e.g. USDT or USDT,USDC"
+                },
+                "settleCcy": {
+                  "type": "string",
+                  "description": "Filter by settlement currency (SWAP/FUTURES only), e.g. USDT"
+                },
+                "instFamily": {
+                  "type": "string",
+                  "description": "Filter by instrument family (SWAP/FUTURES only), e.g. BTC-USD"
+                },
+                "ctType": {
+                  "type": "string",
+                  "enum": [
+                    "linear",
+                    "inverse"
+                  ],
+                  "description": "Contract type filter (SWAP/FUTURES only): linear or inverse"
+                },
+                "minLast": {
+                  "type": "string",
+                  "description": "Minimum last price (USD), e.g. 10000"
+                },
+                "maxLast": {
+                  "type": "string",
+                  "description": "Maximum last price (USD), e.g. 100000"
+                },
+                "minChg24hPct": {
+                  "type": "string",
+                  "description": "Minimum 24h price change %, e.g. -5 means -5%"
+                },
+                "maxChg24hPct": {
+                  "type": "string",
+                  "description": "Maximum 24h price change %, e.g. 10 means 10%"
+                },
+                "minMarketCapUsd": {
+                  "type": "string",
+                  "description": "Minimum market cap in USD (SPOT only; ignored for SWAP/FUTURES)"
+                },
+                "maxMarketCapUsd": {
+                  "type": "string",
+                  "description": "Maximum market cap in USD (SPOT only; ignored for SWAP/FUTURES)"
+                },
+                "minVolUsd24h": {
+                  "type": "string",
+                  "description": "Minimum 24h volume in USD"
+                },
+                "maxVolUsd24h": {
+                  "type": "string",
+                  "description": "Maximum 24h volume in USD"
+                },
+                "minFundingRate": {
+                  "type": "string",
+                  "description": "Minimum funding rate (SWAP only), e.g. 0.0001"
+                },
+                "maxFundingRate": {
+                  "type": "string",
+                  "description": "Maximum funding rate (SWAP only), e.g. 0.001"
+                },
+                "minOiUsd": {
+                  "type": "string",
+                  "description": "Minimum open interest in USD"
+                },
+                "maxOiUsd": {
+                  "type": "string",
+                  "description": "Maximum open interest in USD"
+                },
+                "sortBy": {
+                  "type": "string",
+                  "enum": [
+                    "last",
+                    "chg24hPct",
+                    "marketCapUsd",
+                    "volUsd24h",
+                    "fundingRate",
+                    "oiUsd",
+                    "listTime"
+                  ],
+                  "description": "Sort field. Default: volUsd24h. Note: marketCapUsd is only meaningful for SPOT (null for SWAP/FUTURES). To rank by OI *change* (oiDeltaPct / absOiDeltaPct), use market_filter_oi_change - market_filter only sorts by the current snapshot."
+                },
+                "sortOrder": {
+                  "type": "string",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ],
+                  "description": "Sort order: asc or desc. Default: desc"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results to return (default 20, max 100)"
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Screen Instruments",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_oi_history",
+            "title": "Get Open Interest History",
+            "description": "Get open interest (OI) history time series for a single SWAP or FUTURES instrument. Returns per-bar OI in contracts, base currency and USD, plus bar-over-bar delta and delta %. Useful for tracking how OI evolves around price moves. No credentials required. Do NOT use to compare OI changes across multiple contracts - use market_filter_oi_change instead. Do NOT use to screen instruments by current OI level - use market_filter instead.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Instrument ID, e.g. BTC-USDT-SWAP"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "5m",
+                    "15m",
+                    "1H",
+                    "4H",
+                    "1D"
+                  ],
+                  "description": "Bar size: 5m, 15m, 1H, 4H, 1D. Default: 1H"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Number of data points to return (default 50, max 500)"
+                },
+                "ts": {
+                  "type": "number",
+                  "description": "Return bars with timestamp <= this value (Unix ms). Used for historical pagination."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Open Interest History",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_filter_oi_change",
+            "title": "Find Open Interest Change Instruments",
+            "description": "Find SWAP or FUTURES instruments with significant open interest changes over a given bar window. Returns ranked rows with current OI (USD), previous OI (USD), OI delta (USD and %), price change %, 24h volume and funding rate. Ideal for spotting unusual accumulation/distribution or confirming trend momentum. No credentials required. Do NOT use to get OI time series for a single instrument - use market_get_oi_history instead. Do NOT use to screen by current OI absolute level or other non-OI metrics - use market_filter instead.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SWAP",
+                    "FUTURES"
+                  ],
+                  "description": "Instrument type: SWAP or FUTURES"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "5m",
+                    "15m",
+                    "1H",
+                    "4H",
+                    "1D"
+                  ],
+                  "description": "Bar window for OI change computation: 5m, 15m, 1H, 4H, 1D (case-insensitive on server, but send canonical form here). Default: 1H"
+                },
+                "minOiUsd": {
+                  "type": "string",
+                  "description": "Minimum current OI in USD (filters small/illiquid contracts)"
+                },
+                "minVolUsd24h": {
+                  "type": "string",
+                  "description": "Minimum 24h volume in USD (filters low-activity contracts)"
+                },
+                "minAbsOiDeltaPct": {
+                  "type": "string",
+                  "description": "Minimum absolute OI change % threshold, e.g. 1.0 means |oiDeltaPct| >= 1.0%"
+                },
+                "sortBy": {
+                  "type": "string",
+                  "enum": [
+                    "oiUsd",
+                    "oiDeltaUsd",
+                    "oiDeltaPct",
+                    "absOiDeltaPct",
+                    "volUsd24h",
+                    "fundingRate",
+                    "last"
+                  ],
+                  "description": "Sort field. Default: oiDeltaPct (largest movers first, signed - longs and shorts separate). Use absOiDeltaPct to sort by |oiDeltaPct| (largest-magnitude moves regardless of direction). fundingRate is also supported for SWAP. Do NOT use the market_filter tool's sort fields (chg24hPct, marketCapUsd, listTime) here - they are not in the OI-change Row."
+                },
+                "sortOrder": {
+                  "type": "string",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ],
+                  "description": "Sort order: asc or desc. Default: desc"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results to return (default 20, max 100)"
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Find Open Interest Change Instruments",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_pair_spread",
+            "title": "Get Pair Spread",
+            "description": "Compute spread statistics between two instruments over a lookback window. Returns absolute and ratio spread (mean / stdDev / median / min / max) plus an optional realtime spread snapshot. Use to size pairs trades, detect mean-reversion setups, or compare cross-listed contracts. Results are cached ~60s per (pair, bar, window) tuple. Read-only, no credentials required.\nDo NOT use to fetch raw candles (use market_get_candles) or single-instrument OI/funding (use market_get_oi_history / market_filter_oi_change).",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instIdA": {
+                  "type": "string",
+                  "description": "First instrument ID, e.g. BTC-USDT-SWAP"
+                },
+                "instIdB": {
+                  "type": "string",
+                  "description": "Second instrument ID; must differ from instIdA"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "5m",
+                    "15m"
+                  ],
+                  "description": "Bar size for the spread series. Default 15m. 1m is not supported."
+                },
+                "window": {
+                  "type": "string",
+                  "description": "Lookback window. Format <n><unit>, units m/H/D/W (case-sensitive), max 1W. Default 1W."
+                },
+                "backtestTime": {
+                  "type": "number",
+                  "description": "Anchor timestamp (ms epoch) for backtest mode. When provided, realtime is omitted."
+                }
+              },
+              "required": [
+                "instIdA",
+                "instIdB"
+              ]
+            },
+            "annotations": {
+              "title": "Get Pair Spread",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_indicator",
+            "title": "Get Technical Indicator",
+            "description": "Get technical indicator values for an instrument. Common indicators: ma, ema, rsi, macd, bb (Bollinger), kdj, supertrend, ahr999. Call market_list_indicators first to see all valid names. No credentials required.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Instrument ID, e.g. BTC-USDT"
+                },
+                "indicator": {
+                  "type": "string",
+                  "description": "Indicator name (case-insensitive), e.g. 'rsi', 'macd', 'bb', 'ma', 'ema', 'kdj', 'supertrend'. Call market_list_indicators to see all valid names. Using an invalid name will return an error."
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "3m",
+                    "5m",
+                    "15m",
+                    "1H",
+                    "4H",
+                    "12Hutc",
+                    "1Dutc",
+                    "3Dutc",
+                    "1Wutc"
+                  ],
+                  "description": "Timeframe. Default: 1H"
+                },
+                "params": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Indicator-specific parameters as a number array. Examples: MA/EMA [14] (period), MACD [12,26,9] (fast,slow,signal), BB [20,2] (period,stdDev), RSI [14] (period). For period-based indicators a parameter is required; the CLI applies a sensible default when omitted."
+                },
+                "returnList": {
+                  "type": "boolean",
+                  "description": "Return a historical list instead of the latest value only. Default: false"
+                },
+                "limit": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100,
+                  "description": "Number of historical records to return (only used when returnList=true). Default: 10"
+                },
+                "backtestTime": {
+                  "type": "integer",
+                  "description": "Backtest timestamp in milliseconds. Omit for live (real-time) mode"
+                }
+              },
+              "required": [
+                "instId",
+                "indicator"
+              ]
+            },
+            "annotations": {
+              "title": "Get Technical Indicator",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_list_indicators",
+            "title": "List Technical Indicators",
+            "description": "List all supported technical indicator names and descriptions. Call this before market_get_indicator to discover valid indicator names. No credentials required.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {}
+            },
+            "annotations": {
+              "title": "List Technical Indicators",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "system_get_capabilities",
+            "title": "Server Capabilities Snapshot",
+            "description": "Return machine-readable server capabilities and module availability for agent planning.",
+            "inputSchema": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "annotations": {
+              "title": "Server Capabilities Snapshot",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          }
+        ],
+        "server_args": [
+          "--import",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-mcp/dist/index.js",
+          "--modules",
+          "market",
+          "--read-only",
+          "--site",
+          "tr",
+          "--demo"
+        ],
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "73301977b48442a7b1d1c29c4693509b",
+      "timestamp": "2026-10-17T14:20:25.403011Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:market_get_ticker",
+          "request_ts": "2026-10-17T14:20:24.004Z",
+          "source_ts": "2026-10-17T14:20:23.867000+00:00",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 547.418792,
+          "success": true,
+          "response_hash": "e8ba96e4821903f7debd9c42caf3fcbb783305428bafdad9a571ff8ac911ea0e",
+          "status_code": "UNKNOWN",
+          "evidence_id": "73301977b48442a7b1d1c29c4693509b"
+        },
+        "transport": "mcp-stdio",
+        "site": "tr",
+        "read_only": true,
+        "has_auth": false,
+        "payload_redacted": false,
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "363c9451ace2478fa2df38761771cc10",
+      "timestamp": "2026-10-17T14:20:25.403016Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:tools/list",
+          "request_ts": "2026-10-17T14:20:24.826Z",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 3.009999999999991,
+          "success": true,
+          "response_hash": "25a51b0a70bf73d6ed437207db2c4f685afba81d8afae79f31f44621ec7449df",
+          "status_code": "UNKNOWN",
+          "evidence_id": "363c9451ace2478fa2df38761771cc10"
+        },
+        "transport": "mcp-stdio",
+        "site": "tr",
+        "tools": [
+          {
+            "name": "market_get_ticker",
+            "title": "Get Ticker",
+            "description": "Get ticker data for a single instrument.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT, BTC-USDT-SWAP"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Ticker",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_tickers",
+            "title": "Get All Tickers",
+            "description": "Get ticker data for all instruments of a given type.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION",
+                    "MARGIN",
+                    "EVENTS"
+                  ]
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "Underlying, e.g. BTC-USD. Required for OPTION"
+                },
+                "instFamily": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Get All Tickers",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_orderbook",
+            "title": "Get Order Book",
+            "description": "Get the order book (bids/asks) for an instrument.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT"
+                },
+                "sz": {
+                  "type": "number",
+                  "description": "Depth per side, default 1, max 400"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Order Book",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_candles",
+            "title": "Get Candlesticks",
+            "description": "Get candlestick (OHLCV) data for an instrument. Automatically retrieves historical data (back to 2021) when requesting older time ranges. Use the `after` parameter to paginate back in time (the old `history` parameter has been removed). IMPORTANT: Before fetching with `after`/`before`, estimate the number of candles: time_range_ms / bar_interval_ms. If the estimate exceeds ~500 candles, inform the user of the estimated count and ask for confirmation before proceeding.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "1m",
+                    "3m",
+                    "5m",
+                    "15m",
+                    "30m",
+                    "1H",
+                    "2H",
+                    "4H",
+                    "6H",
+                    "12H",
+                    "1D",
+                    "2D",
+                    "3D",
+                    "1W",
+                    "1M",
+                    "3M"
+                  ],
+                  "description": "Default 1m"
+                },
+                "after": {
+                  "type": "string",
+                  "description": "Pagination: before this timestamp (ms)"
+                },
+                "before": {
+                  "type": "string",
+                  "description": "Pagination: after this timestamp (ms)"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results (default 100)"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Candlesticks",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_instruments",
+            "title": "List Instruments",
+            "description": "Get tradable instruments for a given type. Returns contract specs: min order size, lot size, tick size, contract value, settlement currency, listing/expiry time. Essential before placing orders.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION",
+                    "MARGIN",
+                    "EVENTS"
+                  ]
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "Filter by ID, e.g. BTC-USDT-SWAP"
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "Required for OPTION, e.g. BTC-USD"
+                },
+                "instFamily": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "seriesId": {
+                  "type": "string",
+                  "description": "Required for EVENTS type, e.g. BTC-ABOVE-DAILY"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "List Instruments",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_funding_rate",
+            "title": "Get Funding Rate",
+            "description": "Get funding rate for a perpetual SWAP instrument. IMPORTANT: instId must end with -SWAP (e.g. BTC-USDT-SWAP). Spot IDs like BTC-USDT are NOT valid. history=false (default): current rate + next estimated rate; history=true: historical rates.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Perpetual swap instrument ID, must end with -SWAP (e.g. BTC-USDT-SWAP). Spot IDs like BTC-USDT will be rejected."
+                },
+                "history": {
+                  "type": "boolean",
+                  "description": "true=fetch historical rates"
+                },
+                "after": {
+                  "type": "string",
+                  "description": "Pagination (history): before this timestamp (ms)"
+                },
+                "before": {
+                  "type": "string",
+                  "description": "Pagination (history): after this timestamp (ms)"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "History records (default 20, max 100)"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Funding Rate",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_mark_price",
+            "title": "Get Mark Price",
+            "description": "Get mark price for SWAP, FUTURES, or MARGIN instruments. Used for liquidation calculations and unrealized PnL.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "MARGIN",
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION"
+                  ]
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT-SWAP"
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "instFamily": {
+                  "type": "string"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Get Mark Price",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_trades",
+            "title": "Get Recent Trades",
+            "description": "Get recent trades for an instrument. Default 20 records, max 500.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Default 20, max 500"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Recent Trades",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_index_ticker",
+            "title": "Get Index Ticker",
+            "description": "Get index ticker data (e.g. BTC-USD, ETH-USD index prices). Independent of any single exchange.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD. Omit for all indices"
+                },
+                "quoteCcy": {
+                  "type": "string",
+                  "description": "e.g. USD or USDT"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              }
+            },
+            "annotations": {
+              "title": "Get Index Ticker",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_index_candles",
+            "title": "Get Index Candlesticks",
+            "description": "Get candlestick data for an index (e.g. BTC-USD index). history=false: recent up to 1440 bars; history=true: older data.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Index ID, e.g. BTC-USD"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "1m",
+                    "3m",
+                    "5m",
+                    "15m",
+                    "30m",
+                    "1H",
+                    "2H",
+                    "4H",
+                    "6H",
+                    "12H",
+                    "1D",
+                    "2D",
+                    "3D",
+                    "1W",
+                    "1M",
+                    "3M"
+                  ],
+                  "description": "Default 1m"
+                },
+                "after": {
+                  "type": "string",
+                  "description": "Pagination: before this timestamp (ms)"
+                },
+                "before": {
+                  "type": "string",
+                  "description": "Pagination: after this timestamp (ms)"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results (default 100)"
+                },
+                "history": {
+                  "type": "boolean",
+                  "description": "true=older historical data"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Index Candlesticks",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_price_limit",
+            "title": "Get Price Limit",
+            "description": "Get the current price limit (upper and lower bands) for a SWAP or FUTURES instrument. Orders outside these limits will be rejected.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "SWAP or FUTURES ID, e.g. BTC-USDT-SWAP"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Price Limit",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_open_interest",
+            "title": "Get Open Interest",
+            "description": "Get open interest for SWAP, FUTURES, or OPTION instruments. Useful for gauging market sentiment and positioning.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SWAP",
+                    "FUTURES",
+                    "OPTION"
+                  ]
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "e.g. BTC-USDT-SWAP"
+                },
+                "uly": {
+                  "type": "string",
+                  "description": "e.g. BTC-USD"
+                },
+                "instFamily": {
+                  "type": "string"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Get Open Interest",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_stock_tokens",
+            "title": "List Stock Tokens",
+            "description": "[Deprecated: use market_get_instruments_by_category with instCategory=\"3\" instead] Get all stock token instruments (instCategory=3). Stock tokens track real-world stock prices on OKX (e.g. AAPL-USDT-SWAP).",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP"
+                  ],
+                  "description": "Instrument type. Default: SWAP"
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "Optional: filter by specific instrument ID, e.g. AAPL-USDT-SWAP"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": []
+            },
+            "annotations": {
+              "title": "List Stock Tokens",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_instruments_by_category",
+            "title": "List Instruments by Category",
+            "description": "Discover tradeable instruments by asset category. Stock tokens (instCategory=3, e.g. AAPL-USDT-SWAP, TSLA-USDT-SWAP), Metals (4, e.g. XAUUSDT-USDT-SWAP for gold), Commodities (5, e.g. OIL-USDT-SWAP for crude oil), Forex (6, e.g. EURUSDT-USDT-SWAP for EUR/USD), Bonds (7, e.g. US30Y-USDT-SWAP for crude oil). Use this to find instIds before querying prices or placing orders. Filters client-side by instCategory.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instCategory": {
+                  "type": "string",
+                  "enum": [
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ],
+                  "description": "Asset category: 3=Stock tokens, 4=Metals, 5=Commodities, 6=Forex, 7=Bonds"
+                },
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP"
+                  ],
+                  "description": "Instrument type. Default: SWAP"
+                },
+                "instId": {
+                  "type": "string",
+                  "description": "Optional: filter by specific instrument ID"
+                },
+                "demo": {
+                  "type": "boolean",
+                  "description": "Query simulated trading (demo) market data. Default: false (live market data)."
+                }
+              },
+              "required": [
+                "instCategory"
+              ]
+            },
+            "annotations": {
+              "title": "List Instruments by Category",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_filter",
+            "title": "Screen Instruments",
+            "description": "Screen / rank instruments across SPOT, SWAP, or FUTURES by multi-dimensional criteria: price range, 24h change %, market cap, 24h volume (USD), funding rate (SWAP), open interest (USD), listing time. Returns ranked rows with full ticker snapshot. Use to find top movers, high-OI contracts, newly listed tokens, etc. No credentials required. Do NOT use to get OI change rankings across contracts - use market_filter_oi_change instead. Do NOT use to get OI time series for a single instrument - use market_get_oi_history instead.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SPOT",
+                    "SWAP",
+                    "FUTURES"
+                  ],
+                  "description": "Instrument type to scan. OPTION is not supported."
+                },
+                "baseCcy": {
+                  "type": "string",
+                  "description": "Filter by base currency, e.g. BTC"
+                },
+                "quoteCcy": {
+                  "type": "string",
+                  "description": "Filter by quote currency. Comma-separated list supported, e.g. USDT or USDT,USDC"
+                },
+                "settleCcy": {
+                  "type": "string",
+                  "description": "Filter by settlement currency (SWAP/FUTURES only), e.g. USDT"
+                },
+                "instFamily": {
+                  "type": "string",
+                  "description": "Filter by instrument family (SWAP/FUTURES only), e.g. BTC-USD"
+                },
+                "ctType": {
+                  "type": "string",
+                  "enum": [
+                    "linear",
+                    "inverse"
+                  ],
+                  "description": "Contract type filter (SWAP/FUTURES only): linear or inverse"
+                },
+                "minLast": {
+                  "type": "string",
+                  "description": "Minimum last price (USD), e.g. 10000"
+                },
+                "maxLast": {
+                  "type": "string",
+                  "description": "Maximum last price (USD), e.g. 100000"
+                },
+                "minChg24hPct": {
+                  "type": "string",
+                  "description": "Minimum 24h price change %, e.g. -5 means -5%"
+                },
+                "maxChg24hPct": {
+                  "type": "string",
+                  "description": "Maximum 24h price change %, e.g. 10 means 10%"
+                },
+                "minMarketCapUsd": {
+                  "type": "string",
+                  "description": "Minimum market cap in USD (SPOT only; ignored for SWAP/FUTURES)"
+                },
+                "maxMarketCapUsd": {
+                  "type": "string",
+                  "description": "Maximum market cap in USD (SPOT only; ignored for SWAP/FUTURES)"
+                },
+                "minVolUsd24h": {
+                  "type": "string",
+                  "description": "Minimum 24h volume in USD"
+                },
+                "maxVolUsd24h": {
+                  "type": "string",
+                  "description": "Maximum 24h volume in USD"
+                },
+                "minFundingRate": {
+                  "type": "string",
+                  "description": "Minimum funding rate (SWAP only), e.g. 0.0001"
+                },
+                "maxFundingRate": {
+                  "type": "string",
+                  "description": "Maximum funding rate (SWAP only), e.g. 0.001"
+                },
+                "minOiUsd": {
+                  "type": "string",
+                  "description": "Minimum open interest in USD"
+                },
+                "maxOiUsd": {
+                  "type": "string",
+                  "description": "Maximum open interest in USD"
+                },
+                "sortBy": {
+                  "type": "string",
+                  "enum": [
+                    "last",
+                    "chg24hPct",
+                    "marketCapUsd",
+                    "volUsd24h",
+                    "fundingRate",
+                    "oiUsd",
+                    "listTime"
+                  ],
+                  "description": "Sort field. Default: volUsd24h. Note: marketCapUsd is only meaningful for SPOT (null for SWAP/FUTURES). To rank by OI *change* (oiDeltaPct / absOiDeltaPct), use market_filter_oi_change - market_filter only sorts by the current snapshot."
+                },
+                "sortOrder": {
+                  "type": "string",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ],
+                  "description": "Sort order: asc or desc. Default: desc"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results to return (default 20, max 100)"
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Screen Instruments",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_oi_history",
+            "title": "Get Open Interest History",
+            "description": "Get open interest (OI) history time series for a single SWAP or FUTURES instrument. Returns per-bar OI in contracts, base currency and USD, plus bar-over-bar delta and delta %. Useful for tracking how OI evolves around price moves. No credentials required. Do NOT use to compare OI changes across multiple contracts - use market_filter_oi_change instead. Do NOT use to screen instruments by current OI level - use market_filter instead.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Instrument ID, e.g. BTC-USDT-SWAP"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "5m",
+                    "15m",
+                    "1H",
+                    "4H",
+                    "1D"
+                  ],
+                  "description": "Bar size: 5m, 15m, 1H, 4H, 1D. Default: 1H"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Number of data points to return (default 50, max 500)"
+                },
+                "ts": {
+                  "type": "number",
+                  "description": "Return bars with timestamp <= this value (Unix ms). Used for historical pagination."
+                }
+              },
+              "required": [
+                "instId"
+              ]
+            },
+            "annotations": {
+              "title": "Get Open Interest History",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_filter_oi_change",
+            "title": "Find Open Interest Change Instruments",
+            "description": "Find SWAP or FUTURES instruments with significant open interest changes over a given bar window. Returns ranked rows with current OI (USD), previous OI (USD), OI delta (USD and %), price change %, 24h volume and funding rate. Ideal for spotting unusual accumulation/distribution or confirming trend momentum. No credentials required. Do NOT use to get OI time series for a single instrument - use market_get_oi_history instead. Do NOT use to screen by current OI absolute level or other non-OI metrics - use market_filter instead.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instType": {
+                  "type": "string",
+                  "enum": [
+                    "SWAP",
+                    "FUTURES"
+                  ],
+                  "description": "Instrument type: SWAP or FUTURES"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "5m",
+                    "15m",
+                    "1H",
+                    "4H",
+                    "1D"
+                  ],
+                  "description": "Bar window for OI change computation: 5m, 15m, 1H, 4H, 1D (case-insensitive on server, but send canonical form here). Default: 1H"
+                },
+                "minOiUsd": {
+                  "type": "string",
+                  "description": "Minimum current OI in USD (filters small/illiquid contracts)"
+                },
+                "minVolUsd24h": {
+                  "type": "string",
+                  "description": "Minimum 24h volume in USD (filters low-activity contracts)"
+                },
+                "minAbsOiDeltaPct": {
+                  "type": "string",
+                  "description": "Minimum absolute OI change % threshold, e.g. 1.0 means |oiDeltaPct| >= 1.0%"
+                },
+                "sortBy": {
+                  "type": "string",
+                  "enum": [
+                    "oiUsd",
+                    "oiDeltaUsd",
+                    "oiDeltaPct",
+                    "absOiDeltaPct",
+                    "volUsd24h",
+                    "fundingRate",
+                    "last"
+                  ],
+                  "description": "Sort field. Default: oiDeltaPct (largest movers first, signed - longs and shorts separate). Use absOiDeltaPct to sort by |oiDeltaPct| (largest-magnitude moves regardless of direction). fundingRate is also supported for SWAP. Do NOT use the market_filter tool's sort fields (chg24hPct, marketCapUsd, listTime) here - they are not in the OI-change Row."
+                },
+                "sortOrder": {
+                  "type": "string",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ],
+                  "description": "Sort order: asc or desc. Default: desc"
+                },
+                "limit": {
+                  "type": "number",
+                  "description": "Max results to return (default 20, max 100)"
+                }
+              },
+              "required": [
+                "instType"
+              ]
+            },
+            "annotations": {
+              "title": "Find Open Interest Change Instruments",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_pair_spread",
+            "title": "Get Pair Spread",
+            "description": "Compute spread statistics between two instruments over a lookback window. Returns absolute and ratio spread (mean / stdDev / median / min / max) plus an optional realtime spread snapshot. Use to size pairs trades, detect mean-reversion setups, or compare cross-listed contracts. Results are cached ~60s per (pair, bar, window) tuple. Read-only, no credentials required.\nDo NOT use to fetch raw candles (use market_get_candles) or single-instrument OI/funding (use market_get_oi_history / market_filter_oi_change).",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instIdA": {
+                  "type": "string",
+                  "description": "First instrument ID, e.g. BTC-USDT-SWAP"
+                },
+                "instIdB": {
+                  "type": "string",
+                  "description": "Second instrument ID; must differ from instIdA"
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "5m",
+                    "15m"
+                  ],
+                  "description": "Bar size for the spread series. Default 15m. 1m is not supported."
+                },
+                "window": {
+                  "type": "string",
+                  "description": "Lookback window. Format <n><unit>, units m/H/D/W (case-sensitive), max 1W. Default 1W."
+                },
+                "backtestTime": {
+                  "type": "number",
+                  "description": "Anchor timestamp (ms epoch) for backtest mode. When provided, realtime is omitted."
+                }
+              },
+              "required": [
+                "instIdA",
+                "instIdB"
+              ]
+            },
+            "annotations": {
+              "title": "Get Pair Spread",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_get_indicator",
+            "title": "Get Technical Indicator",
+            "description": "Get technical indicator values for an instrument. Common indicators: ma, ema, rsi, macd, bb (Bollinger), kdj, supertrend, ahr999. Call market_list_indicators first to see all valid names. No credentials required.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "instId": {
+                  "type": "string",
+                  "description": "Instrument ID, e.g. BTC-USDT"
+                },
+                "indicator": {
+                  "type": "string",
+                  "description": "Indicator name (case-insensitive), e.g. 'rsi', 'macd', 'bb', 'ma', 'ema', 'kdj', 'supertrend'. Call market_list_indicators to see all valid names. Using an invalid name will return an error."
+                },
+                "bar": {
+                  "type": "string",
+                  "enum": [
+                    "3m",
+                    "5m",
+                    "15m",
+                    "1H",
+                    "4H",
+                    "12Hutc",
+                    "1Dutc",
+                    "3Dutc",
+                    "1Wutc"
+                  ],
+                  "description": "Timeframe. Default: 1H"
+                },
+                "params": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Indicator-specific parameters as a number array. Examples: MA/EMA [14] (period), MACD [12,26,9] (fast,slow,signal), BB [20,2] (period,stdDev), RSI [14] (period). For period-based indicators a parameter is required; the CLI applies a sensible default when omitted."
+                },
+                "returnList": {
+                  "type": "boolean",
+                  "description": "Return a historical list instead of the latest value only. Default: false"
+                },
+                "limit": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100,
+                  "description": "Number of historical records to return (only used when returnList=true). Default: 10"
+                },
+                "backtestTime": {
+                  "type": "integer",
+                  "description": "Backtest timestamp in milliseconds. Omit for live (real-time) mode"
+                }
+              },
+              "required": [
+                "instId",
+                "indicator"
+              ]
+            },
+            "annotations": {
+              "title": "Get Technical Indicator",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "market_list_indicators",
+            "title": "List Technical Indicators",
+            "description": "List all supported technical indicator names and descriptions. Call this before market_get_indicator to discover valid indicator names. No credentials required.",
+            "inputSchema": {
+              "type": "object",
+              "properties": {}
+            },
+            "annotations": {
+              "title": "List Technical Indicators",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": true
+            }
+          },
+          {
+            "name": "system_get_capabilities",
+            "title": "Server Capabilities Snapshot",
+            "description": "Return machine-readable server capabilities and module availability for agent planning.",
+            "inputSchema": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "annotations": {
+              "title": "Server Capabilities Snapshot",
+              "readOnlyHint": true,
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": false
+            }
+          }
+        ],
+        "server_args": [
+          "--import",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-mcp/dist/index.js",
+          "--modules",
+          "market",
+          "--read-only",
+          "--site",
+          "tr",
+          "--demo"
+        ],
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "c1df156aa3c44367b2a2a15a71f22b1b",
+      "timestamp": "2026-10-17T14:20:25.403021Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:market_get_instruments",
+          "request_ts": "2026-10-17T14:20:24.842Z",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 414.786958,
+          "success": true,
+          "response_hash": "c32e7a1631888faff197ec30878706e38c29d57b1e9962b724e7bd9c66fbab8c",
+          "status_code": "UNKNOWN",
+          "evidence_id": "c1df156aa3c44367b2a2a15a71f22b1b"
+        },
+        "transport": "mcp-stdio",
+        "site": "tr",
+        "read_only": true,
+        "has_auth": false,
+        "payload_redacted": false,
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "0a15e74c2b3b4391a23e4f25102ae496",
+      "timestamp": "2026-10-17T14:20:25.403026Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "models",
+      "message": "Bounded model HTTP attempt; response body withheld",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "EVREN:terms/status",
+          "request_ts": "2026-10-17T14:20:02.458756+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 203.1461250007851,
+          "success": true,
+          "response_hash": "6b12920a7c9ad193b8c652c1a19c01850a30715f9952e1354b5f469e5c7b3f1a",
+          "status_code": 200,
+          "evidence_id": "0a15e74c2b3b4391a23e4f25102ae496"
+        },
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+        "attempted": true,
+        "transport": "http",
+        "payload_redacted": true,
+        "success_scope": "HTTP_AND_JSON_ONLY; typed validation is recorded in CLASSIFY/REASON",
+        "model": null
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "b547abbc7f5f4b7b9a30b3c338eda02f",
+      "timestamp": "2026-10-17T14:20:25.403033Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "models",
+      "message": "Bounded model HTTP attempt; response body withheld",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "EVREN:models",
+          "request_ts": "2026-10-17T14:20:02.662185+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 53.96216599910986,
+          "success": true,
+          "response_hash": "ee13f6cc0083525ab55901a296ebca1ae935399ad49d00e6bbc4462e9373490b",
+          "status_code": 200,
+          "evidence_id": "b547abbc7f5f4b7b9a30b3c338eda02f"
+        },
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+        "attempted": true,
+        "transport": "http",
+        "payload_redacted": true,
+        "success_scope": "HTTP_AND_JSON_ONLY; typed validation is recorded in CLASSIFY/REASON",
+        "model": null
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "c1ce2920677e4d54889f1ae1b41832ef",
+      "timestamp": "2026-10-17T14:20:25.403037Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "ERROR",
+      "actor": "models",
+      "message": "Bounded model HTTP attempt; response body withheld",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "EVREN:probe_structured_output",
+          "request_ts": "2026-10-17T14:20:02.716547+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 15001.899708993733,
+          "success": false,
+          "response_hash": "UNKNOWN",
+          "status_code": "UNKNOWN",
+          "evidence_id": "c1ce2920677e4d54889f1ae1b41832ef"
+        },
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+        "attempted": true,
+        "transport": "http",
+        "payload_redacted": true,
+        "success_scope": "HTTP_AND_JSON_ONLY; typed validation is recorded in CLASSIFY/REASON",
+        "model": "deepseek-v4.1-flash"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "7794d9d005854c40b2008328ed1ce217",
+      "timestamp": "2026-10-17T14:20:25.403047Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "models",
+      "message": "Bounded model HTTP attempt; response body withheld",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "EVREN:probe_tool_calling",
+          "request_ts": "2026-10-17T14:20:17.718665+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 5920.585959000164,
+          "success": true,
+          "response_hash": "1a9f51f2cbc57d44e71c2e748733bfdb5d6b31fa34897d90b85119c3f9959520",
+          "status_code": 200,
+          "evidence_id": "7794d9d005854c40b2008328ed1ce217"
+        },
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+        "attempted": true,
+        "transport": "http",
+        "payload_redacted": true,
+        "success_scope": "HTTP_AND_JSON_ONLY; typed validation is recorded in CLASSIFY/REASON",
+        "model": "deepseek-v4.1-flash"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "909d957bb2f9434e9312e03cfeeb0fe5",
+      "timestamp": "2026-10-17T14:20:25.403052Z",
+      "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "models",
+      "message": "Bounded model HTTP attempt; response body withheld",
+      "details": {
+        "tool_call": {
+          "run_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+          "tool_id": "LAYA:classify",
+          "request_ts": "2026-10-17T14:20:25.297308+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 105.33295899222139,
+          "success": true,
+          "response_hash": "8bcfaa7ca1f81cbea16668b831acba2165fa93fe300c9fd113c61fe521bc2085",
+          "status_code": 200,
+          "evidence_id": "909d957bb2f9434e9312e03cfeeb0fe5"
+        },
+        "correlation_id": "5ed1022b545b4a7083eb3c2ff7ee8642",
+        "attempted": true,
+        "transport": "http",
+        "payload_redacted": true,
+        "success_scope": "HTTP_AND_JSON_ONLY; typed validation is recorded in CLASSIFY/REASON",
+        "model": null
+      },
+      "source_mode": "MARKET_ONLY"
+    }
+  ],
   "model_tools_executed": 0,
   "exchange_writes_attempted": 0,
   "scope": "Observed per-model response-format/tool-call behavior only; no tool execution or enforcement guarantee"

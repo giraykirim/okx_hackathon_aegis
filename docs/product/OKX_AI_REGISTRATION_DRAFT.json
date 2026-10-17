@@ -1,0 +1,24 @@
+{
+  "status": "DRAFT_NOT_SUBMITTED",
+  "agent": {
+    "name": "AEGIS",
+    "role": "asp",
+    "description": "Advisory pre-trade safety assessments for teams running trading agents. Deterministic policy checks, official market provenance and auditable evidence. Results never authorize exchange orders.",
+    "picture": null
+  },
+  "service": [
+    {
+      "serviceName": "Pre-trade Risk Check",
+      "serviceType": "A2MCP",
+      "fee": "0",
+      "endpoint": "https://tears-forms-inexpensive-geometry.trycloudflare.com/api/v1/risk/evaluate",
+      "serviceDescription": "Evaluates a proposed BTC-USDT intent using server-side market facts and deterministic policy; always advisory.\nrequest_id(string, required): idempotency key; symbol(string, required): BTC-USDT; proposed_action(string, required): BUY, SELL or NO_TRADE; proposed_notional(string, required): USDT Decimal; requester_context(object, optional): untrusted context, default null\nPOST\ncurl -X POST https://tears-forms-inexpensive-geometry.trycloudflare.com/api/v1/risk/evaluate -H 'Content-Type: application/json' -H \"X-AEGIS-Key: $AEGIS_PILOT_KEY\" -d '{\"request_id\":\"pilot-check-001\",\"symbol\":\"BTC-USDT\",\"proposed_action\":\"BUY\",\"proposed_notional\":\"10\"}'"
+    }
+  ],
+  "blockers": [
+    "Avatar upload required by verified CLI help",
+    "Endpoint is a temporary tunnel, not durable hosting",
+    "Marketplace delivery of private caller authentication is not verified; unauthenticated evaluation returns HTTP 401"
+  ],
+  "credentials_included": false
+}

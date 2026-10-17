@@ -6,7 +6,7 @@
 
 Correlation is idempotent within the deployment credential + server-selected source mode + policy version: the same request ID and effective intent returns the original timestamp/result/evidence IDs across restarts. Decimal spellings such as `10.0` and `10.00` are equivalent. Context is excluded because it has no authority. Reusing an ID with a different intent returns 409. A cached result is historical, not a new freshness guarantee; use a new ID for reassessment. Identical replays do not consume another assessment admission or append audit events.
 
-The response has the ten fields requested by Person 1's task. No current path emits ALLOW_FOR_FURTHER_CHECKS. This enum is reserved for a future implementation with verified prerequisites; it would still not authorize an exchange order. Chain receipt is always null today. Decimal input must be a plain decimal **string**, not a JSON number; NO_TRADE alone may use `"0"`.
+The response has the nine specified fields by Person 1's task. No current path emits ALLOW_FOR_FURTHER_CHECKS. This enum is reserved for a future implementation with verified prerequisites; it would still not authorize an exchange order. Chain receipt is always null today. Decimal input must be a plain decimal **string**, not a JSON number; NO_TRADE alone may use `"0"`.
 
 Context may contain harmless client hints, nulls and nested JSON, but is never forwarded to models, used in policy, or stored. Credential/private-balance fields and excessive nesting are rejected with sanitized validation errors; do not submit secrets. The body has the existing 2 KiB limit.
 

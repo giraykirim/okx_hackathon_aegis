@@ -1,0 +1,87 @@
+{
+  "recorded_at": "2026-10-17T14:18:12.719906+00:00",
+  "status": "PASS",
+  "evidence_kind": "REAL_HTTPS_TEMPORARY_PUBLIC_DEMO",
+  "base_url": "https://tears-forms-inexpensive-geometry.trycloudflare.com",
+  "permanent_deployment": false,
+  "tests": [
+    {
+      "path": "/api/health",
+      "http_status": 200,
+      "response_sha256": "71256ba3c0cc58f2eaccc824f5e819750e5c9c48db88ee1c29a4c33ec281b113"
+    },
+    {
+      "path": "/api/v1/service",
+      "http_status": 200,
+      "response_sha256": "a8f26f0436ce4930756e892b1defab652429900e603cec72f8891b7b838c9090"
+    },
+    {
+      "path": "/api/snapshot",
+      "http_status": 404,
+      "response_sha256": "d8142480624b749b3d42eaa606ac136440bd18bff5bb4c26642adf186982417f"
+    },
+    {
+      "path": "/api/events",
+      "http_status": 404,
+      "response_sha256": "d8142480624b749b3d42eaa606ac136440bd18bff5bb4c26642adf186982417f"
+    },
+    {
+      "path": "/docs",
+      "http_status": 404,
+      "response_sha256": "d8142480624b749b3d42eaa606ac136440bd18bff5bb4c26642adf186982417f"
+    },
+    {
+      "path": "/api/agent/start",
+      "http_status": 404
+    },
+    {
+      "path": "/api/agent/stop",
+      "http_status": 404
+    },
+    {
+      "path": "/api/v1/risk/evaluate",
+      "missing_auth_status": 401
+    },
+    {
+      "path": "/api/v1/risk/evaluate",
+      "authenticated_status": 200,
+      "request": {
+        "request_id": "public-d80897da9f664ef4882dd1fd3949ef1a",
+        "symbol": "BTC-USDT",
+        "proposed_action": "BUY",
+        "proposed_notional": "10"
+      },
+      "response": {
+        "request_id": "public-d80897da9f664ef4882dd1fd3949ef1a",
+        "verdict": "UNAVAILABLE",
+        "execution_authorized": false,
+        "reason_codes": [
+          "ACCOUNT_DATA_UNAVAILABLE",
+          "EXECUTION_NOT_AUTHORIZED",
+          "SERVER_MARKET_OBSERVED",
+          "EXECUTION_DISABLED",
+          "APPROVAL_UNAVAILABLE",
+          "UNKNOWN_ACCOUNT",
+          "LAYA_NOT_CLEAR",
+          "DETERMINISTIC_POLICY_EVALUATED",
+          "MODEL_ANALYSIS_NOT_REQUESTED"
+        ],
+        "evidence_ids": [
+          "e0079762e115449f997541914db4345a",
+          "65462baf9a3b4f39ae1d48b291ff22df",
+          "750d99c22e4d4b04a4bf3c732a8888d7",
+          "55ade017d8e645cfb69a048d56c925f3",
+          "fcf0f0304d0143f99ce215b7f8dc9b71",
+          "eb1bf5b68d144642b777978c1b77f6d1"
+        ],
+        "evaluated_at": "2026-10-17T14:18:10.732061Z",
+        "source_mode": "MARKET_ONLY",
+        "policy_version": "risk-service-1.1.0",
+        "chain_receipt": null
+      }
+    }
+  ],
+  "exchange_writes_attempted": 0,
+  "keys_published": false,
+  "external_independent_probe": "NOT_TESTED: web tool could not fetch temporary domain"
+}

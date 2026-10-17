@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-10-17T14:25:48.175086+00:00",
+  "evidence_kind": "REAL_LOCAL_BROWSER_UI",
+  "browser": "Opera",
+  "url": "http://127.0.0.1:3000/service",
+  "operator_session": "Local secret entered without exporting value; volatile component state only",
+  "request_id": "ui-risk-20261017-1424",
+  "source_label": "Live HTTP (/api/v1/risk/evaluate)",
+  "verdict": "UNAVAILABLE",
+  "execution_authorized": false,
+  "same_id_changed_intent": "Visible conflict error: restore inputs or use new request ID",
+  "original_intent_replay": "Original result restored",
+  "exchange_writes_attempted": 0,
+  "screenshot": "risk-service-live.png"
+}

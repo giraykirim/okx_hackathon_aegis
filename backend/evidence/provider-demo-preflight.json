@@ -1,0 +1,177 @@
+{
+  "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+  "recorded_at": "2026-10-17T12:25:44.759202+00:00",
+  "scope": "READ_ONLY_FORCED_DEMO_CONFIG_BALANCE_OPEN_ORDERS",
+  "site": "tr",
+  "exchange_writes_attempted": 0,
+  "payloads_redacted": true,
+  "persistent_demo_flags_changed": false,
+  "operations": [
+    {
+      "operation": "config",
+      "status": "PASS",
+      "reported_env": "demo",
+      "exit_code": 0,
+      "stdout_sha256": "288b4cd804252b6a72304545d0701be52d81d1e00a03df38808b29c56e937495",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "read_permission": true,
+      "trade_permission": true,
+      "withdraw_permission": false,
+      "cash_account": true,
+      "evidence_id": "9cac013c53704618a822eef3c0a7a9d1"
+    },
+    {
+      "operation": "balance",
+      "status": "PASS",
+      "reported_env": "demo",
+      "exit_code": 0,
+      "stdout_sha256": "025c396964bfb1cf5c10098a95d1d9fbbacaf9824e5748e2cefb2c85b1015ae2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evidence_id": "e09bb370af04426da53bd4637ce8720c"
+    },
+    {
+      "operation": "orders",
+      "status": "PASS",
+      "reported_env": "demo",
+      "exit_code": 0,
+      "stdout_sha256": "8a6bad86184a9ec7bf758321a8b1cb817d02112d9eaae63f847b9cf10e1e5ade",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evidence_id": "22dadff15fb64a049a2363ef8fdb2201"
+    }
+  ],
+  "status": "PASS",
+  "order_submission": "NOT_TESTED",
+  "order_reconciliation": "NOT_TESTED",
+  "events": [
+    {
+      "id": "ce704a29c1184f079cdbda730adffd8f",
+      "timestamp": "2026-10-17T12:25:46.778466Z",
+      "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+          "tool_id": "local:official-atk-package-inspection",
+          "request_ts": "2026-10-17T12:25:44.758218+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 0.9240840008715168,
+          "success": true,
+          "response_hash": "a0137159c5494ffb9d01dee754380a077ec3aca0c6f755b87e4a98185553b6a2",
+          "status_code": "UNKNOWN",
+          "evidence_id": "ce704a29c1184f079cdbda730adffd8f"
+        },
+        "packages": {
+          "okx-trade-cli": true,
+          "okx-trade-mcp": true
+        },
+        "private_capabilities": "NOT_TESTED until authenticated demo operation is actually observed",
+        "demo_gate": {
+          "enabled": false,
+          "region_confirmed": false,
+          "isolated_demo_ready": false,
+          "personal_profile_used": false
+        },
+        "correlation_id": "952dd654ff0c4f0384ef9a55ae90353a"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "9cac013c53704618a822eef3c0a7a9d1",
+      "timestamp": "2026-10-17T12:25:46.778536Z",
+      "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+          "tool_id": "@okx_ai/okx-trade-cli@1.4.8:config",
+          "request_ts": "2026-10-17T12:25:44.759801+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 620.5000839981949,
+          "success": true,
+          "response_hash": "0bc92b7ed3e5b57ce8f94e5076926b530d86329b9bd10948c148f2e4af27c235",
+          "status_code": "UNKNOWN",
+          "evidence_id": "9cac013c53704618a822eef3c0a7a9d1"
+        },
+        "transport": "official-cli",
+        "site": "tr",
+        "payload_redacted": true,
+        "forced_demo": true,
+        "read_only_operation": true,
+        "correlation_id": "952dd654ff0c4f0384ef9a55ae90353a"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "e09bb370af04426da53bd4637ce8720c",
+      "timestamp": "2026-10-17T12:25:46.778545Z",
+      "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+          "tool_id": "@okx_ai/okx-trade-cli@1.4.8:balance",
+          "request_ts": "2026-10-17T12:25:45.380731+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 641.4163339941297,
+          "success": true,
+          "response_hash": "499501babd3cfc661c8c94716a7b62caccb0471e7e93f49064a5556aa986a854",
+          "status_code": "UNKNOWN",
+          "evidence_id": "e09bb370af04426da53bd4637ce8720c"
+        },
+        "transport": "official-cli",
+        "site": "tr",
+        "payload_redacted": true,
+        "forced_demo": true,
+        "read_only_operation": true,
+        "correlation_id": "952dd654ff0c4f0384ef9a55ae90353a"
+      },
+      "source_mode": "MARKET_ONLY"
+    },
+    {
+      "id": "22dadff15fb64a049a2363ef8fdb2201",
+      "timestamp": "2026-10-17T12:25:46.778549Z",
+      "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+      "type": "tool_call",
+      "severity": "INFO",
+      "actor": "atk",
+      "message": "Sanitized official ATK invocation evidence",
+      "details": {
+        "tool_call": {
+          "run_id": "952dd654ff0c4f0384ef9a55ae90353a",
+          "tool_id": "@okx_ai/okx-trade-cli@1.4.8:orders",
+          "request_ts": "2026-10-17T12:25:46.022450+00:00",
+          "source_ts": "UNKNOWN",
+          "source_mode": "MARKET_ONLY",
+          "symbol": "BTC-USDT",
+          "latency_ms": 755.3371249960037,
+          "success": true,
+          "response_hash": "cec37bb90954e46e44fc05aa02fc4d4e979105bbc5a2a1b856d7e10bbf835557",
+          "status_code": "UNKNOWN",
+          "evidence_id": "22dadff15fb64a049a2363ef8fdb2201"
+        },
+        "transport": "official-cli",
+        "site": "tr",
+        "payload_redacted": true,
+        "forced_demo": true,
+        "read_only_operation": true,
+        "correlation_id": "952dd654ff0c4f0384ef9a55ae90353a"
+      },
+      "source_mode": "MARKET_ONLY"
+    }
+  ]
+}

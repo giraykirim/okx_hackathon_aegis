@@ -1,0 +1,10 @@
+# Example only. Supply an actual owned DNS name; nothing has been published.
+{$AEGIS_SERVICE_DOMAIN} {
+    @service path /api/health /api/v1/service /api/v1/risk/evaluate
+    handle @service {
+        reverse_proxy 127.0.0.1:8002
+    }
+    handle {
+        respond "Not found" 404
+    }
+}

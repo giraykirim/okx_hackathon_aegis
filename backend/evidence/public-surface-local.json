@@ -1,0 +1,36 @@
+{
+  "scope": "LOCAL_ONLY_NOT_PUBLIC_DEPLOYMENT",
+  "origin": "http://127.0.0.1:8002",
+  "public_health_test": "NOT_TESTED_NO_PUBLIC_URL",
+  "checks": {
+    "/api/health": {
+      "http_status": 200,
+      "body": {
+        "status": "ok",
+        "running": false,
+        "source_mode": "MARKET_ONLY",
+        "live_execution_enabled": false
+      }
+    },
+    "/api/v1/service": {
+      "http_status": 200,
+      "body": null
+    },
+    "/api/agent/start": {
+      "http_status": 404,
+      "body": null
+    },
+    "/api/events": {
+      "http_status": 404,
+      "body": null
+    },
+    "/docs": {
+      "http_status": 404,
+      "body": null
+    },
+    "assessment_without_auth": {
+      "http_status": 401
+    }
+  },
+  "exchange_writes_attempted": 0
+}

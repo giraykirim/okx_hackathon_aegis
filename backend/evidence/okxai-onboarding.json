@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-10-17T14:20:20.735968+00:00",
+  "evidence_kind": "REAL_OFFICIAL_ONCHAINOS_ACCOUNT_PREFLIGHT",
+  "cli_version": "onchainos 4.6.4",
+  "login_verified": true,
+  "asp_precheck": {
+    "ok": true,
+    "canCreate": true,
+    "aspCount": 0,
+    "existing_same_role_count": 0,
+    "uniqueness": "multiple"
+  },
+  "registration": "NOT_SUBMITTED",
+  "marketplace_listing": "NOT_LISTED",
+  "identity_addresses_account_ids_and_tokens_redacted": true,
+  "consent_submission_attempted": false,
+  "onchain_writes_attempted": 0
+}

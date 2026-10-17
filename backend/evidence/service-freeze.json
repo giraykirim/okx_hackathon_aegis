@@ -1,0 +1,84 @@
+{
+  "recorded_at": "2026-10-17T14:24:56.275184+00:00",
+  "core_commit": "eb2eea0a8cafaa1690f34f6ebdd77fbdc75d029c",
+  "branch": "codex/person1-laya-coordination",
+  "tests": {
+    "backend_pytest": {
+      "passed": 208,
+      "failed": 0,
+      "warnings": 1,
+      "command": "cd backend && uv run pytest -q --junitxml=evidence/freeze-tests.xml"
+    },
+    "frontend_vitest": {
+      "passed": 57,
+      "failed": 0,
+      "command": "cd frontend && npx vitest run"
+    },
+    "evm_vitest": {
+      "passed": 3,
+      "failed": 0,
+      "command": "cd web3 && npm test"
+    },
+    "ruff": "PASS",
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "next_production_build": "PASS",
+    "frozen_openapi": "PASS",
+    "secret_value_scan": "PASS: 8 configured secret values absent from 138 inspected source/evidence/static bundle files"
+  },
+  "proofs": {
+    "backend/evidence/system-status-http.json": "13b22a073d9d65ab9ec3b2666f931a694b1fa7cdbb6d0c71d5504ae7480dd5a4",
+    "backend/evidence/risk-service-bff.json": "4d2676555b772288df3439c57d460bc4ee09f77dfaa91a43746b43f4b173b275",
+    "backend/evidence/exchange-readiness.json": "7e40f534142cd8dcb94337602eed8e744d1f1b295f26ce27e5df02f2336854a3",
+    "backend/evidence/public-service-http.json": "118a4f6cf2a5f608f3dfcc16e0f1e44776ab9d318c5c1562790f2bd3e2597b2d",
+    "backend/evidence/public-surface-local.json": "2668703368a99898f579ba6edc5f8ca8622c91bd80b5eb0bfa3e5fab0340efff",
+    "backend/evidence/models.json": "1b55f182ddf48d21a4b8b4e397fc9aa5459622caaa9870b2f16851cf109c4ac3",
+    "backend/evidence/models-feature-timeouts.json": "314e0cf096389d458c940cbfeec3a987d495ba2d716f6b4aef5b8605713f04f1",
+    "backend/evidence/okxai-onboarding.json": "ca0e45a483843f669ac29a4926748f72ca7682aae9f8579f7ce41aef257fa623",
+    "backend/evidence/freeze-tests.xml": "9f27cbf2b27d74f018e8bf535d87f73f88fd1208f30f4935ee4ee99e67c4dc6f",
+    "backend/evidence/provider-live-smoke.json": "24c38da87ac67d918884bd64f91a2d1911bc940853a97d5cbfa479dbcec10c0f",
+    "backend/evidence/risk-service-ui.json": "52f325eeb195b355b44f62d8b77e3f16c946ea62e6585ee84122ae586a83a029",
+    "docs/evidence/risk-service-live.png": "d2e0218b12bf2282e1a2e4e4758dea9cdfe884f07ad29da6dc6b70d7e3265ba5",
+    "docs/evidence/system-status-verified.png": "5f91daa7fa08e54ed44d1b343ac3fd2e1cb12a72967a07656fbb9427627f38c8"
+  },
+  "temporary_public_service": {
+    "url": "https://tears-forms-inexpensive-geometry.trycloudflare.com",
+    "status": "HTTPS_SELF_CHECK_PASS",
+    "permanent_host": false,
+    "independent_device_probe": "NOT_TESTED",
+    "controls_exposed": false
+  },
+  "okxai": {
+    "official_cli": "onchainos 4.6.4",
+    "login": "PASS",
+    "asp_precheck": "PASS",
+    "registration": "NOT_SUBMITTED",
+    "listing": "NOT_LISTED"
+  },
+  "exchange": {
+    "public_market_read": "PASS",
+    "forced_demo_account_read": "PASS",
+    "order_submission": "NOT_TESTED",
+    "order_reconciliation": "NOT_TESTED",
+    "writes_attempted": 0,
+    "vetoes": [
+      "approval_unavailable",
+      "laya_not_clear",
+      "excess_exposure"
+    ]
+  },
+  "rubric_maxima": [
+    25,
+    20,
+    20,
+    15,
+    10,
+    10
+  ],
+  "earned_score": null,
+  "ml_source_edited": false,
+  "freeze_limit": "Further runtime changes require targeted revalidation. Time-dependent upstream availability and transient tunnel lifetime are not guaranteed.",
+  "integration_commit": "af081c7d9407d4f1f8a88a7bd237850f7d558fc6",
+  "upstream_main": "254773a",
+  "p2_note": "P2-only policy/training commits merged without editing their source; selected live base remains unchanged. Reported 249 ML tests were not independently rerun by Person 1."
+}

@@ -1,6 +1,16 @@
 # Person 3 handoff — additive service and receipts
 
-Service 1.1 update: the exact frozen integration bundle and fixtures are now in [contracts/PERSON3_HANDOFF.md](../../contracts/PERSON3_HANDOFF.md). Prefer that file for the new request_id/proposed_notional contract, UNAVAILABLE/BLOCK verdicts and nullable chain receipt. The earlier quantity form and its assessment_sha256 receipt proposal below remain available as legacy compatibility; the notional response intentionally uses the ten fields requested and has no extra digest field.
+## Current integration freeze — 2026-10-17
+
+Core SHA: `eb2eea0a8cafaa1690f34f6ebdd77fbdc75d029c`. Backend 208 tests, frontend 57 tests and EVM 3 tests executed successfully; frozen contract unchanged.
+
+The user authorized the Fuji and System Status integration in this chat. Upstream main was merged at 36ee0cdfbfc5ec70f79a23052cf2a52b39ef8cc0, preserving the upstream state helpers and working MetaMask panels. Agent #273 and the HALT receipt are verified; backend frozen DTOs remain unchanged and the frontend BFF performs fresh read-only Fuji verification. No Person 3 chat exists; this document is the coordination handoff, not their acknowledgment.
+
+GET /api/v1/service remains version 1.1.0 with public_url=null. The notional form now invokes the same Python gate; its schema is unchanged. Use SERVICE_OPERATIONS.md, OKX_AI_LISTING_READINESS.md and contracts/laya-trusted-context-v1.json. A temporary restricted HTTPS endpoint was tested (`backend/evidence/public-service-http.json`), but durable hosting and an independent-device probe remain missing; keep the transient tunnel out of stable Gist service metadata. Keep services=[] and active=false. No A2A/agent card is implemented or published. OKX A2MCP is a candidate route, not an approved listing.
+
+The following original handoff is historical and is superseded by this section where implementation status differs.
+
+Service 1.1 update: the exact frozen integration bundle and fixtures are now in [contracts/PERSON3_HANDOFF.md](../../contracts/PERSON3_HANDOFF.md). Prefer that file for the new request_id/proposed_notional contract, UNAVAILABLE/BLOCK verdicts and nullable chain receipt. The earlier quantity form and its assessment_sha256 receipt proposal below remain available as legacy compatibility; the notional response intentionally uses the nine specified fields and has no extra digest field.
 
 No Person 3 chat exists, and the user reports Prompt 00 has not been implemented on that machine. This file is the coordination artifact; it is not an acknowledgment from Person 3. Person 1 has not edited `frontend/**`, `web3/**` or `docs/pitch/**`.
 
