@@ -1,0 +1,20 @@
+{
+  "chainId": 43113,
+  "registryAddress": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+  "reputationRegistryAddress": "0x8004B663056A597Dffe9eCcC1965A193B7388713",
+  "agentId": null,
+  "owner": null,
+  "registrationTxHash": null,
+  "explorerUrl": null,
+  "agentURI": null,
+  "timestamp": "2026-10-17T10:56:55.975Z",
+  "verified": false,
+  "verification_status": "NOT_TESTED",
+  "reason": "FUJI_TEST_WALLET_PRIVATE_KEY not configured locally. No on-chain write attempted; zero fabricated IDs or tx hashes.",
+  "reputation": {
+    "status": "READ_ONLY_READY",
+    "feedback_count": 0,
+    "summary_display": "No independent feedback yet",
+    "note": "Self-feedback is disallowed by protocol rules; no agentId minted yet."
+  }
+}
