@@ -1,28 +1,28 @@
 {
-  "pid": 11592,
+  "pid": 24808,
   "host": "0.0.0.0",
   "port": 8771,
-  "model_version": "aegis-laya-v2-tuned-seed17-ff0ead58337a",
-  "checkpoint_version": "ff0ead58337ab6bc2a6355e5568042d14a9375cdd25f7f44c9d44e4a69c2eb1f",
+  "model_version": "aegis-laya-v2-tuned-seed17-7f6e5b070b1d",
+  "checkpoint_version": "7f6e5b070b1d3c9b37363fd3255ecf0bcec6cc23bd23c3997d398cef6d2d66f8",
   "selected": "v2-tuned-seed17",
   "checkpoint_hashes": {
-    "model.safetensors": "f9a3f1497783ee7328ab51371c5121357a53da92ffc143586f95df3c3a236b7c",
+    "model.safetensors": "6bfdbf025ab52e23c2ff364975b03108ad0b42bc2037eb22f59448ef39520205",
     "questions.json": "8caa8e6f75f6b381f60ef9bb23a751be95baeb2ca1b655daf27b45c903d261f8",
-    "rl_agent_config.json": "f0559e9aee89540dc1553823887ed8a31d515d3a35929617cbf7b8346d0edc79",
-    "train_report.json": "d6b31e0b85379c9af6a32e2495366ac8352690068a2a4f15d863d9bbd61a296f",
+    "rl_agent_config.json": "6aefb8e8cdf8e17c1a9dd118e6c3bf3bdf8c7a70381103beac06d3dadf31e073",
+    "train_report.json": "c49fae67da8474e2c70b4de59c09017f68e9a73c7aae9f6cc10faf0f25f60f14",
     "encoder\\config.json": "8525cf5ff496c47b5feacf2464bc658c608102894f348f6171542d73de3bbf33",
     "tokenizer\\tokenizer.json": "0b3214f8efe1327290428b84e5d344ff3f2442686c1b89fb7b42c13a79ce6779",
-    "tokenizer\\tokenizer_config.json": "e07bcb74963b20b1193332afd3541b36dea30db1e4183d4002d739d5a4dfd5d2"
+    "tokenizer\\tokenizer_config.json": "4fd0734a3efc16861cda2749a9cb2106ca704a121f44375b94feb7853ac1fd17"
   },
   "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
   "laya": "0.4.8",
   "torch": "2.14.1+cu130",
   "warmup_real_inference": {
     "label": "CONTINUE",
-    "confidence": 0.8708,
+    "confidence": 1.0,
     "abstained": false,
-    "model_version": "aegis-laya-v2-tuned-seed17-ff0ead58337a",
-    "latency_ms": 481.501
+    "model_version": "aegis-laya-v2-tuned-seed17-7f6e5b070b1d",
+    "latency_ms": 562.701
   },
   "shadow_only": true,
   "execution_authority": false,

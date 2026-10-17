@@ -1,0 +1,179 @@
+{
+  "run_id": "option1-881rows-20261017T224137698785Z",
+  "created_utc": "2026-10-17T22:42:40.557568+00:00",
+  "seed": 17,
+  "dataset_summary": {
+    "total_rows": 881,
+    "v2_human_confirmed_rows": 161,
+    "atk_lifecycle_rows": 720,
+    "unique_normalized_states": 205,
+    "length_buckets": {
+      "205": 2,
+      "206": 1,
+      "207": 1,
+      "208": 137,
+      "209": 4,
+      "210": 19,
+      "211": 41
+    },
+    "label_counts_881": {
+      "CONTINUE": 276,
+      "REVIEW": 364,
+      "HALT": 241
+    }
+  },
+  "timing_seconds": {
+    "model_load_seconds": 6.548,
+    "encoder_precompute_seconds": 3.896,
+    "head_scorer_train_seconds": 49.358,
+    "total_wall_seconds": 62.859
+  },
+  "option1_config": {
+    "epochs": 400,
+    "head_lr": 8e-05,
+    "scorer_lr": 0.0015,
+    "weight_decay": 0.0,
+    "safety_penalty_weight": 0.3,
+    "temperature": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "precision": "bf16_encoder_fp32_head_tf32_matmul",
+    "encoder_batching": "length_bucketed_zero_padding",
+    "encoder_frozen": true,
+    "dataset_composition": "161_v2_human_confirmed_plus_720_atk_lifecycle_total_881"
+  },
+  "combined_881_metrics": {
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 276,
+        "REVIEW": 0,
+        "HALT": 0
+      },
+      "REVIEW": {
+        "CONTINUE": 0,
+        "REVIEW": 344,
+        "HALT": 20
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 0,
+        "HALT": 241
+      }
+    },
+    "macro_f1": 0.9773035916597265,
+    "halt_to_continue": 0,
+    "review_to_continue": 0,
+    "continue_recall": 1.0,
+    "invalid_outputs": 0,
+    "truncated_rows": 0,
+    "accepted": true,
+    "accuracy": 0.9772985244040863,
+    "correct": 861,
+    "total": 881,
+    "mean_confidence": 0.9915
+  },
+  "atk_720_metrics": {
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 240,
+        "REVIEW": 0,
+        "HALT": 0
+      },
+      "REVIEW": {
+        "CONTINUE": 0,
+        "REVIEW": 268,
+        "HALT": 20
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 0,
+        "HALT": 192
+      }
+    },
+    "macro_f1": 0.9715079421611227,
+    "halt_to_continue": 0,
+    "review_to_continue": 0,
+    "continue_recall": 1.0,
+    "invalid_outputs": 0,
+    "truncated_rows": 0,
+    "accepted": true,
+    "accuracy": 0.9722222222222222,
+    "correct": 700,
+    "total": 720,
+    "mean_confidence": 0.9901
+  },
+  "v2_161_cached_metrics": {
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 36,
+        "REVIEW": 0,
+        "HALT": 0
+      },
+      "REVIEW": {
+        "CONTINUE": 0,
+        "REVIEW": 76,
+        "HALT": 0
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 0,
+        "HALT": 49
+      }
+    },
+    "macro_f1": 1.0,
+    "halt_to_continue": 0,
+    "review_to_continue": 0,
+    "continue_recall": 1.0,
+    "invalid_outputs": 0,
+    "truncated_rows": 0,
+    "accepted": true,
+    "accuracy": 1.0,
+    "correct": 161,
+    "total": 161,
+    "mean_confidence": 0.9979
+  },
+  "development_fit": {
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 36,
+        "REVIEW": 0,
+        "HALT": 0
+      },
+      "REVIEW": {
+        "CONTINUE": 0,
+        "REVIEW": 76,
+        "HALT": 0
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 0,
+        "HALT": 49
+      }
+    },
+    "macro_f1": 1.0,
+    "halt_to_continue": 0,
+    "review_to_continue": 0,
+    "continue_recall": 1.0,
+    "invalid_outputs": 0,
+    "truncated_rows": 0,
+    "accepted": true,
+    "accuracy": 1.0,
+    "correct": 161,
+    "total": 161,
+    "mean_confidence": 0.9979
+  },
+  "checkpoint": "models\\reviewed_development\\option1-881rows-20261017T224137698785Z\\seed-17",
+  "checkpoint_hashes": {
+    "model.safetensors": "6bfdbf025ab52e23c2ff364975b03108ad0b42bc2037eb22f59448ef39520205",
+    "questions.json": "8caa8e6f75f6b381f60ef9bb23a751be95baeb2ca1b655daf27b45c903d261f8",
+    "rl_agent_config.json": "6aefb8e8cdf8e17c1a9dd118e6c3bf3bdf8c7a70381103beac06d3dadf31e073",
+    "train_report.json": "c49fae67da8474e2c70b4de59c09017f68e9a73c7aae9f6cc10faf0f25f60f14",
+    "encoder\\config.json": "8525cf5ff496c47b5feacf2464bc658c608102894f348f6171542d73de3bbf33",
+    "tokenizer\\tokenizer.json": "0b3214f8efe1327290428b84e5d344ff3f2442686c1b89fb7b42c13a79ce6779",
+    "tokenizer\\tokenizer_config.json": "4fd0734a3efc16861cda2749a9cb2106ca704a121f44375b94feb7853ac1fd17"
+  },
+  "checkpoint_version": "7f6e5b070b1d3c9b37363fd3255ecf0bcec6cc23bd23c3997d398cef6d2d66f8",
+  "protected_files_unchanged": true
+}
