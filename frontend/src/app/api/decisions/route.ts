@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  RECORDED_MOCK_SCENARIOS,
-  RECORDED_SNAPSHOT_MARKET_ONLY,
-} from "@/lib/fixtures";
+import { RECORDED_SNAPSHOT_MARKET_ONLY } from "@/lib/fixtures";
 import { fetchBackendJson } from "@/lib/server-backend";
 import type { Decision } from "@/lib/types";
 
@@ -22,12 +19,9 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const fallbackDecisions: Decision[] = [
-    ...(RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision
-      ? [RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision]
-      : []),
-    RECORDED_MOCK_SCENARIOS.stale_feed.decision,
-  ];
+  const fallbackDecisions: Decision[] = RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision
+    ? [RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision]
+    : [];
   return NextResponse.json(fallbackDecisions.slice(0, limit), {
     headers: {
       "X-AEGIS-Backend-Status": "OFFLINE_FIXTURE",

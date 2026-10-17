@@ -19,8 +19,12 @@ import {
   RECORDED_MOCK_SCENARIOS,
   RECORDED_SNAPSHOT_MARKET_ONLY,
 } from "@/lib/fixtures";
-import type { EventItem, Metrics, Snapshot } from "@/lib/types";
-import { buildPipelineSteps, type PipelineStepView } from "@/lib/view-helpers";
+import type { Decision, EventItem, Metrics, Snapshot } from "@/lib/types";
+import {
+  buildPipelineSteps,
+  deriveRuntimeStatusModel,
+  type PipelineStepView,
+} from "@/lib/view-helpers";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -29,6 +33,11 @@ export default function DashboardPage() {
   );
   const [events, setEvents] = React.useState<EventItem[]>(
     RECORDED_EVENTS_MARKET_ONLY
+  );
+  const [decisions, setDecisions] = React.useState<Decision[]>(
+    RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision
+      ? [RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision]
+      : []
   );
   const [metrics, setMetrics] = React.useState<Metrics | null>(
     RECORDED_METRICS_MARKET_ONLY
@@ -52,10 +61,11 @@ export default function DashboardPage() {
 
   const syncFromApi = React.useCallback(async () => {
     try {
-      const [snapRes, evRes, metRes] = await Promise.all([
+      const [snapRes, evRes, metRes, decRes] = await Promise.all([
         fetch("/api/snapshot", { cache: "no-store" }),
         fetch("/api/events?limit=100", { cache: "no-store" }),
         fetch("/api/metrics", { cache: "no-store" }),
+        fetch("/api/decisions?limit=50", { cache: "no-store" }),
       ]);
 
       const isLive = snapRes.headers.get("X-AEGIS-Backend-Status") === "LIVE";
@@ -63,19 +73,27 @@ export default function DashboardPage() {
 
       if (snapRes.ok) {
         const snapData = (await snapRes.json()) as Snapshot;
-        if (activePreset === "real_atk_no_trade" || isLive) {
+        if (activePreset === "real_atk_no_trade") {
           setSnapshot(snapData);
         }
       }
       if (evRes.ok) {
         const evData = (await evRes.json()) as EventItem[];
-        if (activePreset === "real_atk_no_trade" || isLive) {
+        if (activePreset === "real_atk_no_trade") {
           setEvents(evData);
         }
       }
       if (metRes.ok) {
         const metData = (await metRes.json()) as Metrics;
-        setMetrics(metData);
+        if (activePreset === "real_atk_no_trade") {
+          setMetrics(metData);
+        }
+      }
+      if (decRes.ok) {
+        const decData = (await decRes.json()) as Decision[];
+        if (activePreset === "real_atk_no_trade") {
+          setDecisions(decData);
+        }
       }
     } catch {
       setBackendLive(false);
@@ -83,13 +101,18 @@ export default function DashboardPage() {
   }, [activePreset]);
 
   React.useEffect(() => {
-    syncFromApi();
+    const initialTimer = setTimeout(() => {
+      void syncFromApi();
+    }, 0);
     const timer = setInterval(() => {
       if (activePreset === "real_atk_no_trade") {
-        syncFromApi();
+        void syncFromApi();
       }
     }, 6000);
-    return () => clearInterval(timer);
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(timer);
+    };
   }, [syncFromApi, activePreset]);
 
   // SSE subscription (`/api/stream` emitting `event: aegis`)
@@ -138,6 +161,12 @@ export default function DashboardPage() {
     if (preset === "real_atk_no_trade") {
       setSnapshot(RECORDED_SNAPSHOT_MARKET_ONLY);
       setEvents(RECORDED_EVENTS_MARKET_ONLY);
+      setDecisions(
+        RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision
+          ? [RECORDED_SNAPSHOT_MARKET_ONLY.latest_decision]
+          : []
+      );
+      setMetrics(RECORDED_METRICS_MARKET_ONLY);
       syncFromApi();
       return;
     }
@@ -154,6 +183,15 @@ export default function DashboardPage() {
     const chosen = RECORDED_MOCK_SCENARIOS[mapKey[preset]];
     setSnapshot(chosen.snapshot);
     setEvents(chosen.events);
+    setDecisions([chosen.decision]);
+    setMetrics({
+      decisions: 1,
+      vetoed: 1,
+      verified_exchange_orders: 0,
+      mock_executions: 0,
+      unresolved_orders: preset === "mock_unknown_order" ? 1 : 0,
+      pnl: null,
+    });
   };
 
   const handleStartAgent = async () => {
@@ -171,7 +209,9 @@ export default function DashboardPage() {
         },
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: "Request failed" }));
+        const err = await res
+          .json()
+          .catch(() => ({ detail: "Request failed" }));
         setControlError(err.detail || `HTTP ${res.status}`);
       } else {
         await syncFromApi();
@@ -198,7 +238,9 @@ export default function DashboardPage() {
         },
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: "Request failed" }));
+        const err = await res
+          .json()
+          .catch(() => ({ detail: "Request failed" }));
         setControlError(err.detail || `HTTP ${res.status}`);
       } else {
         await syncFromApi();
@@ -229,7 +271,9 @@ export default function DashboardPage() {
         body: JSON.stringify({ scenario }),
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: "Scenario failed" }));
+        const err = await res
+          .json()
+          .catch(() => ({ detail: "Scenario failed" }));
         setControlError(err.detail || `HTTP ${res.status}`);
       } else {
         await syncFromApi();
@@ -254,9 +298,31 @@ export default function DashboardPage() {
     router.push(`/activity?eventId=${id}`);
   };
 
+  const activeScenarioId =
+    activePreset === "real_atk_no_trade"
+      ? backendLive
+        ? "live_backend"
+        : "recorded_market_only"
+      : activePreset;
+
+  const runtimeStatus = deriveRuntimeStatusModel({
+    backendReachable: backendLive,
+    isOfflineFixture: !backendLive,
+    activeScenario: activeScenarioId,
+    sourceMode: snapshot.source_mode,
+    sseStatus:
+      sseState === "LIVE"
+        ? "LIVE"
+        : sseState === "CONNECTING"
+        ? "CONNECTING"
+        : "FALLBACK",
+    lastTimestampIso:
+      snapshot.observation?.observed_at || snapshot.last_cycle_at,
+  });
+
   const displayTime = snapshot.last_cycle_at
     ? snapshot.last_cycle_at.replace("T", " ").slice(0, 19) + " UTC"
-    : "2026-10-17 11:39:35 UTC";
+    : "Timestamp not recorded";
 
   return (
     <div className="min-h-screen bg-[#0A0D10] text-[#E6EDF3]">
@@ -267,6 +333,7 @@ export default function DashboardPage() {
         sseState={sseState}
         lastCycleAt={snapshot.last_cycle_at}
         observedAt={snapshot.observation?.observed_at ?? null}
+        activeScenario={activeScenarioId}
         onInspectProof={() => setProofModalOpen(true)}
         onOpenAdminModal={() => setAdminModalOpen(true)}
         adminUnlocked={Boolean(adminSecret)}
@@ -290,7 +357,7 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Overview Hero Header (Reference Set A) */}
+        {/* Overview Hero Header with Honest Runtime Connection State (P0-1) */}
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
           <div>
             <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9BA7B4]">
@@ -300,17 +367,32 @@ export default function DashboardPage() {
               AI-Powered Pre-Trade Risk Monitoring
             </h1>
             <p className="mt-1 text-sm text-[#9BA7B4]">
-              Observing markets. Evaluating opportunities. Enforcing deterministic risk policies. Always on your side.
+              {runtimeStatus.subtitle}
             </p>
           </div>
 
-          <div className="flex items-center gap-3 font-mono text-xs text-[#9BA7B4]">
-            <span>{displayTime}</span>
-            <span className="inline-flex items-center gap-1.5 font-medium text-[#4EE1C2]">
-              <span className="h-2 w-2 rounded-full bg-[#22C55E] animate-pulse" />
-              {backendLive
-                ? "System Online (Live FastAPI)"
-                : "Monitoring Ready (Verified Evidence)"}
+          <div className="flex flex-col items-start gap-1 sm:items-end font-mono text-xs text-[#9BA7B4]">
+            <div className="flex items-center gap-2.5">
+              <span>{displayTime}</span>
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-semibold ${
+                  runtimeStatus.tone === "mint"
+                    ? "border-[#4EE1C2]/40 bg-[#4EE1C2]/10 text-[#4EE1C2]"
+                    : runtimeStatus.tone === "teal"
+                    ? "border-[#14B8A6]/40 bg-[#14B8A6]/10 text-[#14B8A6]"
+                    : "border-[#F59E0B]/40 bg-[#F59E0B]/10 text-[#F59E0B]"
+                }`}
+              >
+                <span
+                  className={`h-2 w-2 rounded-full bg-current ${
+                    runtimeStatus.isLiveConnected ? "animate-pulse" : ""
+                  }`}
+                />
+                {runtimeStatus.badgeLabel}
+              </span>
+            </div>
+            <span className="text-[11px] text-[#6E7785]">
+              {runtimeStatus.relativeAgeText}
             </span>
           </div>
         </div>
@@ -325,33 +407,40 @@ export default function DashboardPage() {
           busy={controlBusy}
         />
 
-        {/* Hero Latest Decision Card (Reference Set A) */}
+        {/* Hero Latest Decision Card */}
         <HeroDecisionCard
           decision={snapshot.latest_decision}
           classification={snapshot.classification}
           observation={snapshot.observation}
+          capabilities={snapshot.capabilities}
+          backendLive={backendLive}
+          activeScenario={activeScenarioId}
           onInspectEvidenceId={handleInspectEvidenceId}
         />
 
-        {/* Compact 7-Stage Decision Pipeline (Reference Set A) */}
+        {/* Compact 7-Stage Decision Pipeline */}
         <PipelineSteps
           steps={pipelineSteps}
           selectedStepKey={selectedStepKey}
           onSelectStep={handleSelectStep}
         />
 
-        {/* 4 Animated Metric Cards with Sparklines (Reference Set A & D) */}
+        {/* 4 Metric Cards with Honest History Indicators */}
         <AnimatedMetricCards
           metrics={metrics}
+          decisions={decisions}
+          latestDecision={snapshot.latest_decision}
           eventsCount={events.length}
           sourceMode={snapshot.source_mode}
         />
 
-        {/* Latest Activity Preview + System Status Panel (Reference Set A) */}
+        {/* Latest Activity Preview + System Status Panel */}
         <OverviewBottomPanels
           events={events}
           capabilities={snapshot.capabilities}
           runId={snapshot.run_id}
+          backendLive={backendLive}
+          sourceMode={snapshot.source_mode}
         />
       </main>
 

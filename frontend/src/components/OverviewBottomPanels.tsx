@@ -18,12 +18,16 @@ interface OverviewBottomPanelsProps {
   events: EventItem[];
   capabilities: Record<string, Capability>;
   runId?: string | null;
+  backendLive?: boolean;
+  sourceMode?: string;
 }
 
 export function OverviewBottomPanels({
   events,
   capabilities,
   runId,
+  backendLive = false,
+  sourceMode = "MARKET_ONLY",
 }: OverviewBottomPanelsProps) {
   const [showAllCapabilities, setShowAllCapabilities] = React.useState(false);
 
@@ -50,9 +54,19 @@ export function OverviewBottomPanels({
 
   const getEventBadge = (ev: EventItem) => {
     if (ev.type === "RISK_GATE" || ev.type === "RISK_CHECK") {
+      const reasons = Array.isArray(ev.details?.reasons)
+        ? (ev.details?.reasons as string[])
+        : [];
+      const isVoluntaryNoTrade = reasons.includes("no_trade_proposed");
+      if (isVoluntaryNoTrade) {
+        return {
+          label: "SAFETY_GATE",
+          className: "border-[#F59E0B]/40 bg-[#F59E0B]/12 text-[#F59E0B]",
+        };
+      }
       return {
         label: "POLICY_VETOED",
-        className: "border-[#F59E0B]/40 bg-[#F59E0B]/12 text-[#F59E0B]",
+        className: "border-[#EF4444]/40 bg-[#EF4444]/12 text-[#EF4444]",
       };
     }
     if (ev.type === "NO_TRADE") {
@@ -69,7 +83,7 @@ export function OverviewBottomPanels({
     }
     if (ev.type === "AUDIT") {
       return {
-        label: "SEALED",
+        label: "RECORDED",
         className: "border-[#4EE1C2]/40 bg-[#4EE1C2]/12 text-[#4EE1C2]",
       };
     }
@@ -83,7 +97,7 @@ export function OverviewBottomPanels({
     if (type === "OBSERVE" || type === "ATK_RECEIPT") {
       return <Eye className="h-3.5 w-3.5 text-[#4EE1C2]" />;
     }
-    if (type === "RISK_GATE" || type === "NO_TRADE") {
+    if (type === "RISK_GATE" || type === "RISK_CHECK" || type === "NO_TRADE") {
       return <Ban className="h-3.5 w-3.5 text-[#F59E0B]" />;
     }
     if (type === "AUDIT") {
@@ -104,27 +118,53 @@ export function OverviewBottomPanels({
     capabilities.ATK_DEMO?.status ??
     "NOT_TESTED";
 
+  const isMock = sourceMode === "MOCK";
+
   const systemRows = [
     {
       label: "Market Data (OKX ATK CLI + MCP)",
-      status: atkMarketPass ? "Healthy" : "Simulated (Mock)",
-      dot: atkMarketPass ? "bg-[#22C55E]" : "bg-[#F59E0B]",
-      textClass: atkMarketPass ? "text-[#4EE1C2]" : "text-[#F59E0B]",
-      meta: totalAtkMs ? `${totalAtkMs} ms` : mcpPass ? "site=tr" : "mock",
+      status: isMock
+        ? "Mock Simulation"
+        : backendLive && atkMarketPass
+        ? "Live Connected"
+        : atkMarketPass
+        ? "Historical ATK Evidence"
+        : "Unavailable",
+      dot: isMock
+        ? "bg-[#F59E0B]"
+        : backendLive && atkMarketPass
+        ? "bg-[#22C55E]"
+        : "bg-[#F59E0B]",
+      textClass: isMock
+        ? "text-[#F59E0B]"
+        : backendLive && atkMarketPass
+        ? "text-[#4EE1C2]"
+        : "text-[#F59E0B]",
+      meta: isMock
+        ? "scripted"
+        : totalAtkMs
+        ? `${totalAtkMs} ms`
+        : mcpPass
+        ? "site=tr"
+        : "offline",
     },
     {
       label: "Risk Engine (Python Policy)",
-      status: "Healthy (Deterministic)",
+      status: backendLive
+        ? "Active (Deterministic)"
+        : "Deterministic Rules Loaded",
       dot: "bg-[#22C55E]",
       textClass: "text-[#4EE1C2]",
-      meta: "< 5 ms",
+      meta: "< 1 ms",
     },
     {
       label: "AI Models (LAYA / EVREN)",
       status:
         layaStatus === "PASS" && evrenStatus === "PASS"
-          ? "Healthy"
-          : "Advisory Fallback",
+          ? "Live Connected"
+          : isMock
+          ? "Scripted (Mock)"
+          : "Safe Fallback Active",
       dot:
         layaStatus === "PASS" && evrenStatus === "PASS"
           ? "bg-[#22C55E]"
@@ -139,15 +179,16 @@ export function OverviewBottomPanels({
       label: "Avalanche Fuji (ERC-8004)",
       status:
         erc8004Status === "PASS"
-          ? "Verified On-Chain"
-          : "Bytecode PASS (Mint NOT_TESTED)",
-      dot: erc8004Status === "PASS" ? "bg-[#22C55E]" : "bg-[#4EE1C2]",
-      textClass: "text-[#4EE1C2]",
-      meta: "Chain 43113",
+          ? "Registered & Verified"
+          : "ERC-8004 Registry Ready",
+      dot: erc8004Status === "PASS" ? "bg-[#22C55E]" : "bg-[#F59E0B]",
+      textClass:
+        erc8004Status === "PASS" ? "text-[#4EE1C2]" : "text-[#F59E0B]",
+      meta: erc8004Status === "PASS" ? "Chain 43113" : "Mint pending",
     },
     {
       label: "Exchange (Live / Demo Trade)",
-      status: demoStatus === "PASS" ? "Enabled" : "Disabled (Read-Only)",
+      status: demoStatus === "PASS" ? "Enabled (Demo)" : "Read-only · Disabled",
       dot: demoStatus === "PASS" ? "bg-[#22C55E]" : "bg-[#6E7785]",
       textClass: demoStatus === "PASS" ? "text-[#4EE1C2]" : "text-[#9BA7B4]",
       meta: demoStatus,
@@ -156,7 +197,7 @@ export function OverviewBottomPanels({
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-      {/* Left 7 Cols: LATEST ACTIVITY (Reference Set A) */}
+      {/* Left 7 Cols: LATEST ACTIVITY */}
       <section
         aria-label="Latest Activity Preview"
         className="aegis-card lg:col-span-7 flex flex-col justify-between rounded-2xl p-5"
@@ -216,7 +257,8 @@ export function OverviewBottomPanels({
 
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-[#2A3542]/60 pt-3 text-[11px] text-[#6E7785]">
           <span>
-            Off-chain reasoning & risk enforcement · On-chain Fuji proof anchoring
+            Off-chain reasoning & deterministic risk policy · Avalanche Fuji
+            43113 registry ready
           </span>
           <Link
             href="/activity"
@@ -227,7 +269,7 @@ export function OverviewBottomPanels({
         </div>
       </section>
 
-      {/* Right 5 Cols: SYSTEM STATUS & CAPABILITIES (Reference Set A) */}
+      {/* Right 5 Cols: SYSTEM STATUS & CAPABILITIES */}
       <section
         aria-label="System Status & Capabilities"
         className="aegis-card lg:col-span-5 flex flex-col justify-between rounded-2xl p-5"
@@ -238,7 +280,7 @@ export function OverviewBottomPanels({
               SYSTEM STATUS
             </span>
             <span className="font-mono text-[10px] text-[#6E7785]">
-              /api/capabilities
+              {backendLive ? "Live /api/capabilities" : "Recorded capabilities"}
             </span>
           </div>
 
@@ -256,7 +298,7 @@ export function OverviewBottomPanels({
                     <span className={`h-2 w-2 rounded-full ${row.dot}`} />
                     {row.status}
                   </span>
-                  <span className="w-20 text-right font-mono text-[11px] text-[#6E7785]">
+                  <span className="w-24 text-right font-mono text-[11px] text-[#6E7785]">
                     {row.meta}
                   </span>
                 </div>
