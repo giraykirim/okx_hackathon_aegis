@@ -1,15 +1,15 @@
 {
-  "pid": 18732,
+  "pid": 11592,
   "host": "0.0.0.0",
   "port": 8771,
-  "model_version": "aegis-laya-v2-tuned-seed17-ea5f9f0bffee",
-  "checkpoint_version": "ea5f9f0bffee1af32f2b7aeebc3fb6cd9a55163c0458cb0087f90fef608a83bd",
+  "model_version": "aegis-laya-v2-tuned-seed17-ff0ead58337a",
+  "checkpoint_version": "ff0ead58337ab6bc2a6355e5568042d14a9375cdd25f7f44c9d44e4a69c2eb1f",
   "selected": "v2-tuned-seed17",
   "checkpoint_hashes": {
-    "model.safetensors": "39c37c9d071bc5cb219a8b504630b44cf43e1a6ff76895a23666ab429ed17f91",
+    "model.safetensors": "f9a3f1497783ee7328ab51371c5121357a53da92ffc143586f95df3c3a236b7c",
     "questions.json": "8caa8e6f75f6b381f60ef9bb23a751be95baeb2ca1b655daf27b45c903d261f8",
-    "rl_agent_config.json": "e803634c9621e32699cc14234d31a8c6da45f13494907bca6230ade2bd4e3d91",
-    "train_report.json": "22e1b1f3f58e6b8e5dcb1010fe09f52718ad7e99eab8788d1d2ba2ca2cf69466",
+    "rl_agent_config.json": "f0559e9aee89540dc1553823887ed8a31d515d3a35929617cbf7b8346d0edc79",
+    "train_report.json": "d6b31e0b85379c9af6a32e2495366ac8352690068a2a4f15d863d9bbd61a296f",
     "encoder\\config.json": "8525cf5ff496c47b5feacf2464bc658c608102894f348f6171542d73de3bbf33",
     "tokenizer\\tokenizer.json": "0b3214f8efe1327290428b84e5d344ff3f2442686c1b89fb7b42c13a79ce6779",
     "tokenizer\\tokenizer_config.json": "e07bcb74963b20b1193332afd3541b36dea30db1e4183d4002d739d5a4dfd5d2"
@@ -19,10 +19,10 @@
   "torch": "2.14.1+cu130",
   "warmup_real_inference": {
     "label": "CONTINUE",
-    "confidence": 0.2149,
+    "confidence": 0.8708,
     "abstained": false,
-    "model_version": "aegis-laya-v2-tuned-seed17-ea5f9f0bffee",
-    "latency_ms": 401.935
+    "model_version": "aegis-laya-v2-tuned-seed17-ff0ead58337a",
+    "latency_ms": 481.501
   },
   "shadow_only": true,
   "execution_authority": false,

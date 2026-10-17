@@ -74,13 +74,14 @@ CLASS_WEIGHTS_TUPLE = (
 )
 
 TUNED_CONFIG = {
-    "epochs": 90,
+    "epochs": 350,
     "batch_size": 16,
-    "head_lr": 5e-5,
-    "scorer_lr": 5e-4,
+    "head_lr": 7e-5,
+    "scorer_lr": 1.2e-3,
     "weight_decay": 0.0,
     "safety_penalty_weight": 0.30,
-    "quantity_invariance_weight": 2.0,
+    "quantity_invariance_weight": 0.20,
+    "temperature": [0.5, 0.5, 0.5],
     "precision": "fp32_no_fp16_overflow",
     "encoder_frozen": True,
 }
@@ -369,14 +370,15 @@ def train_head_and_scorer_on_indices(
             ep_loss_sum += float(loss.item())
             ep_steps += 1
 
-        if prof_tensor is not None and ep % 2 == 1:
+        if prof_tensor is not None and ep % 5 == 4:
             flat_p = prof_tensor.view(-1)
             logits_p = forward_head_and_scorer(model, cache, flat_p)[:, :3].view(
                 -1, 4, 3
             )
-            mean_p = logits_p.mean(dim=1, keepdim=True)
+            probs_p = F.softmax(logits_p, dim=-1)
+            mean_p = probs_p.mean(dim=1, keepdim=True).detach()
             inv_loss = (
-                ((logits_p - mean_p) ** 2).mean()
+                ((probs_p - mean_p) ** 2).mean()
                 * TUNED_CONFIG["quantity_invariance_weight"]
             )
             opt.zero_grad(set_to_none=True)
@@ -402,7 +404,7 @@ def save_tuned_checkpoint(model, tok, cfg, out_dir, audit_info):
         max_len=512,
         head_max_len=192,
         fine_tuned=True,
-        temperature=[1.0, 1.0, 1.0],
+        temperature=[0.5, 0.5, 0.5],
     )
     out_cfg.pop("temperature_by_options", None)
     out_cfg["training"] = dict(

@@ -24,7 +24,7 @@ if str(Path(__file__).resolve().parent) not in sys.path:
 from reviewed_learning import BOOLS
 from serve_selected import InferenceServer, Runtime, verified_selection
 
-TUNED_RUN_ID = "v2-tuned-20261017T154300341044Z"
+TUNED_RUN_ID = "v2-tuned-20261017T180527054214Z"
 TUNED_CKPT = ROOT / "models/reviewed_development" / TUNED_RUN_ID / "seed-17"
 TUNED_META = ROOT / "ml/reviewed_development" / TUNED_RUN_ID / "seed-17.json"
 
