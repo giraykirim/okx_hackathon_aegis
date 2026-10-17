@@ -1,0 +1,45 @@
+{
+  "bundle": "AEGIS v2 + service 1.1.0",
+  "files": [
+    {
+      "path": "contracts/openapi.yaml",
+      "sha256": "a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae"
+    },
+    {
+      "path": "contracts/service-openapi.yaml",
+      "sha256": "1eacd0dbbaa9ec14f52fb548b5da4361df412924165e153c47f1eebc075bc5d9"
+    },
+    {
+      "path": "contracts/service-openapi-1.0.yaml",
+      "sha256": "3a2f7795028040f5912f502dd0455255b80970291c539b8ae6aabeeded2e670e"
+    },
+    {
+      "path": "contracts/frozen/aegis-v2-service-1.1.0.yaml",
+      "sha256": "761faf729d5a24da83ddba6a346e3dbebbd609793eb7a2ea3c342cb4ce0d2473"
+    },
+    {
+      "path": "contracts/PERSON3_HANDOFF.md",
+      "sha256": "f3d2c681ecad7ca6da76b117602ffcb62f617eaa32072710899b7b5b3768dcca"
+    },
+    {
+      "path": "contracts/fixtures/README.md",
+      "sha256": "28e0107d0b7ffb6b86a9397297209e590522fd7cc1d72adf19cbed74e0395d67"
+    },
+    {
+      "path": "contracts/fixtures/mock-halt.request.json",
+      "sha256": "f4cd233186e6b56e52dd63dead3e555a3baa7cb5244461386897712ba6e3bf3e"
+    },
+    {
+      "path": "contracts/fixtures/mock-halt.response.json",
+      "sha256": "0c05cbcc7b387fc042d6d53554e4ac73a6f0ce41299ec2b54a760c0dcffd7827"
+    },
+    {
+      "path": "contracts/fixtures/risk-notional-mock.request.json",
+      "sha256": "8ea3bb45594a5188b03f5ca411e4074410366a8c7f6f2dc0ab2260026818d098"
+    },
+    {
+      "path": "contracts/fixtures/risk-notional-mock.response.json",
+      "sha256": "dad9c6bd08671ab83c9de2b2224b043a22fa72386c4c38395b3223ac2ff75240"
+    }
+  ]
+}

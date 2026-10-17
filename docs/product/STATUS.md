@@ -1,8 +1,10 @@
 # Current amendment status
 
-Recorded: 2026-10-17T09:31:47.529949+00:00
+Recorded: 2026-10-17T09:50:04.582587+00:00
 
-PASS: 97 offline tests; lint/format and contract checks are run separately. Frozen v2 is unchanged. Real local HTTP risk service, official backend ATK receipts/hashes, caller-spoof rejection, separate auth, sizing HALT, autonomous loop and SSE proof are captured. No exchange writes were attempted. Assessment does not grant order permission.
+PASS: 123 offline tests; lint/format and contract checks are run separately. Frozen v2 is unchanged. Real local HTTP risk service, official backend ATK receipts/hashes, caller-spoof rejection, separate auth, sizing HALT, autonomous loop and SSE proof are captured. No exchange writes were attempted. Assessment does not grant order permission.
+
+PASS: service 1.1 notional request/response, standalone deterministic MOCK HTTP/cURL, NO_TRADE/HALT phase timeline, idempotent STOP/correlation across restart and malicious-context rejection. Exact frozen Person 3 schemas, hashes and explicit fixtures are in contracts/PERSON3_HANDOFF.md. The previous quantity form remains supported.
 
 FAIL: no unresolved failures in the referenced test report. An untested integration is not counted as passing.
 
@@ -13,7 +15,7 @@ Immediate blocker: no agreed public host/origin and Person 3 implementation is p
 Next reproducible command (local server running):
 
 ```sh
-cd backend && uv run python -m scripts.prove_service
+cd backend && uv run python -m scripts.prove_mock_contract --port 8001
 ```
 
 Evidence: backend/evidence/jury-manifest.json. This is an evidence map for the supplied 25/20/20/15/10/10 rubric, not a self-awarded score.

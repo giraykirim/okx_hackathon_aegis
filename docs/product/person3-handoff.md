@@ -1,5 +1,7 @@
 # Person 3 handoff — additive service and receipts
 
+Service 1.1 update: the exact frozen integration bundle and fixtures are now in [contracts/PERSON3_HANDOFF.md](../../contracts/PERSON3_HANDOFF.md). Prefer that file for the new request_id/proposed_notional contract, UNAVAILABLE/BLOCK verdicts and nullable chain receipt. The earlier quantity form and its assessment_sha256 receipt proposal below remain available as legacy compatibility; the notional response intentionally uses the ten fields requested and has no extra digest field.
+
 No Person 3 chat exists, and the user reports Prompt 00 has not been implemented on that machine. This file is the coordination artifact; it is not an acknowledgment from Person 3. Person 1 has not edited `frontend/**`, `web3/**` or `docs/pitch/**`.
 
 1. Keep the existing Event, Decision, snapshot, health, SSE, capabilities and identity contracts. Frozen v2 SHA-256: `a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae`. Generate types from `contracts/openapi.yaml` plus the separate `contracts/service-openapi.yaml`; the app's `/openapi.json` combines both sets of paths.

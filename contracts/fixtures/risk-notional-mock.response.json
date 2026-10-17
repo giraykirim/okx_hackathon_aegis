@@ -1,0 +1,20 @@
+{
+  "request_id": "mock-notional-fixture-001",
+  "verdict": "UNAVAILABLE",
+  "execution_authorized": false,
+  "reason_codes": [
+    "ACCOUNT_DATA_UNAVAILABLE",
+    "EXECUTION_NOT_AUTHORIZED",
+    "MOCK_DATA_ONLY",
+    "REAL_MARKET_DATA_UNAVAILABLE",
+    "LAYA_UNAVAILABLE",
+    "EVREN_FALLBACK"
+  ],
+  "evidence_ids": [
+    "2e9e62165d3c4543b63d654b5dab7e14"
+  ],
+  "evaluated_at": "2026-10-17T09:45:37.504981Z",
+  "source_mode": "MOCK",
+  "policy_version": "risk-service-1.1.0",
+  "chain_receipt": null
+}

@@ -11,6 +11,7 @@ from fastapi import HTTPException
 from .atk import ATK
 from .integrations import Models
 from .models import Capability, Classification, Event, Proposal, new_id, utcnow
+from .notional_service import NotionalService
 from .policy import check
 from .service_models import (
     MarketChecks,
@@ -60,6 +61,7 @@ class RiskService:
         self.models = Models(public_settings)
         self.hits: deque[float] = deque()
         self.lock = asyncio.Lock()
+        self.notional = NotionalService(self)
 
     async def close(self):
         await self.models.close()
@@ -67,6 +69,7 @@ class RiskService:
     def info(self) -> ServiceInfo:
         key = self.settings.service_api_key
         return ServiceInfo(
+            notional_source_mode=self.settings.service_source_mode,
             auth=ServiceAuth(
                 configured=bool(key and key.get_secret_value()),
                 requests_per_minute=self.settings.service_requests_per_minute,

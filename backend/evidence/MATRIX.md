@@ -2,7 +2,7 @@
 
 Only evidence actually captured is marked PASS. JSON files include timestamps and source modes. Offline fake-transport tests are distinguished from external integration results.
 
-The authorized rubric amendment uses 25/20/20/15/10/10 weights. The current machine-readable map is `jury-manifest.json`, with no self-awarded score. New local HTTP assessment evidence is in `amendment-http.json`; the final offline report contains 97 passing tests and one dependency deprecation warning. The initial v2 schema remains frozen; additive service schemas are separate.
+The authorized rubric amendment uses 25/20/20/15/10/10 weights. The current machine-readable map is `jury-manifest.json`, with no self-awarded score. Local real-market assessment evidence is in `amendment-http.json`; standalone service 1.1 MOCK evidence is in `mock-contract-http.json` and `mock-curl.json`. Current executed test counts are in `tests.xml`/the manifest. The initial v2 schema remains frozen; additive service schemas are separate.
 
 | Requirement | Status | Evidence / remaining dependency |
 |---|---|---|
@@ -11,6 +11,9 @@ The authorized rubric amendment uses 25/20/20/15/10/10 weights. The current mach
 | Caller trust flags / access and resource limits | PASS — offline and scoped HTTP proof | Spoofed account input rejected; separate key, rolling-minute limit, bounded body including ASGI prefix/chunked requests, single assessment and deadline |
 | OKX.AI listing | NOT_LISTED | Official requirements researched; integration POSSIBLE, no submission/review/listing/payment verified |
 | Initial v2 compatibility | PASS | Frozen SHA-256, all original paths/components; additive contract exported separately |
+| New string-notional service / deterministic MOCK | PASS — actual HTTP/cURL and offline | Exact requested response, UNAVAILABLE/BLOCK with false authorization; null-safe untrusted context; cached correlation/conflicts/restart; legacy quantity form preserved |
+| Complete normalized phase timeline / idempotent STOP | PASS — actual MOCK HTTP/SSE and offline | OBSERVE→CLASSIFY→REASON→RISK_CHECK→ACT/NO_TRADE→VERIFY→AUDIT in Event.details; no Event/Decision shape changes |
+| Frozen Person 3 integration bundle / fixtures | PASS | contracts/frozen/manifest.json with exact combined schema and request/actual captured MOCK response fixtures |
 | Autonomous real observation / safe NO_TRADE | PASS | `latest.json` and `http-smoke.json`: MARKET_ONLY ATK observation, fallback classify/reason, gate, persisted audit |
 | Autonomous full simulated lifecycle | PASS — MOCK only | `latest.json`: start/stop, scripted inputs, approved MOCK fill, NOT_SENT, timeline and counts |
 | Unsafe stale scenario veto | PASS — MOCK + offline policy tests | No execution call; reason `stale_feed`, NOT_SENT |

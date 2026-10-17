@@ -1,0 +1,587 @@
+openapi: 3.1.0
+info:
+  title: AEGIS Risk Check Service — additive contract
+  version: 1.0.0
+paths:
+  /api/v1/risk/evaluate:
+    post:
+      summary: Evaluate Risk
+      operationId: evaluate_risk_api_v1_risk_evaluate_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RiskRequest-Input'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskAssessment'
+        '408':
+          description: Request body deadline exceeded
+        '413':
+          description: Request exceeds 2048 bytes
+        '401':
+          description: Invalid service key
+        '429':
+          description: Busy or rate limited
+        '503':
+          description: Service key not configured
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - AEGISServiceKey: []
+  /api/v1/service:
+    get:
+      summary: Service Info
+      operationId: service_info_api_v1_service_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
+components:
+  schemas:
+    RiskRequest-Input:
+      properties:
+        symbol:
+          type: string
+          const: BTC-USDT
+          title: Symbol
+        action:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          title: Action
+        quantity:
+          anyOf:
+          - type: number
+            exclusiveMinimum: 0.0
+          - type: string
+          title: Quantity
+        client_request_id:
+          anyOf:
+          - type: string
+            maxLength: 64
+            pattern: ^[a-zA-Z0-9_-]+$
+          - type: 'null'
+          title: Client Request Id
+      additionalProperties: false
+      type: object
+      required:
+      - symbol
+      - action
+      - quantity
+      title: RiskRequest
+    RiskAssessment:
+      properties:
+        assessment_id:
+          type: string
+          title: Assessment Id
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        run_id:
+          type: string
+          title: Run Id
+        request:
+          $ref: '#/components/schemas/RiskRequest-Output'
+        source_mode:
+          type: string
+          const: MARKET_ONLY
+          title: Source Mode
+          default: MARKET_ONLY
+        assessment:
+          type: string
+          enum:
+          - REVIEW
+          - HALT
+          title: Assessment
+        reasons:
+          items:
+            type: string
+          type: array
+          title: Reasons
+        execution_authority:
+          type: boolean
+          const: false
+          title: Execution Authority
+          default: false
+        order_permission:
+          type: boolean
+          const: false
+          title: Order Permission
+          default: false
+        account_provenance:
+          type: string
+          const: UNAVAILABLE
+          title: Account Provenance
+          default: UNAVAILABLE
+        market_provenance:
+          $ref: '#/components/schemas/MarketProvenance'
+        market_checks:
+          $ref: '#/components/schemas/MarketChecks'
+        classification:
+          $ref: '#/components/schemas/Classification'
+        laya_status:
+          type: string
+          enum:
+          - AVAILABLE
+          - UNAVAILABLE
+          title: Laya Status
+        evren_status:
+          type: string
+          enum:
+          - AVAILABLE
+          - FALLBACK
+          title: Evren Status
+        analysis_summary:
+          type: string
+          title: Analysis Summary
+        limitations:
+          items:
+            type: string
+          type: array
+          title: Limitations
+        evidence_ids:
+          items:
+            type: string
+          type: array
+          title: Evidence Ids
+        assessment_sha256:
+          type: string
+          title: Assessment Sha256
+      additionalProperties: false
+      type: object
+      required:
+      - assessment_id
+      - timestamp
+      - run_id
+      - request
+      - assessment
+      - reasons
+      - market_provenance
+      - market_checks
+      - classification
+      - laya_status
+      - evren_status
+      - analysis_summary
+      - limitations
+      - evidence_ids
+      - assessment_sha256
+      title: RiskAssessment
+    RiskRequest-Output:
+      properties:
+        symbol:
+          type: string
+          const: BTC-USDT
+          title: Symbol
+        action:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          title: Action
+        quantity:
+          type: string
+          title: Quantity
+        client_request_id:
+          anyOf:
+          - type: string
+            maxLength: 64
+            pattern: ^[a-zA-Z0-9_-]+$
+          - type: 'null'
+          title: Client Request Id
+      additionalProperties: false
+      type: object
+      required:
+      - symbol
+      - action
+      - quantity
+      title: RiskRequest
+    MarketProvenance:
+      properties:
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - UNAVAILABLE
+          title: Status
+        source:
+          type: string
+          const: OFFICIAL_OKX_ATK
+          title: Source
+          default: OFFICIAL_OKX_ATK
+        site:
+          type: string
+          title: Site
+        market_timestamp:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Market Timestamp
+        receipts:
+          items:
+            $ref: '#/components/schemas/ATKReceipt'
+          type: array
+          title: Receipts
+      additionalProperties: false
+      type: object
+      required:
+      - status
+      - site
+      - market_timestamp
+      - receipts
+      title: MarketProvenance
+    ATKReceipt:
+      properties:
+        id:
+          type: string
+          title: Id
+        toolkit:
+          type: string
+          const: '@okx_ai/okx-trade-cli@1.4.8'
+          title: Toolkit
+          default: '@okx_ai/okx-trade-cli@1.4.8'
+        operation:
+          type: string
+          enum:
+          - ticker
+          - instruments
+          title: Operation
+        command:
+          items:
+            type: string
+          type: array
+          title: Command
+        site:
+          type: string
+          title: Site
+        requested_at:
+          type: string
+          format: date-time
+          title: Requested At
+        completed_at:
+          type: string
+          format: date-time
+          title: Completed At
+        market_timestamp:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Market Timestamp
+        source_mode:
+          type: string
+          enum:
+          - MARKET_ONLY
+          - OKX_DEMO
+          title: Source Mode
+        run_id:
+          type: string
+          title: Run Id
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          title: Status
+        result_sha256:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Result Sha256
+        stdout_sha256:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Stdout Sha256
+        elapsed_ms:
+          type: number
+          title: Elapsed Ms
+        error_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error Type
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - operation
+      - command
+      - site
+      - requested_at
+      - completed_at
+      - market_timestamp
+      - source_mode
+      - run_id
+      - status
+      - result_sha256
+      - stdout_sha256
+      - elapsed_ms
+      title: ATKReceipt
+    MarketChecks:
+      properties:
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - UNAVAILABLE
+          title: Status
+        reasons:
+          items:
+            type: string
+          type: array
+          title: Reasons
+        policy_limit_price:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Policy Limit Price
+      additionalProperties: false
+      type: object
+      required:
+      - status
+      - reasons
+      - policy_limit_price
+      title: MarketChecks
+    Classification:
+      properties:
+        label:
+          type: string
+          enum:
+          - CONTINUE
+          - REVIEW
+          - HALT
+          title: Label
+        confidence:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Confidence
+        abstained:
+          type: boolean
+          title: Abstained
+        model_version:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Model Version
+        latency_ms:
+          type: number
+          minimum: 0.0
+          title: Latency Ms
+      additionalProperties: false
+      type: object
+      required:
+      - label
+      - confidence
+      - abstained
+      - model_version
+      - latency_ms
+      title: Classification
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ServiceInfo:
+      properties:
+        name:
+          type: string
+          const: AEGIS Risk Check Service
+          title: Name
+          default: AEGIS Risk Check Service
+        version:
+          type: string
+          const: 1.0.0
+          title: Version
+          default: 1.0.0
+        purpose:
+          type: string
+          title: Purpose
+          default: Operational pre-trade assessment and monitoring for trading-agent
+            developers
+        target_customer:
+          type: string
+          title: Target Customer
+          default: Teams building agentic trading applications and agent-platform
+            operators
+        execution_authority:
+          type: boolean
+          const: false
+          title: Execution Authority
+          default: false
+        public_url:
+          type: 'null'
+          title: Public Url
+        deployment_status:
+          type: string
+          const: PUBLIC_NOT_VERIFIED
+          title: Deployment Status
+          default: PUBLIC_NOT_VERIFIED
+        evaluate_path:
+          type: string
+          const: /api/v1/risk/evaluate
+          title: Evaluate Path
+          default: /api/v1/risk/evaluate
+        auth:
+          $ref: '#/components/schemas/ServiceAuth'
+        pricing:
+          $ref: '#/components/schemas/ProposedPricing'
+        okx_ai:
+          $ref: '#/components/schemas/MarketplaceStatus'
+        limitations:
+          items:
+            type: string
+          type: array
+          title: Limitations
+      additionalProperties: false
+      type: object
+      required:
+      - auth
+      - limitations
+      title: ServiceInfo
+    ServiceAuth:
+      properties:
+        scheme:
+          type: string
+          const: api_key
+          title: Scheme
+          default: api_key
+        header:
+          type: string
+          const: X-AEGIS-Key
+          title: Header
+          default: X-AEGIS-Key
+        required:
+          type: boolean
+          const: true
+          title: Required
+          default: true
+        configured:
+          type: boolean
+          title: Configured
+        requests_per_minute:
+          type: integer
+          title: Requests Per Minute
+        concurrent_assessments:
+          type: integer
+          const: 1
+          title: Concurrent Assessments
+          default: 1
+        max_request_bytes:
+          type: integer
+          const: 2048
+          title: Max Request Bytes
+          default: 2048
+        scope:
+          type: string
+          const: single deployment credential; single worker
+          title: Scope
+          default: single deployment credential; single worker
+      additionalProperties: false
+      type: object
+      required:
+      - configured
+      - requests_per_minute
+      title: ServiceAuth
+    ProposedPricing:
+      properties:
+        status:
+          type: string
+          const: PROPOSED_NOT_BILLED
+          title: Status
+          default: PROPOSED_NOT_BILLED
+        currency:
+          type: string
+          const: USD
+          title: Currency
+          default: USD
+        per_assessment:
+          type: string
+          title: Per Assessment
+          default: '0.01'
+        b2b_monthly:
+          type: string
+          title: B2B Monthly
+          default: '99'
+        included_assessments:
+          type: integer
+          title: Included Assessments
+          default: 10000
+        payment_integration:
+          type: string
+          const: NOT_IMPLEMENTED
+          title: Payment Integration
+          default: NOT_IMPLEMENTED
+      additionalProperties: false
+      type: object
+      title: ProposedPricing
+    MarketplaceStatus:
+      properties:
+        listing_status:
+          type: string
+          const: NOT_LISTED
+          title: Listing Status
+          default: NOT_LISTED
+        integration_feasibility:
+          type: string
+          const: POSSIBLE
+          title: Integration Feasibility
+          default: POSSIBLE
+        verified_listing_url:
+          type: 'null'
+          title: Verified Listing Url
+        requirements_url:
+          type: string
+          title: Requirements Url
+          default: https://web3.okx.com/onchainos/dev-docs/okxai/asp-introduction
+      additionalProperties: false
+      type: object
+      title: MarketplaceStatus
+  securitySchemes:
+    AEGISServiceKey:
+      type: apiKey
+      in: header
+      name: X-AEGIS-Key

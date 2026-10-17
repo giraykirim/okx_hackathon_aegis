@@ -14,6 +14,8 @@ REPO = ROOT.parent
 def main():
     proof = json.loads((ROOT / "evidence/amendment-http.json").read_text())
     http = json.loads((ROOT / "evidence/http-smoke.json").read_text())
+    mock = json.loads((ROOT / "evidence/mock-contract-http.json").read_text())
+    assert all(check["status"] == "PASS" for check in mock["checks"].values())
     test_report = ET.parse(ROOT / "evidence/tests.xml").getroot()
     suites = list(test_report.iter("testsuite"))
     counts = {
@@ -192,11 +194,19 @@ def main():
     artifact_paths = [
         "contracts/openapi.yaml",
         "contracts/service-openapi.yaml",
+        "contracts/frozen/manifest.json",
+        "contracts/frozen/aegis-v2-service-1.1.0.yaml",
+        "contracts/PERSON3_HANDOFF.md",
+        "contracts/fixtures/risk-notional-mock.request.json",
+        "contracts/fixtures/risk-notional-mock.response.json",
+        "backend/evidence/mock-contract-http.json",
+        "backend/evidence/mock-curl.json",
         "backend/evidence/tests.xml",
         "backend/evidence/http-smoke.json",
         "backend/evidence/amendment-http.json",
         "backend/evidence/latest.json",
         "docs/product/service.md",
+        "docs/product/ONE_PAGER.md",
         "docs/product/demo-2-minutes.md",
         "docs/product/okx-ai-listing.md",
         "docs/product/person3-handoff.md",
@@ -227,6 +237,7 @@ def main():
             "v2_status": "FROZEN_UNCHANGED",
             "v2_sha256": FROZEN_V2_SHA256,
             "additive": "contracts/service-openapi.yaml",
+            "person_3_bundle": "contracts/frozen/manifest.json",
         },
         "official_atk": {
             "status": "PASS",
@@ -238,6 +249,13 @@ def main():
             "scope": "local real HTTP operational assessment only",
             "execution_authority": False,
             "public_deployment": "NOT_TESTED",
+        },
+        "notional_mock_service": {
+            "status": "PASS",
+            "source_mode": "MOCK",
+            "execution_authorized": False,
+            "scope": "actual HTTP/SSE, autonomous NO_TRADE/HALT, idempotent STOP and persisted correlation",
+            "evidence": "backend/evidence/mock-contract-http.json",
         },
         "exchange_writes_attempted": 0,
         "live_execution": "DISABLED",
@@ -261,7 +279,7 @@ def main():
             "No isolated confirmed regional demo account",
             "No verified Fuji contracts/read-back",
         ],
-        "next_command": "cd backend && uv run python -m scripts.prove_service",
+        "next_command": "cd backend && uv run python -m scripts.prove_mock_contract --port 8001",
         "rubric": rubric,
         "artifacts": artifacts,
     }
@@ -272,6 +290,8 @@ def main():
 Recorded: {manifest["recorded_at"]}
 
 PASS: {counts["tests"]} offline tests; lint/format and contract checks are run separately. Frozen v2 is unchanged. Real local HTTP risk service, official backend ATK receipts/hashes, caller-spoof rejection, separate auth, sizing HALT, autonomous loop and SSE proof are captured. No exchange writes were attempted. Assessment does not grant order permission.
+
+PASS: service 1.1 notional request/response, standalone deterministic MOCK HTTP/cURL, NO_TRADE/HALT phase timeline, idempotent STOP/correlation across restart and malicious-context rejection. Exact frozen Person 3 schemas, hashes and explicit fixtures are in contracts/PERSON3_HANDOFF.md. The previous quantity form remains supported.
 
 FAIL: no unresolved failures in the referenced test report. An untested integration is not counted as passing.
 

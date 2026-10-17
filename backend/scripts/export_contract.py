@@ -1,5 +1,6 @@
 import argparse
 import hashlib
+import json
 from copy import deepcopy
 
 import yaml
@@ -10,6 +11,8 @@ from aegis.settings import ROOT
 FROZEN_V2_SHA256 = "a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae"
 V2_PATH = ROOT.parent / "contracts/openapi.yaml"
 SERVICE_PATH = ROOT.parent / "contracts/service-openapi.yaml"
+INTEGRATION_PATH = ROOT.parent / "contracts/frozen/aegis-v2-service-1.1.0.yaml"
+MANIFEST_PATH = ROOT.parent / "contracts/frozen/manifest.json"
 SERVICE_ROUTES = {"/api/v1/risk/evaluate", "/api/v1/service"}
 
 
@@ -29,7 +32,7 @@ def check_frozen_v2(schema):
 def additive_schema(schema):
     result = {
         "openapi": schema["openapi"],
-        "info": {"title": "AEGIS Risk Check Service — additive contract", "version": "1.0.0"},
+        "info": {"title": "AEGIS Risk Check Service — additive contract", "version": "1.1.0"},
         "paths": {p: deepcopy(schema["paths"][p]) for p in sorted(SERVICE_ROUTES)},
         "components": {},
     }
@@ -67,9 +70,40 @@ def main():
     if args.check:
         if not SERVICE_PATH.exists() or yaml.safe_load(SERVICE_PATH.read_text()) != additive:
             raise SystemExit("FAIL: additive service contract differs from the application")
+        if not INTEGRATION_PATH.exists() or yaml.safe_load(INTEGRATION_PATH.read_text()) != schema:
+            raise SystemExit("FAIL: frozen Person 3 integration snapshot differs from the application")
+        manifest = json.loads(MANIFEST_PATH.read_text())
+        for item in manifest["files"]:
+            if hashlib.sha256((ROOT.parent / item["path"]).read_bytes()).hexdigest() != item["sha256"]:
+                raise SystemExit("FAIL: frozen bundle artifact hash differs: " + item["path"])
         print("PASS: frozen v2 unchanged; existing routes/schemas and additive service contract match")
         return
     SERVICE_PATH.write_text(yaml.safe_dump(additive, sort_keys=False, allow_unicode=True))
+    if INTEGRATION_PATH.exists():
+        if yaml.safe_load(INTEGRATION_PATH.read_text()) != schema:
+            raise SystemExit("Frozen integration snapshot changed; coordinate and version a new snapshot")
+    else:
+        INTEGRATION_PATH.parent.mkdir(parents=True, exist_ok=True)
+        INTEGRATION_PATH.write_text(yaml.safe_dump(schema, sort_keys=False, allow_unicode=True))
+    paths = [
+        V2_PATH,
+        SERVICE_PATH,
+        ROOT.parent / "contracts/service-openapi-1.0.yaml",
+        INTEGRATION_PATH,
+        ROOT.parent / "contracts/PERSON3_HANDOFF.md",
+    ]
+    paths += sorted((ROOT.parent / "contracts/fixtures").glob("*"))
+    manifest = {
+        "bundle": "AEGIS v2 + service 1.1.0",
+        "files": [
+            {"path": str(p.relative_to(ROOT.parent)), "sha256": hashlib.sha256(p.read_bytes()).hexdigest()}
+            for p in paths
+            if p.is_file()
+        ],
+    }
+    if MANIFEST_PATH.exists() and json.loads(MANIFEST_PATH.read_text()) != manifest:
+        raise SystemExit("Frozen bundle changed; coordinate and version a new manifest")
+    MANIFEST_PATH.write_text(json.dumps(manifest, indent=2) + "\n")
     print("Preserved frozen v2; exported contracts/service-openapi.yaml")
 
 

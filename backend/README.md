@@ -4,6 +4,34 @@ AEGIS is an operational pre-trade risk-checking and self-monitoring service for 
 
 The authorized jury amendment adds `GET /api/v1/service` and `POST /api/v1/risk/evaluate` with a separate assessment-only credential. The initial v2 contract is frozen byte-for-byte; `contracts/service-openapi.yaml` contains the additive schemas. The assessment fetches server-side public ATK facts, never trusts caller account flags and never grants execution authority. See [service/customer/pricing guide](../docs/product/service.md), [two-minute demo](../docs/product/demo-2-minutes.md), [current status](../docs/product/STATUS.md), and [Person 3 handoff](../docs/product/person3-handoff.md).
 
+Service 1.1 adds the requested string-notional form `{request_id,symbol,proposed_action,proposed_notional,requester_context?}` while preserving the previous quantity form. Its advisory response has `execution_authorized=false`, UNAVAILABLE/BLOCK when account facts are unknown/unsafe, reason/evidence IDs, evaluation time, mode, policy version and a null chain receipt. Request context is null-safe and ignored, never forwarded or audited; credential/private-balance content is rejected without echo. Effective-intent correlation is persisted and idempotent across restarts; changed intent under an existing ID returns 409. Historical replay does not promise current freshness.
+
+## Reproducible standalone MOCK acceptance
+
+```sh
+cd backend
+uv sync --python 3.12 --frozen
+uv run python -m scripts.init_local
+uv run python -m scripts.run_mock --port 8001
+```
+
+In another terminal, from `backend/`:
+
+```sh
+curl --fail-with-body --silent --show-error \
+  --config data/mock-service.curl \
+  --header 'Content-Type: application/json' \
+  --data-binary @../contracts/fixtures/risk-notional-mock.request.json \
+  http://127.0.0.1:8001/api/v1/risk/evaluate
+uv run python -m scripts.prove_mock_contract --port 8001
+```
+
+Startup creates an ignored mode-0600 curl credential file, keeps real execution disabled, and uses a separate SQLite DB. Start triggers the configured MOCK NO_TRADE cycle without per-step prompts. The proof checks health, the full normalized phase timeline, HALT, idempotent Stop, assessment replay/conflict and actual SSE. The new notional MOCK route and autonomous MOCK cycle make no real integration calls. The legacy quantity form retains its real-public-market observer for compatibility; use the new form for the standalone MOCK demo. Source mode cannot be set by requester context.
+
+Existing event types and Event/Decision fields remain unchanged. Normalized states are only in `Event.details.phase`, with `details.cycle_id`: OBSERVE → CLASSIFY → REASON → RISK_CHECK → ACT/NO_TRADE → VERIFY → AUDIT. `RISK_GATE` and `EXECUTE` retain their original type strings. `AEGIS_CYCLE_TIMEOUT_SECONDS` bounds the entire cycle (default 180 seconds); timeout stops new work and keeps uncertain submissions UNKNOWN. Stop is latched/idempotent until Start, and drains/cancels according to that bound rather than retrying an uncertain order.
+
+The exact Person 3 schema bundle is [contracts/PERSON3_HANDOFF.md](../contracts/PERSON3_HANDOFF.md), with a frozen combined OpenAPI snapshot, hashes and captured example fixtures. Product positioning and the unvalidated 30-day experiment are in [ONE_PAGER.md](../docs/product/ONE_PAGER.md).
+
 ## Run locally
 
 Python 3.11+ (tested with 3.12.13), Node 18+ with `--import` support (tested with 24.13.1), and uv/npm:

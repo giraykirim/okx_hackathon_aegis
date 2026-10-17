@@ -5,8 +5,11 @@ from contextlib import asynccontextmanager
 from typing import Annotated, Literal
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
+from fastapi.exception_handlers import request_validation_exception_handler
+from fastapi.exceptions import RequestValidationError
 from fastapi.security import APIKeyHeader, HTTPAuthorizationCredentials, HTTPBearer
-from starlette.responses import StreamingResponse
+from starlette._utils import get_route_path
+from starlette.responses import JSONResponse, StreamingResponse
 
 from .agent import Agent
 from .models import (
@@ -22,7 +25,13 @@ from .models import (
 )
 from .request_limits import RiskRequestLimit
 from .risk_service import RiskService
-from .service_models import RiskAssessment, RiskRequest, ServiceInfo
+from .service_models import (
+    RiskAssessment,
+    RiskEvaluationRequest,
+    RiskEvaluationResponse,
+    RiskRequest,
+    ServiceInfo,
+)
 from .settings import Settings
 
 
@@ -93,6 +102,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     bearer = HTTPBearer(auto_error=False)
     app.add_middleware(RiskRequestLimit)
 
+    @app.exception_handler(RequestValidationError)
+    async def safe_service_validation(request: Request, exc: RequestValidationError):
+        if get_route_path(request.scope) != "/api/v1/risk/evaluate":
+            return await request_validation_exception_handler(request, exc)
+        return JSONResponse(
+            status_code=422,
+            content={
+                "detail": [{key: error[key] for key in ("loc", "msg", "type")} for error in exc.errors()]
+            },
+        )
+
     def agent(request: Request) -> Agent:
         return request.app.state.agent
 
@@ -130,17 +150,20 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.post(
         "/api/v1/risk/evaluate",
-        response_model=RiskAssessment,
+        response_model=RiskEvaluationResponse | RiskAssessment,
         dependencies=[Depends(service_auth)],
         responses={
             408: {"description": "Request body deadline exceeded"},
             413: {"description": "Request exceeds 2048 bytes"},
+            409: {"description": "Request ID already used for a different effective intent"},
             401: {"description": "Invalid service key"},
             429: {"description": "Busy or rate limited"},
             503: {"description": "Service key not configured"},
         },
     )
-    async def evaluate_risk(body: RiskRequest, request: Request):
+    async def evaluate_risk(body: RiskEvaluationRequest | RiskRequest, request: Request):
+        if isinstance(body, RiskEvaluationRequest):
+            return await request.app.state.risk_service.notional.evaluate(body)
         return await request.app.state.risk_service.evaluate(body)
 
     @app.get("/api/health", response_model=Health)

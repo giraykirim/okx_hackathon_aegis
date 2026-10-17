@@ -1,0 +1,275 @@
+{
+  "recorded_at": "2026-10-17T09:48:25.547301+00:00",
+  "transport": "actual loopback HTTP/SSE",
+  "source_mode": "MOCK",
+  "exchange_writes_attempted": 0,
+  "checks": {
+    "health": {
+      "status": "PASS",
+      "response": {
+        "status": "ok",
+        "running": false,
+        "source_mode": "MOCK",
+        "live_execution_enabled": false
+      }
+    },
+    "autonomous_no_trade": {
+      "status": "PASS",
+      "decision": {
+        "id": "f409f24302c34055a3378ce166bbc205",
+        "timestamp": "2026-10-17T09:48:25.577275Z",
+        "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+        "symbol": "BTC-USDT",
+        "proposed_action": "NO_TRADE",
+        "laya_label": "CONTINUE",
+        "laya_confidence": 1.0,
+        "llm_summary": "MOCK scripted proposal; no external model was called",
+        "evidence_ids": [
+          "b81355c2355c4467896a8acf0bee334c",
+          "8f7587d05c8d4684a568ea8a24e70e5d",
+          "2fef47d9550647d3801a84d8f1103d75",
+          "c9d5017701274a9ca77ee49d6547a784",
+          "d1cd9338008b43f5ae8a7305aab639e4",
+          "72d12ddaced146d1ab464651913564ae"
+        ],
+        "risk_approved": false,
+        "risk_reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ],
+        "execution_status": "NOT_SENT",
+        "venue_order_id": null,
+        "source_mode": "MOCK",
+        "intent_id": "7c9d7476ff7448bc88cef75637e4fbe6",
+        "quantity": "0",
+        "venue_state": null,
+        "limit_price": null
+      },
+      "events": [
+        {
+          "id": "b81355c2355c4467896a8acf0bee334c",
+          "timestamp": "2026-10-17T09:48:25.576636Z",
+          "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+          "type": "OBSERVE",
+          "severity": "INFO",
+          "actor": "mock",
+          "message": "Scripted MOCK observation",
+          "details": {
+            "symbol": "BTC-USDT",
+            "observed_at": "2026-10-17T09:48:25.576510Z",
+            "price": "50000",
+            "ask": "50001",
+            "bid": "49999",
+            "min_size": "0.00001",
+            "lot_size": "1E-8",
+            "tick_size": "0.1",
+            "instrument_live": true,
+            "account_known": true,
+            "exposure_quote": "0",
+            "quote_available": "1000",
+            "base_available": "0.01",
+            "account_observed_at": null,
+            "external_open_orders": false,
+            "phase": "OBSERVE",
+            "cycle_id": "f241f9228c974003a214786187d263c8"
+          },
+          "source_mode": "MOCK"
+        },
+        {
+          "id": "8f7587d05c8d4684a568ea8a24e70e5d",
+          "timestamp": "2026-10-17T09:48:25.576804Z",
+          "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+          "type": "CLASSIFY",
+          "severity": "INFO",
+          "actor": "mock",
+          "message": "Operational risk classified",
+          "details": {
+            "label": "CONTINUE",
+            "confidence": 1.0,
+            "abstained": false,
+            "model_version": "MOCK-scripted",
+            "latency_ms": 0.0,
+            "availability": "SCRIPTED",
+            "phase": "CLASSIFY",
+            "cycle_id": "f241f9228c974003a214786187d263c8"
+          },
+          "source_mode": "MOCK"
+        },
+        {
+          "id": "2fef47d9550647d3801a84d8f1103d75",
+          "timestamp": "2026-10-17T09:48:25.576916Z",
+          "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+          "type": "REASON",
+          "severity": "INFO",
+          "actor": "mock",
+          "message": "Typed proposal received",
+          "details": {
+            "action": "NO_TRADE",
+            "symbol": "BTC-USDT",
+            "quantity": "0",
+            "intent_id": "7c9d7476ff7448bc88cef75637e4fbe6",
+            "summary": "MOCK scripted proposal; no external model was called",
+            "availability": "SCRIPTED",
+            "phase": "REASON",
+            "cycle_id": "f241f9228c974003a214786187d263c8"
+          },
+          "source_mode": "MOCK"
+        },
+        {
+          "id": "c9d5017701274a9ca77ee49d6547a784",
+          "timestamp": "2026-10-17T09:48:25.577120Z",
+          "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+          "type": "RISK_GATE",
+          "severity": "WARNING",
+          "actor": "policy",
+          "message": "Order vetoed",
+          "details": {
+            "approved": false,
+            "reasons": [
+              "no_trade_proposed",
+              "invalid_quantity"
+            ],
+            "limit_price": null,
+            "phase": "RISK_CHECK",
+            "cycle_id": "f241f9228c974003a214786187d263c8"
+          },
+          "source_mode": "MOCK"
+        },
+        {
+          "id": "d1cd9338008b43f5ae8a7305aab639e4",
+          "timestamp": "2026-10-17T09:48:25.577289Z",
+          "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+          "type": "NO_TRADE",
+          "severity": "INFO",
+          "actor": "policy",
+          "message": "No order sent",
+          "details": {
+            "reasons": [
+              "no_trade_proposed",
+              "invalid_quantity"
+            ],
+            "phase": "NO_TRADE",
+            "cycle_id": "f241f9228c974003a214786187d263c8"
+          },
+          "source_mode": "MOCK"
+        },
+        {
+          "id": "72d12ddaced146d1ab464651913564ae",
+          "timestamp": "2026-10-17T09:48:25.577432Z",
+          "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+          "type": "VERIFY",
+          "severity": "INFO",
+          "actor": "policy",
+          "message": "NOT_SENT: policy path made no submission call",
+          "details": {
+            "execution_status": "NOT_SENT",
+            "venue_reconciliation": "NOT_REQUIRED",
+            "phase": "VERIFY",
+            "cycle_id": "f241f9228c974003a214786187d263c8"
+          },
+          "source_mode": "MOCK"
+        },
+        {
+          "id": "f782808177814ee7b2504b7de50b3df6",
+          "timestamp": "2026-10-17T09:48:25.577822Z",
+          "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+          "type": "AUDIT",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Cycle persisted",
+          "details": {
+            "decision_id": "f409f24302c34055a3378ce166bbc205",
+            "execution_status": "NOT_SENT",
+            "phase": "AUDIT",
+            "cycle_id": "f241f9228c974003a214786187d263c8"
+          },
+          "source_mode": "MOCK"
+        }
+      ]
+    },
+    "idempotent_stop": {
+      "status": "PASS"
+    },
+    "halt_cycle": {
+      "status": "PASS",
+      "decision": {
+        "id": "fbd95ff70a6c45a6bc6b79e9a4dacb46",
+        "timestamp": "2026-10-17T09:48:25.584663Z",
+        "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+        "symbol": "BTC-USDT",
+        "proposed_action": "BUY",
+        "laya_label": "HALT",
+        "laya_confidence": 1.0,
+        "llm_summary": "MOCK scripted proposal; no external model was called",
+        "evidence_ids": [
+          "edb7fa6dd7244173a7bbc37d457239ee",
+          "d5547cd1b46743199bcda9509f806388",
+          "20902332cf0446758ae6997d6e2354dc",
+          "a8f0ec20d8ad4702811487893699f2fb",
+          "54102d38ba624fc4a619a618135c92b0",
+          "b651b32d217b455eba9a27469b94f902"
+        ],
+        "risk_approved": false,
+        "risk_reasons": [
+          "approval_unavailable",
+          "laya_not_clear"
+        ],
+        "execution_status": "NOT_SENT",
+        "venue_order_id": null,
+        "source_mode": "MOCK",
+        "intent_id": "d4ea532fc9084508a006e1e6c6a6ce47",
+        "quantity": "0.0001",
+        "venue_state": null,
+        "limit_price": "50501.1"
+      }
+    },
+    "notional_service": {
+      "status": "PASS",
+      "response": {
+        "request_id": "mock-notional-fixture-001",
+        "verdict": "UNAVAILABLE",
+        "execution_authorized": false,
+        "reason_codes": [
+          "ACCOUNT_DATA_UNAVAILABLE",
+          "EXECUTION_NOT_AUTHORIZED",
+          "MOCK_DATA_ONLY",
+          "REAL_MARKET_DATA_UNAVAILABLE",
+          "LAYA_UNAVAILABLE",
+          "EVREN_FALLBACK"
+        ],
+        "evidence_ids": [
+          "2e9e62165d3c4543b63d654b5dab7e14"
+        ],
+        "evaluated_at": "2026-10-17T09:45:37.504981Z",
+        "source_mode": "MOCK",
+        "policy_version": "risk-service-1.1.0",
+        "chain_receipt": null
+      },
+      "replay_http": 200,
+      "conflict_http": 409
+    },
+    "sse_resume": {
+      "status": "PASS",
+      "event": {
+        "id": "8f7587d05c8d4684a568ea8a24e70e5d",
+        "timestamp": "2026-10-17T09:48:25.576804Z",
+        "run_id": "f2e0c14c45b548ef9f6649089d92e639",
+        "type": "CLASSIFY",
+        "severity": "INFO",
+        "actor": "mock",
+        "message": "Operational risk classified",
+        "details": {
+          "label": "CONTINUE",
+          "confidence": 1.0,
+          "abstained": false,
+          "model_version": "MOCK-scripted",
+          "latency_ms": 0.0,
+          "availability": "SCRIPTED",
+          "phase": "CLASSIFY",
+          "cycle_id": "f241f9228c974003a214786187d263c8"
+        },
+        "source_mode": "MOCK"
+      }
+    }
+  }
+}
