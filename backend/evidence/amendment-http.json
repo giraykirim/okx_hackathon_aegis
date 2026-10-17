@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-17T10:52:05.990357+00:00",
+  "recorded_at": "2026-10-17T12:15:41.508324+00:00",
   "transport": "actual local HTTP",
   "public_deployment_status": "NOT_TESTED",
   "exchange_writes_attempted": 0,
@@ -15,9 +15,9 @@
     "small_intent": {
       "status": "PASS",
       "response": {
-        "assessment_id": "75bb80b360e54d108d42144c9361fefe",
-        "timestamp": "2026-10-17T10:52:06.020522Z",
-        "run_id": "75bb80b360e54d108d42144c9361fefe",
+        "assessment_id": "25f4e0d8ae5f40c2bd636f45948396a5",
+        "timestamp": "2026-10-17T12:15:41.537383Z",
+        "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -39,16 +39,16 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T10:52:05.468000Z",
+          "market_timestamp": "2026-10-17T12:15:41.090000Z",
           "receipts": [
             {
-              "id": "277573e02bb74b67a3c57af9f6a8624b",
+              "id": "2e9253c4664341c0b217de8468925cd3",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "ticker",
@@ -59,25 +59,25 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:06.020812Z",
-              "completed_at": "2026-10-17T10:52:06.565570Z",
-              "market_timestamp": "2026-10-17T10:52:05.468000Z",
+              "requested_at": "2026-10-17T12:15:41.537691Z",
+              "completed_at": "2026-10-17T12:15:42.171171Z",
+              "market_timestamp": "2026-10-17T12:15:41.090000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "75bb80b360e54d108d42144c9361fefe",
+              "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
               "status": "PASS",
-              "result_sha256": "0b330c442764b44fa6f19f61c1fdbad827bdd502214652923a472bc3a2f99f7c",
-              "stdout_sha256": "af5e8550a5e29df2a7c297befede3040e3227c17b52fd615d23f7b889e9c8337",
-              "elapsed_ms": 544.7625410015462,
+              "result_sha256": "b8e85507b50d4adb1ad42b69baf45378b4d3df3533de00a8b1a16b48f9fa0cfa",
+              "stdout_sha256": "efef4e43e6e174987609c4e62a1fcd5948ddaf50cc628a5314470ab644f9f3c2",
+              "elapsed_ms": 633.4819159965264,
               "error_type": null
             },
             {
-              "id": "51916da81ca84d5eb15fe35dc91922ff",
+              "id": "ee69845c060c4c8da0260dfc6dfb9e6f",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "instruments",
@@ -91,15 +91,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:06.565790Z",
-              "completed_at": "2026-10-17T10:52:07.018783Z",
+              "requested_at": "2026-10-17T12:15:42.171495Z",
+              "completed_at": "2026-10-17T12:15:42.766604Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "75bb80b360e54d108d42144c9361fefe",
+              "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
               "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 453.00091701210476,
+              "elapsed_ms": 595.1106669963337,
               "error_type": null
             }
           ]
@@ -107,7 +107,7 @@
         "market_checks": {
           "status": "PASS",
           "reasons": [],
-          "policy_limit_price": "82483.3"
+          "policy_limit_price": "82370.5"
         },
         "classification": {
           "label": "REVIEW",
@@ -126,21 +126,21 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "84bc431149564fd38ca89267c29644f1",
-          "b6933a947c844efe9092b8a34a9d6ae5",
-          "372c0f8e5f4647c2a1447b70a9606829",
-          "3378a62cbb4e4181adedd30b1e5b9284",
-          "b38d405e07bb4590be89e64bbd715f84"
+          "166b6d5811b245939b86cdb2f54a1a3d",
+          "2e91e2fe93654761b106e8f2cebf5bc8",
+          "1f36fe22d9744885b079fba55dc63cd3",
+          "ea52a3c276854450ba856e00bb9a587a",
+          "ec7f4908c2f8428e82deea9246bb3308"
         ],
-        "assessment_sha256": "0cb3661d7d536334b1917db3429ebae001f15da52bb730b421a19787b1c2d857"
+        "assessment_sha256": "5f4c946b01e8d44b90021e84c66cea4b66a138d7641bc1891ca83df90118681f"
       }
     },
     "excess_notional": {
       "status": "PASS",
       "response": {
-        "assessment_id": "1156f19106fa4bd7ab110f9973819a5c",
-        "timestamp": "2026-10-17T10:52:07.023263Z",
-        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+        "assessment_id": "ec5e01df704549e2a67890e4c0852b50",
+        "timestamp": "2026-10-17T12:15:42.771533Z",
+        "run_id": "ec5e01df704549e2a67890e4c0852b50",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -154,7 +154,8 @@
           "approval_unavailable",
           "unknown_account",
           "laya_not_clear",
-          "excess_order_notional"
+          "excess_order_notional",
+          "run_budget_exhausted"
         ],
         "execution_authority": false,
         "order_permission": false,
@@ -163,16 +164,16 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T10:52:06.669000Z",
+          "market_timestamp": "2026-10-17T12:15:42.363000Z",
           "receipts": [
             {
-              "id": "832fc9fe663f4cb39cf13a86c85dd78e",
+              "id": "7995d67b00e54df7899ccc159ca76a5c",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "ticker",
@@ -183,25 +184,25 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:07.023570Z",
-              "completed_at": "2026-10-17T10:52:07.531739Z",
-              "market_timestamp": "2026-10-17T10:52:06.669000Z",
+              "requested_at": "2026-10-17T12:15:42.771913Z",
+              "completed_at": "2026-10-17T12:15:43.325009Z",
+              "market_timestamp": "2026-10-17T12:15:42.363000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+              "run_id": "ec5e01df704549e2a67890e4c0852b50",
               "status": "PASS",
-              "result_sha256": "6c4fa4c886676e514b8b553540d3d00e299b7d050b125eb9b19cab4f335dabbe",
-              "stdout_sha256": "ffdb12a48daba73afa0ab31a80dddea54fc44439d1eefb45ac1cb2b5ae620336",
-              "elapsed_ms": 508.17125001049135,
+              "result_sha256": "8cd64b96856e84ce0b16ca2019ed0cfa28290b23df970ae1187b1467d67025f6",
+              "stdout_sha256": "8080dbc5f4b5ead3a2874f0384e24b30ff5fc2fa157f004e02880042e8774a39",
+              "elapsed_ms": 553.0964999925345,
               "error_type": null
             },
             {
-              "id": "1f3ebd369a4049d3ac82e6ad02335439",
+              "id": "a43e06b44bce44a29776536cc6831ef0",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "instruments",
@@ -215,15 +216,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:07.531895Z",
-              "completed_at": "2026-10-17T10:52:08.071257Z",
+              "requested_at": "2026-10-17T12:15:43.325166Z",
+              "completed_at": "2026-10-17T12:15:43.887233Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+              "run_id": "ec5e01df704549e2a67890e4c0852b50",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
               "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 539.3689170014113,
+              "elapsed_ms": 562.0711249939632,
               "error_type": null
             }
           ]
@@ -233,7 +234,7 @@
           "reasons": [
             "excess_order_notional"
           ],
-          "policy_limit_price": "82483.3"
+          "policy_limit_price": "82370.5"
         },
         "classification": {
           "label": "REVIEW",
@@ -252,28 +253,28 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "ead6a9e9561b4c08939e7626715c3f58",
-          "aaf2820bea63413394acfe1b50f26e2e",
-          "c4a2141ebafc427d971f60a5681412bd",
-          "cef610d0072a4f859647edb1e7a6a5cf",
-          "5b1b019110914900908432df43143ce9"
+          "450d2bcf022a4b47a1939b0cdc946b77",
+          "68040fd98d314e7296284c434000e3e1",
+          "90a40fa2bc564db3bf4d4bdcd5bbc5aa",
+          "78ed35740c604446a64f60733415a7e9",
+          "533d611fe475482c98ec8b6911a740c9"
         ],
-        "assessment_sha256": "6f98d106caf3aa26e5266c37b2bf4b4426d404e31a82b582aacb2b5f263ed805"
+        "assessment_sha256": "0fa71a805298f0f63ce6b994a9aa12bdc7a22e8560d903ef13cd6556ec3e6d26"
       }
     },
     "no_trading_side_effects": {
       "status": "PASS",
       "before": {
-        "decisions": 8,
-        "vetoed": 8,
+        "decisions": 171,
+        "vetoed": 171,
         "verified_exchange_orders": 0,
         "mock_executions": 0,
         "unresolved_orders": 0,
         "pnl": null
       },
       "after": {
-        "decisions": 8,
-        "vetoed": 8,
+        "decisions": 171,
+        "vetoed": 171,
         "verified_exchange_orders": 0,
         "mock_executions": 0,
         "unresolved_orders": 0,
@@ -325,26 +326,26 @@
   },
   "events": [
     {
-      "id": "84bc431149564fd38ca89267c29644f1",
-      "timestamp": "2026-10-17T10:52:07.019009Z",
-      "run_id": "75bb80b360e54d108d42144c9361fefe",
+      "id": "166b6d5811b245939b86cdb2f54a1a3d",
+      "timestamp": "2026-10-17T12:15:42.766893Z",
+      "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
       "type": "tool_call",
       "severity": "INFO",
       "actor": "atk",
       "message": "Sanitized official ATK invocation evidence",
       "details": {
         "tool_call": {
-          "run_id": "75bb80b360e54d108d42144c9361fefe",
+          "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
           "tool_id": "local:official-atk-package-inspection",
-          "request_ts": "2026-10-17T10:52:06.020535+00:00",
+          "request_ts": "2026-10-17T12:15:41.537403+00:00",
           "source_ts": "UNKNOWN",
           "source_mode": "MARKET_ONLY",
           "symbol": "BTC-USDT",
-          "latency_ms": 0.17050000315066427,
+          "latency_ms": 0.17416600894648582,
           "success": true,
           "response_hash": "a0137159c5494ffb9d01dee754380a077ec3aca0c6f755b87e4a98185553b6a2",
           "status_code": "UNKNOWN",
-          "evidence_id": "84bc431149564fd38ca89267c29644f1"
+          "evidence_id": "166b6d5811b245939b86cdb2f54a1a3d"
         },
         "packages": {
           "okx-trade-cli": true,
@@ -356,84 +357,87 @@
           "region_confirmed": false,
           "isolated_demo_ready": false,
           "personal_profile_used": false
-        }
+        },
+        "correlation_id": "25f4e0d8ae5f40c2bd636f45948396a5"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "b6933a947c844efe9092b8a34a9d6ae5",
-      "timestamp": "2026-10-17T10:52:07.019022Z",
-      "run_id": "75bb80b360e54d108d42144c9361fefe",
+      "id": "2e91e2fe93654761b106e8f2cebf5bc8",
+      "timestamp": "2026-10-17T12:15:42.766908Z",
+      "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
       "type": "tool_call",
       "severity": "INFO",
       "actor": "atk",
       "message": "Sanitized official ATK invocation evidence",
       "details": {
         "tool_call": {
-          "run_id": "75bb80b360e54d108d42144c9361fefe",
+          "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
           "tool_id": "@okx_ai/okx-trade-cli@1.4.8:ticker",
-          "request_ts": "2026-10-17T10:52:06.020812+00:00",
-          "source_ts": "2026-10-17T10:52:05.468000+00:00",
+          "request_ts": "2026-10-17T12:15:41.537691+00:00",
+          "source_ts": "2026-10-17T12:15:41.090000+00:00",
           "source_mode": "MARKET_ONLY",
           "symbol": "BTC-USDT",
-          "latency_ms": 544.6302909986116,
+          "latency_ms": 633.2687079993775,
           "success": true,
-          "response_hash": "0b330c442764b44fa6f19f61c1fdbad827bdd502214652923a472bc3a2f99f7c",
+          "response_hash": "b8e85507b50d4adb1ad42b69baf45378b4d3df3533de00a8b1a16b48f9fa0cfa",
           "status_code": "UNKNOWN",
-          "evidence_id": "b6933a947c844efe9092b8a34a9d6ae5"
+          "evidence_id": "2e91e2fe93654761b106e8f2cebf5bc8"
         },
         "transport": "official-cli",
         "site": "tr",
         "payload_redacted": false,
-        "error_type": null
+        "error_type": null,
+        "correlation_id": "25f4e0d8ae5f40c2bd636f45948396a5"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "372c0f8e5f4647c2a1447b70a9606829",
-      "timestamp": "2026-10-17T10:52:07.019026Z",
-      "run_id": "75bb80b360e54d108d42144c9361fefe",
+      "id": "1f36fe22d9744885b079fba55dc63cd3",
+      "timestamp": "2026-10-17T12:15:42.766911Z",
+      "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
       "type": "tool_call",
       "severity": "INFO",
       "actor": "atk",
       "message": "Sanitized official ATK invocation evidence",
       "details": {
         "tool_call": {
-          "run_id": "75bb80b360e54d108d42144c9361fefe",
+          "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
           "tool_id": "@okx_ai/okx-trade-cli@1.4.8:instruments",
-          "request_ts": "2026-10-17T10:52:06.565790+00:00",
+          "request_ts": "2026-10-17T12:15:42.171495+00:00",
           "source_ts": "UNKNOWN",
           "source_mode": "MARKET_ONLY",
           "symbol": "BTC-USDT",
-          "latency_ms": 452.92108300782274,
+          "latency_ms": 595.0313750072382,
           "success": true,
           "response_hash": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
           "status_code": "UNKNOWN",
-          "evidence_id": "372c0f8e5f4647c2a1447b70a9606829"
+          "evidence_id": "1f36fe22d9744885b079fba55dc63cd3"
         },
         "transport": "official-cli",
         "site": "tr",
         "payload_redacted": false,
-        "error_type": null
+        "error_type": null,
+        "correlation_id": "25f4e0d8ae5f40c2bd636f45948396a5"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "3378a62cbb4e4181adedd30b1e5b9284",
-      "timestamp": "2026-10-17T10:52:07.019726Z",
-      "run_id": "75bb80b360e54d108d42144c9361fefe",
+      "id": "ea52a3c276854450ba856e00bb9a587a",
+      "timestamp": "2026-10-17T12:15:42.767633Z",
+      "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "277573e02bb74b67a3c57af9f6a8624b",
+        "id": "2e9253c4664341c0b217de8468925cd3",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "ticker",
@@ -444,35 +448,35 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:06.020812Z",
-        "completed_at": "2026-10-17T10:52:06.565570Z",
-        "market_timestamp": "2026-10-17T10:52:05.468000Z",
+        "requested_at": "2026-10-17T12:15:41.537691Z",
+        "completed_at": "2026-10-17T12:15:42.171171Z",
+        "market_timestamp": "2026-10-17T12:15:41.090000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "75bb80b360e54d108d42144c9361fefe",
+        "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
         "status": "PASS",
-        "result_sha256": "0b330c442764b44fa6f19f61c1fdbad827bdd502214652923a472bc3a2f99f7c",
-        "stdout_sha256": "af5e8550a5e29df2a7c297befede3040e3227c17b52fd615d23f7b889e9c8337",
-        "elapsed_ms": 544.7625410015462,
+        "result_sha256": "b8e85507b50d4adb1ad42b69baf45378b4d3df3533de00a8b1a16b48f9fa0cfa",
+        "stdout_sha256": "efef4e43e6e174987609c4e62a1fcd5948ddaf50cc628a5314470ab644f9f3c2",
+        "elapsed_ms": 633.4819159965264,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "b38d405e07bb4590be89e64bbd715f84",
-      "timestamp": "2026-10-17T10:52:07.019863Z",
-      "run_id": "75bb80b360e54d108d42144c9361fefe",
+      "id": "ec7f4908c2f8428e82deea9246bb3308",
+      "timestamp": "2026-10-17T12:15:42.767793Z",
+      "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "51916da81ca84d5eb15fe35dc91922ff",
+        "id": "ee69845c060c4c8da0260dfc6dfb9e6f",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "instruments",
@@ -486,31 +490,31 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:06.565790Z",
-        "completed_at": "2026-10-17T10:52:07.018783Z",
+        "requested_at": "2026-10-17T12:15:42.171495Z",
+        "completed_at": "2026-10-17T12:15:42.766604Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "75bb80b360e54d108d42144c9361fefe",
+        "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
         "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 453.00091701210476,
+        "elapsed_ms": 595.1106669963337,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "a5eb4fb3295d4bda8328aed651976633",
-      "timestamp": "2026-10-17T10:52:07.020243Z",
-      "run_id": "75bb80b360e54d108d42144c9361fefe",
+      "id": "5b2a50795db84bd98f3d896fc81806dd",
+      "timestamp": "2026-10-17T12:15:42.768237Z",
+      "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
       "type": "SERVICE_ASSESSMENT",
       "severity": "WARNING",
       "actor": "risk-service",
       "message": "Assessment recorded; no order permission or execution authority",
       "details": {
-        "assessment_id": "75bb80b360e54d108d42144c9361fefe",
-        "timestamp": "2026-10-17T10:52:06.020522Z",
-        "run_id": "75bb80b360e54d108d42144c9361fefe",
+        "assessment_id": "25f4e0d8ae5f40c2bd636f45948396a5",
+        "timestamp": "2026-10-17T12:15:41.537383Z",
+        "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -532,16 +536,16 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T10:52:05.468000Z",
+          "market_timestamp": "2026-10-17T12:15:41.090000Z",
           "receipts": [
             {
-              "id": "277573e02bb74b67a3c57af9f6a8624b",
+              "id": "2e9253c4664341c0b217de8468925cd3",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "ticker",
@@ -552,25 +556,25 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:06.020812Z",
-              "completed_at": "2026-10-17T10:52:06.565570Z",
-              "market_timestamp": "2026-10-17T10:52:05.468000Z",
+              "requested_at": "2026-10-17T12:15:41.537691Z",
+              "completed_at": "2026-10-17T12:15:42.171171Z",
+              "market_timestamp": "2026-10-17T12:15:41.090000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "75bb80b360e54d108d42144c9361fefe",
+              "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
               "status": "PASS",
-              "result_sha256": "0b330c442764b44fa6f19f61c1fdbad827bdd502214652923a472bc3a2f99f7c",
-              "stdout_sha256": "af5e8550a5e29df2a7c297befede3040e3227c17b52fd615d23f7b889e9c8337",
-              "elapsed_ms": 544.7625410015462,
+              "result_sha256": "b8e85507b50d4adb1ad42b69baf45378b4d3df3533de00a8b1a16b48f9fa0cfa",
+              "stdout_sha256": "efef4e43e6e174987609c4e62a1fcd5948ddaf50cc628a5314470ab644f9f3c2",
+              "elapsed_ms": 633.4819159965264,
               "error_type": null
             },
             {
-              "id": "51916da81ca84d5eb15fe35dc91922ff",
+              "id": "ee69845c060c4c8da0260dfc6dfb9e6f",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "instruments",
@@ -584,15 +588,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:06.565790Z",
-              "completed_at": "2026-10-17T10:52:07.018783Z",
+              "requested_at": "2026-10-17T12:15:42.171495Z",
+              "completed_at": "2026-10-17T12:15:42.766604Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "75bb80b360e54d108d42144c9361fefe",
+              "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
               "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 453.00091701210476,
+              "elapsed_ms": 595.1106669963337,
               "error_type": null
             }
           ]
@@ -600,7 +604,7 @@
         "market_checks": {
           "status": "PASS",
           "reasons": [],
-          "policy_limit_price": "82483.3"
+          "policy_limit_price": "82370.5"
         },
         "classification": {
           "label": "REVIEW",
@@ -619,37 +623,37 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "84bc431149564fd38ca89267c29644f1",
-          "b6933a947c844efe9092b8a34a9d6ae5",
-          "372c0f8e5f4647c2a1447b70a9606829",
-          "3378a62cbb4e4181adedd30b1e5b9284",
-          "b38d405e07bb4590be89e64bbd715f84"
+          "166b6d5811b245939b86cdb2f54a1a3d",
+          "2e91e2fe93654761b106e8f2cebf5bc8",
+          "1f36fe22d9744885b079fba55dc63cd3",
+          "ea52a3c276854450ba856e00bb9a587a",
+          "ec7f4908c2f8428e82deea9246bb3308"
         ],
-        "assessment_sha256": "0cb3661d7d536334b1917db3429ebae001f15da52bb730b421a19787b1c2d857"
+        "assessment_sha256": "5f4c946b01e8d44b90021e84c66cea4b66a138d7641bc1891ca83df90118681f"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "ead6a9e9561b4c08939e7626715c3f58",
-      "timestamp": "2026-10-17T10:52:08.071481Z",
-      "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+      "id": "450d2bcf022a4b47a1939b0cdc946b77",
+      "timestamp": "2026-10-17T12:15:43.887506Z",
+      "run_id": "ec5e01df704549e2a67890e4c0852b50",
       "type": "tool_call",
       "severity": "INFO",
       "actor": "atk",
       "message": "Sanitized official ATK invocation evidence",
       "details": {
         "tool_call": {
-          "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+          "run_id": "ec5e01df704549e2a67890e4c0852b50",
           "tool_id": "local:official-atk-package-inspection",
-          "request_ts": "2026-10-17T10:52:07.023274+00:00",
+          "request_ts": "2026-10-17T12:15:42.771557+00:00",
           "source_ts": "UNKNOWN",
           "source_mode": "MARKET_ONLY",
           "symbol": "BTC-USDT",
-          "latency_ms": 0.1916250039357692,
+          "latency_ms": 0.22816700220573694,
           "success": true,
           "response_hash": "a0137159c5494ffb9d01dee754380a077ec3aca0c6f755b87e4a98185553b6a2",
           "status_code": "UNKNOWN",
-          "evidence_id": "ead6a9e9561b4c08939e7626715c3f58"
+          "evidence_id": "450d2bcf022a4b47a1939b0cdc946b77"
         },
         "packages": {
           "okx-trade-cli": true,
@@ -661,84 +665,87 @@
           "region_confirmed": false,
           "isolated_demo_ready": false,
           "personal_profile_used": false
-        }
+        },
+        "correlation_id": "ec5e01df704549e2a67890e4c0852b50"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "aaf2820bea63413394acfe1b50f26e2e",
-      "timestamp": "2026-10-17T10:52:08.071492Z",
-      "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+      "id": "68040fd98d314e7296284c434000e3e1",
+      "timestamp": "2026-10-17T12:15:43.887520Z",
+      "run_id": "ec5e01df704549e2a67890e4c0852b50",
       "type": "tool_call",
       "severity": "INFO",
       "actor": "atk",
       "message": "Sanitized official ATK invocation evidence",
       "details": {
         "tool_call": {
-          "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+          "run_id": "ec5e01df704549e2a67890e4c0852b50",
           "tool_id": "@okx_ai/okx-trade-cli@1.4.8:ticker",
-          "request_ts": "2026-10-17T10:52:07.023570+00:00",
-          "source_ts": "2026-10-17T10:52:06.669000+00:00",
+          "request_ts": "2026-10-17T12:15:42.771913+00:00",
+          "source_ts": "2026-10-17T12:15:42.363000+00:00",
           "source_mode": "MARKET_ONLY",
           "symbol": "BTC-USDT",
-          "latency_ms": 508.069333009189,
+          "latency_ms": 553.0187499971362,
           "success": true,
-          "response_hash": "6c4fa4c886676e514b8b553540d3d00e299b7d050b125eb9b19cab4f335dabbe",
+          "response_hash": "8cd64b96856e84ce0b16ca2019ed0cfa28290b23df970ae1187b1467d67025f6",
           "status_code": "UNKNOWN",
-          "evidence_id": "aaf2820bea63413394acfe1b50f26e2e"
+          "evidence_id": "68040fd98d314e7296284c434000e3e1"
         },
         "transport": "official-cli",
         "site": "tr",
         "payload_redacted": false,
-        "error_type": null
+        "error_type": null,
+        "correlation_id": "ec5e01df704549e2a67890e4c0852b50"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "c4a2141ebafc427d971f60a5681412bd",
-      "timestamp": "2026-10-17T10:52:08.071495Z",
-      "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+      "id": "90a40fa2bc564db3bf4d4bdcd5bbc5aa",
+      "timestamp": "2026-10-17T12:15:43.887524Z",
+      "run_id": "ec5e01df704549e2a67890e4c0852b50",
       "type": "tool_call",
       "severity": "INFO",
       "actor": "atk",
       "message": "Sanitized official ATK invocation evidence",
       "details": {
         "tool_call": {
-          "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+          "run_id": "ec5e01df704549e2a67890e4c0852b50",
           "tool_id": "@okx_ai/okx-trade-cli@1.4.8:instruments",
-          "request_ts": "2026-10-17T10:52:07.531895+00:00",
+          "request_ts": "2026-10-17T12:15:43.325166+00:00",
           "source_ts": "UNKNOWN",
           "source_mode": "MARKET_ONLY",
           "symbol": "BTC-USDT",
-          "latency_ms": 539.2883329914184,
+          "latency_ms": 561.990957998205,
           "success": true,
           "response_hash": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
           "status_code": "UNKNOWN",
-          "evidence_id": "c4a2141ebafc427d971f60a5681412bd"
+          "evidence_id": "90a40fa2bc564db3bf4d4bdcd5bbc5aa"
         },
         "transport": "official-cli",
         "site": "tr",
         "payload_redacted": false,
-        "error_type": null
+        "error_type": null,
+        "correlation_id": "ec5e01df704549e2a67890e4c0852b50"
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "cef610d0072a4f859647edb1e7a6a5cf",
-      "timestamp": "2026-10-17T10:52:08.072160Z",
-      "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+      "id": "78ed35740c604446a64f60733415a7e9",
+      "timestamp": "2026-10-17T12:15:43.888559Z",
+      "run_id": "ec5e01df704549e2a67890e4c0852b50",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "832fc9fe663f4cb39cf13a86c85dd78e",
+        "id": "7995d67b00e54df7899ccc159ca76a5c",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "ticker",
@@ -749,35 +756,35 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:07.023570Z",
-        "completed_at": "2026-10-17T10:52:07.531739Z",
-        "market_timestamp": "2026-10-17T10:52:06.669000Z",
+        "requested_at": "2026-10-17T12:15:42.771913Z",
+        "completed_at": "2026-10-17T12:15:43.325009Z",
+        "market_timestamp": "2026-10-17T12:15:42.363000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+        "run_id": "ec5e01df704549e2a67890e4c0852b50",
         "status": "PASS",
-        "result_sha256": "6c4fa4c886676e514b8b553540d3d00e299b7d050b125eb9b19cab4f335dabbe",
-        "stdout_sha256": "ffdb12a48daba73afa0ab31a80dddea54fc44439d1eefb45ac1cb2b5ae620336",
-        "elapsed_ms": 508.17125001049135,
+        "result_sha256": "8cd64b96856e84ce0b16ca2019ed0cfa28290b23df970ae1187b1467d67025f6",
+        "stdout_sha256": "8080dbc5f4b5ead3a2874f0384e24b30ff5fc2fa157f004e02880042e8774a39",
+        "elapsed_ms": 553.0964999925345,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "5b1b019110914900908432df43143ce9",
-      "timestamp": "2026-10-17T10:52:08.072301Z",
-      "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+      "id": "533d611fe475482c98ec8b6911a740c9",
+      "timestamp": "2026-10-17T12:15:43.888735Z",
+      "run_id": "ec5e01df704549e2a67890e4c0852b50",
       "type": "ATK_RECEIPT",
       "severity": "INFO",
       "actor": "atk",
       "message": "Official ATK market subprocess receipt",
       "details": {
-        "id": "1f3ebd369a4049d3ac82e6ad02335439",
+        "id": "a43e06b44bce44a29776536cc6831ef0",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "instruments",
@@ -791,31 +798,31 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:07.531895Z",
-        "completed_at": "2026-10-17T10:52:08.071257Z",
+        "requested_at": "2026-10-17T12:15:43.325166Z",
+        "completed_at": "2026-10-17T12:15:43.887233Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+        "run_id": "ec5e01df704549e2a67890e4c0852b50",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
         "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 539.3689170014113,
+        "elapsed_ms": 562.0711249939632,
         "error_type": null
       },
       "source_mode": "MARKET_ONLY"
     },
     {
-      "id": "06393ed90a574e9c9ef57760d2be1bcf",
-      "timestamp": "2026-10-17T10:52:08.072708Z",
-      "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+      "id": "720a3c52d3814ee1ad2fac6eef2a1b3b",
+      "timestamp": "2026-10-17T12:15:43.889416Z",
+      "run_id": "ec5e01df704549e2a67890e4c0852b50",
       "type": "SERVICE_ASSESSMENT",
       "severity": "WARNING",
       "actor": "risk-service",
       "message": "Assessment recorded; no order permission or execution authority",
       "details": {
-        "assessment_id": "1156f19106fa4bd7ab110f9973819a5c",
-        "timestamp": "2026-10-17T10:52:07.023263Z",
-        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+        "assessment_id": "ec5e01df704549e2a67890e4c0852b50",
+        "timestamp": "2026-10-17T12:15:42.771533Z",
+        "run_id": "ec5e01df704549e2a67890e4c0852b50",
         "request": {
           "symbol": "BTC-USDT",
           "action": "BUY",
@@ -829,7 +836,8 @@
           "approval_unavailable",
           "unknown_account",
           "laya_not_clear",
-          "excess_order_notional"
+          "excess_order_notional",
+          "run_budget_exhausted"
         ],
         "execution_authority": false,
         "order_permission": false,
@@ -838,16 +846,16 @@
           "status": "PASS",
           "source": "OFFICIAL_OKX_ATK",
           "site": "tr",
-          "market_timestamp": "2026-10-17T10:52:06.669000Z",
+          "market_timestamp": "2026-10-17T12:15:42.363000Z",
           "receipts": [
             {
-              "id": "832fc9fe663f4cb39cf13a86c85dd78e",
+              "id": "7995d67b00e54df7899ccc159ca76a5c",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "ticker",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "ticker",
@@ -858,25 +866,25 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:07.023570Z",
-              "completed_at": "2026-10-17T10:52:07.531739Z",
-              "market_timestamp": "2026-10-17T10:52:06.669000Z",
+              "requested_at": "2026-10-17T12:15:42.771913Z",
+              "completed_at": "2026-10-17T12:15:43.325009Z",
+              "market_timestamp": "2026-10-17T12:15:42.363000Z",
               "source_mode": "MARKET_ONLY",
-              "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+              "run_id": "ec5e01df704549e2a67890e4c0852b50",
               "status": "PASS",
-              "result_sha256": "6c4fa4c886676e514b8b553540d3d00e299b7d050b125eb9b19cab4f335dabbe",
-              "stdout_sha256": "ffdb12a48daba73afa0ab31a80dddea54fc44439d1eefb45ac1cb2b5ae620336",
-              "elapsed_ms": 508.17125001049135,
+              "result_sha256": "8cd64b96856e84ce0b16ca2019ed0cfa28290b23df970ae1187b1467d67025f6",
+              "stdout_sha256": "8080dbc5f4b5ead3a2874f0384e24b30ff5fc2fa157f004e02880042e8774a39",
+              "elapsed_ms": 553.0964999925345,
               "error_type": null
             },
             {
-              "id": "1f3ebd369a4049d3ac82e6ad02335439",
+              "id": "a43e06b44bce44a29776536cc6831ef0",
               "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
               "operation": "instruments",
               "command": [
                 "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
                 "--import",
-                "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
                 "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
                 "market",
                 "instruments",
@@ -890,15 +898,15 @@
                 "--json"
               ],
               "site": "tr",
-              "requested_at": "2026-10-17T10:52:07.531895Z",
-              "completed_at": "2026-10-17T10:52:08.071257Z",
+              "requested_at": "2026-10-17T12:15:43.325166Z",
+              "completed_at": "2026-10-17T12:15:43.887233Z",
               "market_timestamp": null,
               "source_mode": "MARKET_ONLY",
-              "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+              "run_id": "ec5e01df704549e2a67890e4c0852b50",
               "status": "PASS",
               "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
               "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-              "elapsed_ms": 539.3689170014113,
+              "elapsed_ms": 562.0711249939632,
               "error_type": null
             }
           ]
@@ -908,7 +916,7 @@
           "reasons": [
             "excess_order_notional"
           ],
-          "policy_limit_price": "82483.3"
+          "policy_limit_price": "82370.5"
         },
         "classification": {
           "label": "REVIEW",
@@ -927,13 +935,13 @@
           "An assessment is a timestamped observation, not a guarantee of later venue conditions"
         ],
         "evidence_ids": [
-          "ead6a9e9561b4c08939e7626715c3f58",
-          "aaf2820bea63413394acfe1b50f26e2e",
-          "c4a2141ebafc427d971f60a5681412bd",
-          "cef610d0072a4f859647edb1e7a6a5cf",
-          "5b1b019110914900908432df43143ce9"
+          "450d2bcf022a4b47a1939b0cdc946b77",
+          "68040fd98d314e7296284c434000e3e1",
+          "90a40fa2bc564db3bf4d4bdcd5bbc5aa",
+          "78ed35740c604446a64f60733415a7e9",
+          "533d611fe475482c98ec8b6911a740c9"
         ],
-        "assessment_sha256": "6f98d106caf3aa26e5266c37b2bf4b4426d404e31a82b582aacb2b5f263ed805"
+        "assessment_sha256": "0fa71a805298f0f63ce6b994a9aa12bdc7a22e8560d903ef13cd6556ec3e6d26"
       },
       "source_mode": "MARKET_ONLY"
     }

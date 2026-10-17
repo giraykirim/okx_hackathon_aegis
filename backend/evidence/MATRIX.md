@@ -7,6 +7,7 @@ The authorized rubric amendment uses 25/20/20/15/10/10 weights. The current mach
 | Requirement | Status | Evidence / remaining dependency |
 |---|---|---|
 | Official ATK CLI and real backend MCP observation on TR | PASS | `atk-official.json`, `atk-terminal.txt`, `docs/atk/CAPABILITIES.md`: installed help/provenance, actual MCP tools/list + tools/call, public ticker + instruments, exchange timestamp, persisted NO_TRADE timeline |
+| Model safety authority / bounded requests / replay | PASS — real public ATK + explicit MOCK + offline tests | `model-safety.json`: real NO_TRADE and synthetic stale/duplicate HALT with per-run/cycle/event IDs and hash-bound replay. `tests.xml`: model caps/cancellation, malformed/rate-limited providers, wrong quote, durable run budgets and STOP. Real account/feature access is separate in `models.json`. |
 | Reusable risk assessment service | PASS — local real HTTP | `amendment-http.json`: separately authenticated service, server ATK provenance, exact commands/timestamps/hashes, REVIEW/HALT, no order permission or trading side effects |
 | Caller trust flags / access and resource limits | PASS — offline and scoped HTTP proof | Spoofed account input rejected; separate key, rolling-minute limit, bounded body including ASGI prefix/chunked requests, single assessment and deadline |
 | OKX.AI listing | NOT_LISTED | Official requirements researched; integration POSSIBLE, no submission/review/listing/payment verified |

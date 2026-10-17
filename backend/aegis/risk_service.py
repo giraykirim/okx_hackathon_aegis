@@ -43,7 +43,7 @@ LIMITATIONS = [
 
 
 class RiskService:
-    def __init__(self, settings: Settings, store: Store):
+    def __init__(self, settings: Settings, store: Store, *, evren_budget=None):
         self.settings = settings
         self.store = store
         # A separate observer cannot borrow the operator's account, even when the demo loop is enabled.
@@ -60,7 +60,7 @@ class RiskService:
             }
         )
         self.atk = ATK(public_settings)
-        self.models = Models(public_settings)
+        self.models = Models(public_settings, budget=evren_budget)
         self.hits: deque[float] = deque()
         self.lock = asyncio.Lock()
         self.notional = NotionalService(self)
@@ -95,7 +95,8 @@ class RiskService:
         async with self.lock:
             assessment_id = new_id()
             timestamp = utcnow()
-            self.models.capabilities = {name: Capability() for name in ("EVREN", "LAYA")}
+            self.models.capabilities = {name: Capability() for name in self.models.capabilities}
+            self.models.begin_cycle(assessment_id, assessment_id)
             self.models.selected_model = None
             self.atk.begin_observation(assessment_id)
             observation = None
@@ -167,7 +168,9 @@ class RiskService:
                 for r in ("assessment_timeout", "assessment_unavailable", "market_observation_unavailable")
             )
             receipts = list(self.atk.market_receipts)
-            evidence_ids = [self.store.event(event) for event in self.atk.tool_events()]
+            evidence_ids = [
+                self.store.event(event) for event in self.atk.tool_events() + self.models.tool_events()
+            ]
             for receipt in receipts:
                 evidence_ids.append(
                     self.store.event(

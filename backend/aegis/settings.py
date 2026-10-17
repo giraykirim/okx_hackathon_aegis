@@ -1,7 +1,8 @@
+from decimal import Decimal
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field, SecretStr
+from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from .models import SourceMode
@@ -11,7 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_prefix="AEGIS_", env_file=ROOT / ".env", env_ignore_empty=True, extra="forbid"
+        env_prefix="AEGIS_",
+        env_file=ROOT / ".env",
+        env_ignore_empty=True,
+        extra="forbid",
+        populate_by_name=True,
     )
     source_mode: SourceMode = "MARKET_ONLY"
     db_path: Path = ROOT / "data" / "aegis.sqlite3"
@@ -22,6 +27,8 @@ class Settings(BaseSettings):
     service_timeout_seconds: float = Field(default=30, gt=0, le=45)
     cycle_seconds: float = Field(default=10, ge=1, le=3600)
     cycle_timeout_seconds: float = Field(default=180, gt=0, le=300)
+    max_run_orders: int = Field(default=1, ge=1, le=10)
+    max_run_notional: Decimal = Field(default=Decimal("25"), gt=0, le=25, allow_inf_nan=False)
     mock_autonomous_scenario: Literal["normal", "no_trade", "laya_halt"] = "normal"
     okx_site: Literal["tr", "global", "eea", "us"] = "tr"
     atk_transport: Literal["mcp", "cli"] = "mcp"
@@ -32,9 +39,47 @@ class Settings(BaseSettings):
     okx_demo_passphrase: SecretStr | None = None
     laya_url: str | None = None
     laya_token: SecretStr | None = None
-    evren_base_url: str | None = "https://evren-llmapi.ssyz.org.tr/v1"
-    evren_api_key: SecretStr | None = None
-    evren_model: str | None = None
+    laya_timeout_seconds: float = Field(default=3, gt=0, le=15)
+    laya_expected_version: str | None = Field(default=None, min_length=1, max_length=128)
+    evren_base_url: str | None = Field(
+        default=None, validation_alias=AliasChoices("EVREN_BASE_URL", "AEGIS_EVREN_BASE_URL")
+    )
+    evren_api_key: SecretStr | None = Field(
+        default=None, validation_alias=AliasChoices("EVREN_API_KEY", "AEGIS_EVREN_API_KEY")
+    )
+    evren_model: str | None = Field(
+        default=None, max_length=128, validation_alias=AliasChoices("EVREN_MODEL", "AEGIS_EVREN_MODEL")
+    )
+    evren_timeout_seconds: float = Field(
+        default=10,
+        gt=0,
+        le=15,
+        validation_alias=AliasChoices("EVREN_TIMEOUT_SECONDS", "AEGIS_EVREN_TIMEOUT_SECONDS"),
+    )
+    evren_max_requests_per_run: int = Field(
+        default=6,
+        ge=1,
+        le=60,
+        validation_alias=AliasChoices("EVREN_MAX_REQUESTS_PER_RUN", "AEGIS_EVREN_MAX_REQUESTS_PER_RUN"),
+    )
+    evren_max_requests_per_minute: int = Field(
+        default=12,
+        ge=1,
+        le=60,
+        validation_alias=AliasChoices("EVREN_MAX_REQUESTS_PER_MINUTE", "AEGIS_EVREN_MAX_REQUESTS_PER_MINUTE"),
+    )
+    evren_max_tokens: int = Field(
+        default=600,
+        ge=64,
+        le=1024,
+        validation_alias=AliasChoices("EVREN_MAX_TOKENS", "AEGIS_EVREN_MAX_TOKENS"),
+    )
+    evren_max_response_bytes: int = Field(
+        default=262144,
+        ge=1024,
+        le=262144,
+        validation_alias=AliasChoices("EVREN_MAX_RESPONSE_BYTES", "AEGIS_EVREN_MAX_RESPONSE_BYTES"),
+    )
 
     def demo_ready(self) -> bool:
         return (

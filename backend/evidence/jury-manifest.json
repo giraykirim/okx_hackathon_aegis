@@ -1,6 +1,12 @@
 {
   "schema_version": "1.0.0",
-  "recorded_at": "2026-10-17T10:55:01.620363+00:00",
+  "recorded_at": "2026-10-17T12:15:44.202647+00:00",
+  "validation_machine": {
+    "os": "Darwin",
+    "architecture": "arm64",
+    "python": "3.12.13",
+    "scope": "Local backend evidence only; not public deployment or model training proof"
+  },
   "rubric_source": {
     "authority": "User-supplied official workbook excerpt in authorized amendment",
     "workbook": "Agentic_Hackathon_Judge_Criteria.xlsx",
@@ -18,16 +24,16 @@
       "docs/atk/**",
       "docs/product/**"
     ],
-    "person_3_coordination": "Written handoff; user reports no chat and no Prompt 00 implementation"
+    "person_3_coordination": "Written handoff; pulled frontend and local HTTP bridge verified; no chat messaging"
   },
   "tests": {
     "status": "PASS",
-    "tests": 136,
+    "tests": 167,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
     "timestamps": [
-      "2026-10-17T13:51:30.644579+03:00"
+      "2026-10-17T15:12:53.707268+03:00"
     ]
   },
   "contracts": {
@@ -101,13 +107,13 @@
     "evidence": "backend/evidence/atk-official.json",
     "receipts": [
       {
-        "id": "277573e02bb74b67a3c57af9f6a8624b",
+        "id": "2e9253c4664341c0b217de8468925cd3",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "ticker",
@@ -118,25 +124,25 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:06.020812Z",
-        "completed_at": "2026-10-17T10:52:06.565570Z",
-        "market_timestamp": "2026-10-17T10:52:05.468000Z",
+        "requested_at": "2026-10-17T12:15:41.537691Z",
+        "completed_at": "2026-10-17T12:15:42.171171Z",
+        "market_timestamp": "2026-10-17T12:15:41.090000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "75bb80b360e54d108d42144c9361fefe",
+        "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
         "status": "PASS",
-        "result_sha256": "0b330c442764b44fa6f19f61c1fdbad827bdd502214652923a472bc3a2f99f7c",
-        "stdout_sha256": "af5e8550a5e29df2a7c297befede3040e3227c17b52fd615d23f7b889e9c8337",
-        "elapsed_ms": 544.7625410015462,
+        "result_sha256": "b8e85507b50d4adb1ad42b69baf45378b4d3df3533de00a8b1a16b48f9fa0cfa",
+        "stdout_sha256": "efef4e43e6e174987609c4e62a1fcd5948ddaf50cc628a5314470ab644f9f3c2",
+        "elapsed_ms": 633.4819159965264,
         "error_type": null
       },
       {
-        "id": "51916da81ca84d5eb15fe35dc91922ff",
+        "id": "ee69845c060c4c8da0260dfc6dfb9e6f",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "instruments",
@@ -150,25 +156,25 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:06.565790Z",
-        "completed_at": "2026-10-17T10:52:07.018783Z",
+        "requested_at": "2026-10-17T12:15:42.171495Z",
+        "completed_at": "2026-10-17T12:15:42.766604Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "75bb80b360e54d108d42144c9361fefe",
+        "run_id": "25f4e0d8ae5f40c2bd636f45948396a5",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
         "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 453.00091701210476,
+        "elapsed_ms": 595.1106669963337,
         "error_type": null
       },
       {
-        "id": "832fc9fe663f4cb39cf13a86c85dd78e",
+        "id": "7995d67b00e54df7899ccc159ca76a5c",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "ticker",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "ticker",
@@ -179,25 +185,25 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:07.023570Z",
-        "completed_at": "2026-10-17T10:52:07.531739Z",
-        "market_timestamp": "2026-10-17T10:52:06.669000Z",
+        "requested_at": "2026-10-17T12:15:42.771913Z",
+        "completed_at": "2026-10-17T12:15:43.325009Z",
+        "market_timestamp": "2026-10-17T12:15:42.363000Z",
         "source_mode": "MARKET_ONLY",
-        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+        "run_id": "ec5e01df704549e2a67890e4c0852b50",
         "status": "PASS",
-        "result_sha256": "6c4fa4c886676e514b8b553540d3d00e299b7d050b125eb9b19cab4f335dabbe",
-        "stdout_sha256": "ffdb12a48daba73afa0ab31a80dddea54fc44439d1eefb45ac1cb2b5ae620336",
-        "elapsed_ms": 508.17125001049135,
+        "result_sha256": "8cd64b96856e84ce0b16ca2019ed0cfa28290b23df970ae1187b1467d67025f6",
+        "stdout_sha256": "8080dbc5f4b5ead3a2874f0384e24b30ff5fc2fa157f004e02880042e8774a39",
+        "elapsed_ms": 553.0964999925345,
         "error_type": null
       },
       {
-        "id": "1f3ebd369a4049d3ac82e6ad02335439",
+        "id": "a43e06b44bce44a29776536cc6831ef0",
         "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
         "operation": "instruments",
         "command": [
           "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
           "--import",
-          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "file:///Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
           "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
           "market",
           "instruments",
@@ -211,15 +217,15 @@
           "--json"
         ],
         "site": "tr",
-        "requested_at": "2026-10-17T10:52:07.531895Z",
-        "completed_at": "2026-10-17T10:52:08.071257Z",
+        "requested_at": "2026-10-17T12:15:43.325166Z",
+        "completed_at": "2026-10-17T12:15:43.887233Z",
         "market_timestamp": null,
         "source_mode": "MARKET_ONLY",
-        "run_id": "1156f19106fa4bd7ab110f9973819a5c",
+        "run_id": "ec5e01df704549e2a67890e4c0852b50",
         "status": "PASS",
         "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
         "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
-        "elapsed_ms": 539.3689170014113,
+        "elapsed_ms": 562.0711249939632,
         "error_type": null
       }
     ]
@@ -241,7 +247,38 @@
   "live_execution": "DISABLED",
   "models": {
     "LAYA": "NOT_TESTED",
-    "EVREN_AUTHENTICATED": "NOT_TESTED"
+    "EVREN_AUTHENTICATED": "NOT_TESTED",
+    "independent_features": {
+      "EVREN": {
+        "status": "NOT_TESTED",
+        "evidence": [],
+        "checked_at": null
+      },
+      "LAYA": {
+        "status": "NOT_TESTED",
+        "evidence": [],
+        "checked_at": null
+      },
+      "EVREN_DISCOVERY": {
+        "status": "NOT_TESTED",
+        "evidence": [],
+        "checked_at": null
+      },
+      "EVREN_STRUCTURED_OUTPUT": {
+        "status": "NOT_TESTED",
+        "evidence": [],
+        "checked_at": null
+      },
+      "EVREN_TOOL_CALLING": {
+        "status": "NOT_TESTED",
+        "evidence": [],
+        "checked_at": null
+      }
+    },
+    "evidence": [
+      "backend/evidence/models.json",
+      "backend/evidence/model-safety.json"
+    ]
   },
   "avalanche": {
     "identity": "NOT_TESTED",
@@ -256,7 +293,7 @@
     "listing_url": null
   },
   "immediate_blockers": [
-    "No agreed public host/origin; Person 3 work not started",
+    "No agreed public host/origin; local frontend bridge is not a public deployment",
     "No local EVREN key/account-discovered model",
     "No RTX LAN LAYA URL/benchmark",
     "No isolated confirmed regional demo account",
@@ -483,19 +520,19 @@
     },
     {
       "path": "backend/evidence/tests.xml",
-      "sha256": "b32f276bab89ccab2e898092f1e070356d91bcfa942e18a9a675aea8e3950cc2"
+      "sha256": "ee63f8ca6cd3518dda7542766230ee779ef9f8bf81794322d02f30f3060e9aa6"
     },
     {
       "path": "backend/evidence/http-smoke.json",
-      "sha256": "2e59ad9b3ceef94ec4616be5a169060aed318563668509e9b9c9b4735a5dd144"
+      "sha256": "69e0bab2596acb586dd49a31b7bb5b31d973444c7696dfd6dc4c78276fc58c69"
     },
     {
       "path": "backend/evidence/amendment-http.json",
-      "sha256": "9115c66f0304c5f11070081926f8ea0e38904b4fd8edee2ab803592d4a550d04"
+      "sha256": "703c8c14ff201faceadef54c72159ed602122be3e634465ad05c2ad79362fe00"
     },
     {
       "path": "backend/evidence/latest.json",
-      "sha256": "a8bd93a69b322559d07b349e7e5cd55c45c1e1d32c0eb040887ec9e274600e41"
+      "sha256": "973f718e80e9ba8b81492056f7787f95bc035a9886548ca8258e31f355f4e0eb"
     },
     {
       "path": "backend/evidence/atk-official.json",
@@ -508,6 +545,14 @@
     {
       "path": "backend/evidence/atk-node-tests.tap",
       "sha256": "7241b551e2af7ca7a8002129ddcbcc27b58f2efa1942c1db39fb9c3e9ee8a6d7"
+    },
+    {
+      "path": "backend/evidence/models.json",
+      "sha256": "8d53077ee32db96bf05b8e5acc04dabbcc0e29f52d511cb3cc72924aa3d5555b"
+    },
+    {
+      "path": "backend/evidence/model-safety.json",
+      "sha256": "3270e7214b5f25b6e302cc26dcf5285a6ec8e38231cee76455e63e6e3a09ec62"
     },
     {
       "path": "docs/atk/CAPABILITIES.md",

@@ -83,25 +83,51 @@ To demonstrate safely without integrations, set `AEGIS_SOURCE_MODE=MOCK` locally
 
 Only BTC-USDT cash spot is allowed. No leverage, derivatives, withdrawals or live-mode branch. Fixed limits: at most 25 quote units per order with 1% fee headroom, at most 1,000 total marked non-USDT exposure, feed/account age at most 15 seconds and future tolerance 2 seconds. Account level 1 (cash) and no liabilities are required. Tick-aligned IOC limit orders bind the approved execution price, using a 1% adverse-price allowance; no uncapped market orders. Fees beyond the reserved allowance are not independently benchmarked, and no successful demo fill is claimed.
 
-Stale/future data, invalid min/lot sizes, crossed quotes, unknown account, insufficient available balances, excess exposure, external pending orders, internal PENDING/UNKNOWN order, duplicate intent, non-CONTINUE/low-confidence/abstaining LAYA, missing approval or stop latch veto new submissions. CONTINUE is never permission by itself. LLM output is strict typed JSON; extra tool/override fields, tool calls, nonfinite numbers and unsupported symbols are rejected. HTTP model responses have a 15-second total request deadline and 256 KiB byte limit; generation requests cap output at 600 tokens and disable EVREN server tools.
+Stale/future/corrupt data, unsupported base/quote currencies (only BTC-USDT), invalid min/lot sizes, crossed quotes, unknown account, insufficient balances, excess exposure, external pending orders, internal PENDING/UNKNOWN order, duplicate intent, non-CONTINUE/low-confidence/abstaining LAYA, missing approval or STOP latch veto new submissions. CONTINUE never grants permission. The final gate revalidates typed inputs; raw tool/news text is excluded from model context. Proposal fields are schema-validated, quantity must be a decimal string, public rationale is at most 240 characters, and returned model tool calls are rejected. Hidden reasoning/provider bodies are never published.
+
+Each run has a durable SQLite order/notional budget (`AEGIS_MAX_RUN_ORDERS=1`, `AEGIS_MAX_RUN_NOTIONAL=25` by default). Decimal reservations include the price cap and fee headroom. Reservation and intent claim are checked/committed together under `BEGIN IMMEDIATE`; a fresh model intent cannot bypass the run budget. Reservations are retained after cancellation/timeout, and unresolved orders block every subsequent run. Restart preserves reservations; a new authenticated Start creates a new run ID, without bypassing global intent deduplication or UNKNOWN blocking.
 
 SQLite commits the PENDING intent and initial decision before submission. `clOrdId` is a server-generated 32-character ID. Ambiguous submission is reconciled by that ID, never retried as a new placement. UNKNOWN blocks further orders across restarts. Final journal and decision status commit atomically; rejected duplicate decisions cannot overwrite the original intent. Read-back matches symbol, client ID, side, quantity, IOC type, cash mode and approved price. VERIFIED means terminal venue state was independently read, including canceled; it does not guarantee a fill or profits. Failures that cannot establish a terminal venue state conservatively remain UNKNOWN.
 
 ATK runs in an isolated temporary profile/OAuth/log directory, with an allowlisted child environment and forced `--demo`/regional site. Personal `~/.okx` configuration, inherited live keys, proxy/base-URL overrides and unrelated secrets are excluded. Raw child stderr and arbitrary provider exceptions are not published. Persisted/public audit fields redact configured secrets. Private API credentials go only to the isolated ATK child environment; never to command-line arguments or the dashboard.
 
-## Connect EVREN later
+## EVREN environment and independent capability verification
 
-The provided EVREN URL and its public OpenAPI were actually inspected. Put `AEGIS_EVREN_API_KEY=...` in local `.env`; use the EVREN UI to review/accept its current terms. The runtime checks `GET /v1/terms/status` (`accepted: true`, `current_version`) and never accepts terms automatically. It sends `X-API-Key`, matching the supplied instructions.
+Configure only through environment or ignored mode-0600 `backend/.env`: `EVREN_BASE_URL=https://evren-llmapi.ssyz.org.tr/v1`, `EVREN_API_KEY` (local secret), and `EVREN_MODEL` (an account-discovered ID). There is no hard-coded runtime base URL/model; previous `AEGIS_EVREN_*` names remain supported aliases. Review/accept terms in EVREN's UI yourself. The client checks `GET /v1/terms/status` (`accepted: true`, positive `current_version`) and never accepts terms automatically. Authentication uses `X-API-Key`; no key is printed or sent to model context.
 
 ```sh
 uv run python -m scripts.discover_evren
+# Set EVREN_MODEL locally to an actual returned ID, then run optional inference probes:
+uv run python -m scripts.verify_models --evren-features
 ```
 
-Copy an actual returned account model ID into `AEGIS_EVREN_MODEL`, then restart. If exactly one model is returned, the client can select it automatically; multiple models require an explicit discovered ID. Names from examples are never assumed. Each cycle discovers the account's current models before requesting a bounded, nonstreaming `/v1/chat/completions` proposal. Authenticated discovery/generation is NOT_TESTED until a local key is configured; public schema retrieval and HTTP 401 are not model-integration proof.
+Discovery never guesses a model, even if only one is returned. Generation requires explicit membership of `EVREN_MODEL` in the current account catalog. `EVREN_DISCOVERY`, `EVREN_STRUCTURED_OUTPUT`, and `EVREN_TOOL_CALLING` are independent capability results. The diagnostic sends a tiny strict JSON-schema probe and a separate no-op function-call probe; no returned tool is executed. A PASS observes the named model's response behavior, not universal provider enforcement. Production sends `response_format=json_schema`, `evren_tools=false`, no executable tools, and independently validates the proposal. A successful diagnostic never enables model execution authority.
+
+Defaults: `EVREN_TIMEOUT_SECONDS=10` total per request (maximum 15), `EVREN_MAX_REQUESTS_PER_RUN=6`, `EVREN_MAX_REQUESTS_PER_MINUTE=12`, `EVREN_MAX_TOKENS=600` (maximum 1024), `EVREN_MAX_RESPONSE_BYTES=262144`. Terms/model reads and feature probes consume the same limits. Agent and risk-service clients share the deployment's minute counter; quotas apply to this single worker/process, including failed attempts, and reset on process restart. Each run ID retains its exhausted request budget for the process lifetime. Reaching a cap, HTTP 429, bad/nonfinite JSON, invalid schema or timeout gives NO_TRADE without retrying generation. Monitoring may continue after reasoning is exhausted. Public schema retrieval alone does not prove account access; absent configuration is NOT_TESTED.
 
 ## Connect LAYA later
 
-Set `AEGIS_LAYA_URL=http://<RTX-LAN-IP>:<port>` and optional `AEGIS_LAYA_TOKEN`. The client calls `/classify` using the shared contract. Model training, actual VRAM measurement via `nvidia-smi`, and benchmark publication are Person 2's tasks. An adapter PASS proves a schema-valid response only, not fine-tuning quality. Until connected, status remains NOT_TESTED and operational output is explicitly `advisory-fallback`, REVIEW/abstained. No model is deployed to the EVM.
+Set `AEGIS_LAYA_URL=http://<RTX-LAN-IP>:<port>`, optional `AEGIS_LAYA_TOKEN`, `AEGIS_LAYA_TIMEOUT_SECONDS=3` (maximum 15), and optional `AEGIS_LAYA_EXPECTED_VERSION` to pin the deployed version. POST `/classify` keeps Person 2's envelope `{state,run_id,correlation_id}`; response `{label,confidence,abstained,model_version,latency_ms}` must be finite, bounded and versioned. Responses are capped at 16 KiB. CONTINUE/REVIEW/HALT remain advisory. Wire UNAVAILABLE, missing service, bad data, timeout or version mismatch maps to REVIEW+abstention for frozen v2 compatibility, with explicit UNAVAILABLE/source/reason/reported version in Event.details. Default policy blocks execution while public monitoring continues. No trusted-context mapping or trained-model quality is inferred from the existing Observation envelope; Person 2's proposed adapter remains unapproved and is not imported or edited.
+
+`uv run python -m scripts.verify_models --laya` uses a real public ATK observation to test a configured LAN endpoint. Without its URL the result remains NOT_TESTED. HTTP attempt evidence records measured duration/status/hash, correlation ID and no response body. CLASSIFY/REASON events carry source/version/verified model and availability; missing providers have no invented network tool_call. Legacy fallback `latency_ms=0` is a placeholder, not a measured provider latency. Training, VRAM/quality benchmarks and all `ml/**` edits remain with Person 2.
+
+## Replayable Prompt 00A safety demo
+
+From `backend/`, after dependency installation and local environment setup:
+
+```sh
+uv run python -m scripts.prove_model_safety
+uv run python -m scripts.prove_model_safety --replay evidence/model-safety.json
+uv run python -m scripts.verify_models --evren-features --laya
+uv run pytest -q --junitxml=evidence/tests.xml
+uv run ruff check aegis tests scripts
+uv run ruff format --check aegis tests scripts
+uv run python -m scripts.export_contract --check
+```
+
+The first command starts/stops a temporary autonomous MARKET_ONLY runtime: genuine official ATK/MCP public read → configured model analysis or explicit availability fallbacks → deterministic NO_TRADE → VERIFY → AUDIT. It separately injects fully synthetic MOCK stale data, and a duplicate intent after a clearly labeled local MOCK simulation; both produce HALT/veto and NOT_SENT with no venue order ID. No private exchange tool is called. `evidence/model-safety.json` contains each run/cycle correlation ID, exact event/evidence IDs, tool_call records, model source/version, veto reasons and final outcome; SHA-256 binds the captured bundle. Replay verifies recorded integrity/separation and makes **no network calls**; it is not a fresh market observation. `evidence/models.json` holds independent real-provider statuses. Optional real TR demo order/readback remains NOT_TESTED unless separately verified; this proof script always sends zero exchange orders.
+
+For the actual loopback HTTP/SSE demo keep the server available on port 8000 with the agent stopped, then run `uv run python -m scripts.http_smoke`. It authenticates Start, waits for a full autonomous real market cycle, stops deterministically and checks SSE replay. The Next.js dashboard on port 3000 consumes these unchanged v2 routes. Offline fake-transport safety tests cover unavailable LAYA, EVREN 429/invalid output/caps/cancellation, malicious tool data, wrong quote currency, duplicate intent, run budgets, unknown venue status, missing permission and STOP mid-run; they are not claims of authenticated model or real demo trading success.
 
 ## Demo execution interlocks
 

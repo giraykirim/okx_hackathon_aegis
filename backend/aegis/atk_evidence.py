@@ -27,12 +27,27 @@ def response_hash(value):
 
 
 class ToolJournal:
-    def __init__(self, owner):
+    def __init__(self, owner, *, actor="atk", message="Sanitized official ATK invocation evidence"):
         self.owner = owner
+        self.actor, self.message = actor, message
         self.entries = []
 
-    def record(self, tool_id, request_ts, latency_ms, success, *, response=None, source_ts=None, **metadata):
+    def record(
+        self,
+        tool_id,
+        request_ts,
+        latency_ms,
+        success,
+        *,
+        response=None,
+        source_ts=None,
+        status_code="UNKNOWN",
+        **metadata,
+    ):
         evidence_id = new_id()
+        metadata.setdefault(
+            "correlation_id", getattr(self.owner, "correlation_id", None) or self.owner.run_id
+        )
         self.entries.append(
             {
                 "tool_call": {
@@ -48,7 +63,7 @@ class ToolJournal:
                     "success": success,
                     "response_hash": response_hash(response) if response is not None else "UNKNOWN",
                     # Neither the CLI JSON nor MCP result exposes the upstream HTTP status.
-                    "status_code": "UNKNOWN",
+                    "status_code": status_code,
                     "evidence_id": evidence_id,
                 },
                 **metadata,
@@ -65,8 +80,8 @@ class ToolJournal:
             timestamp=utcnow(),
             type="tool_call",
             severity="INFO" if entry["tool_call"]["success"] else "ERROR",
-            actor="atk",
-            message="Sanitized official ATK invocation evidence",
+            actor=self.actor,
+            message=self.message,
             details=entry,
             source_mode=entry["tool_call"]["source_mode"],
         )

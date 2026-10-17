@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-17T10:54:59.669757+00:00",
+  "recorded_at": "2026-10-17T12:15:39.570996+00:00",
   "source_mode": "MARKET_ONLY",
   "checks": {
     "read_routes": {
@@ -15,21 +15,21 @@
     "scenario_mode_isolation": "PASS: HTTP 409",
     "sse_resume": {
       "status": "PASS",
-      "event_id": "584f9072209c428199380e35157c4be1"
+      "event_id": "5c68dab48c8d4b9aac79998a235d8121"
     },
     "autonomous_http_cycle": {
       "status": "PASS",
       "snapshot": {
         "running": false,
-        "run_id": "053965204d05465a8283ad22b8d9e2f2",
+        "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
         "source_mode": "MARKET_ONLY",
-        "last_cycle_at": "2026-10-17T10:55:01.330806Z",
+        "last_cycle_at": "2026-10-17T12:15:41.172079Z",
         "observation": {
           "symbol": "BTC-USDT",
-          "observed_at": "2026-10-17T10:54:59.466000Z",
-          "price": "81671.5",
-          "ask": "81671.6",
-          "bid": "81671.5",
+          "observed_at": "2026-10-17T12:15:39.767000Z",
+          "price": "81554.9",
+          "ask": "81554.9",
+          "bid": "81554.8",
           "min_size": "0.00001",
           "lot_size": "1E-8",
           "tick_size": "0.1",
@@ -49,21 +49,26 @@
           "latency_ms": 0.0
         },
         "latest_decision": {
-          "id": "3e1aa03502eb499ea72989ad7618d324",
-          "timestamp": "2026-10-17T10:55:01.330226Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "57711b8729fc43c9983c74c8fc55d576",
+          "timestamp": "2026-10-17T12:15:41.171131Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "symbol": "BTC-USDT",
           "proposed_action": "NO_TRADE",
           "laya_label": "REVIEW",
           "laya_confidence": 0.0,
           "llm_summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
           "evidence_ids": [
-            "02d4f29584654892b4cf4c127c436cac",
-            "55cb73187dca4cd3aa3155ae33625e71",
-            "b185faa7bbbc45ceaade184a77c3747b",
-            "68aeb69db2ce4e0488b7c040c72c9d26",
-            "7499a61cae584648b682c02632de3ab9",
-            "313a702edf684213930e8bb522a1f907"
+            "c18252fe8a384203b347826f0bd3b5c7",
+            "74bc07ab63a64c47a5e817930bc1510f",
+            "6cfa17539876431fb6029783998c5e5d",
+            "f5caa90c54974a909e02ab0c4ea98a2f",
+            "4f97009a0f6b4c759f2dc27e80d51a85",
+            "a367848f4e654857971b9bf9dba7dc23",
+            "06168e239bcd4704961ea69a692a0586",
+            "3bea28372c344b89b540c3166da8b926",
+            "056edd96148d4b00afeaf7a8054f9b48",
+            "9d7c1cdf4572482399776370fce7f979",
+            "1ac0bda669af48609fd17107f35fd164"
           ],
           "risk_approved": false,
           "risk_reasons": [
@@ -77,7 +82,7 @@
           "execution_status": "NOT_SENT",
           "venue_order_id": null,
           "source_mode": "MARKET_ONLY",
-          "intent_id": "e93d5655e4b0437ea1c5c1e6f4b9f2f0",
+          "intent_id": "706b991274964c37816e9f9af7f890ca",
           "quantity": "0",
           "venue_state": null,
           "limit_price": null
@@ -88,9 +93,9 @@
             "evidence": [
               "Official ATK mcp ticker + instruments returned JSON",
               "site=tr",
-              "exchange_timestamp=2026-10-17T10:54:59.466000+00:00"
+              "exchange_timestamp=2026-10-17T12:15:39.767000+00:00"
             ],
-            "checked_at": "2026-10-17T10:55:01.329562Z"
+            "checked_at": "2026-10-17T12:15:41.169985Z"
           },
           "ATK_ACCOUNT": {
             "status": "NOT_TESTED",
@@ -105,58 +110,58 @@
           "ATK_PACKAGE_INSTALLED": {
             "status": "PASS",
             "evidence": [
-              "e2f64b9079d34cf3bfffc3e9941c777f"
+              "f5caa90c54974a909e02ab0c4ea98a2f"
             ],
-            "checked_at": "2026-10-17T10:54:59.740115Z"
+            "checked_at": "2026-10-17T12:15:39.644143Z"
           },
           "ATK_MARKET_READ": {
             "status": "PASS",
             "evidence": [
-              "eca57c2e58e34d2b82ca4b2800f4eabb"
+              "a367848f4e654857971b9bf9dba7dc23"
             ],
-            "checked_at": "2026-10-17T10:55:00.716148Z"
+            "checked_at": "2026-10-17T12:15:40.420961Z"
           },
           "ATK_MCP_LIST_TOOLS": {
             "status": "PASS",
             "evidence": [
-              "160a395ea04d4934841090316c887388"
+              "06168e239bcd4704961ea69a692a0586"
             ],
-            "checked_at": "2026-10-17T10:55:01.329247Z"
+            "checked_at": "2026-10-17T12:15:41.169621Z"
           },
           "ATK_MCP_CALL_TOOL": {
             "status": "PASS",
             "evidence": [
-              "65b8cb061af84f4b8aeefc7332524f4a"
+              "3bea28372c344b89b540c3166da8b926"
             ],
-            "checked_at": "2026-10-17T10:55:01.329516Z"
+            "checked_at": "2026-10-17T12:15:41.169935Z"
           },
           "ATK_TR_ROUTING": {
             "status": "PASS",
             "evidence": [
-              "eca57c2e58e34d2b82ca4b2800f4eabb"
+              "a367848f4e654857971b9bf9dba7dc23"
             ],
-            "checked_at": "2026-10-17T10:55:00.716148Z"
+            "checked_at": "2026-10-17T12:15:40.420961Z"
           },
           "ATK_DEMO_ACCOUNT_READ": {
             "status": "NOT_TESTED",
             "evidence": [
-              "e2f64b9079d34cf3bfffc3e9941c777f"
+              "f5caa90c54974a909e02ab0c4ea98a2f"
             ],
-            "checked_at": "2026-10-17T10:54:59.740122Z"
+            "checked_at": "2026-10-17T12:15:39.644148Z"
           },
           "ATK_DEMO_ORDER_SUBMISSION": {
             "status": "NOT_TESTED",
             "evidence": [
-              "e2f64b9079d34cf3bfffc3e9941c777f"
+              "f5caa90c54974a909e02ab0c4ea98a2f"
             ],
-            "checked_at": "2026-10-17T10:54:59.740124Z"
+            "checked_at": "2026-10-17T12:15:39.644150Z"
           },
           "ATK_ORDER_RECONCILIATION": {
             "status": "NOT_TESTED",
             "evidence": [
-              "e2f64b9079d34cf3bfffc3e9941c777f"
+              "f5caa90c54974a909e02ab0c4ea98a2f"
             ],
-            "checked_at": "2026-10-17T10:54:59.740126Z"
+            "checked_at": "2026-10-17T12:15:39.644151Z"
           },
           "EVREN": {
             "status": "NOT_TESTED",
@@ -164,6 +169,21 @@
             "checked_at": null
           },
           "LAYA": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          },
+          "EVREN_DISCOVERY": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          },
+          "EVREN_STRUCTURED_OUTPUT": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          },
+          "EVREN_TOOL_CALLING": {
             "status": "NOT_TESTED",
             "evidence": [],
             "checked_at": null
@@ -190,9 +210,9 @@
       },
       "events": [
         {
-          "id": "584f9072209c428199380e35157c4be1",
-          "timestamp": "2026-10-17T10:54:59.738388Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "5c68dab48c8d4b9aac79998a235d8121",
+          "timestamp": "2026-10-17T12:15:39.643155Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "START",
           "severity": "INFO",
           "actor": "agent",
@@ -201,26 +221,26 @@
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "e2f64b9079d34cf3bfffc3e9941c777f",
-          "timestamp": "2026-10-17T10:54:59.739973Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "f5caa90c54974a909e02ab0c4ea98a2f",
+          "timestamp": "2026-10-17T12:15:39.643946Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "tool_call",
           "severity": "INFO",
           "actor": "atk",
           "message": "Sanitized official ATK invocation evidence",
           "details": {
             "tool_call": {
-              "run_id": "053965204d05465a8283ad22b8d9e2f2",
+              "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
               "tool_id": "local:official-atk-package-inspection",
-              "request_ts": "2026-10-17T10:54:59.738945+00:00",
+              "request_ts": "2026-10-17T12:15:39.643480+00:00",
               "source_ts": "UNKNOWN",
               "source_mode": "MARKET_ONLY",
               "symbol": "BTC-USDT",
-              "latency_ms": 0.9659579955041409,
+              "latency_ms": 0.4239999980200082,
               "success": true,
               "response_hash": "a0137159c5494ffb9d01dee754380a077ec3aca0c6f755b87e4a98185553b6a2",
               "status_code": "UNKNOWN",
-              "evidence_id": "e2f64b9079d34cf3bfffc3e9941c777f"
+              "evidence_id": "f5caa90c54974a909e02ab0c4ea98a2f"
             },
             "packages": {
               "okx-trade-cli": true,
@@ -232,31 +252,32 @@
               "region_confirmed": false,
               "isolated_demo_ready": false,
               "personal_profile_used": false
-            }
+            },
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "ab3a387f47264f939b3a6bd08697f068",
-          "timestamp": "2026-10-17T10:55:00.714621Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "4f97009a0f6b4c759f2dc27e80d51a85",
+          "timestamp": "2026-10-17T12:15:40.419326Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "tool_call",
           "severity": "INFO",
           "actor": "atk",
           "message": "Sanitized official ATK invocation evidence",
           "details": {
             "tool_call": {
-              "run_id": "053965204d05465a8283ad22b8d9e2f2",
+              "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
               "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:tools/list",
-              "request_ts": "2026-10-17T10:55:00.093Z",
+              "request_ts": "2026-10-17T12:15:39.955Z",
               "source_ts": "UNKNOWN",
               "source_mode": "MARKET_ONLY",
               "symbol": "BTC-USDT",
-              "latency_ms": 2.9145410000000425,
+              "latency_ms": 2.160165999999947,
               "success": true,
               "response_hash": "25a51b0a70bf73d6ed437207db2c4f685afba81d8afae79f31f44621ec7449df",
               "status_code": "UNKNOWN",
-              "evidence_id": "ab3a387f47264f939b3a6bd08697f068"
+              "evidence_id": "4f97009a0f6b4c759f2dc27e80d51a85"
             },
             "transport": "mcp-stdio",
             "site": "tr",
@@ -1242,61 +1263,63 @@
               "--site",
               "tr",
               "--demo"
-            ]
+            ],
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "eca57c2e58e34d2b82ca4b2800f4eabb",
-          "timestamp": "2026-10-17T10:55:00.715948Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "a367848f4e654857971b9bf9dba7dc23",
+          "timestamp": "2026-10-17T12:15:40.420641Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "tool_call",
           "severity": "INFO",
           "actor": "atk",
           "message": "Sanitized official ATK invocation evidence",
           "details": {
             "tool_call": {
-              "run_id": "053965204d05465a8283ad22b8d9e2f2",
+              "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
               "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:market_get_ticker",
-              "request_ts": "2026-10-17T10:55:00.109Z",
-              "source_ts": "2026-10-17T10:54:59.466000+00:00",
+              "request_ts": "2026-10-17T12:15:39.969Z",
+              "source_ts": "2026-10-17T12:15:39.767000+00:00",
               "source_mode": "MARKET_ONLY",
               "symbol": "BTC-USDT",
-              "latency_ms": 561.0112919999999,
+              "latency_ms": 402.742291,
               "success": true,
-              "response_hash": "4e9d3c799b0c2da92b537c926c126e8928b00fa7ab0bb441aad981289f70cf4f",
+              "response_hash": "ed8c2d781eb4c46bdd312ae671a456f809c9b95281d8c1d38fb4101efbc66153",
               "status_code": "UNKNOWN",
-              "evidence_id": "eca57c2e58e34d2b82ca4b2800f4eabb"
+              "evidence_id": "a367848f4e654857971b9bf9dba7dc23"
             },
             "transport": "mcp-stdio",
             "site": "tr",
             "read_only": true,
             "has_auth": false,
-            "payload_redacted": false
+            "payload_redacted": false,
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "160a395ea04d4934841090316c887388",
-          "timestamp": "2026-10-17T10:55:01.327986Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "06168e239bcd4704961ea69a692a0586",
+          "timestamp": "2026-10-17T12:15:41.167867Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "tool_call",
           "severity": "INFO",
           "actor": "atk",
           "message": "Sanitized official ATK invocation evidence",
           "details": {
             "tool_call": {
-              "run_id": "053965204d05465a8283ad22b8d9e2f2",
+              "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
               "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:tools/list",
-              "request_ts": "2026-10-17T10:55:00.935Z",
+              "request_ts": "2026-10-17T12:15:40.637Z",
               "source_ts": "UNKNOWN",
               "source_mode": "MARKET_ONLY",
               "symbol": "BTC-USDT",
-              "latency_ms": 2.618666000000019,
+              "latency_ms": 2.731874999999974,
               "success": true,
               "response_hash": "25a51b0a70bf73d6ed437207db2c4f685afba81d8afae79f31f44621ec7449df",
               "status_code": "UNKNOWN",
-              "evidence_id": "160a395ea04d4934841090316c887388"
+              "evidence_id": "06168e239bcd4704961ea69a692a0586"
             },
             "transport": "mcp-stdio",
             "site": "tr",
@@ -2282,54 +2305,56 @@
               "--site",
               "tr",
               "--demo"
-            ]
+            ],
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "65b8cb061af84f4b8aeefc7332524f4a",
-          "timestamp": "2026-10-17T10:55:01.329343Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "3bea28372c344b89b540c3166da8b926",
+          "timestamp": "2026-10-17T12:15:41.169725Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "tool_call",
           "severity": "INFO",
           "actor": "atk",
           "message": "Sanitized official ATK invocation evidence",
           "details": {
             "tool_call": {
-              "run_id": "053965204d05465a8283ad22b8d9e2f2",
+              "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
               "tool_id": "@okx_ai/okx-trade-mcp@1.4.8:market_get_instruments",
-              "request_ts": "2026-10-17T10:55:00.950Z",
+              "request_ts": "2026-10-17T12:15:40.652Z",
               "source_ts": "UNKNOWN",
               "source_mode": "MARKET_ONLY",
               "symbol": "BTC-USDT",
-              "latency_ms": 345.50304100000005,
+              "latency_ms": 476.61258300000003,
               "success": true,
-              "response_hash": "0021ef8687281c1269968e3492c5cbbec1f9de4c5f707b7b47e732bd4bd4da83",
+              "response_hash": "f72cc4bbf99b29f20289f2f65fb7c423fee46dc533acc073d5460b882c0053ba",
               "status_code": "UNKNOWN",
-              "evidence_id": "65b8cb061af84f4b8aeefc7332524f4a"
+              "evidence_id": "3bea28372c344b89b540c3166da8b926"
             },
             "transport": "mcp-stdio",
             "site": "tr",
             "read_only": true,
             "has_auth": false,
-            "payload_redacted": false
+            "payload_redacted": false,
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "02d4f29584654892b4cf4c127c436cac",
-          "timestamp": "2026-10-17T10:55:01.329599Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "c18252fe8a384203b347826f0bd3b5c7",
+          "timestamp": "2026-10-17T12:15:41.170035Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "OBSERVE",
           "severity": "INFO",
           "actor": "atk",
           "message": "Official ATK market observation",
           "details": {
             "symbol": "BTC-USDT",
-            "observed_at": "2026-10-17T10:54:59.466000Z",
-            "price": "81671.5",
-            "ask": "81671.6",
-            "bid": "81671.5",
+            "observed_at": "2026-10-17T12:15:39.767000Z",
+            "price": "81554.9",
+            "ask": "81554.9",
+            "bid": "81554.8",
             "min_size": "0.00001",
             "lot_size": "1E-8",
             "tick_size": "0.1",
@@ -2341,14 +2366,15 @@
             "account_observed_at": null,
             "external_open_orders": false,
             "phase": "OBSERVE",
-            "cycle_id": "4d4bd2d8a3724e34be99c79e121d3088"
+            "cycle_id": "79f3f120ec604d768aef0ce400913d7d",
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "55cb73187dca4cd3aa3155ae33625e71",
-          "timestamp": "2026-10-17T10:55:01.329764Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "74bc07ab63a64c47a5e817930bc1510f",
+          "timestamp": "2026-10-17T12:15:41.170243Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "CLASSIFY",
           "severity": "INFO",
           "actor": "laya",
@@ -2359,16 +2385,24 @@
             "abstained": true,
             "model_version": "advisory-fallback",
             "latency_ms": 0.0,
+            "integration": {
+              "availability": "UNAVAILABLE",
+              "source": "NOT_CONFIGURED",
+              "reason_code": "NOT_CONFIGURED",
+              "model": null,
+              "model_version": null
+            },
             "availability": "UNAVAILABLE",
             "phase": "CLASSIFY",
-            "cycle_id": "4d4bd2d8a3724e34be99c79e121d3088"
+            "cycle_id": "79f3f120ec604d768aef0ce400913d7d",
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "b185faa7bbbc45ceaade184a77c3747b",
-          "timestamp": "2026-10-17T10:55:01.329951Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "6cfa17539876431fb6029783998c5e5d",
+          "timestamp": "2026-10-17T12:15:41.170718Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "REASON",
           "severity": "INFO",
           "actor": "evren",
@@ -2377,18 +2411,26 @@
             "action": "NO_TRADE",
             "symbol": "BTC-USDT",
             "quantity": "0",
-            "intent_id": "e93d5655e4b0437ea1c5c1e6f4b9f2f0",
+            "intent_id": "706b991274964c37816e9f9af7f890ca",
             "summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
+            "integration": {
+              "availability": "UNAVAILABLE",
+              "source": "NOT_CONFIGURED",
+              "reason_code": "NOT_CONFIGURED",
+              "model": null,
+              "model_version": null
+            },
             "availability": "FALLBACK",
             "phase": "REASON",
-            "cycle_id": "4d4bd2d8a3724e34be99c79e121d3088"
+            "cycle_id": "79f3f120ec604d768aef0ce400913d7d",
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "68aeb69db2ce4e0488b7c040c72c9d26",
-          "timestamp": "2026-10-17T10:55:01.330110Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "056edd96148d4b00afeaf7a8054f9b48",
+          "timestamp": "2026-10-17T12:15:41.170984Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "RISK_GATE",
           "severity": "WARNING",
           "actor": "policy",
@@ -2404,15 +2446,22 @@
               "invalid_quantity"
             ],
             "limit_price": null,
+            "run_budget": {
+              "orders_reserved": 0,
+              "notional_reserved": "0",
+              "max_orders": 1,
+              "max_notional": "25"
+            },
             "phase": "RISK_CHECK",
-            "cycle_id": "4d4bd2d8a3724e34be99c79e121d3088"
+            "cycle_id": "79f3f120ec604d768aef0ce400913d7d",
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "7499a61cae584648b682c02632de3ab9",
-          "timestamp": "2026-10-17T10:55:01.330238Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "9d7c1cdf4572482399776370fce7f979",
+          "timestamp": "2026-10-17T12:15:41.171143Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "NO_TRADE",
           "severity": "INFO",
           "actor": "policy",
@@ -2427,14 +2476,15 @@
               "invalid_quantity"
             ],
             "phase": "NO_TRADE",
-            "cycle_id": "4d4bd2d8a3724e34be99c79e121d3088"
+            "cycle_id": "79f3f120ec604d768aef0ce400913d7d",
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "313a702edf684213930e8bb522a1f907",
-          "timestamp": "2026-10-17T10:55:01.330362Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "1ac0bda669af48609fd17107f35fd164",
+          "timestamp": "2026-10-17T12:15:41.171427Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "VERIFY",
           "severity": "INFO",
           "actor": "policy",
@@ -2443,30 +2493,43 @@
             "execution_status": "NOT_SENT",
             "venue_reconciliation": "NOT_REQUIRED",
             "phase": "VERIFY",
-            "cycle_id": "4d4bd2d8a3724e34be99c79e121d3088"
+            "cycle_id": "79f3f120ec604d768aef0ce400913d7d",
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "ef9e7387e38744f6b9569a1dd27df69d",
-          "timestamp": "2026-10-17T10:55:01.330714Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "a7cd366daaf546cebbd6c28fa707cd0c",
+          "timestamp": "2026-10-17T12:15:41.171972Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "AUDIT",
           "severity": "INFO",
           "actor": "agent",
           "message": "Cycle persisted",
           "details": {
-            "decision_id": "3e1aa03502eb499ea72989ad7618d324",
+            "decision_id": "57711b8729fc43c9983c74c8fc55d576",
             "execution_status": "NOT_SENT",
+            "intent_id": "706b991274964c37816e9f9af7f890ca",
+            "verdict": "NO_TRADE",
+            "risk_reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "no_trade_proposed",
+              "invalid_quantity"
+            ],
+            "input_source": "MARKET_ONLY",
             "phase": "AUDIT",
-            "cycle_id": "4d4bd2d8a3724e34be99c79e121d3088"
+            "cycle_id": "79f3f120ec604d768aef0ce400913d7d",
+            "correlation_id": "79f3f120ec604d768aef0ce400913d7d"
           },
           "source_mode": "MARKET_ONLY"
         },
         {
-          "id": "64c3c6c6b4d04cc39454ff4ebbe4658a",
-          "timestamp": "2026-10-17T10:55:01.382002Z",
-          "run_id": "053965204d05465a8283ad22b8d9e2f2",
+          "id": "ddb99842e3b749a9a5a262fceffb131b",
+          "timestamp": "2026-10-17T12:15:41.333808Z",
+          "run_id": "5eb889ad8fc340d2bf9cab895be0ae03",
           "type": "STOP",
           "severity": "INFO",
           "actor": "agent",
