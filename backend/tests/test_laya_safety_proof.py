@@ -78,7 +78,7 @@ async def install(agent, monkeypatch):
         obs.account_observed_at = obs.observed_at
         return obs
 
-    async def classify(*args):
+    async def classify(*args, **kwargs):
         agent.models.capabilities["LAYA"] = Capability(status="PASS")
         return inputs()[1]
 
@@ -237,7 +237,8 @@ async def test_ack_duplicate_retry(tmp_path, monkeypatch):
     first = await agent.cycle()
     second = await agent.cycle()
     assert first.execution_status == "PENDING" and len(sends) == 1
-    assert not second.risk_approved and "duplicate_intent" in second.risk_reasons
+    # Backend-owned intent IDs: the retry is blocked by the unresolved prior submission.
+    assert not second.risk_approved and "unresolved_prior_order" in second.risk_reasons
     record(
         "ack_duplicate_retry",
         execution_status=first.execution_status,

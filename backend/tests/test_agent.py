@@ -68,7 +68,7 @@ async def test_stop_during_model_wait_prevents_new_submission(tmp_path, monkeypa
         obs.account_observed_at = obs.observed_at
         return obs
 
-    async def classify(*args):
+    async def classify(*args, **kwargs):
         return inputs()[1]
 
     async def reason(*args):
@@ -209,7 +209,7 @@ async def test_demo_timeout_is_unknown_and_next_cycle_only_reconciles(tmp_path, 
         observation.account_observed_at = observation.observed_at
         return observation
 
-    async def classify(*args):
+    async def classify(*args, **kwargs):
         agent.models.capabilities["LAYA"] = Capability(status="PASS")
         return inputs()[1]
 
@@ -333,7 +333,7 @@ async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(tmp_pa
         observation.base_available = Decimal("1")
         return observation
 
-    async def classify(*args):
+    async def classify(*args, **kwargs):
         return Classification(
             label=label, confidence=0, abstained=label == "REVIEW", model_version="base", latency_ms=1
         )
@@ -357,4 +357,113 @@ async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(tmp_pa
     assert (calls == ["place"]) is submitted
     assert decision.risk_approved is submitted
     assert decision.execution_status == ("VERIFIED" if submitted else "NOT_SENT")
+    await agent.close()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("rejected,expected", [(True, "FAILED"), (False, "UNKNOWN")])
+async def test_not_found_after_submit_resolves_only_when_venue_rejected(tmp_path, monkeypatch, rejected, expected):
+    from aegis.agent import Agent
+    from aegis.atk import ATKCommandError
+    from aegis.models import Classification
+
+    agent = Agent(
+        Settings(
+            source_mode="OKX_DEMO",
+            db_path=tmp_path / "rejected.sqlite3",
+            demo_enabled=True,
+            demo_region_confirmed=True,
+            okx_demo_api_key="test-demo",
+            okx_demo_secret_key="test-secret",
+            okx_demo_passphrase="test-pass",
+        )
+    )
+
+    async def observe():
+        observation = inputs()[0]
+        observation.account_observed_at = observation.observed_at
+        return observation
+
+    async def classify(*args, **kwargs):
+        return Classification(label="REVIEW", confidence=0, abstained=True, model_version="b", latency_ms=1)
+
+    async def reason(*args):
+        return inputs()[2]
+
+    async def place(*args):
+        raise ATKCommandError("51008", "Insufficient balance") if rejected else TimeoutError()
+
+    async def call(operation, *args):
+        assert operation == "get"
+        raise ATKCommandError("51603", "Order does not exist")
+
+    monkeypatch.setattr(agent.atk, "observe", observe)
+    monkeypatch.setattr(agent.models, "classify", classify)
+    monkeypatch.setattr(agent.models, "reason", reason)
+    monkeypatch.setattr(agent.atk, "place", place)
+    monkeypatch.setattr(agent.atk, "call", call)
+    decision = await agent.cycle()
+    assert decision.execution_status == expected
+    assert bool(agent.store.unresolved()) is (expected == "UNKNOWN")
+    if rejected:
+        execute = [e for e in agent.store.events(100) if e["type"] == "EXECUTE"][-1]
+        assert execute["details"]["error_code"] == "51008"
+    await agent.close()
+
+
+def test_venue_rejected_claim_releases_run_budget(tmp_path):
+    from aegis.store import Store
+
+    store = Store(tmp_path / "budget.sqlite3", [])
+    proposal = inputs()[2]
+    assert store.claim(proposal, "a" * 32, "OKX_DEMO", run_id="r", reserved_notional=Decimal("8"))
+    assert store.run_budget("r") == (1, Decimal("8"))
+    store.order_status(proposal.intent_id, "FAILED", None, "not_found")
+    assert store.run_budget("r") == (0, Decimal("0"))
+    store.close()
+
+
+@pytest.mark.asyncio
+async def test_laya_receives_complete_post_proposal_operational_context(tmp_path, monkeypatch):
+    from aegis.agent import Agent
+    from aegis.models import Capability, Classification
+
+    agent = Agent(
+        Settings(
+            source_mode="OKX_DEMO",
+            db_path=tmp_path / "context.sqlite3",
+            demo_enabled=True,
+            demo_region_confirmed=True,
+            okx_demo_api_key="test-demo",
+            okx_demo_secret_key="test-secret",
+            okx_demo_passphrase="test-pass",
+            laya_expected_version="base",
+        )
+    )
+    seen = {}
+
+    async def observe():
+        observation = inputs()[0]
+        observation.account_observed_at = observation.observed_at
+        agent.atk.capabilities["ATK_ACCOUNT"] = Capability(status="PASS")
+        return observation
+
+    async def reason(*args):
+        agent.models.capabilities["EVREN"] = Capability(status="PASS")
+        return inputs()[2]
+
+    async def classify(*args, context=None):
+        seen["context"] = context
+        return Classification(label="HALT", confidence=0.9, abstained=False, model_version="base", latency_ms=1)
+
+    monkeypatch.setattr(agent.atk, "observe", observe)
+    monkeypatch.setattr(agent.models, "reason", reason)
+    monkeypatch.setattr(agent.models, "classify", classify)
+    decision = await agent.cycle()
+    facts = seen["context"]["operational"]
+    assert None not in facts.values()
+    assert facts["intent_requested"] is True and facts["approval_available"] is True
+    assert not {"quote_available", "base_available", "exposure_quote", "intent_id"} & facts.keys()
+    # An explicit LAYA HALT from the full-context call still vetoes the order.
+    assert not decision.risk_approved and "laya_not_clear" in decision.risk_reasons
     await agent.close()

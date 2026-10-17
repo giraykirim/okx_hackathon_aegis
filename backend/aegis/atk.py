@@ -27,6 +27,15 @@ OPERATIONS = {
     "get": ("spot", "get"),
 }
 PRIVATE = {"balance", "config", "orders", "place", "get"}
+ORDER_NOT_FOUND = "51603"
+
+
+class ATKCommandError(RuntimeError):
+    """Non-zero CLI exit with the venue's numeric code and a short, secret-redacted message."""
+
+    def __init__(self, code: str | None, detail: str | None):
+        super().__init__("ATK subprocess failed")
+        self.code, self.detail = code, detail
 
 
 class ATK:
@@ -140,6 +149,7 @@ class ATK:
         ]
         requested_at, started = utcnow(), time.perf_counter()
         stdout_hash, result_hash, market_timestamp, error_type = None, None, None, None
+        error_code, error_detail = None, None
         status, result = "FAIL", None
         try:
             stdout = await self.run_subprocess(command, private=operation in PRIVATE)
@@ -158,6 +168,11 @@ class ATK:
             return result
         except BaseException as exc:
             error_type = type(exc).__name__
+            if isinstance(exc, ATKCommandError):
+                # Receipt contract keeps the generic type; venue codes are journaled for order calls only.
+                error_type = "RuntimeError"
+                if operation in {"place", "get"}:
+                    error_code, error_detail = exc.code, exc.detail
             raise
         finally:
             evidence_id = self.journal.record(
@@ -171,6 +186,8 @@ class ATK:
                 site=self.settings.okx_site,
                 payload_redacted=operation in PRIVATE,
                 error_type=error_type,
+                error_code=error_code,
+                error_detail=error_detail,
             )
             if operation == "ticker":
                 self.public_capabilities(status == "PASS", evidence_id)
@@ -314,9 +331,43 @@ class ATK:
                         pass
                     await process.communicate()
                 raise
-            # Never include raw stderr or arbitrary provider errors in public logs.
-            if process.returncode != 0 or len(stdout) > 2_000_000:
-                raise RuntimeError("ATK subprocess failed or response exceeded bounds")
+            if len(stdout) > 2_000_000:
+                raise RuntimeError("ATK subprocess response exceeded bounds")
+            if process.returncode != 0:
+                # Only the venue code and a bounded first error line leave; secrets are redacted.
+                # `--json` failures may print to either stream; both are bounded and redacted.
+                text = (_stderr[:4096] + b"\n" + stdout[:4096]).decode(errors="replace")
+                for value in env.values():
+                    if len(value) >= 8 and value in text and value not in {env.get("PATH"), directory}:
+                        text = text.replace(value, "[REDACTED]")
+                # Prefer the per-order sCode/sMsg over the envelope's generic code.
+                code = next(
+                    (
+                        m.group(1)
+                        for p in (
+                            r"\"sCode\"\s*:\s*\"?(\d{1,8})",
+                            r"Code:\s*(\d{1,8})",
+                            r"\[(\d{4,8})\]",
+                            r"\"code\"\s*:\s*\"?(\d{1,8})",
+                        )
+                        if (m := re.search(p, text))
+                    ),
+                    None,
+                )
+                message = next(
+                    (
+                        m.group(1).strip()
+                        for p in (
+                            r"\"sMsg\"\s*:\s*\"([^\"]{1,160})",
+                            r"Error:\s*([^\n]{1,160})",
+                            r"\"msg\"\s*:\s*\"([^\"]{1,160})",
+                        )
+                        if (m := re.search(p, text))
+                    ),
+                    None,
+                )
+                first = next((line.strip()[:160] for line in text.splitlines() if line.strip()), None)
+                raise ATKCommandError(code, message or first)
             return stdout
 
     async def observe(self) -> Observation:
@@ -447,7 +498,13 @@ class ATK:
     ) -> tuple[str, str, str]:
         if limit_price is None:
             raise ValueError("Persisted policy price required for reconciliation")
-        row = (await self.call("get", "--instId", "BTC-USDT", "--clOrdId", client_id))[0]
+        try:
+            row = (await self.call("get", "--instId", "BTC-USDT", "--clOrdId", client_id))[0]
+        except ATKCommandError as exc:
+            if exc.code == ORDER_NOT_FOUND:
+                # The venue has no order for this client ID: the submission never landed.
+                return "FAILED", None, "not_found"
+            raise
         if not (
             row.get("instId") == proposal.symbol
             and row.get("clOrdId") == client_id

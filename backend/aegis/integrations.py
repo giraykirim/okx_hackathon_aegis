@@ -12,6 +12,15 @@ from .settings import Settings
 
 MAX_RESPONSE_BYTES = 256 * 1024
 REQUEST_TIMEOUT_SECONDS = 60
+# The autonomous loop reuses a verified terms/catalog discovery instead of spending 2 calls per cycle.
+DISCOVERY_TTL_SECONDS = 600
+# OKX_DEMO only: simulated funds exist to exercise the pipeline; the Python policy remains final.
+DEMO_EXERCISE_PROMPT = (
+    "OKX DEMO MODE: this account holds simulated funds and exists to exercise the execution pipeline. "
+    "LAYA abstention or REVIEW is expected here and is NOT a reason to hold. Unless market facts are stale, "
+    "crossed or the instrument is not live, or LAYA reports HALT, propose BUY or SELL (alternate freely) "
+    "with quantity exactly \"0.0001\". The deterministic policy gate makes the final decision. "
+)
 
 
 class RequestCapReached(ValueError):
@@ -167,7 +176,9 @@ class Models:
         if self.owns_client:
             await self.client.aclose()
 
-    async def classify(self, state: Observation, run_id: str, correlation_id: str) -> Classification:
+    async def classify(
+        self, state: Observation, run_id: str, correlation_id: str, *, context: dict | None = None
+    ) -> Classification:
         self.run_id, self.correlation_id = run_id, correlation_id
         self.laya_metadata = self.unavailable()
         if self.settings.laya_url:
@@ -182,7 +193,8 @@ class Models:
                     provider="LAYA",
                     operation="classify",
                     json={
-                        "state": state.model_dump(mode="json"),
+                        # Operational context (post-proposal) when supplied; legacy Observation otherwise.
+                        "state": context if context is not None else state.model_dump(mode="json"),
                         "run_id": run_id,
                         "correlation_id": correlation_id,
                     },
@@ -295,7 +307,19 @@ class Models:
         if self.settings.evren_base_url and self.settings.evren_api_key:
             self.evren_metadata = self.unavailable("NO_VALID_RESPONSE", "EVREN")
             try:
-                base, headers = await self.discover_evren(run_id)
+                cached = getattr(self, "_agent_discovery", None)
+                if (
+                    assessment is None
+                    and cached is not None
+                    and time.monotonic() - cached[0] < DISCOVERY_TTL_SECONDS
+                ):
+                    _, base, headers, self.selected_model, self.available_models = cached
+                else:
+                    base, headers = await self.discover_evren(run_id)
+                    if assessment is None:
+                        self._agent_discovery = (
+                            time.monotonic(), base, headers, self.selected_model, self.available_models
+                        )
                 selected = self.selected_model
                 response = await self.request_json(
                     "POST",
@@ -328,6 +352,8 @@ class Models:
                                         "Analyze only freshness, sizing, availability and missing account context. "
                                         "Return action NO_TRADE and quantity 0; do not alter the caller's intent. "
                                         if assessment is not None
+                                        else DEMO_EXERCISE_PROMPT
+                                        if self.settings.source_mode == "OKX_DEMO"
                                         else ""
                                     )
                                     + "Return ONLY a JSON object conforming to this schema: "

@@ -66,7 +66,7 @@ class Settings(BaseSettings):
     evren_max_requests_per_run: int = Field(
         default=6,
         ge=1,
-        le=60,
+        le=5000,
         validation_alias=AliasChoices("EVREN_MAX_REQUESTS_PER_RUN", "AEGIS_EVREN_MAX_REQUESTS_PER_RUN"),
     )
     evren_max_requests_per_minute: int = Field(
