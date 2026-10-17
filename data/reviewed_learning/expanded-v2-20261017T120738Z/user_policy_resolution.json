@@ -1,0 +1,8 @@
+{
+  "dataset_sha256": "7f5e4a722d381ae6cfbaa73f02e65bbf07d8af67cebb5ceab77c0c7846ad613b",
+  "time_outside_tolerance": "User explicitly preserved REVIEW; deployed policy disagreement remains open",
+  "clock_inside_tolerance": "User explicitly changed only these eight REVIEW labels to CONTINUE",
+  "no_intent_unknown_permission": "User explicitly preserved CONTINUE; proposed candidate rule remains open",
+  "production_policy_changed": false,
+  "training_approved": false
+}

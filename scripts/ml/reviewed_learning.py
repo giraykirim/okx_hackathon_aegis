@@ -110,6 +110,11 @@ def validate_bundle(directory, control):
         if not (ROOT/name).resolve().is_relative_to(ROOT) or sha(ROOT/name)!=h:
             raise ValueError('protected source/model changed since positive control')
     manifest=json.loads((directory/'manifest.json').read_text())
+    if manifest.get('policy_disagreements_open') or manifest.get('policy_disagreements'):
+        raise ValueError('open policy disagreements must be adjudicated before training')
+    for flag in ('training_approved','source_independence_approved','approved_training_split'):
+        if flag in manifest and manifest[flag] is not True:
+            raise ValueError(f'explicit approval required: {flag}')
     ack=manifest['backend_ack']
     if (set(ack)!=ACK_FIELDS or ack.get('person1_approved') is not True or not re.fullmatch('[0-9a-f]{40}',ack.get('commit',''))
         or not ack.get('reviewer_role') or ack.get('trusted_context_mapping_approved') is not True
@@ -130,6 +135,7 @@ def validate_bundle(directory, control):
     if len(metadata)!=120:
         raise ValueError('exactly 120 individually reviewed rows required')
     all_states=set()
+    no_intent_split={}
     group_split={}
     bundles={}
     for split,count in SPLITS.items():
@@ -140,12 +146,18 @@ def validate_bundle(directory, control):
         if Counter(r['expected']['operational_state'] for r in rows)!=Counter({c:count//3 for c in LABELS}):
             raise ValueError('each split must balance all three classes')
         for index,(row,m) in enumerate(zip(rows,meta)):
+            if set(row)!={'state','questions','expected'} or set(row['expected'])!={'operational_state'}:
+                raise ValueError('unexpected row fields or answer channel')
             if m.get('row')!=index or row['questions']!=QUESTIONS:
                 raise ValueError('metadata row/question mismatch')
             if m.get('human_review_status')!='APPROVED' or m.get('human_label')!=row['expected']['operational_state']:
                 raise ValueError('unreviewed or unadjudicated target')
             if not m.get('reviewer_role') or not m.get('rationale'):
                 raise ValueError('actual human review evidence required')
+            if 'ai_assisted' in m and type(m['ai_assisted']) is not bool:
+                raise ValueError('AI assistance flag must be a boolean')
+            if m.get('blind_first_pass') is True and (m.get('ai_assisted') is True or m.get('review_method')=='AI_ASSISTED_HUMAN_CONFIRMED'):
+                raise ValueError('AI-assisted review cannot claim a blind first pass')
             if m.get('blind_first_pass') is not True:
                 if split!='train' or m.get('review_method')!='AI_ASSISTED_HUMAN_CONFIRMED' or m.get('ai_assisted') is not True:
                     raise ValueError('independent blind review required for validation/test; train needs explicit AI-assistance provenance')
@@ -170,6 +182,12 @@ def validate_bundle(directory, control):
             if set(parsed)!={'operational'}:
                 raise ValueError('only trusted normalized context accepted')
             normalized,_=state_from_context(parsed['operational'])
+            if parsed['operational']['intent_requested'] is False:
+                # With no requested order, quantity-only variants are not independent evidence.
+                semantic=json.dumps({k:v for k,v in parsed['operational'].items() if k!='quantity'},sort_keys=True)
+                if semantic in no_intent_split and no_intent_split[semantic]!=split:
+                    raise ValueError('no-intent quantity sibling semantic leakage across splits')
+                no_intent_split[semantic]=split
             if normalized!=row['state']:
                 raise ValueError('training/inference serialization must be identical')
             trace=evidence.get(m['trace_hash'])
@@ -286,6 +304,8 @@ def train(directory,control):
     os.environ.update(HF_HOME=str(ROOT/'models/hf-cache'),HF_HUB_OFFLINE='1',
         TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_TELEMETRY='1')
     manifest,bundle=validate_bundle(directory,control)
+    if (directory/'final-test-started.lock').exists():
+        raise ValueError('final test already attempted; new training/selection blocked')
     # Atomic marker prevents inadvertent re-selection and a second final test.
     with (directory/'experiment-started.lock').open('x') as marker:
         marker.write(datetime.now(timezone.utc).isoformat())

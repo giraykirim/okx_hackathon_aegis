@@ -1,0 +1,2110 @@
+[
+  {
+    "scenario": "read_timeout_before_submit",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "read",
+        "fixture_outcome": "timeout_before_submit",
+        "journal_claim_called": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": true,
+        "reasons": []
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": true,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": true,
+      "reasons": [],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "1eaed2115b192b1d88c33f0e51864b4603458467082b3a4ea5bf31ba8901be9a",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "read_timeout_before_submit",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "read",
+        "fixture_outcome": "timeout_before_submit",
+        "journal_claim_called": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": true,
+        "reasons": []
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": true,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": true,
+      "reasons": [],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "cf3f7eb702b854d039502f6b9ae499e36b2b07f3447520acd1237f351fb3d7fe",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "read_timeout_before_submit",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "read",
+        "fixture_outcome": "timeout_before_submit",
+        "journal_claim_called": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": true,
+        "reasons": []
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": true,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": true,
+      "reasons": [],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "27b3b6126758c1ab49d94ed572374ec8c257ef980b5f2a69f700c41e26ef4693",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "read_timeout_before_submit",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "read",
+        "fixture_outcome": "timeout_before_submit",
+        "journal_claim_called": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": true,
+        "reasons": []
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": true,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": true,
+      "reasons": [],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "61f3892fd604870b3b83278a718f071072ed5cc4cd3714a5c4dbe8f550a64590",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "submit_timeout_unknown",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_transport_timeout",
+        "backend_method": "Store.order_status",
+        "stored_status": "UNKNOWN",
+        "delivery": "unknown"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent",
+      "unknown_order"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "4d4eddeebc96a6640cc8901dc800f6f035102d0d4c3d7fef19224e8fae89665f",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "submit_timeout_unknown",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_transport_timeout",
+        "backend_method": "Store.order_status",
+        "stored_status": "UNKNOWN",
+        "delivery": "unknown"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent",
+      "unknown_order"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "96eed0796fde482cdffa4696dcae03b1a77f8b73436f06e878bfbc2b22e8a564",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "submit_timeout_unknown",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_transport_timeout",
+        "backend_method": "Store.order_status",
+        "stored_status": "UNKNOWN",
+        "delivery": "unknown"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent",
+      "unknown_order"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "9daf2834cf42ddcfa7ba985885aadafde6d1785cfbd4f008380e3469a9662f60",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "submit_timeout_unknown",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_transport_timeout",
+        "backend_method": "Store.order_status",
+        "stored_status": "UNKNOWN",
+        "delivery": "unknown"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": true,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent",
+      "unknown_order"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "4c2e4e74f38446ed3f795c6d4fa1ef5ce42e5b99dd2b1a95eedf1e79b858c565",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "place_ack_only",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "0aedd08b5b49e43d42ca0e09b6a5a742ed5d74678dcbd876bcca38081b4665e2",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "place_ack_only",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "472835de9644cea0bc8187c094a0f085fa77e774e4e2aad37a2ebba73f80e227",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "place_ack_only",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "b7fd2e87b67c7874b8c248de0653deb406dc455c0ff8fead518ed3af0491be33",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "place_ack_only",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "955e2e8dfcf2057f0b27a545d7ab2f180d3a9e01433d0ce99838779f29a37bdb",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_live",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "live",
+        "fixture_order_type": "limit",
+        "fixture_fill_size": "0"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "7200765b9d159bb24b764d1782dc5e9561192959dfdc5ece1b4645dd52e0435d",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_live",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "live",
+        "fixture_order_type": "limit",
+        "fixture_fill_size": "0"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "691f4e2ca9027681b3bb03e37812005d97033f33977470b2cf88bb726b4dd959",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_live",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "live",
+        "fixture_order_type": "limit",
+        "fixture_fill_size": "0"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "6303faf04fb02cbf5ef48b7becdabfd77b8b0da91ee9d2fd9d7f8eb9703542d4",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_live",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "live",
+        "fixture_order_type": "limit",
+        "fixture_fill_size": "0"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "acec4383a80c78d08f67ef37001e0e270ebd477eba45605bca1de2006ad4fba7",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_partial",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "partially_filled",
+        "fixture_order_type": "ioc",
+        "fixture_fill_size": "0.00002500"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "15a7b4af82456f428886feba0a444842b5ada8528fd96218f804629815ccd643",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_partial",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "partially_filled",
+        "fixture_order_type": "ioc",
+        "fixture_fill_size": "0.00005000"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "3ace32dbf9756276d50ff3d608b9b8c9f15c0ccf7faedcf5afae30a488b00ae3",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_partial",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "partially_filled",
+        "fixture_order_type": "ioc",
+        "fixture_fill_size": "0.00007500"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "4b3d94bbf7bf3247ee2fcce4fa3b0bb8e84d5446f39c98f8aea2ccb4ed153e27",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "active_partial",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_known_active_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "fixture_venue_state": "partially_filled",
+        "fixture_order_type": "ioc",
+        "fixture_fill_size": "0.00010000"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order",
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order",
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "8aed198e947137e17ac023c7ca9da9f07e940f63b6155373cf3bf94cf6f75238",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "cancel_ack_only",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "f2f85a0ae2ddcb85e3523e107532411f1bcf2296767c036d41b62e43657acbeb",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "cancel_ack_only",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "bf2898b78456e7994d3cf845222afac6cc7ce8d8def5549a6da45e17a004b776",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "cancel_ack_only",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "62865b3a9c1a0e1877064ebf3d6b44ca1a997a6ac15e177e9487744fdf0a4c44",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "cancel_ack_only",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "5b16984e04365fa67dfe0298e6d4d02de6de26a3ab937375cd2cabd2fd0fd12f",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "filled_terminal",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "9c3364ebed5933e593f834d50ac8d6ed95311cad400e8828bce45690cad5557b",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "filled_terminal",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "0eb00b67d8a918cd74867cd98070c9da8e2e9285b1120a723abdaaa9f77e6fc2",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "filled_terminal",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "ecd0dc091143b6dd4009ef06a41c80f938c95a321575d61e61df2530da30211a",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "filled_terminal",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "e0cde5133c1e3e0ea0f3fa555ffc5e98cb39d02f0a7474fcd490e5b0c34e4013",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "canceled_terminal",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "canceled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "dd6c4ea30032202883b76bb2b7c36a75b939c094e61eb0aa3d1e43a01a76b218",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "canceled_terminal",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "canceled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "3d720f311631b2be3d38cb766a5ba156ea4624404cff9bcaa0597fa46740c100",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "canceled_terminal",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "canceled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "bce59a7bb6bcd86ff7107e06166472b2461f9bb325ee667669822537b3d4c0f7",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "canceled_terminal",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "canceled"
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "no_trade_proposed",
+          "invalid_quantity"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": false
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "no_trade_proposed",
+        "invalid_quantity"
+      ],
+      "limit_price": null
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "44da49c1408687ba1906f1eb15b2eaade854cb2b188b6a9683d292dae05af67c",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "duplicate_after_terminal",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "same_intent_retry",
+        "backend_method": "Store.claim",
+        "accepted": false,
+        "duplicate_from_journal": true
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "duplicate_intent"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "duplicate_intent"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "cac64e18095def81a033c7f8f675c4b18794d730838fdc9b392a342124bcd7f9",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "duplicate_after_terminal",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "same_intent_retry",
+        "backend_method": "Store.claim",
+        "accepted": false,
+        "duplicate_from_journal": true
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "duplicate_intent"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "duplicate_intent"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "300400a0f6b3e1459d51c15fee6dac2730b13318cfba4675afd9f39dad0d38a5",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "duplicate_after_terminal",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "same_intent_retry",
+        "backend_method": "Store.claim",
+        "accepted": false,
+        "duplicate_from_journal": true
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "duplicate_intent"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "duplicate_intent"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "367ff75c915029f09acb606f591c369be4d9475e642de12064d8abc27a8d9571",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "duplicate_after_terminal",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_terminal_query",
+        "backend_method": "Store.order_status",
+        "stored_status": "VERIFIED",
+        "fixture_venue_state": "filled"
+      },
+      {
+        "step": "same_intent_retry",
+        "backend_method": "Store.claim",
+        "accepted": false,
+        "duplicate_from_journal": true
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "duplicate_intent"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": false,
+      "duplicate_intent": true,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": false,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "duplicate_intent"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "bb8db6ccdf4af94e12a6e71cbb84b848c182f265eebd86ee1d3601506aa3fe27",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "new_intent_while_pending",
+    "quantity": "0.00005000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "second_intent",
+        "backend_method": "Store.claim",
+        "accepted": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "2f91374d30ba73aac379e0e8f5801ba4ca5b1446337efb4656b7871298d7c8f7",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "new_intent_while_pending",
+    "quantity": "0.00010000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "second_intent",
+        "backend_method": "Store.claim",
+        "accepted": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "9355e0a14b36008256714c7bf5e423ddf4652a185261a71139a8d0213d32c4d3",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "new_intent_while_pending",
+    "quantity": "0.00015000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "second_intent",
+        "backend_method": "Store.claim",
+        "accepted": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "913377695e132df7c9f2c4ef9135c2ac13247f6579176475015bda5baccff07c",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  },
+  {
+    "scenario": "new_intent_while_pending",
+    "quantity": "0.00020000",
+    "events": [
+      {
+        "step": "claim",
+        "backend_method": "Store.claim",
+        "accepted": true,
+        "unresolved_count": 1
+      },
+      {
+        "step": "injected_ack_only",
+        "backend_method": "Store.order_status",
+        "stored_status": "PENDING",
+        "terminal_receipt_available": false
+      },
+      {
+        "step": "second_intent",
+        "backend_method": "Store.claim",
+        "accepted": false
+      },
+      {
+        "step": "gate",
+        "backend_method": "policy.check",
+        "approved": false,
+        "reasons": [
+          "unresolved_prior_order"
+        ]
+      }
+    ],
+    "context_updates": {
+      "unknown_order": null,
+      "duplicate_intent": false,
+      "api_timeout": false,
+      "intent_requested": true
+    },
+    "derived_from_store": [
+      "duplicate_intent"
+    ],
+    "pending_journal": true,
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "unresolved_prior_order"
+      ],
+      "limit_price": "50501.1"
+    },
+    "origin": "OFFLINE_BACKEND_TEST",
+    "injected_exchange_events": true,
+    "execution_component_loaded": false,
+    "actual_exchange_receipt": false,
+    "laya_classification_is_stub": true,
+    "full_agent_reconciliation_test": false,
+    "trace_id": "fb39587950e1cda8f83a621e6cfc7858a50b8449d11b5d52523c281ea1e99fa2",
+    "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf"
+  }
+]

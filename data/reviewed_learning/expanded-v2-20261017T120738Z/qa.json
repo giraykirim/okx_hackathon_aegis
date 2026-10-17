@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "rows": 161,
+  "unique_exact_states": 161,
+  "contexts_ignoring_valid_quantity": 44,
+  "valid_size_profiles": 39,
+  "invalid_numeric_rows": 5,
+  "candidate_class_counts": {
+    "CONTINUE": 32,
+    "REVIEW": 64,
+    "HALT": 65
+  },
+  "valid_quantity_histogram_by_class": {
+    "CONTINUE": {
+      "0.00005000": 8,
+      "0.00010000": 8,
+      "0.00015000": 8,
+      "0.00020000": 8
+    },
+    "REVIEW": {
+      "0.00005000": 16,
+      "0.00010000": 16,
+      "0.00015000": 16,
+      "0.00020000": 16
+    },
+    "HALT": {
+      "0.00005000": 15,
+      "0.00010000": 15,
+      "0.00015000": 15,
+      "0.00020000": 15
+    }
+  },
+  "true_boolean_coverage": {
+    "account_known": 145,
+    "approval_available": 141,
+    "api_timeout": 8,
+    "agents_disagree": 8,
+    "duplicate_intent": 8,
+    "unknown_order": 8,
+    "permission_revoked": 8,
+    "injection_detected": 8,
+    "deployment_integrity_failure": 8,
+    "excess_exposure": 8
+  },
+  "unknown_context_coverage": {
+    "feed_age_seconds": 4,
+    "account_known": 8,
+    "approval_available": 8,
+    "api_timeout": 4,
+    "agents_disagree": 4,
+    "unknown_order": 4,
+    "duplicate_intent": 4,
+    "permission_revoked": 8,
+    "injection_detected": 4,
+    "deployment_integrity_failure": 4,
+    "excess_exposure": 4
+  },
+  "offline_lifecycle_replays_executed": 40,
+  "diagnostic_only_backend_probes": 11,
+  "human_approved": 0,
+  "independent_incident_count_asserted": null,
+  "source_independence_approved": false,
+  "training_approved": false,
+  "original_files_unchanged": true,
+  "split_created": false,
+  "execution_authority": false,
+  "orders_sent": 0
+}

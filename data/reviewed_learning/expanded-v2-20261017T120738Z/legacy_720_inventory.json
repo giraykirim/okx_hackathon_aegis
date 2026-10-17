@@ -1,0 +1,148 @@
+{
+  "legacy_rows": 720,
+  "regular_spot_eligible_rows": 300,
+  "representatives": [
+    {
+      "case_id": "market:buy:healthy_preflight:0",
+      "family": "healthy_preflight",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "CONTINUE",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:ack_reconciled:0",
+      "family": "ack_reconciled",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "CONTINUE",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:terminal_reconciled:0",
+      "family": "terminal_reconciled",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "CONTINUE",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:optional_context_absent:0",
+      "family": "optional_context_absent",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "CONTINUE",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:known_no_submit:0",
+      "family": "known_no_submit",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "CONTINUE",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:required_account_missing:0",
+      "family": "required_account_missing",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "REVIEW",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:required_approval_missing:0",
+      "family": "required_approval_missing",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "REVIEW",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:disagreement:0",
+      "family": "disagreement",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "REVIEW",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:read_timeout_before_submit:0",
+      "family": "read_timeout_before_submit",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "REVIEW",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:mutation_ack_without_query:0",
+      "family": "mutation_ack_without_query",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "REVIEW",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:submit_timeout_unknown:0",
+      "family": "submit_timeout_unknown",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "HALT",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:duplicate_client_intent:0",
+      "family": "duplicate_client_intent",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "HALT",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:revoked_permission:0",
+      "family": "revoked_permission",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "HALT",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:stale_market_snapshot:0",
+      "family": "stale_market_snapshot",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "HALT",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    },
+    {
+      "case_id": "market:buy:tool_result_injection:0",
+      "family": "tool_result_injection",
+      "source_capture_group": "20261017T102105Z",
+      "candidate_label": "HALT",
+      "review_status": "PENDING",
+      "not_independent": true,
+      "actual_exchange_response": false
+    }
+  ],
+  "automatic_human_approvals": 0,
+  "included_as_new_independent_sources": false,
+  "selection_note": "One representative per existing core family; no algo scope expansion or relabeling",
+  "hashes": {
+    "candidates.jsonl": "0117b209e694f807fe103b9e56f8d1668c69f2e56c5d75f8a356b8bc8cb681e5",
+    "metadata.json": "eecd731a47b3746668e810c5bf6f006e2a9929885bb81930b6992d683b45d169"
+  }
+}
