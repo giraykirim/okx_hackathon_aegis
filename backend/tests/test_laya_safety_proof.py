@@ -82,7 +82,7 @@ async def install(agent, monkeypatch):
         agent.models.capabilities["LAYA"] = Capability(status="PASS")
         return inputs()[1]
 
-    async def reason(*args):
+    async def reason(*args, **kwargs):
         agent.models.capabilities["EVREN"] = Capability(status="PASS")
         return inputs()[2]
 
@@ -139,7 +139,7 @@ async def test_revocation_before_gate(tmp_path, monkeypatch):
     agent = runtime(tmp_path)
     await install(agent, monkeypatch)
 
-    async def reason(*args):
+    async def reason(*args, **kwargs):
         agent.models.capabilities["EVREN"] = Capability(status="PASS")
         monkeypatch.setattr(Settings, "demo_ready", lambda self: False)
         return inputs()[2]

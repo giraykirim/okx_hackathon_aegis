@@ -71,7 +71,7 @@ async def test_stop_during_model_wait_prevents_new_submission(tmp_path, monkeypa
     async def classify(*args, **kwargs):
         return inputs()[1]
 
-    async def reason(*args):
+    async def reason(*args, **kwargs):
         entered.set()
         await release.wait()
         return inputs()[2]
@@ -213,7 +213,7 @@ async def test_demo_timeout_is_unknown_and_next_cycle_only_reconciles(tmp_path, 
         agent.models.capabilities["LAYA"] = Capability(status="PASS")
         return inputs()[1]
 
-    async def reason(*args):
+    async def reason(*args, **kwargs):
         agent.models.capabilities["EVREN"] = Capability(status="PASS")
         return inputs()[2]
 
@@ -309,7 +309,9 @@ async def test_cycle_deadline_audits_and_stops_without_execution(tmp_path, monke
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("label,submitted", [("REVIEW", True), ("HALT", False)])
-async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(tmp_path, monkeypatch, label, submitted):
+async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(
+    tmp_path, monkeypatch, label, submitted
+):
     from aegis.agent import Agent
     from aegis.models import Classification
 
@@ -338,7 +340,7 @@ async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(tmp_pa
             label=label, confidence=0, abstained=label == "REVIEW", model_version="base", latency_ms=1
         )
 
-    async def reason(*args):
+    async def reason(*args, **kwargs):
         return inputs()[2].model_copy(update={"action": "SELL"})
 
     async def place(*args):
@@ -362,7 +364,9 @@ async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(tmp_pa
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("rejected,expected", [(True, "FAILED"), (False, "UNKNOWN")])
-async def test_not_found_after_submit_resolves_only_when_venue_rejected(tmp_path, monkeypatch, rejected, expected):
+async def test_not_found_after_submit_resolves_only_when_venue_rejected(
+    tmp_path, monkeypatch, rejected, expected
+):
     from aegis.agent import Agent
     from aegis.atk import ATKCommandError
     from aegis.models import Classification
@@ -387,7 +391,7 @@ async def test_not_found_after_submit_resolves_only_when_venue_rejected(tmp_path
     async def classify(*args, **kwargs):
         return Classification(label="REVIEW", confidence=0, abstained=True, model_version="b", latency_ms=1)
 
-    async def reason(*args):
+    async def reason(*args, **kwargs):
         return inputs()[2]
 
     async def place(*args):
@@ -448,13 +452,15 @@ async def test_laya_receives_complete_post_proposal_operational_context(tmp_path
         agent.atk.capabilities["ATK_ACCOUNT"] = Capability(status="PASS")
         return observation
 
-    async def reason(*args):
+    async def reason(*args, **kwargs):
         agent.models.capabilities["EVREN"] = Capability(status="PASS")
         return inputs()[2]
 
     async def classify(*args, context=None):
         seen["context"] = context
-        return Classification(label="HALT", confidence=0.9, abstained=False, model_version="base", latency_ms=1)
+        return Classification(
+            label="HALT", confidence=0.9, abstained=False, model_version="base", latency_ms=1
+        )
 
     monkeypatch.setattr(agent.atk, "observe", observe)
     monkeypatch.setattr(agent.models, "reason", reason)
@@ -466,4 +472,88 @@ async def test_laya_receives_complete_post_proposal_operational_context(tmp_path
     assert not {"quote_available", "base_available", "exposure_quote", "intent_id"} & facts.keys()
     # An explicit LAYA HALT from the full-context call still vetoes the order.
     assert not decision.risk_approved and "laya_not_clear" in decision.risk_reasons
+    await agent.close()
+
+
+@pytest.mark.asyncio
+async def test_evren_receives_atk_trend_features(tmp_path, monkeypatch):
+    from aegis.agent import Agent
+
+    agent = Agent(Settings(source_mode="MARKET_ONLY", db_path=tmp_path / "trend.sqlite3"))
+    seen = {}
+    features = {"bar": "15m", "sma_8_vs_32_pct": "0.120", "return_1h_pct": "0.050"}
+
+    async def observe():
+        return inputs()[0]
+
+    async def trend():
+        return features
+
+    async def reason(*args, market_features=None, **kwargs):
+        seen["features"] = market_features
+        return inputs()[2]
+
+    async def classify(*args, **kwargs):
+        return inputs()[1]
+
+    monkeypatch.setattr(agent.atk, "observe", observe)
+    monkeypatch.setattr(agent.atk, "trend", trend)
+    monkeypatch.setattr(agent.models, "reason", reason)
+    monkeypatch.setattr(agent.models, "classify", classify)
+    await agent.cycle()
+    assert seen["features"] == features
+    assert any(
+        e["details"].get("market_features") == features
+        for e in agent.store.events(100)
+        if e["type"] == "OBSERVE"
+    )
+    await agent.close()
+
+
+@pytest.mark.asyncio
+async def test_one_trade_per_closed_candle(tmp_path, monkeypatch):
+    from aegis.agent import Agent
+
+    agent = Agent(
+        Settings(
+            source_mode="OKX_DEMO",
+            db_path=tmp_path / "candle.sqlite3",
+            demo_enabled=True,
+            demo_region_confirmed=True,
+            okx_demo_api_key="test-demo",
+            okx_demo_secret_key="test-secret",
+            okx_demo_passphrase="test-pass",
+            max_run_orders=10,
+        )
+    )
+    calls = []
+
+    async def observe():
+        observation = inputs()[0]
+        observation.account_observed_at = observation.observed_at
+        return observation
+
+    async def trend():
+        return {"candle_open_ts": "1792251000000"}
+
+    async def reason(*args, **kwargs):
+        return inputs()[2]
+
+    async def classify(*args, **kwargs):
+        return inputs()[1]
+
+    async def place(*args):
+        calls.append("place")
+        return "venue"
+
+    async def reconcile(*args):
+        return "VERIFIED", "venue", "filled"
+
+    for name, fn in (("observe", observe), ("trend", trend), ("place", place), ("reconcile", reconcile)):
+        monkeypatch.setattr(agent.atk, name, fn)
+    monkeypatch.setattr(agent.models, "reason", reason)
+    monkeypatch.setattr(agent.models, "classify", classify)
+    first, second = await agent.cycle(), await agent.cycle()
+    assert first.execution_status == "VERIFIED" and calls == ["place"]
+    assert second.proposed_action == "NO_TRADE" and "same" not in second.llm_summary.lower()
     await agent.close()

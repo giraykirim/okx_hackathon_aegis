@@ -25,6 +25,8 @@ OPERATIONS = {
     "orders": ("spot", "orders"),
     "place": ("spot", "place"),
     "get": ("spot", "get"),
+    # Fixed public OHLCV window for EVREN's trend features (48 x 15m = 12h).
+    "candles": ("market", "candles", "BTC-USDT", "--bar", "15m", "--limit", "48"),
 }
 PRIVATE = {"balance", "config", "orders", "place", "get"}
 ORDER_NOT_FOUND = "51603"
@@ -131,7 +133,7 @@ class ATK:
     async def call(self, operation: str, *args: str):
         if operation not in OPERATIONS:
             raise ValueError("ATK operation is not allowlisted")
-        if operation not in PRIVATE and self.settings.atk_transport == "mcp":
+        if operation not in PRIVATE and operation != "candles" and self.settings.atk_transport == "mcp":
             if args:
                 raise ValueError("MCP public operation arguments are fixed")
             return await self.call_mcp(operation)
@@ -453,6 +455,41 @@ class ATK:
                     ],
                 )
         return observation
+
+    async def trend(self) -> dict:
+        """Deterministic 15m trend features from closed official ATK candles (strings, no floats)."""
+        rows = await self.call("candles")
+        closed = [r for r in rows if isinstance(r, list) and len(r) >= 9 and r[8] == "1"]
+        if len(closed) < 33:
+            raise ValueError("Insufficient closed candles")
+        closes = [Decimal(r[4]) for r in reversed(closed)]  # oldest -> newest
+        last = closes[-1]
+
+        def pct(new: Decimal, old: Decimal) -> str:
+            return format(((new / old) - 1) * 100, ".3f")
+
+        def sma(n: int) -> Decimal:
+            return sum(closes[-n:], Decimal(0)) / n
+
+        returns = [(closes[i] / closes[i - 1]) - 1 for i in range(len(closes) - 32, len(closes))]
+        mean = sum(returns, Decimal(0)) / len(returns)
+        volatility = (sum(((r - mean) ** 2 for r in returns), Decimal(0)) / len(returns)).sqrt() * 100
+        window = closes[-32:]
+        high, low = max(window), min(window)
+        return {
+            "bar": "15m",
+            "candle_open_ts": closed[0][0],
+            "closed_candles": len(closes),
+            "last_close": format(last, "f"),
+            "return_1h_pct": pct(last, closes[-5]),
+            "return_4h_pct": pct(last, closes[-17]),
+            "return_8h_pct": pct(last, closes[-33]),
+            "sma_8": format(sma(8).quantize(Decimal("0.1")), "f"),
+            "sma_32": format(sma(32).quantize(Decimal("0.1")), "f"),
+            "sma_8_vs_32_pct": pct(sma(8), sma(32)),
+            "volatility_15m_pct": format(volatility, ".3f"),
+            "range_position_8h": format((last - low) / (high - low), ".2f") if high > low else "0.50",
+        }
 
     async def place(self, proposal: Proposal, client_id: str, limit_price: Decimal | None = None) -> str:
         if not self.settings.demo_ready():

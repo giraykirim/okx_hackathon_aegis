@@ -66,6 +66,8 @@ class Agent:
         self.last_cycle_at = None
         self.mock_execution_count = 0
         self.cycle_id: str | None = None
+        # One trade per closed candle: the same signal must not trade again every cycle.
+        self.last_traded_candle: str | None = None
 
     def emit(self, event_type: str, message: str, *, actor="agent", severity="INFO", details=None) -> str:
         phases = {
@@ -384,6 +386,7 @@ class Agent:
             await self.reconcile_prior()
             evidence = []
             mode = self.settings.source_mode
+            features = None
             if mode == "MOCK":
                 observation, laya, proposal = self.mock_inputs(
                     scenario or self.settings.mock_autonomous_scenario
@@ -453,7 +456,37 @@ class Agent:
             else:
                 evidence.append(self.emit_classify(laya, mode))
             if mode != "MOCK":
-                proposal = await self.models.reason(observation, laya, self.run_id)
+                features = None
+                try:
+                    features = await self.atk.trend()
+                    evidence.append(
+                        self.emit(
+                            "OBSERVE",
+                            "Official ATK 15m candle trend features",
+                            actor="atk",
+                            details={"market_features": features},
+                        )
+                    )
+                except Exception as exc:
+                    evidence.append(
+                        self.emit(
+                            "OBSERVE",
+                            "Trend features unavailable; EVREN told features are missing",
+                            actor="atk",
+                            severity="WARNING",
+                            details={"error_type": type(exc).__name__},
+                        )
+                    )
+                proposal = await self.models.reason(observation, laya, self.run_id, market_features=features)
+                candle = features.get("candle_open_ts") if features else None
+                if proposal.action != "NO_TRADE" and candle and candle == self.last_traded_candle:
+                    proposal = proposal.model_copy(
+                        update={
+                            "action": "NO_TRADE",
+                            "quantity": Decimal(0),
+                            "summary": "Already traded on this closed 15m candle; waiting for the next one",
+                        }
+                    )
                 # Intent identity is backend-owned; a model-chosen ID could collide across cycles.
                 proposal = proposal.model_copy(update={"intent_id": new_id()})
             evidence.append(
@@ -647,6 +680,8 @@ class Agent:
                             venue_id,
                             state,
                         )
+                        if status in {"VERIFIED", "PENDING"} and features:
+                            self.last_traded_candle = features.get("candle_open_ts")
                     except Exception:
                         decision.execution_status = "UNKNOWN"
                     evidence.append(
