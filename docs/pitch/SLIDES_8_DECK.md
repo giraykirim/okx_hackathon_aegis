@@ -107,32 +107,32 @@
 - **On-Chain vs. Off-Chain Boundary ([`web3/PROOF.md`](../../web3/PROOF.md) & [`web3/fuji-proof-manifest.json`](../../web3/fuji-proof-manifest.json)):**
   - **Off-Chain:** Python policy engine, OKX ATK CLI, LAYA classifier, EVREN LLM.
   - **On-Chain (Fuji C-Chain `43113` only; no custom L1 or ICM claimed):**
-    1. **Official ERC-8004 `IdentityRegistry`:** [`0x8004A818BFB912233c491871b3d84c89A494BD9e`](https://testnet.snowtrace.io/address/0x8004A818BFB912233c491871b3d84c89A494BD9e) — verified live via `eth_getCode` (`130 bytes` proxy) and `name()="AgentIdentity"`, `symbol()="AGENT"` at Fuji block `#59593917`.
-    2. **Official ERC-8004 `ReputationRegistry`:** [`0x8004B663056A597Dffe9eCcC1965A193B7388713`](https://testnet.snowtrace.io/address/0x8004B663056A597Dffe9eCcC1965A193B7388713) — verified live via `eth_getCode` (`130 bytes` proxy); zero self-awarded feedback.
-    3. **Custom `RiskDecisionRegistry.sol` ([`web3/contracts/RiskDecisionRegistry.sol`](../../web3/contracts/RiskDecisionRegistry.sol)):** Compiled (`solc 0.8.37`, `2,135 bytes`), tested in local EVM (`3/3 PASS`), anchoring `{decisionHash: 0x166c9307..., runIdHash, policyVersionHash, caller, timestamp, verdictCode: 2}` from `backend/evidence/amendment-http.json`.
-- **Honest Verification Status:** Live Fuji tx broadcast (`register(agentURI)` & `RiskDecisionRegistry` deploy) is marked **`NOT_TESTED` (`verified=false`, `tx_hash=null`, `latency_ms=null`, `fees=null`)** awaiting a funded disposable Fuji wallet (`FUJI_PRIVATE_KEY`).
+    1. **Official ERC-8004 `IdentityRegistry`:** [`0x8004A818BFB912233c491871b3d84c89A494BD9e`](https://testnet.snowtrace.io/address/0x8004A818BFB912233c491871b3d84c89A494BD9e) — **Registered & Verified on-chain (`agentId = "273"`, `tx: 0x7b61d86a11c815b301d44d6062c938bd7c8995c9d81332f9bb476c0bc436f08b`, block `#59600465`)** in [`web3/registration-proof.json`](../../web3/registration-proof.json).
+    2. **Official ERC-8004 `ReputationRegistry`:** [`0x8004B663056A597Dffe9eCcC1965A193B7388713`](https://testnet.snowtrace.io/address/0x8004B663056A597Dffe9eCcC1965A193B7388713) — verified live via `eth_getCode` (`130 bytes` proxy); zero self-awarded feedback (`"No independent feedback yet"`).
+    3. **Custom `RiskDecisionRegistry.sol` ([`web3/contracts/RiskDecisionRegistry.sol`](../../web3/contracts/RiskDecisionRegistry.sol)):** Compiled (`solc 0.8.37`), tested in local EVM (`3/3 PASS`), **deployed on Fuji at [`0x5ae5642cd6a02e0834b3fba822d442429aeadc5f`](https://testnet.snowtrace.io/address/0x5ae5642cd6a02e0834b3fba822d442429aeadc5f)** (`deploy tx: 0x7cb24d8f...`), and verified on-chain anchoring the real backend `HALT` receipt (`record tx: 0xcb226fb049a7052ca8889d585dfcb3a1cf66528e318a60c7ff2c9b43a67de2f1`, block `#59599653`, `decisionHash: 0x0fa71a80...`).
+- **Honest Verification Status:** On-chain identity (`#273`), contract deployment, and `HALT` receipt readback are **`PASS` (`VERIFIED_ON_CHAIN`)**; submission-to-confirmation latency is **`NOT_MEASURED` (`measured_confirmation_ms: null`)** because verification ran post-confirmation.
 
 ### Speaker Notes (`1:10`)
-> *"On Slide 6, we show our Avalanche Fuji C-Chain integration and our strict anti-fabrication rules. First, AI inference and OKX ATK run off-chain. On Fuji (`chainId = 43113`), we verified live via `eth_getCode` and ERC-721 read-back both official ERC-8004 contracts (`0x8004A818...4BD9e` and `0x8004B663...88713`). Second, we built and compiled `RiskDecisionRegistry.sol` (`2,135 bytes`) and proved in 3/3 EVM tests that it records and reads back the exact canonical SHA-256 digest (`0x166c9307...`) from our backend's `amendment-http.json` HALT decision. Because we do not have a faucet-funded disposable key in this environment, live Fuji tx broadcast and confirmation latency are reported as `NOT_TESTED` (`null`) rather than faking a transaction hash."*
+> *"On Slide 6, we show our Avalanche Fuji C-Chain integration and our strict anti-fabrication rules. First, AI inference and OKX ATK run off-chain. On Fuji (`chainId = 43113`), we minted and verified ERC-8004 `agentId = 273` (`0x7b61d8...`) on the official `IdentityRegistry` (`0x8004A818...4BD9e`) and verified zero self-ratings on the `ReputationRegistry`. Second, we deployed `RiskDecisionRegistry.sol` on Fuji (`0x5ae5642c...`) and anchored our real backend HALT decision digest (`0x0fa71a80...`, tx `0xcb226fb0...`), verifying the stored digest and caller via independent RPC read-back. Because verification ran post-confirmation, confirmation latency is honestly reported as `null` (`NOT_MEASURED`) rather than invented."*
 
 ---
 
-## Slide 7 — What We Actually Measured: Technical Reliability & LAYA Base-vs-Tuned Held-Out Status (`7:25 – 8:25`)
+## Slide 7 — What We Actually Measured: Technical Reliability, LAN Model Proof & Quarantine Boundary (`7:25 – 8:25`)
 
 ### On-Slide Visuals
-- **1. Verified Technical Reliability & Latencies ([`backend/evidence/jury-manifest.json`](../../backend/evidence/jury-manifest.json), [`backend/evidence/tests.xml`](../../backend/evidence/tests.xml)):**
-  - **Automated Test Suites:** `97 / 97 PASS` (`backend` pytest) + `7 / 7 PASS` (`frontend` Vitest truthfulness) + `3 / 3 PASS` (`web3` EVM Solidity tests) = **`107 / 107 PASS` (`0` failures)**.
-  - **Measured Official ATK Subprocess Latencies (`site=tr`):**
-    - Run `bd803274...` (`0.0001 BTC` assessment): `ticker` = **`721.32 ms`**, `instruments` = **`561.14 ms`** (total ATK read = **`1,282.47 ms`**).
-    - Run `5647b919...` (`1.0 BTC` assessment): `ticker` = **`536.52 ms`**, `instruments` = **`543.28 ms`** (total ATK read = **`1,079.80 ms`**).
+- **1. Verified Technical Reliability & Latencies ([`docs/JURY_EVIDENCE.md`](../JURY_EVIDENCE.md), [`backend/evidence/system-status-http.json`](../../backend/evidence/system-status-http.json)):**
+  - **Automated Test Suites:** `208 / 208 PASS` (`backend` isolated pytest) + `57 / 57 PASS` (`frontend` Vitest truthfulness & UI) + `3 / 3 PASS` (`web3` EVM Solidity tests) + `253 / 253 PASS` (`ml` offline verification) = **`521 / 521 PASS` (`0` failures)**.
+  - **Measured Official ATK Subprocess & End-to-End Latencies (`site=tr`):**
+    - Pre-trade service checks: `ticker` = **`536–721 ms`**, `instruments` = **`543–561 ms`** (total 2-command ATK read = **`1,079.80–1,282.47 ms`**).
+    - Full 7-step HTTP cycle (`18d805b9...` with real ATK + LAN LAYA + EVREN): **`12.745 s`** wall time (`policy check = 0.300 ms`; sample count = `1`, not claimed as p50/p95 SLA).
   - **SQLite Atomic Rollback & Idempotency:** Verified via abort-trigger regression (`test_store.py` / `test_agent.py`); zero duplicate order placement on crash/restart.
-- **2. LAYA Base-vs-Tuned Held-Out Evaluation & EVREN Discovery Status ([`backend/evidence/MATRIX.md`](../../backend/evidence/MATRIX.md) Lines 21–24):**
-  - **EVREN Public Protocol:** `PASS` (retrieved live public OpenAPI & `TermsStatus`; authenticated model discovery is `NOT_TESTED` without local account API key).
-  - **LAYA Base-vs-Tuned Held-Out Benchmark:** **`NOT_TESTED` in this repository (`[PLACEHOLDER: AWAITING_PERSON_2_HELD_OUT_EVAL_ARTIFACT — DO NOT INVENT ACCURACY OR SPEEDUP NUMBERS]`)**.
-  - **Fallback Behavior Proven:** When LAN LAYA/EVREN endpoints are unset, AEGIS deterministically falls back to `laya_status=SKIPPED`/`UNAVAILABLE` and `REVIEW`/`HALT` without crashing or granting order permission.
+- **2. LAYA LAN Service, Versioned Policy v2 & Quarantined CUDA Findings ([`backend/evidence/laya-lan-contract.json`](../../backend/evidence/laya-lan-contract.json), [`ml/PERSON1_POLICY_V2_NOTE.md`](../../ml/PERSON1_POLICY_V2_NOTE.md)):**
+  - **EVREN Discovery & Proposal:** `PASS` (`deepseek-v4.1-flash` discovered & verified in `system-status-http.json`; bounded JSON proposal, `tools=[]`).
+  - **LAYA Live LAN Contract & Abstention:** `PASS` (`aegis-laya-base-f38a07fa01db`, `shadow_only=true`); abstains (`REVIEW`, `abstained=true`) on legacy observations missing operational context and remains advisory.
+  - **Policy v2 & Quarantined V2 CUDA Run:** `ml/label_policy_v2.py` achieves **`161 / 161` (100%) agreement** with frozen human-reviewed candidates; crossing all `39` valid profiles across `4` quantities (`156` rows) in V2 head-only CUDA training (`v2-20261017T141303599045Z`) proved **`39 / 39` (100%) quantity invariance** (`0` changed predictions) and converged to majority `REVIEW` (`76/161`), confirming why `base` + deterministic Python vetoes remain the active safety boundary.
 
 ### Speaker Notes (`1:00`)
-> *"Slide 7 shows only what we actually measured—zero invented accuracy percentages or speedup multipliers. Across our repository, 107 out of 107 automated tests pass: 97 backend tests covering atomic SQLite rollback, chunked body caps, and policy vetoes; 7 frontend truthfulness tests; and 3 EVM contract tests. We measured real official OKX ATK subprocess latencies on `site=tr`: 1,080 ms to 1,282 ms per two-command pre-trade check. For LAYA base-versus-tuned held-out benchmarks on the Person 2 RTX machine, `backend/evidence/MATRIX.md` records `NOT_TESTED` in this repo—so we display an explicit placeholder rather than inventing model accuracy or CUDA speedup numbers."*
+> *"Slide 7 shows only what we actually measured—zero invented accuracy claims or fake SLAs. Across our codebase, 521 automated tests pass across backend, frontend, EVM contracts, and ML suites. We measured real official OKX ATK subprocess latencies on `site=tr` (`1.08–1.28 s` per two-command check) and a complete 7-step cycle with live ATK, LAN LAYA, and EVREN (`12.75 s` for one sample, with `0.300 ms` policy evaluation). On the ML side, our versioned `v2` label policy matches `161/161` human-confirmed review labels, and our 4-quantity grid eliminated quantity shortcuts (`39/39` profile invariance), proving why LAYA stays in `base` shadow/advisory mode while deterministic Python policy retains final veto authority."*
 
 ---
 
@@ -142,16 +142,16 @@
 - **Hypothetical Business Model (`status: PROPOSED_NOT_BILLED`, `payment_integration: NOT_IMPLEMENTED`):**
   - **Pay-Per-Assessment Tier:** **`$0.01 USD` / assessment** (target for A2MCP per-call settlement in USDT/USDG).
   - **B2B Operator Tier:** **`$99 USD / month`** (`10,000` assessments included + dedicated policy ruleset + Fuji receipt anchoring).
-- **OKX.AI Service Listing Readiness ([`docs/product/okx-ai-listing.md`](../product/okx-ai-listing.md)):**
-  - Research: **`VERIFIED`** ([Official ASP Guide](https://web3.okx.com/onchainos/dev-docs/okxai/asp-introduction), [OKX.AI Learn](https://www.okx.com/learn/okx-ai), [Marketplace User Agreement](https://www.okx.com/en-us/help/okx-ai-agent-marketplace-user-agreement)).
-  - Integration Feasibility: **`POSSIBLE`** (`GET /api/v1/service` + `POST /api/v1/risk/evaluate` + `contracts/service-openapi.yaml` ready).
-  - Unfinished Steps: Onchain OS / A2MCP packaging (`VERIFYING`), OKX Agentic Wallet & SDK USDT/USDG settlement (`MISSING`), Public HTTPS origin & platform review (`NOT_LISTED`).
+- **OKX.AI Service Listing Readiness ([`docs/product/OKX_AI_LISTING_READINESS.md`](../product/OKX_AI_LISTING_READINESS.md), [`backend/evidence/okxai-onboarding.json`](../../backend/evidence/okxai-onboarding.json)):**
+  - Research & Official CLI Pre-Check: **`VERIFIED`** (`onchainos 4.6.4` installed, owner login & ASP eligibility check passed; no registration/payment submitted).
+  - Integration Feasibility: **`POSSIBLE / NOT_LISTED`** (`GET /api/v1/service` + `POST /api/v1/risk/evaluate` + `contracts/service-openapi.yaml` ready; temporary protected HTTPS tunnel verified in [`backend/evidence/public-service-http.json`](../../backend/evidence/public-service-http.json)).
+  - Remaining Steps: Durable HTTPS hosting, marketplace auth compatibility, x402/SDK settlement (`MISSING`), and platform review (`NOT_LISTED`).
 - **Current Limitations & Immediate Next Step:**
-  - **Limitations:** `deployment_status: LOCAL_ONLY` (`public_url: null`), OKX TR demo trade execution `NOT_TESTED` (regional restriction `50110`), Fuji tx broadcast `NOT_TESTED` (awaiting funded disposable wallet), seconds-scale latency (`~1.1–1.4s`, non-HFT), `pnl = null`.
-  - **Next Step:** Provision protected HTTPS origin (`AEGIS_PUBLIC_ORIGIN`), fund disposable Fuji key to run `npm run prove:fuji`, and submit A2MCP provider package for OKX.AI review.
+  - **Limitations:** Dashboard remains local (temporary HTTPS covers restricted risk service only), OKX demo order submission/reconciliation `NOT_TESTED` (authenticated demo account read `PASS` in `backend/evidence/exchange-readiness.json`, zero orders sent), Fuji tx confirmation latency `NOT_MEASURED`, seconds-scale latency (`~1.1–1.4s` service check, non-HFT), `pnl = null`.
+  - **Next Step:** Promote temporary HTTPS risk endpoint to durable multi-tenant hosting, wire full 16-field trusted operational context (`laya_context.py`) into shadow evaluation, and submit the A2MCP provider package for OKX.AI review.
 
 ### Speaker Notes (`0:50`)
-> *"Finally, Slide 8 summarizes our go-to-market path, OKX.AI readiness, and honest limitations. Our pricing—$0.01 per check or $99/month—is clearly labeled a commercial hypothesis (`PROPOSED_NOT_BILLED`). Based on official OKX.AI ASP documentation, our typed assessment API is `POSSIBLE` to list as an A2MCP service, while SDK settlement is `MISSING` and marketplace status is `NOT_LISTED`. Our immediate next steps are provisioning a public HTTPS origin, funding our disposable Fuji wallet to broadcast `prove:fuji`, and submitting our A2MCP skill package.*  
+> *"Finally, Slide 8 summarizes our go-to-market path, OKX.AI readiness, and honest limitations. Our pricing—$0.01 per check or $99/month—is clearly labeled a commercial hypothesis (`PROPOSED_NOT_BILLED`). Using official `onchainos 4.6.4`, we verified ASP onboarding eligibility and proved our protected risk API over a temporary HTTPS tunnel, while clearly reporting that marketplace listing is `NOT_LISTED`, x402 billing is not implemented, and demo order submission remains `NOT_TESTED`. Our next steps are durable HTTPS hosting, full shadow context telemetry, and submitting our A2MCP package.*  
 > ***AEGIS knows when to act, when to investigate, and when to stop — with an on-chain identity anyone can verify.*** *Thank you—we welcome your toughest questions."*
 
 ---
@@ -165,9 +165,9 @@
 3. **Slayt 5 (`4:15 – 6:15`) — 2 Dakikalık Canlı Demo (Scene A, B, C, D):**
    - **Scene A (`/`):** Gerçek OKX TR ATK gözlemi (`~1,324 ms`), `UNAVAILABLE (not $0)` bakiye doğruluğu ve `NO_TRADE` kararı; `Inspect Proof` ile CLI `stdout_sha256` kanıtı.
    - **Scene B (`/`):** Kontrollü `MOCK SCENARIO` ile `unresolved_prior_order` ve `duplicate_intent` tetiklenmesi; LAYA `%100 CONTINUE` dese bile deterministik kapının emri reddetmesi (`execution_status=NOT_SENT`).
-   - **Scene C (`/service` & `/avalanche`):** `/service` üzerinde `1 BTC -> HALT (excess_order_notional)` reddi; `/avalanche` üzerinde Fuji `43113` RPC bağlantısı, resmi ERC-8004 kontratlarının (`0x8004A818...4BD9e`, `0x8004B663...88713`) canlı doğrulaması ve `No independent feedback yet` durumu.
-   - **Scene D:** OKX TR demo `50110` bölgesel kısıtlaması nedeniyle dürüst `MARKET_ONLY` + `MOCK` gösterimi (sahte borsa dolumu iddia edilmez).
+   - **Scene C (`/service` & `/avalanche`):** `/service` üzerinde `1 BTC -> HALT (excess_order_notional)` reddi; `/avalanche` üzerinde Fuji `43113` RPC bağlantısı, resmi ERC-8004 `IdentityRegistry` üzerinde mint edilen **`Agent #273`** (`tx: 0x7b61d8...`) ve `RiskDecisionRegistry.sol` (`0x5ae5642c...`) üzerinde zincire yazılan gerçek `HALT` karar fişinin (`tx: 0xcb226fb0...`) canlı doğrulaması.
+   - **Scene D:** Kimlik doğrulamalı OKX demo hesap okuması (`account_known=true`) kanıtlanmış olup, emir gönderimi güvenlik gereği kapalıdır (`NOT_SENT` / `live_execution_enabled=false`).
 4. **Slayt 6–8 (`6:15 – 9:15`) — Avalanche Fuji, Ölçülen Metrikler & Kapanış:**
-   - *"AI çıkarımı ve OKX ATK off-chain çalışır; Avalanche Fuji (`43113`) yalnızca ERC-8004 kimliğini ve `RiskDecisionRegistry.sol` üzerindeki SHA-256 karar özetlerini (`0x166c9307...`) barındırır. 107/107 otomatik testimiz (`97` backend, `7` frontend, `3` EVM) geçmektedir. Person 2 RTX held-out benchmark'ı ve faucet AVAX bekleyen canlı Fuji tx yayını uydurulmamış, dürüstçe `NOT_TESTED` olarak işaretlenmiştir."*
+   - *"AI çıkarımı ve OKX ATK off-chain çalışır; Avalanche Fuji (`43113`) üzerinde resmi ERC-8004 `Agent #273` kimliğimiz ve `RiskDecisionRegistry.sol` üzerindeki SHA-256 HALT karar fişimiz (`0x0fa71a80...`) zincir üstünde doğrulanmıştır. Toplam 521 otomatik testimiz (`208` backend, `57` frontend, `3` EVM, `253` ML) geçmektedir. V2 politika revizyonumuz `161/161` insan onaylı veriyle tam uyumludur; LAYA shadow/advisory modda kalırken nihai emir vetosu deterministik Python politikasındadır."*
    - **Kapanış Cümlesi:** *"AEGIS knows when to act, when to investigate, and when to stop — with an on-chain identity anyone can verify."*
 
