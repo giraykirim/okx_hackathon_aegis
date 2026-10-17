@@ -1,25 +1,30 @@
 "use client";
 
 import React from "react";
-import { Code2, FileCheck2, Shield, ShieldCheck } from "lucide-react";
-import type { Metrics } from "@/lib/types";
+import { Ban, FileCheck2, Shield, ShieldCheck } from "lucide-react";
+import { deriveAccurateMetrics } from "@/lib/view-helpers";
+import type { Decision, Metrics } from "@/lib/types";
 
-function useAnimatedCounter(target: number, durationMs = 680): number {
+function useAnimatedCounter(target: number, durationMs = 420): number {
   const [value, setValue] = React.useState(target);
   const prevRef = React.useRef(target);
 
   React.useEffect(() => {
     const startVal = prevRef.current;
     const diff = target - startVal;
-    if (diff === 0) {
-      setValue(target);
-      return;
-    }
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
     const startTime = performance.now();
     let rafId = 0;
 
     const tick = (now: number) => {
+      if (diff === 0 || prefersReducedMotion) {
+        setValue(target);
+        prevRef.current = target;
+        return;
+      }
       const elapsed = now - startTime;
       const progress = Math.min(1, elapsed / durationMs);
       const eased = 1 - Math.pow(1 - progress, 3);
@@ -38,15 +43,43 @@ function useAnimatedCounter(target: number, durationMs = 680): number {
   return value;
 }
 
-interface SparklineProps {
+interface HonestSparklineProps {
   points: number[];
   strokeColor: string;
-  fillId: string;
+  historyCount: number;
 }
 
-function AnimatedSparkline({ points, strokeColor, fillId }: SparklineProps) {
-  const width = 104;
-  const height = 34;
+function HonestHistoryIndicator({
+  points,
+  strokeColor,
+  historyCount,
+}: HonestSparklineProps) {
+  if (points.length < 3) {
+    return (
+      <div
+        className="flex flex-col items-end justify-center text-right"
+        title="Sparkline trend requires at least 3 historical decision cycles; AEGIS never fabricates synthetic chart series."
+      >
+        <div className="flex items-center gap-1.5 rounded-md border border-[#2A3542]/80 bg-[#0A0D10]/80 px-2 py-1">
+          <span
+            className="h-1.5 w-1.5 rounded-full"
+            style={{ backgroundColor: strokeColor }}
+          />
+          <span className="font-mono text-[10px] text-[#9BA7B4]">
+            {historyCount === 0
+              ? "No history"
+              : `${historyCount} cycle${historyCount === 1 ? "" : "s"}`}
+          </span>
+        </div>
+        <span className="mt-1 font-mono text-[9px] text-[#6E7785]">
+          Single-cycle snapshot
+        </span>
+      </div>
+    );
+  }
+
+  const width = 96;
+  const height = 30;
   const pad = 4;
 
   const min = Math.min(...points);
@@ -64,7 +97,6 @@ function AnimatedSparkline({ points, strokeColor, fillId }: SparklineProps) {
   });
 
   const linePath = `M ${coords.join(" L ")}`;
-  const areaPath = `${linePath} L ${width - pad},${height} L ${pad},${height} Z`;
 
   return (
     <svg
@@ -72,24 +104,15 @@ function AnimatedSparkline({ points, strokeColor, fillId }: SparklineProps) {
       height={height}
       viewBox={`0 0 ${width} ${height}`}
       className="overflow-visible"
-      aria-hidden="true"
+      aria-label={`Measured history across ${points.length} decisions`}
     >
-      <defs>
-        <linearGradient id={fillId} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={strokeColor} stopOpacity="0.28" />
-          <stop offset="100%" stopColor={strokeColor} stopOpacity="0.0" />
-        </linearGradient>
-      </defs>
-      <path d={areaPath} fill={`url(#${fillId})`} />
       <path
-        key={points.join(",")}
         d={linePath}
         fill="none"
         stroke={strokeColor}
         strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="animate-draw-line"
       />
     </svg>
   );
@@ -97,27 +120,71 @@ function AnimatedSparkline({ points, strokeColor, fillId }: SparklineProps) {
 
 interface AnimatedMetricCardsProps {
   metrics: Metrics | null;
+  decisions?: Decision[];
+  latestDecision?: Decision | null;
   eventsCount: number;
   sourceMode: string;
 }
 
 export function AnimatedMetricCards({
   metrics,
+  decisions = [],
+  latestDecision = null,
   eventsCount,
   sourceMode,
 }: AnimatedMetricCardsProps) {
-  const totalDecisions = metrics?.decisions ?? 1;
-  const policyVetoed = metrics?.vetoed ?? 1;
-  const verifiedExchange = metrics?.verified_exchange_orders ?? 0;
-  const mockExecutions = metrics?.mock_executions ?? 0;
+  const derived = React.useMemo(
+    () => deriveAccurateMetrics(metrics, decisions, latestDecision),
+    [metrics, decisions, latestDecision]
+  );
 
-  const animDecisions = useAnimatedCounter(totalDecisions);
-  const animVetoed = useAnimatedCounter(policyVetoed);
-  const animVerified = useAnimatedCounter(verifiedExchange);
-  const animMock = useAnimatedCounter(mockExecutions);
+  const animTotal = useAnimatedCounter(derived.totalDecisions);
+  const animNoTrade = useAnimatedCounter(derived.noTradeDecisions);
+  const animPolicyVeto = useAnimatedCounter(derived.policyVetoes);
+  const animVerified = useAnimatedCounter(derived.verifiedExchangeOrders);
 
-  const vetoRate =
-    totalDecisions > 0 ? Math.round((policyVetoed / totalDecisions) * 100) : 100;
+  // Build real cumulative series only when >= 3 decisions exist
+  const orderedDecisions = React.useMemo(
+    () => [...decisions].reverse(),
+    [decisions]
+  );
+  const totalSeries = React.useMemo(
+    () => orderedDecisions.map((_, idx) => idx + 1),
+    [orderedDecisions]
+  );
+  const noTradeSeries = React.useMemo(
+    () =>
+      orderedDecisions.reduce<number[]>((acc, d) => {
+        const prev = acc[acc.length - 1] ?? 0;
+        return [...acc, prev + (d.proposed_action === "NO_TRADE" ? 1 : 0)];
+      }, []),
+    [orderedDecisions]
+  );
+  const vetoSeries = React.useMemo(
+    () =>
+      orderedDecisions.reduce<number[]>((acc, d) => {
+        const prev = acc[acc.length - 1] ?? 0;
+        return [
+          ...acc,
+          prev + (d.proposed_action !== "NO_TRADE" && !d.risk_approved ? 1 : 0),
+        ];
+      }, []),
+    [orderedDecisions]
+  );
+  const verifiedSeries = React.useMemo(
+    () =>
+      orderedDecisions.reduce<number[]>((acc, d) => {
+        const prev = acc[acc.length - 1] ?? 0;
+        return [
+          ...acc,
+          prev +
+            (d.execution_status === "VERIFIED" && d.source_mode === "OKX_DEMO"
+              ? 1
+              : 0),
+        ];
+      }, []),
+    [orderedDecisions]
+  );
 
   return (
     <section
@@ -133,28 +200,30 @@ export function AnimatedMetricCards({
             </div>
             <div>
               <div className="text-xs font-medium text-[#9BA7B4]">
-                Decisions Evaluated
+                Total Decisions
               </div>
               <div className="mt-0.5 font-mono text-2xl font-bold tracking-tight text-[#E6EDF3]">
-                {animDecisions}
+                {animTotal}
               </div>
             </div>
           </div>
-          <AnimatedSparkline
-            points={[1, 2, 2, 3, 4, 3, 5, Math.max(2, totalDecisions + 3)]}
+          <HonestHistoryIndicator
+            points={totalSeries}
             strokeColor="#4EE1C2"
-            fillId="spark-decisions"
+            historyCount={derived.historyCount}
           />
         </div>
         <div className="mt-3 flex items-center justify-between border-t border-[#2A3542]/60 pt-2.5 text-[11px]">
           <span className="font-mono text-[#4EE1C2]">
             {eventsCount} audit events
           </span>
-          <span className="text-[#6E7785]">Persisted in SQLite</span>
+          <span className="text-[#6E7785]">
+            {derived.noTradeDecisions} No-Trade · {derived.policyVetoes} Vetoed
+          </span>
         </div>
       </div>
 
-      {/* Card 2: Policy Vetoed */}
+      {/* Card 2: No-Trade Decisions (Voluntary NO_TRADE) */}
       <div className="aegis-card rounded-xl p-4 transition hover:border-[#F59E0B]/35">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
@@ -163,28 +232,62 @@ export function AnimatedMetricCards({
             </div>
             <div>
               <div className="text-xs font-medium text-[#9BA7B4]">
-                Policy Vetoed
+                No-Trade Decisions
               </div>
               <div className="mt-0.5 font-mono text-2xl font-bold tracking-tight text-[#E6EDF3]">
-                {animVetoed}
+                {animNoTrade}
               </div>
             </div>
           </div>
-          <AnimatedSparkline
-            points={[2, 3, 3, 4, 3, 5, 4, Math.max(2, policyVetoed + 3)]}
+          <HonestHistoryIndicator
+            points={noTradeSeries}
             strokeColor="#F59E0B"
-            fillId="spark-vetoed"
+            historyCount={derived.historyCount}
           />
         </div>
         <div className="mt-3 flex items-center justify-between border-t border-[#2A3542]/60 pt-2.5 text-[11px]">
           <span className="font-mono text-[#F59E0B]">
-            {vetoRate}% of decisions
+            proposed_action: NO_TRADE
           </span>
-          <span className="text-[#6E7785]">Deterministic safety gate</span>
+          <span className="text-[#6E7785]">Safe idle posture</span>
         </div>
       </div>
 
-      {/* Card 3: Verified Exchange */}
+      {/* Card 3: Policy Vetoes (Blocked Trade Proposals) */}
+      <div className="aegis-card rounded-xl p-4 transition hover:border-[#EF4444]/35">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#EF4444]/25 bg-[#EF4444]/10 text-[#EF4444]">
+              <Ban className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="text-xs font-medium text-[#9BA7B4]">
+                Policy Vetoes
+              </div>
+              <div className="mt-0.5 font-mono text-2xl font-bold tracking-tight text-[#E6EDF3]">
+                {animPolicyVeto}
+              </div>
+            </div>
+          </div>
+          <HonestHistoryIndicator
+            points={vetoSeries}
+            strokeColor="#EF4444"
+            historyCount={derived.historyCount}
+          />
+        </div>
+        <div className="mt-3 flex items-center justify-between border-t border-[#2A3542]/60 pt-2.5 text-[11px]">
+          <span className="font-mono text-[#EF4444]">
+            {derived.policyVetoes === 0
+              ? "0 trade proposals blocked"
+              : `${derived.policyVetoes} trade proposal${
+                  derived.policyVetoes === 1 ? "" : "s"
+                } blocked`}
+          </span>
+          <span className="text-[#6E7785]">Hard Python risk gate</span>
+        </div>
+      </div>
+
+      {/* Card 4: Verified Exchange & Mock Executions */}
       <div className="aegis-card rounded-xl p-4 transition hover:border-[#2A3542]">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
@@ -200,49 +303,17 @@ export function AnimatedMetricCards({
               </div>
             </div>
           </div>
-          <AnimatedSparkline
-            points={[0, 0, 0, 0, 0, 0, 0, verifiedExchange]}
+          <HonestHistoryIndicator
+            points={verifiedSeries}
             strokeColor="#6E7785"
-            fillId="spark-verified"
+            historyCount={derived.historyCount}
           />
         </div>
         <div className="mt-3 flex items-center justify-between border-t border-[#2A3542]/60 pt-2.5 text-[11px]">
           <span className="font-mono text-[#9BA7B4]">
-            Live execution (disabled)
+            Mock fills: {derived.mockExecutions} · Mode: {sourceMode}
           </span>
           <span className="font-mono text-[#6E7785]">pnl: null</span>
-        </div>
-      </div>
-
-      {/* Card 4: Mock Executions / Simulations */}
-      <div className="aegis-card rounded-xl p-4 transition hover:border-[#4EE1C2]/35">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#4EE1C2]/25 bg-[#4EE1C2]/10 text-[#4EE1C2]">
-              <Code2 className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-xs font-medium text-[#9BA7B4]">
-                Mock Executions
-              </div>
-              <div className="mt-0.5 font-mono text-2xl font-bold tracking-tight text-[#E6EDF3]">
-                {animMock}
-              </div>
-            </div>
-          </div>
-          <AnimatedSparkline
-            points={[1, 1, 2, 1, 2, 3, 2, Math.max(1, mockExecutions + 2)]}
-            strokeColor="#4EE1C2"
-            fillId="spark-mock"
-          />
-        </div>
-        <div className="mt-3 flex items-center justify-between border-t border-[#2A3542]/60 pt-2.5 text-[11px]">
-          <span className="font-mono text-[#9BA7B4]">
-            Mode: {sourceMode}
-          </span>
-          <span className="text-[#6E7785]">
-            Unresolved: {metrics?.unresolved_orders ?? 0}
-          </span>
         </div>
       </div>
     </section>

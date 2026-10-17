@@ -1,0 +1,392 @@
+[
+  {
+    "scenario": "valid_reference",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.0001"
+    },
+    "backend_gate": {
+      "approved": true,
+      "reasons": [],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "minimum_below",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.00000999"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "invalid_quantity"
+      ],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "minimum_exact",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.00001"
+    },
+    "backend_gate": {
+      "approved": true,
+      "reasons": [],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "minimum_above",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.00001001"
+    },
+    "backend_gate": {
+      "approved": true,
+      "reasons": [],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "lot_misaligned",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.000100001"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "invalid_quantity"
+      ],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "order_notional_excess",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.001"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "excess_order_notional"
+      ],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "quote_balance_empty",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "0",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.0001"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "insufficient_quote"
+      ],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "base_balance_empty",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "SELL",
+      "quantity": "0.0001"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "insufficient_base"
+      ],
+      "limit_price": "49499.0"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "exposure_excess",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "1001",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.0001"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "excess_exposure"
+      ],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "crossed_quotes",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "50002",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": null,
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.0001"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "crossed_quotes"
+      ],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  },
+  {
+    "scenario": "account_timestamp_stale",
+    "observation": {
+      "symbol": "BTC-USDT",
+      "observed_at": "2026-10-17T11:59:58Z",
+      "price": "50000",
+      "ask": "50001",
+      "bid": "49999",
+      "min_size": "0.00001",
+      "lot_size": "1E-8",
+      "tick_size": "0.1",
+      "instrument_live": true,
+      "account_known": true,
+      "exposure_quote": "0",
+      "quote_available": "1000",
+      "base_available": "0.1",
+      "account_observed_at": "2026-10-17T11:59:30Z",
+      "external_open_orders": false
+    },
+    "proposal": {
+      "action": "BUY",
+      "quantity": "0.0001"
+    },
+    "backend_gate": {
+      "approved": false,
+      "reasons": [
+        "stale_account"
+      ],
+      "limit_price": "50501.1"
+    },
+    "model_training_candidate": false,
+    "reason_excluded": "Existing normalized model input lacks min/lot/price/balance/account-time context",
+    "origin": "OFFLINE_BACKEND_TEST",
+    "laya_is_stub": true,
+    "actual_exchange_receipt": false
+  }
+]

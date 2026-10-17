@@ -1,0 +1,643 @@
+{
+  "outcome": "DATA/INTEGRATION BLOCKED",
+  "human_reviews": 161,
+  "label_counts": {
+    "REVIEW": 76,
+    "HALT": 49,
+    "CONTINUE": 36
+  },
+  "ledger_chain_valid": true,
+  "ledger_revision": 169,
+  "ledger_sha256": "0bb717f012d071e57ffeebcd917843010ca90e89771f2d77f6b8fc0ec23c2dcf",
+  "source_file_sha256": "19865fb8d874c97425a84294516da8b685ecfec67476afa18ee877c6c4189a8c",
+  "source_dataset_sha256": "7f5e4a722d381ae6cfbaa73f02e65bbf07d8af67cebb5ceab77c0c7846ad613b",
+  "ai_assisted": true,
+  "blind_review": false,
+  "user_adjudicated_case_ids": [
+    "fb1bc047a1ef1b17d6fe",
+    "05c6d74fcfd0096f44a4",
+    "4d02d041b9e292482354",
+    "3b81cfe9331c8c7c8fa7",
+    "ad4ef2c47981c91b07af",
+    "f78c5b8128ad3df23d50",
+    "cd69e291667df270962b",
+    "58005224e7a5a788859d"
+  ],
+  "labels_changed_from_user_file": 8,
+  "unmodified_label_count": 153,
+  "policy_disagreements_open": [
+    {
+      "case_id": "4be2cf411cb79a7eff61",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "account_known": true,
+        "agents_disagree": false,
+        "api_timeout": false,
+        "approval_available": true,
+        "deployment_integrity_failure": false,
+        "duplicate_intent": false,
+        "excess_exposure": false,
+        "feed_age_seconds": 40,
+        "injection_detected": false,
+        "intent_requested": true,
+        "permission_revoked": false,
+        "quantity": "0.00005000",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "symbol": "BTC-USDT",
+        "unknown_order": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "ddf0b63871129818f07d",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "account_known": true,
+        "agents_disagree": false,
+        "api_timeout": false,
+        "approval_available": true,
+        "deployment_integrity_failure": false,
+        "duplicate_intent": false,
+        "excess_exposure": false,
+        "feed_age_seconds": 40,
+        "injection_detected": false,
+        "intent_requested": true,
+        "permission_revoked": false,
+        "quantity": "0.00010000",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "symbol": "BTC-USDT",
+        "unknown_order": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "c6e0cddd8b24ccd95fc1",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "account_known": true,
+        "agents_disagree": false,
+        "api_timeout": false,
+        "approval_available": true,
+        "deployment_integrity_failure": false,
+        "duplicate_intent": false,
+        "excess_exposure": false,
+        "feed_age_seconds": 40,
+        "injection_detected": false,
+        "intent_requested": true,
+        "permission_revoked": false,
+        "quantity": "0.00015000",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "symbol": "BTC-USDT",
+        "unknown_order": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "dd4aa1a8d4888a6e6d7d",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "account_known": true,
+        "agents_disagree": false,
+        "api_timeout": false,
+        "approval_available": true,
+        "deployment_integrity_failure": false,
+        "duplicate_intent": false,
+        "excess_exposure": false,
+        "feed_age_seconds": 40,
+        "injection_detected": false,
+        "intent_requested": true,
+        "permission_revoked": false,
+        "quantity": "0.00020000",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "symbol": "BTC-USDT",
+        "unknown_order": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "356728047d0ec0244c76",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 15.1,
+        "quantity": "0.00005000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (15.1 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "f0bcfd0319dc5b258810",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 15.1,
+        "quantity": "0.00010000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (15.1 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "c8abe434130faa8e9cec",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 15.1,
+        "quantity": "0.00015000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (15.1 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "ffce5f7cf5e3dd49235c",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 15.1,
+        "quantity": "0.00020000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisi bayat (15.1 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "cfe02e8db2b2d8a2e7d6",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": -2.1,
+        "quantity": "0.00005000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisinin yaşı negatif (-2.1 sn) — saat kayması/zaman damgası hatası, veri tazeliği doğrulanamaz; eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "91f49d0be64e4adb818b",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": -2.1,
+        "quantity": "0.00010000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisinin yaşı negatif (-2.1 sn) — saat kayması/zaman damgası hatası, veri tazeliği doğrulanamaz; eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "91ed59096939b1105587",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": -2.1,
+        "quantity": "0.00015000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisinin yaşı negatif (-2.1 sn) — saat kayması/zaman damgası hatası, veri tazeliği doğrulanamaz; eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "13945480a47b227ec274",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": -2.1,
+        "quantity": "0.00020000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Piyasa verisinin yaşı negatif (-2.1 sn) — saat kayması/zaman damgası hatası, veri tazeliği doğrulanamaz; eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "e02b03f3d395ffd320fc",
+      "human_label": "CONTINUE",
+      "candidate_label": "REVIEW",
+      "legacy_policy_label": "CONTINUE",
+      "reference_kind": "PROPOSED_CANDIDATE_RULE_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": false,
+        "feed_age_seconds": 2,
+        "quantity": "0.00005000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": null,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "proposed_required_context_unknown:permission_revoked"
+      ],
+      "human_rationale": "Yeni emir niyeti yok; yetki geri alma sinyali bilinmiyor. Bunlar yalnızca yeni işlem için önem taşır, izleme/analiz devam edebilir. Emir gelirse bu eksikler tamamlanmalı. [Düşük güven: no-intent durumunda bilinmeyen bayraklar için REVIEW de savunulabilir]",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "398c877e5cb2d8ba32eb",
+      "human_label": "CONTINUE",
+      "candidate_label": "REVIEW",
+      "legacy_policy_label": "CONTINUE",
+      "reference_kind": "PROPOSED_CANDIDATE_RULE_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": false,
+        "feed_age_seconds": 2,
+        "quantity": "0.00010000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": null,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "proposed_required_context_unknown:permission_revoked"
+      ],
+      "human_rationale": "Yeni emir niyeti yok; yetki geri alma sinyali bilinmiyor. Bunlar yalnızca yeni işlem için önem taşır, izleme/analiz devam edebilir. Emir gelirse bu eksikler tamamlanmalı. [Düşük güven: no-intent durumunda bilinmeyen bayraklar için REVIEW de savunulabilir]",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "b2a49db32bad45e9883d",
+      "human_label": "CONTINUE",
+      "candidate_label": "REVIEW",
+      "legacy_policy_label": "CONTINUE",
+      "reference_kind": "PROPOSED_CANDIDATE_RULE_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": false,
+        "feed_age_seconds": 2,
+        "quantity": "0.00015000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": null,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "proposed_required_context_unknown:permission_revoked"
+      ],
+      "human_rationale": "Yeni emir niyeti yok; yetki geri alma sinyali bilinmiyor. Bunlar yalnızca yeni işlem için önem taşır, izleme/analiz devam edebilir. Emir gelirse bu eksikler tamamlanmalı. [Düşük güven: no-intent durumunda bilinmeyen bayraklar için REVIEW de savunulabilir]",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "20e437c825ae9a7a6773",
+      "human_label": "CONTINUE",
+      "candidate_label": "REVIEW",
+      "legacy_policy_label": "CONTINUE",
+      "reference_kind": "PROPOSED_CANDIDATE_RULE_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": false,
+        "feed_age_seconds": 2,
+        "quantity": "0.00020000",
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": null,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "proposed_required_context_unknown:permission_revoked"
+      ],
+      "human_rationale": "Yeni emir niyeti yok; yetki geri alma sinyali bilinmiyor. Bunlar yalnızca yeni işlem için önem taşır, izleme/analiz devam edebilir. Emir gelirse bu eksikler tamamlanmalı. [Düşük güven: no-intent durumunda bilinmeyen bayraklar için REVIEW de savunulabilir]",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "214b74f9e0c17b654ef3",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 40,
+        "quantity": "0.00005000",
+        "account_known": true,
+        "approval_available": false,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Ayrı kullanıcı onayı yok; piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "7d67d4a0cb7d14d5919b",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 40,
+        "quantity": "0.00010000",
+        "account_known": true,
+        "approval_available": false,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Ayrı kullanıcı onayı yok; piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "4b6da61bd1b356e79b4e",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 40,
+        "quantity": "0.00015000",
+        "account_known": true,
+        "approval_available": false,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Ayrı kullanıcı onayı yok; piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    },
+    {
+      "case_id": "16dd74f1dbe5fc1d6ef5",
+      "human_label": "REVIEW",
+      "candidate_label": "HALT",
+      "legacy_policy_label": "HALT",
+      "reference_kind": "DEPLOYED_POLICY_DIFFERENCE",
+      "context": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 40,
+        "quantity": "0.00020000",
+        "account_known": true,
+        "approval_available": false,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "candidate_reasons": [
+        "invalid_or_stale_feed"
+      ],
+      "human_rationale": "Ayrı kullanıcı onayı yok; piyasa verisi bayat (40 sn); eksik/çelişkili bilgi tamamlanana kadar yeni işlem bloklu. Doğrulanmış bir yetki/bütünlük sorunu yok.",
+      "status": "OPEN_USER_PRESERVED_OR_PENDING"
+    }
+  ],
+  "positive_quantity_profile_inconsistencies": 0,
+  "source_independence_approved": false,
+  "person1_runtime_mapping_verified": false,
+  "training_approved": false,
+  "training_started": false,
+  "split_created": false,
+  "production_approved": false,
+  "execution_authority": false,
+  "dataset_scope": "AI-assisted human-confirmed UNSPLIT development labels; policy differences open; not final-test gold",
+  "hashes": {
+    "candidates.jsonl": "16146bb5c4a21545460a2c0582ca47bd1076e038029f298cefddf666b0cf7454",
+    "metadata.json": "d65b1bbe477ef03e959dfc4b2d09f617fb77287b251673c7fc8843107f847d20"
+  }
+}

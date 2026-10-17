@@ -1,0 +1,2 @@
+dry-run: 120 rows read, 120 valid items, skipped: {}
+dry-run: optimizer budget: 108 train item(s), effective batch up to 1 (micro_batch 1 x grad_accum 1), 864 optimizer updates over 8 epoch(s)

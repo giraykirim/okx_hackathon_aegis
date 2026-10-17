@@ -1,0 +1,1598 @@
+{
+  "metric_scope": "DEPENDENT_QUANTITY_INVARIANCE_DIAGNOSTIC",
+  "changed_predictions": 60,
+  "fit": {
+    "confusion": {
+      "CONTINUE": {
+        "CONTINUE": 0,
+        "REVIEW": 0,
+        "HALT": 40
+      },
+      "REVIEW": {
+        "CONTINUE": 0,
+        "REVIEW": 20,
+        "HALT": 20
+      },
+      "HALT": {
+        "CONTINUE": 0,
+        "REVIEW": 0,
+        "HALT": 40
+      }
+    },
+    "macro_f1": 0.41269841269841273,
+    "halt_to_continue": 0,
+    "review_to_continue": 0,
+    "continue_recall": 0.0,
+    "invalid_outputs": 0,
+    "truncated_rows": 0,
+    "accuracy": 0.5,
+    "correct": 60,
+    "median_latency_ms": 40.08349997457117,
+    "metric_scope": "DEPENDENT_DEVELOPMENT_FIT_NOT_GENERALIZATION",
+    "independent_evaluation": false,
+    "promotion_eligible": false,
+    "confidence_validated": false,
+    "predictions": [
+      {
+        "case_id": "1e1b2c45622bbbccbfa3",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 36.0773999709636
+      },
+      {
+        "case_id": "c834f33296d3209036cd",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 34.49380001984537
+      },
+      {
+        "case_id": "9338672b274b328ec5fd",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 49.26319990772754
+      },
+      {
+        "case_id": "8e976cfe6b21954647b1",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 46.038900036364794
+      },
+      {
+        "case_id": "196534c0f660beb19fd8",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 46.86309990938753
+      },
+      {
+        "case_id": "e5c5b72346c2686cf761",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 39.51829997822642
+      },
+      {
+        "case_id": "33640f00256df8c6fa03",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 37.155200028792024
+      },
+      {
+        "case_id": "e17b4ec5983eb1f91286",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 38.2374000037089
+      },
+      {
+        "case_id": "ba54ae9622e391835d61",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 39.272199966944754
+      },
+      {
+        "case_id": "90b318ba568d4cd6032c",
+        "family": "monitoring",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 39.131099940277636
+      },
+      {
+        "case_id": "91dc1617398e92ec709f",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 38.408400025218725
+      },
+      {
+        "case_id": "eaad5d6469a0ed0e9328",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 36.76769998855889
+      },
+      {
+        "case_id": "566033ee7a75c01d59f8",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 45.648899977095425
+      },
+      {
+        "case_id": "66bbf43e3368516d1511",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 38.891299976967275
+      },
+      {
+        "case_id": "0cc1d0293a6be7043f1a",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 33.305599936284125
+      },
+      {
+        "case_id": "7cc7a6edb1090f0cf8eb",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 33.56869996059686
+      },
+      {
+        "case_id": "855a7bd4495ea0a043bb",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 37.162600085139275
+      },
+      {
+        "case_id": "865c96d9a9d9453d62f9",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 37.80580009333789
+      },
+      {
+        "case_id": "e6dcb518ecac9544d081",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 37.14350005611777
+      },
+      {
+        "case_id": "a47337a01df7d034d319",
+        "family": "preflight",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0509,
+          "REVIEW": 0.3117,
+          "HALT": 0.6374
+        },
+        "truncated": false,
+        "latency_ms": 37.60869998950511
+      },
+      {
+        "case_id": "dc897f3c700241390bda",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 34.790299949236214
+      },
+      {
+        "case_id": "11790659835a8b2fee49",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 40.03479995299131
+      },
+      {
+        "case_id": "a3c98c3721a29339d2bd",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 40.84530007094145
+      },
+      {
+        "case_id": "794b3dc4c6241e9302c0",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 40.753499954007566
+      },
+      {
+        "case_id": "81cb4e9650b78eb966b9",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 45.063399942591786
+      },
+      {
+        "case_id": "d7ba2d4f318caec80934",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 45.630899956449866
+      },
+      {
+        "case_id": "9b68d03aaa2938339a90",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 55.473800050094724
+      },
+      {
+        "case_id": "994bf6df4ad8939d766f",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 37.36600000411272
+      },
+      {
+        "case_id": "ba645f88af8e13ad7dcc",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 43.25980006251484
+      },
+      {
+        "case_id": "709ddf2eb1609c7ce041",
+        "family": "terminal",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 40.13219999615103
+      },
+      {
+        "case_id": "007c480e10c6f406f97d",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 41.24459996819496
+      },
+      {
+        "case_id": "74d64bbea292b52dcb44",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 38.07090001646429
+      },
+      {
+        "case_id": "3e119fdabfcb79800efb",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 39.458999992348254
+      },
+      {
+        "case_id": "f8512fb4ade9d96cd574",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 40.238099987618625
+      },
+      {
+        "case_id": "71b4e4818ef262a4abc2",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 45.30880006495863
+      },
+      {
+        "case_id": "2e76a8d7296f5e2c7edd",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 40.27550003957003
+      },
+      {
+        "case_id": "21d8e999ef431bdf81f3",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 38.705999962985516
+      },
+      {
+        "case_id": "09add5eb1b7ab0b6ffa5",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 48.79040003288537
+      },
+      {
+        "case_id": "135ced34e4e01b36280e",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 39.937199908308685
+      },
+      {
+        "case_id": "07801af9cf67ea2e85c1",
+        "family": "optional",
+        "expected": "CONTINUE",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0494,
+          "REVIEW": 0.3051,
+          "HALT": 0.6455
+        },
+        "truncated": false,
+        "latency_ms": 38.41679997276515
+      },
+      {
+        "case_id": "7d2dd2888c0f943a7354",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 41.681200033053756
+      },
+      {
+        "case_id": "70f3ec249127814f1734",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 49.38520002178848
+      },
+      {
+        "case_id": "057bbc89f1e2d79e6cde",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 51.962100085802376
+      },
+      {
+        "case_id": "e09ac8fab56a61d8cd7d",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 60.48439990263432
+      },
+      {
+        "case_id": "f3b1b3192b48d12408c2",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 56.934299995191395
+      },
+      {
+        "case_id": "0a02b5a4bca0ed52baf5",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 39.45370006840676
+      },
+      {
+        "case_id": "45add662a5b22fdfac11",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 37.01480000745505
+      },
+      {
+        "case_id": "59a03a03f85bfe8b7546",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 36.523699993267655
+      },
+      {
+        "case_id": "202846a42db8a1036235",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 35.87809996679425
+      },
+      {
+        "case_id": "d4ad82ef702f93119036",
+        "family": "account_missing",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0014,
+          "REVIEW": 0.9835,
+          "HALT": 0.0151
+        },
+        "truncated": false,
+        "latency_ms": 40.4829999897629
+      },
+      {
+        "case_id": "050476b0f8a82d187623",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 37.845500046387315
+      },
+      {
+        "case_id": "4445c9f4bc714212630a",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 48.96839999128133
+      },
+      {
+        "case_id": "2f5f4ad2257ecfae38ca",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 45.49519997090101
+      },
+      {
+        "case_id": "70e31b63d12d4197ad8e",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 49.13459997624159
+      },
+      {
+        "case_id": "d3a5326fe9859b1ada7b",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 45.359999989159405
+      },
+      {
+        "case_id": "b9cec0ea21516f1efe5b",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 37.48499997891486
+      },
+      {
+        "case_id": "0deebe514dc354a6891f",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 39.095499902032316
+      },
+      {
+        "case_id": "5744cee15019e492bfb4",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 36.04660008568317
+      },
+      {
+        "case_id": "e4f98d82ea650dfaf4f3",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 37.51980001106858
+      },
+      {
+        "case_id": "00ed760037bf3d5d47e4",
+        "family": "approval_missing",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.064,
+          "REVIEW": 0.4622,
+          "HALT": 0.4738
+        },
+        "truncated": false,
+        "latency_ms": 37.60050004348159
+      },
+      {
+        "case_id": "7a4defd5e3d47d78266d",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 37.32389991637319
+      },
+      {
+        "case_id": "a53af65982bfb2dd70d9",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 38.910600007511675
+      },
+      {
+        "case_id": "4ed6b20445fade0df531",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 40.8066000090912
+      },
+      {
+        "case_id": "d9d87ff802da8a64c22a",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 40.74099997524172
+      },
+      {
+        "case_id": "54ff652b1dbf79eede39",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 50.206199986860156
+      },
+      {
+        "case_id": "a190e6b6a1d01d9423c0",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 44.56959990784526
+      },
+      {
+        "case_id": "77ea043bab88b699cdaa",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 38.986400002613664
+      },
+      {
+        "case_id": "bf9deb3a98c7bbe91717",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 44.06580002978444
+      },
+      {
+        "case_id": "00dc86dbb0758c811523",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 40.30829994007945
+      },
+      {
+        "case_id": "40ec1afefda6ebcba961",
+        "family": "read_timeout",
+        "expected": "REVIEW",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0424,
+          "REVIEW": 0.2779,
+          "HALT": 0.6796
+        },
+        "truncated": false,
+        "latency_ms": 43.81860001012683
+      },
+      {
+        "case_id": "e95e14e1f6400e5e3887",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 42.47370001394302
+      },
+      {
+        "case_id": "1e74f7dcd4e674e68765",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 48.18579996936023
+      },
+      {
+        "case_id": "66c75219e2267b4f2f2e",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 40.52479995880276
+      },
+      {
+        "case_id": "e938ec4e3d706a5a0f76",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 45.42630002833903
+      },
+      {
+        "case_id": "18df1f733778b83171b2",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 39.75570003967732
+      },
+      {
+        "case_id": "623bf31e0858a186b6a9",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 34.354900009930134
+      },
+      {
+        "case_id": "34d7c159c9cf409f7a6e",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 35.76779994182289
+      },
+      {
+        "case_id": "756cf30651dff7c5b8b7",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 43.31799992360175
+      },
+      {
+        "case_id": "4bade6e0145f2109a052",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 34.10030005034059
+      },
+      {
+        "case_id": "523742ae7c78b8dbc628",
+        "family": "disagreement",
+        "expected": "REVIEW",
+        "predicted": "REVIEW",
+        "probabilities": {
+          "CONTINUE": 0.0767,
+          "REVIEW": 0.7383,
+          "HALT": 0.185
+        },
+        "truncated": false,
+        "latency_ms": 35.889599937945604
+      },
+      {
+        "case_id": "9c49407413049c012728",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 34.233400016091764
+      },
+      {
+        "case_id": "e9ce67833397824dade1",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 37.428699899464846
+      },
+      {
+        "case_id": "3c7cac7cdd5b7f046fd0",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 42.9233000613749
+      },
+      {
+        "case_id": "06a8a78ff3943f811850",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 41.131399921141565
+      },
+      {
+        "case_id": "50cbd55961a9785f7e01",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 35.88770003989339
+      },
+      {
+        "case_id": "c09461022826ee92bceb",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 45.02859991043806
+      },
+      {
+        "case_id": "44a1b384ee9923d7ad83",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 37.489900016225874
+      },
+      {
+        "case_id": "8277674f0dacfefc5acb",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 39.571700035594404
+      },
+      {
+        "case_id": "c193ded1e8cb468e6525",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 41.99470009189099
+      },
+      {
+        "case_id": "52e918d616df803d5e9f",
+        "family": "stale",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0493,
+          "REVIEW": 0.2856,
+          "HALT": 0.6651
+        },
+        "truncated": false,
+        "latency_ms": 38.193800020962954
+      },
+      {
+        "case_id": "d8db9f803db2140473be",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 43.58729999512434
+      },
+      {
+        "case_id": "a41ff25899ba33f2b6fd",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 34.836299950256944
+      },
+      {
+        "case_id": "2b743766b17b64f2e464",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 40.86299997288734
+      },
+      {
+        "case_id": "9a0c9f609d95159bc7db",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 39.04019994661212
+      },
+      {
+        "case_id": "6fd4830438d8b98a6e7b",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 41.801500017754734
+      },
+      {
+        "case_id": "7deccd5c5c4f6aa3a953",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 48.03069995250553
+      },
+      {
+        "case_id": "70a7cc9eebccc5e2a0c2",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 47.58429992944002
+      },
+      {
+        "case_id": "e068a75df60daa2b4315",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 44.1769000608474
+      },
+      {
+        "case_id": "bfbb59800964af9658eb",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 35.59959994163364
+      },
+      {
+        "case_id": "1dd6667153c47a53dd73",
+        "family": "duplicate",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0464,
+          "REVIEW": 0.2866,
+          "HALT": 0.667
+        },
+        "truncated": false,
+        "latency_ms": 44.43320003338158
+      },
+      {
+        "case_id": "329751cf283fb8e74cdf",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 43.68850006721914
+      },
+      {
+        "case_id": "cc067b1e0f0c394c01a0",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 46.078699990175664
+      },
+      {
+        "case_id": "84b90d696db7a23a43e5",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 45.47780007123947
+      },
+      {
+        "case_id": "4efae94d2caf17fdbe60",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 45.54339998867363
+      },
+      {
+        "case_id": "e28d2710016c2709b800",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 47.006199951283634
+      },
+      {
+        "case_id": "e69e6ea971fd11c6d6ec",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 37.64639992732555
+      },
+      {
+        "case_id": "dc155f52ca29ab6c076f",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 34.8233999684453
+      },
+      {
+        "case_id": "cc4eeebf5538e246b886",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 36.71590005978942
+      },
+      {
+        "case_id": "fd429a0e4a54c2e9f26a",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 40.941899991594255
+      },
+      {
+        "case_id": "a4f8fcafb212cc133992",
+        "family": "unknown_submit",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.051,
+          "REVIEW": 0.3182,
+          "HALT": 0.6308
+        },
+        "truncated": false,
+        "latency_ms": 47.89050004910678
+      },
+      {
+        "case_id": "634056b05a85aefcc987",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 37.088399985805154
+      },
+      {
+        "case_id": "b9a230ee54bdc23f4787",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 42.05349995754659
+      },
+      {
+        "case_id": "4046ab68c01332698ed7",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 42.19589999411255
+      },
+      {
+        "case_id": "70687a5b1849a5bb21bf",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 41.667599929496646
+      },
+      {
+        "case_id": "590cd76f4f52d6b59696",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 36.2322999862954
+      },
+      {
+        "case_id": "083f0a280d9ab0ef24f0",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 36.12089995294809
+      },
+      {
+        "case_id": "de3df3eec9c9d99a7491",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 36.5241999970749
+      },
+      {
+        "case_id": "9a5350a1531d2cc85481",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 36.074800067581236
+      },
+      {
+        "case_id": "96e34a0f773176a0be18",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 40.26580008212477
+      },
+      {
+        "case_id": "6aa400f174aab3899cf5",
+        "family": "revoked",
+        "expected": "HALT",
+        "predicted": "HALT",
+        "probabilities": {
+          "CONTINUE": 0.0451,
+          "REVIEW": 0.3027,
+          "HALT": 0.6522
+        },
+        "truncated": false,
+        "latency_ms": 39.33540009893477
+      }
+    ]
+  }
+}

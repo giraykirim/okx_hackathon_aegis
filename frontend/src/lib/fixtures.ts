@@ -39,8 +39,8 @@ export const RECORDED_HEALTH_MARKET_ONLY: Health = {
 };
 
 export const RECORDED_METRICS_MARKET_ONLY: Metrics = {
-  decisions: 3,
-  vetoed: 3,
+  decisions: 1,
+  vetoed: 1,
   verified_exchange_orders: 0,
   mock_executions: 0,
   unresolved_orders: 0,

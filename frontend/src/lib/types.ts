@@ -275,3 +275,35 @@ export interface NotionalRiskResponse {
   chain_receipt: Record<string, unknown> | null;
 }
 
+export type RuntimeConnectionState =
+  | "LIVE_CONNECTED"
+  | "POLLING_FALLBACK"
+  | "HISTORICAL_EVIDENCE"
+  | "MOCK_SIMULATION"
+  | "BACKEND_OFFLINE"
+  | "UNKNOWN";
+
+export type Erc8004RegistrationState =
+  | "NOT_CONFIGURED"
+  | "REGISTRY_AVAILABLE"
+  | "REGISTRATION_PENDING"
+  | "REGISTERED_VERIFIED"
+  | "VERIFICATION_FAILED"
+  | "UNAVAILABLE";
+
+export type AuditProofState =
+  | "ONCHAIN_AUDIT_PROOF"
+  | "LOCAL_AUDIT_DIGEST"
+  | "UNAVAILABLE";
+
+export type PipelineStageStatus =
+  | "COMPLETED"
+  | "RUNNING"
+  | "SKIPPED"
+  | "BLOCKED"
+  | "FALLBACK"
+  | "UNAVAILABLE"
+  | "NOT_TESTED"
+  | "IDLE";
+
+

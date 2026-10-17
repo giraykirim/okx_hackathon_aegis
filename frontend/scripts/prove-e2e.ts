@@ -327,13 +327,15 @@ async function main() {
         },
         capabilities_count: Object.keys(capsMarket).filter((k) => k !== "_meta")
           .length,
-        capabilities_pass: Object.entries(capsMarket)
-          .filter(([k, v]: [string, any]) => k !== "_meta" && v?.status === "PASS")
+        capabilities_pass: Object.entries(
+          capsMarket as Record<string, { status?: string }>
+        )
+          .filter(([k, v]) => k !== "_meta" && v?.status === "PASS")
           .map(([k]) => k),
-        capabilities_not_tested: Object.entries(capsMarket)
-          .filter(
-            ([k, v]: [string, any]) => k !== "_meta" && v?.status === "NOT_TESTED"
-          )
+        capabilities_not_tested: Object.entries(
+          capsMarket as Record<string, { status?: string }>
+        )
+          .filter(([k, v]) => k !== "_meta" && v?.status === "NOT_TESTED")
           .map(([k]) => k),
         events_captured: Array.isArray(eventsMarket)
           ? eventsMarket.length

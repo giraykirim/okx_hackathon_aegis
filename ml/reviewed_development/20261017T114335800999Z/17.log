@@ -1,0 +1,34 @@
+train items 108, calibration items 12, eval items 12 (calibration_slice), skipped {}, device cuda
+optimizer budget: 108 train item(s), effective batch up to 1 (micro_batch 1 x grad_accum 1), 864 optimizer updates over 8 epoch(s)
+epoch 1/8 step 100 loss 1.0369
+epoch 1/8 mean loss 1.1172
+epoch 2/8 step 100 loss 1.1047
+epoch 2/8 mean loss 1.1035
+epoch 3/8 step 100 loss 1.0676
+epoch 3/8 mean loss 1.0800
+epoch 4/8 step 100 loss 0.8314
+epoch 4/8 mean loss 1.0039
+epoch 5/8 step 100 loss 0.4431
+epoch 5/8 mean loss 0.9673
+epoch 6/8 step 100 loss 0.8191
+epoch 6/8 mean loss 1.0483
+epoch 7/8 step 100 loss 0.6260
+epoch 7/8 mean loss 0.9803
+epoch 8/8 step 100 loss 1.5772
+epoch 8/8 mean loss 0.8764
+C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\aegis\.venv\Lib\site-packages\laya\train_cli.py:221: RuntimeWarning: laya.train: choice calibration: fitted on only 12 calibration items
+  summary = finetune(
+
+=== Calibration Evidence (in-sample calibration slice, 12 items; not held-out) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.4167         0.6667         +0.2500       
+Loss                   1.0706         0.6831         -0.3875       
+ECE                    0.1397         0.2787         +0.1390       
+Brier (multi-class)    0.6474         0.4151         -0.2323       
+Brier (top-1)          0.2385         0.1870         -0.0515       
+Mean Confidence        0.4089         0.7033         +0.2944       
+-----------------------------------------------------------------
+
+Training complete! Model saved to C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\models\reviewed_development\20261017T114335800999Z\seed-17
+{"seed": 17, "status": "COMPLETED_DIAGNOSTIC_ONLY", "wall_seconds": 91.76848679990508}

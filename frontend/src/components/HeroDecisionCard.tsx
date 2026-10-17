@@ -4,6 +4,7 @@ import React from "react";
 import {
   ChevronDown,
   ChevronRight,
+  Clock,
   Cpu,
   FileSearch,
   Lock,
@@ -11,13 +12,28 @@ import {
   ShieldAlert,
   ShieldCheck,
 } from "lucide-react";
-import { explainRiskReason, formatAccountBalance } from "@/lib/view-helpers";
-import type { Classification, Decision, Observation } from "@/lib/types";
+import {
+  deriveDecisionSemantics,
+  deriveRuntimeStatusModel,
+  describeEvrenModelState,
+  describeLayaModelState,
+  explainRiskReason,
+  formatAccountBalance,
+} from "@/lib/view-helpers";
+import type {
+  Capability,
+  Classification,
+  Decision,
+  Observation,
+} from "@/lib/types";
 
 interface HeroDecisionCardProps {
   decision: Decision | null;
   classification: Classification | null;
   observation: Observation | null;
+  capabilities?: Record<string, Capability>;
+  backendLive?: boolean;
+  activeScenario?: string;
   onInspectEvidenceId?: (id: string) => void;
 }
 
@@ -25,6 +41,9 @@ export function HeroDecisionCard({
   decision,
   classification,
   observation,
+  capabilities,
+  backendLive = false,
+  activeScenario = "live_backend",
   onInspectEvidenceId,
 }: HeroDecisionCardProps) {
   const [expandedDetails, setExpandedDetails] = React.useState(false);
@@ -54,34 +73,37 @@ export function HeroDecisionCard({
     );
   }
 
-  const isVetoed = !decision.risk_approved;
+  const semantics = deriveDecisionSemantics(decision);
+  const layaState = describeLayaModelState(classification, capabilities);
+  const evrenState = describeEvrenModelState(decision, capabilities);
+  const runtimeStatus = deriveRuntimeStatusModel({
+    backendReachable: backendLive,
+    isOfflineFixture: !backendLive,
+    activeScenario,
+    sourceMode: decision.source_mode,
+    lastTimestampIso: observation?.observed_at || decision.timestamp,
+  });
+
   const isMock = decision.source_mode === "MOCK";
   const primaryReason = decision.risk_reasons[0]
     ? explainRiskReason(decision.risk_reasons[0])
     : null;
 
-  const headlineTitle =
-    decision.proposed_action === "NO_TRADE" || isVetoed
-      ? "No Trade Executed"
-      : isMock
-      ? "Simulated Mock Approval (Not Sent)"
-      : "Policy Approved";
-
-  const headlineSubtitle = isVetoed
-    ? "Execution blocked by deterministic safety policy. System remains in monitoring mode."
-    : "Deterministic risk checks passed in synthetic simulation. Zero live exchange orders sent.";
-
-  const verdictChip = isVetoed
-    ? {
-        text: "POLICY_VETOED",
-        className:
-          "border-[#EF4444]/40 bg-[#EF4444]/12 text-[#EF4444]",
-      }
-    : {
-        text: isMock ? "MOCK_APPROVED" : "POLICY_APPROVED",
-        className:
-          "border-[#4EE1C2]/40 bg-[#4EE1C2]/12 text-[#4EE1C2]",
-      };
+  const verdictChip =
+    semantics.verdictType === "POLICY_VETOED"
+      ? {
+          text: "POLICY_VETOED",
+          className: "border-[#EF4444]/40 bg-[#EF4444]/12 text-[#EF4444]",
+        }
+      : semantics.verdictType === "NO_TRADE"
+      ? {
+          text: "NO_TRADE",
+          className: "border-[#F59E0B]/40 bg-[#F59E0B]/12 text-[#F59E0B]",
+        }
+      : {
+          text: isMock ? "MOCK_APPROVED" : "POLICY_APPROVED",
+          className: "border-[#4EE1C2]/40 bg-[#4EE1C2]/12 text-[#4EE1C2]",
+        };
 
   return (
     <section
@@ -92,9 +114,23 @@ export function HeroDecisionCard({
         {/* Left 7 Cols: Shield Emblem + Headline */}
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center lg:col-span-7">
           <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
-            <div className="aegis-shield-ring absolute inset-0 rounded-full border border-[#4EE1C2]/30" />
-            <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-[#4EE1C2]/40 bg-[#0A0D10]/90 text-[#4EE1C2]">
-              {isVetoed ? (
+            <div
+              className={`aegis-shield-ring absolute inset-0 rounded-full border ${
+                semantics.verdictType === "POLICY_VETOED"
+                  ? "border-[#EF4444]/35"
+                  : "border-[#4EE1C2]/30"
+              }`}
+            />
+            <div
+              className={`relative flex h-14 w-14 items-center justify-center rounded-full border bg-[#0A0D10]/90 ${
+                semantics.verdictType === "POLICY_VETOED"
+                  ? "border-[#EF4444]/45 text-[#EF4444]"
+                  : "border-[#4EE1C2]/40 text-[#4EE1C2]"
+              }`}
+            >
+              {semantics.verdictType === "POLICY_VETOED" ? (
+                <ShieldAlert className="h-7 w-7 text-[#EF4444]" />
+              ) : semantics.verdictType === "NO_TRADE" ? (
                 <Shield className="h-7 w-7 text-[#4EE1C2]" />
               ) : (
                 <ShieldCheck className="h-7 w-7 text-[#4EE1C2]" />
@@ -109,29 +145,29 @@ export function HeroDecisionCard({
               </span>
               <span
                 className={`rounded-full border px-2 py-0.5 font-mono text-[10px] font-semibold ${
-                  isMock
-                    ? "border-[#F59E0B]/40 bg-[#F59E0B]/12 text-[#F59E0B]"
-                    : "border-[#4EE1C2]/35 bg-[#4EE1C2]/10 text-[#4EE1C2]"
+                  runtimeStatus.tone === "mint"
+                    ? "border-[#4EE1C2]/35 bg-[#4EE1C2]/10 text-[#4EE1C2]"
+                    : "border-[#F59E0B]/40 bg-[#F59E0B]/12 text-[#F59E0B]"
                 }`}
               >
-                {decision.source_mode}
+                {runtimeStatus.badgeLabel}
               </span>
               <span className="rounded-full border border-[#2A3542] bg-[#11161D] px-2 py-0.5 font-mono text-[10px] text-[#9BA7B4]">
-                execution_status: {decision.execution_status}
+                {decision.source_mode} · {decision.execution_status}
               </span>
             </div>
 
             <h2 className="text-2xl font-bold tracking-tight text-[#E6EDF3] sm:text-3xl">
-              {headlineTitle}
+              {semantics.headline}
             </h2>
 
             <p className="max-w-xl text-sm leading-relaxed text-[#9BA7B4]">
-              {headlineSubtitle}
+              {semantics.subheadline}
             </p>
           </div>
         </div>
 
-        {/* Right 5 Cols: Structured Metadata Table (Reference Set A) */}
+        {/* Right 5 Cols: Structured Metadata Table */}
         <div className="border-t border-[#2A3542]/70 pt-4 lg:col-span-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
           <dl className="space-y-2.5 text-xs">
             <div className="flex items-center justify-between gap-4">
@@ -147,20 +183,26 @@ export function HeroDecisionCard({
             </div>
 
             <div className="flex items-center justify-between gap-4">
-              <dt className="text-[#6E7785]">Detected Setup</dt>
+              <dt className="text-[#6E7785]">Evaluated Proposal</dt>
               <dd className="font-medium text-[#E6EDF3]">
-                Proposed {decision.proposed_action} ({decision.quantity} BTC) ·
-                LAYA:{" "}
+                {decision.proposed_action === "NO_TRADE"
+                  ? "NO_TRADE (No order requested)"
+                  : `${decision.proposed_action} ${decision.quantity} BTC`}{" "}
+                ·{" "}
                 <span
                   className={`font-mono ${
-                    decision.laya_label === "CONTINUE"
+                    !layaState.isAvailable && !layaState.isScriptedMock
+                      ? "text-[#F59E0B]"
+                      : decision.laya_label === "CONTINUE"
                       ? "text-[#4EE1C2]"
                       : decision.laya_label === "REVIEW"
                       ? "text-[#F59E0B]"
                       : "text-[#EF4444]"
                   }`}
                 >
-                  {decision.laya_label}
+                  {layaState.isAvailable || layaState.isScriptedMock
+                    ? `LAYA: ${decision.laya_label}`
+                    : `LAYA Unavailable (${layaState.actionLabel})`}
                 </span>
               </dd>
             </div>
@@ -178,45 +220,50 @@ export function HeroDecisionCard({
             </div>
 
             <div className="flex items-start justify-between gap-4">
-              <dt className="text-[#6E7785] shrink-0">Reason</dt>
+              <dt className="text-[#6E7785] shrink-0">Primary Rule</dt>
               <dd className="text-right font-medium text-[#E6EDF3]">
                 {primaryReason
-                  ? `${primaryReason.title} (${decision.risk_reasons.length} policy rules)`
+                  ? `${primaryReason.title} (${decision.risk_reasons.length} rules)`
                   : "All deterministic rules satisfied"}
               </dd>
             </div>
 
             <div className="flex items-center justify-between gap-4">
-              <dt className="text-[#6E7785]">Timestamp</dt>
-              <dd className="font-mono text-[#9BA7B4]">
-                {decision.timestamp
-                  ? decision.timestamp.replace("T", " ").slice(0, 19) + " UTC"
-                  : "N/A"}
+              <dt className="text-[#6E7785]">Recorded At</dt>
+              <dd className="inline-flex items-center gap-1.5 font-mono text-[#9BA7B4]">
+                <Clock className="h-3 w-3 text-[#6E7785]" />
+                <span>
+                  {decision.timestamp
+                    ? decision.timestamp.replace("T", " ").slice(0, 19) + " UTC"
+                    : "N/A"}{" "}
+                  ({runtimeStatus.relativeAgeText})
+                </span>
               </dd>
             </div>
           </dl>
         </div>
       </div>
 
-      {/* Progressive Disclosure Bar: Rule Pills + Expand Technical Provenance */}
+      {/* Progressive Disclosure Bar (Section 13: Clean Summary + Expandable Rules) */}
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[#2A3542]/60 pt-3.5">
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-medium text-[#6E7785] mr-1">
-            Active Rule Codes:
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-medium text-[#9BA7B4]">
+            {semantics.isTradeBlockedByPolicy
+              ? `${decision.risk_reasons.length} safety checks prevented execution:`
+              : `${decision.risk_reasons.length} safety checks enforced read-only posture:`}
           </span>
-          {decision.risk_reasons.length === 0 ? (
-            <span className="rounded-md border border-[#4EE1C2]/30 bg-[#4EE1C2]/10 px-2 py-0.5 font-mono text-[11px] text-[#4EE1C2]">
-              risk_reasons: []
+          {decision.risk_reasons.slice(0, 3).map((rule) => (
+            <span
+              key={rule}
+              className="rounded-md border border-[#2A3542] bg-[#11161D] px-2 py-0.5 font-mono text-[11px] text-[#E6EDF3]"
+            >
+              {rule}
             </span>
-          ) : (
-            decision.risk_reasons.map((rule) => (
-              <span
-                key={rule}
-                className="rounded-md border border-[#2A3542] bg-[#11161D] px-2 py-0.5 font-mono text-[11px] text-[#E6EDF3]"
-              >
-                {rule}
-              </span>
-            ))
+          ))}
+          {decision.risk_reasons.length > 3 && !expandedDetails && (
+            <span className="rounded-md border border-[#2A3542]/70 bg-[#0A0D10] px-2 py-0.5 font-mono text-[11px] text-[#9BA7B4]">
+              +{decision.risk_reasons.length - 3} more
+            </span>
           )}
         </div>
 
@@ -232,8 +279,8 @@ export function HeroDecisionCard({
           )}
           <span>
             {expandedDetails
-              ? "Hide Model, Account & Rule Provenance"
-              : `Inspect ${decision.risk_reasons.length} Policy Rules & Provenance`}
+              ? "Hide Risk Rules & Model Provenance"
+              : `${decision.risk_reasons.length} safety checks prevented execution — View Risk Rules`}
           </span>
         </button>
       </div>
@@ -252,11 +299,19 @@ export function HeroDecisionCard({
                     className="rounded-xl border border-[#2A3542] bg-[#0A0D10]/80 p-3"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="rounded bg-[#EF4444]/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#EF4444] border border-[#EF4444]/30">
+                      <span
+                        className={`rounded px-2 py-0.5 font-mono text-[10px] font-semibold border ${
+                          semantics.isTradeBlockedByPolicy
+                            ? "bg-[#EF4444]/15 text-[#EF4444] border-[#EF4444]/30"
+                            : "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30"
+                        }`}
+                      >
                         {info.ruleId}
                       </span>
                       <span className="font-mono text-[10px] text-[#6E7785]">
-                        POLICY VETO
+                        {semantics.isTradeBlockedByPolicy
+                          ? "POLICY VETO"
+                          : "SAFETY GATE"}
                       </span>
                     </div>
                     <div className="mt-1.5 text-xs font-semibold text-[#E6EDF3]">
@@ -271,58 +326,75 @@ export function HeroDecisionCard({
             </div>
           )}
 
-          {/* 3-Column Sub-Model & Account Breakdown */}
+          {/* 3-Column Sub-Model & Account Breakdown (Sections 6 & 7: Honest LAYA/EVREN Fallback) */}
           <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-            {/* LAYA */}
+            {/* LAYA (Section 6) */}
             <div className="rounded-xl border border-[#2A3542] bg-[#0A0D10]/70 p-3.5">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E6EDF3]">
                   <Cpu className="h-3.5 w-3.5 text-[#4EE1C2]" />
-                  LAYA Operational Classifier
+                  {layaState.statusTitle}
                 </span>
-                <span className="font-mono text-[11px] font-bold text-[#F59E0B]">
-                  {decision.laya_label} ({(decision.laya_confidence * 100).toFixed(0)}%)
+                <span className="rounded border border-[#F59E0B]/35 bg-[#F59E0B]/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#F59E0B]">
+                  {layaState.actionLabel}
                 </span>
               </div>
-              <div className="mt-2 space-y-1 font-mono text-[11px] text-[#9BA7B4]">
+              <p className="mt-1.5 text-[11px] text-[#9BA7B4]">
+                {layaState.subtitle}
+              </p>
+              <div className="mt-2.5 space-y-1 border-t border-[#2A3542]/50 pt-2 font-mono text-[11px] text-[#9BA7B4]">
                 <div className="flex justify-between">
-                  <span>Model Version:</span>
+                  <span>Confidence:</span>
+                  <span className="text-[#E6EDF3]">
+                    {layaState.confidenceText.replace("Confidence: ", "")}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Model Latency:</span>
+                  <span className="text-[#E6EDF3]">
+                    {layaState.latencyText.replace("Model latency: ", "")}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Model Source:</span>
                   <span className="text-[#E6EDF3]">
                     {classification?.model_version ?? "advisory-fallback"}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Abstained:</span>
-                  <span className="text-[#E6EDF3]">
-                    {classification?.abstained ? "true (Fallback)" : "false"}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Latency:</span>
-                  <span className="text-[#E6EDF3]">
-                    {classification?.latency_ms ?? 0} ms
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* EVREN */}
+            {/* EVREN (Section 7) */}
             <div className="rounded-xl border border-[#2A3542] bg-[#0A0D10]/70 p-3.5">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E6EDF3]">
                   <Lock className="h-3.5 w-3.5 text-[#3B82F6]" />
-                  EVREN Bounded Reasoning
+                  {evrenState.statusTitle}
                 </span>
-                <span className="font-mono text-[11px] font-semibold text-[#E6EDF3]">
-                  {decision.proposed_action}
+                <span className="rounded border border-[#F59E0B]/35 bg-[#F59E0B]/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#F59E0B]">
+                  {evrenState.badgeText}
                 </span>
               </div>
-              <p className="mt-2 rounded border border-[#2A3542]/70 bg-[#11161D] p-2 font-mono text-[11px] text-[#9BA7B4]">
-                {decision.llm_summary}
+              <p className="mt-1.5 rounded border border-[#2A3542]/70 bg-[#11161D] p-2 font-mono text-[11px] text-[#9BA7B4]">
+                {evrenState.subtitle}
               </p>
-              <div className="mt-1.5 flex justify-between font-mono text-[10px] text-[#6E7785]">
-                <span>Tool Invocation: DISABLED</span>
-                <span>Intent: {decision.intent_id.slice(0, 10)}…</span>
+              <div className="mt-2 space-y-1 font-mono text-[11px] text-[#9BA7B4]">
+                <div className="flex justify-between">
+                  <span>Proposed Action:</span>
+                  <span className="text-[#E6EDF3]">
+                    {decision.proposed_action} ({decision.quantity} BTC)
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Model Latency:</span>
+                  <span className="text-[#E6EDF3]">
+                    {evrenState.latencyText.replace("Model latency: ", "")}
+                  </span>
+                </div>
+                <div className="flex justify-between text-[10px] text-[#6E7785]">
+                  <span>Tool Invocation: DISABLED</span>
+                  <span>Intent: {decision.intent_id.slice(0, 10)}…</span>
+                </div>
               </div>
             </div>
 
@@ -341,17 +413,27 @@ export function HeroDecisionCard({
                 <div className="flex justify-between">
                   <span>Bid / Ask:</span>
                   <span className="text-[#E6EDF3]">
-                    {observation ? `${observation.bid} / ${observation.ask}` : "N/A"}
+                    {observation
+                      ? `${observation.bid} / ${observation.ask}`
+                      : "N/A"}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Quote Balance:</span>
-                  <span className="text-[#F59E0B]">{accountInfo.quoteDisplay}</span>
+                  <span className="text-[#F59E0B]">
+                    {accountInfo.quoteDisplay}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Venue Order ID:</span>
                   <span className="text-[#E6EDF3]">
                     {decision.venue_order_id ?? "null (NOT_SENT)"}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Runtime State:</span>
+                  <span className="text-[#E6EDF3]">
+                    {runtimeStatus.badgeLabel}
                   </span>
                 </div>
               </div>

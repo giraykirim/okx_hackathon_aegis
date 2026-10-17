@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   Ban,
@@ -35,7 +36,7 @@ const SHORT_DESCRIPTIONS: Record<PipelineStepView["key"], string> = {
   CLASSIFY: "Identify operational risk class.",
   REASON: "Evaluate bounded proposal.",
   RISK_GATE: "Apply deterministic safety rules.",
-  ACTION: "Execution blocked or simulated.",
+  ACTION: "Execution blocked or skipped.",
   VERIFY: "Confirm venue state (if sent).",
   AUDIT: "Record decision & SHA-256 digest.",
 };
@@ -53,11 +54,11 @@ export function PipelineSteps({
     status: PipelineStepView["status"]
   ) => {
     const colorClass =
-      status === "COMPLETED"
+      status === "COMPLETED" || status === "RUNNING"
         ? "text-[#4EE1C2]"
-        : status === "VETOED"
+        : status === "BLOCKED" || status === "VETOED"
         ? "text-[#EF4444]"
-        : status === "FALLBACK"
+        : status === "FALLBACK" || status === "UNAVAILABLE"
         ? "text-[#F59E0B]"
         : "text-[#6E7785]";
 
@@ -87,32 +88,41 @@ export function PipelineSteps({
         textClass: "text-[#4EE1C2]",
       };
     }
-    if (step.key === "VERIFY" && step.verdictBadge.includes("SKIPPED")) {
-      return {
-        text: "SKIPPED",
-        dot: "bg-[#6E7785]",
-        textClass: "text-[#9BA7B4]",
-      };
-    }
-    if (step.key === "ACTION" && step.verdictBadge.includes("NOT_SENT")) {
-      return {
-        text: "NO TRADE",
-        dot: "bg-[#F59E0B]",
-        textClass: "text-[#F59E0B]",
-      };
-    }
+
     switch (step.status) {
       case "COMPLETED":
         return {
-          text: "COMPLETE",
+          text: "COMPLETED",
           dot: "bg-[#4EE1C2]",
           textClass: "text-[#4EE1C2]",
         };
+      case "RUNNING":
+        return {
+          text: "RUNNING",
+          dot: "bg-[#4EE1C2] animate-pulse",
+          textClass: "text-[#4EE1C2]",
+        };
+      case "SKIPPED":
+        return {
+          text: step.key === "ACTION" ? "NO TRADE" : "SKIPPED",
+          dot: "bg-[#6E7785]",
+          textClass: "text-[#9BA7B4]",
+        };
+      case "BLOCKED":
       case "VETOED":
         return {
-          text: "VETOED",
-          dot: "bg-[#F59E0B]",
-          textClass: "text-[#F59E0B]",
+          text:
+            step.statusBadgeLabel === "NO_TRADE ENFORCED"
+              ? "SAFE GATE"
+              : "BLOCKED",
+          dot:
+            step.statusBadgeLabel === "NO_TRADE ENFORCED"
+              ? "bg-[#F59E0B]"
+              : "bg-[#EF4444]",
+          textClass:
+            step.statusBadgeLabel === "NO_TRADE ENFORCED"
+              ? "text-[#F59E0B]"
+              : "text-[#EF4444]",
         };
       case "FALLBACK":
         return {
@@ -120,7 +130,20 @@ export function PipelineSteps({
           dot: "bg-[#F59E0B]",
           textClass: "text-[#F59E0B]",
         };
+      case "UNAVAILABLE":
+        return {
+          text: "UNAVAILABLE",
+          dot: "bg-[#F59E0B]",
+          textClass: "text-[#F59E0B]",
+        };
+      case "NOT_TESTED":
+        return {
+          text: "NOT TESTED",
+          dot: "bg-[#6E7785]",
+          textClass: "text-[#9BA7B4]",
+        };
       case "IDLE":
+      default:
         return {
           text: "IDLE",
           dot: "bg-[#6E7785]",
@@ -144,7 +167,7 @@ export function PipelineSteps({
           DECISION PIPELINE
         </span>
         <span className="text-xs text-[#6E7785]">
-          End-to-end evaluation for each opportunity · Click any stage to inspect
+          End-to-end 7-stage evaluation · Click any stage to inspect raw details
         </span>
       </div>
 
@@ -166,15 +189,17 @@ export function PipelineSteps({
                 }`}
               >
                 <div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-1">
                     <span className="font-mono text-xs font-medium text-[#6E7785]">
                       {step.stepNumber}
                     </span>
-                    {step.measuredDurationMs !== null && (
-                      <span className="font-mono text-[10px] text-[#6E7785]">
-                        {step.measuredDurationMs} ms
-                      </span>
-                    )}
+                    <span className="font-mono text-[10px] text-[#6E7785] truncate">
+                      {step.measuredDurationMs !== null
+                        ? `${step.measuredDurationMs} ms`
+                        : step.key === "VERIFY" && step.status === "SKIPPED"
+                        ? "NOT_SENT"
+                        : "—"}
+                    </span>
                   </div>
 
                   <div className="mt-2 flex flex-col items-center text-center">
@@ -215,7 +240,7 @@ export function PipelineSteps({
       {/* Progressive Disclosure Drawer for Selected Step */}
       {activeDetailStep && (
         <div className="mt-3.5 flex flex-wrap items-start justify-between gap-4 rounded-xl border border-[#4EE1C2]/30 bg-[#0A0D10]/90 p-3.5 text-xs animate-fade-up">
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-semibold text-[#E6EDF3]">
                 {activeDetailStep.title}
@@ -223,15 +248,27 @@ export function PipelineSteps({
               <span className="rounded border border-[#2A3542] bg-[#11161D] px-2 py-0.5 font-mono text-[10px] text-[#4EE1C2]">
                 {activeDetailStep.verdictBadge}
               </span>
+              <span className="rounded border border-[#2A3542]/80 bg-[#1A222B] px-2 py-0.5 font-mono text-[10px] text-[#9BA7B4]">
+                status: {activeDetailStep.status}
+              </span>
               <span className="font-mono text-[10px] text-[#6E7785]">
                 actor: {activeDetailStep.actor} · mode:{" "}
-                {activeDetailStep.sourceMode}
+                {activeDetailStep.sourceMode} ·{" "}
+                {activeDetailStep.durationDisplay}
               </span>
             </div>
             <p className="text-[#9BA7B4]">{activeDetailStep.summary}</p>
             {activeDetailStep.evidenceId && (
-              <div className="font-mono text-[11px] text-[#4EE1C2]">
-                Evidence ID: {activeDetailStep.evidenceId}
+              <div className="flex items-center gap-3 pt-0.5 font-mono text-[11px]">
+                <span className="text-[#4EE1C2]">
+                  Evidence ID: {activeDetailStep.evidenceId}
+                </span>
+                <Link
+                  href={`/activity?eventId=${activeDetailStep.evidenceId}`}
+                  className="text-[#9BA7B4] underline hover:text-[#E6EDF3]"
+                >
+                  Inspect in Activity Log →
+                </Link>
               </div>
             )}
           </div>

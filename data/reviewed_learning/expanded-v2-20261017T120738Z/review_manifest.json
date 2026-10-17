@@ -1,0 +1,38 @@
+{
+  "version": "candidate-expansion-v2-NOT-DEPLOYED",
+  "backend_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf",
+  "cases": 161,
+  "created_utc": "2026-10-17T12:07:41.512515+00:00",
+  "snapshot_hashes": {
+    "models.py": "1b4ab08c43450d6d40dd49a2331eb6d5b0a1fb7f4c54af77411c435a77e84fe3",
+    "policy.py": "0d10afacc24213ed17fe6279ccbaa35e73d1dafd3422d15e67de3d87be83c6b6",
+    "store.py": "c7d6554a261d152fa57f0d8edc84b4f9d9b86cc20f54c6780f95287c1df44e1e"
+  },
+  "hashes": {
+    "backend_ack.json": "b2b00002d96d84c3480ae8d73bcefdef61159981b6edb8f8fed4814f33921fc9",
+    "candidates.jsonl": "85d621b55058ac9c8c7ec1f36a36c27564d4823c9ba26eb34a38ffc75af56145",
+    "diagnostic_only_backend_probes.json": "0661bfc1e3c6f6470ab9dbec74f1e009d1bf0dc7935684f8730246361ab05fe0",
+    "draft_cases.json": "7f5e4a722d381ae6cfbaa73f02e65bbf07d8af67cebb5ceab77c0c7846ad613b",
+    "human_review_BLIND.json": "5deab848b2cc9488658e3963f690bea6a601142d071f5f85193e92503ab6f28f",
+    "legacy_720_inventory.json": "ae8ccd0054f4497455ad812741e74c2537a4eddb1e6c81bf8ec1884be9662704",
+    "metadata.json": "c51592748d073f9d3d0083bca3c45112e3f64e47f84d82d3768947140f88da5e",
+    "offline_traces.json": "bb4eb676683d1c38e04d91ab96063ffbb7d4011323608ce732a1c584a6094434"
+  },
+  "training_approved": false,
+  "human_review_complete": false,
+  "independent_split_approved": false,
+  "backend_context_mapping_approved": false,
+  "source_independence_claimed": false,
+  "original_policy_unchanged": "aegis-operational-v1",
+  "suggested_unknown_policy_not_deployed": true,
+  "source_urls": [
+    "https://github.com/okx/agent-trade-kit/blob/github-main/docs/modules/spot.md",
+    "https://github.com/NandhaKishorM/laya/blob/main/docs/finetune.md"
+  ],
+  "orders_sent": 0,
+  "network_allowed": false,
+  "backend_execution_scope": "Pure Store and policy only; no Agent, ATK, settings, provider or HTTP",
+  "exhaustive_all_trades": false,
+  "model_trained": false,
+  "laya_inference_performed": false
+}
