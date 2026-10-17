@@ -5,17 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Activity,
-  CheckCircle2,
-  Cpu,
   FileCode2,
+  Home,
+  Link2,
   Lock,
   Play,
   RefreshCw,
-  ShieldAlert,
-  ShieldCheck,
+  Server,
   Square,
-  Wifi,
-  WifiOff,
 } from "lucide-react";
 import { getSourceModeExplanation } from "@/lib/view-helpers";
 import type { SourceMode } from "@/lib/types";
@@ -54,180 +51,152 @@ export function HeaderBar({
   const pathname = usePathname();
   const modeInfo = getSourceModeExplanation(sourceMode);
 
+  const navItems = [
+    {
+      href: "/",
+      label: "Overview",
+      icon: <Home className="h-3.5 w-3.5" />,
+      active: pathname === "/",
+    },
+    {
+      href: "/activity",
+      label: "Activity",
+      icon: <Activity className="h-3.5 w-3.5" />,
+      active: pathname?.startsWith("/activity"),
+    },
+    {
+      href: "/avalanche",
+      label: "On-chain",
+      icon: <Link2 className="h-3.5 w-3.5" />,
+      active: pathname?.startsWith("/avalanche"),
+    },
+    {
+      href: "/service",
+      label: "Risk Service",
+      icon: <Server className="h-3.5 w-3.5" />,
+      active: pathname?.startsWith("/service"),
+    },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md">
-      {/* Top Truthfulness & Safety Banner */}
-      <div className="border-b border-slate-800/60 bg-slate-900/80 px-4 py-1.5 text-xs text-slate-300">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded bg-rose-500/15 px-2 py-0.5 font-mono text-[11px] font-semibold text-rose-300 border border-rose-500/30">
-              LIVE_EXECUTION=DISABLED
-            </span>
-            <span className="inline-flex items-center gap-1 rounded bg-indigo-500/15 px-2 py-0.5 font-mono text-[11px] font-semibold text-indigo-300 border border-indigo-500/30">
-              ORDER_PERMISSION=FALSE
-            </span>
-            <span className="text-slate-400">
-              Off-chain Python/ATK runtime · On-chain Fuji ERC-8004 identity & SHA-256 receipts (no on-chain model inference)
-            </span>
-          </div>
-          <div className="flex items-center gap-3 font-mono text-[11px]">
-            {backendLive ? (
-              <span className="inline-flex items-center gap-1 text-emerald-400">
-                <CheckCircle2 className="h-3.5 w-3.5" />
-                FASTAPI: LIVE HTTP
-              </span>
-            ) : (
-              <span
-                className="inline-flex items-center gap-1 rounded bg-amber-500/20 px-2 py-0.5 text-amber-300 border border-amber-500/40"
-                title="FastAPI loopback server is currently stopped or unreachable; displaying real recorded evidence from backend/evidence/"
-              >
-                <ShieldAlert className="h-3.5 w-3.5" />
-                BACKEND OFFLINE — RECORDED EVIDENCE MODE
-              </span>
-            )}
-            <span
-              className={`inline-flex items-center gap-1 ${
-                sseState === "LIVE"
-                  ? "text-emerald-400"
-                  : sseState === "FALLBACK"
-                  ? "text-amber-300"
-                  : "text-slate-400"
-              }`}
-            >
-              {sseState === "LIVE" ? (
-                <Wifi className="h-3.5 w-3.5" />
-              ) : (
-                <WifiOff className="h-3.5 w-3.5" />
-              )}
-              SSE: {sseState}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Header Row */}
+    <header className="sticky top-0 z-40 border-b border-[#2A3542]/70 bg-[#0A0D10]/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-3">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 group-hover:bg-emerald-500/20 transition">
-              <ShieldCheck className="h-6 w-6" />
+        {/* Left: AEGIS Brand + Primary Navigation */}
+        <div className="flex flex-wrap items-center justify-between gap-5">
+          <Link href="/" className="flex items-center gap-3 group">
+            {/* Geometric Aegis Triangle Mark (Reference Set A/B/C/D) */}
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#4EE1C2]/30 bg-[#4EE1C2]/10 text-[#4EE1C2] transition group-hover:border-[#4EE1C2]/60 group-hover:bg-[#4EE1C2]/15">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3L3 20H8.5L12 13L15.5 20H21L12 3Z"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-bold tracking-tight text-white">
-                  AEGIS
-                </span>
-                <span className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-slate-300 border border-slate-700">
-                  v2.0 + Service v1
-                </span>
-              </div>
-              <p className="text-xs text-slate-400">
-                Autonomous Pre-Trade Risk & Self-Monitoring Service
-              </p>
-            </div>
+            <span className="font-sans text-base font-bold tracking-[0.26em] text-[#E6EDF3]">
+              AEGIS
+            </span>
           </Link>
-
-          {/* Active Source Mode Badge */}
-          <div
-            className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-xs font-semibold ${modeInfo.badgeClass}`}
-            title={modeInfo.description}
-          >
-            <Activity className="h-3.5 w-3.5" />
-            <span>MODE: {modeInfo.badgeText}</span>
-          </div>
-
-          {/* Agent Loop Status */}
-          <div
-            className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-xs ${
-              running
-                ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
-                : "border-slate-700 bg-slate-900 text-slate-300"
-            }`}
-          >
-            <span
-              className={`h-2 w-2 rounded-full ${
-                running ? "animate-pulse bg-emerald-400" : "bg-slate-500"
-              }`}
-            />
-            <span>LOOP: {running ? "RUNNING" : "STOPPED"}</span>
-          </div>
-        </div>
-
-        {/* Timestamps + Navigation + Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="hidden xl:flex flex-col text-right font-mono text-[11px] text-slate-400">
-            <span>
-              Market Observed:{" "}
-              <strong className="text-slate-200">
-                {observedAt ? observedAt.replace("T", " ").slice(0, 23) + "Z" : "N/A"}
-              </strong>
-            </span>
-            <span>
-              Last Cycle:{" "}
-              <strong className="text-slate-200">
-                {lastCycleAt ? lastCycleAt.replace("T", " ").slice(0, 23) + "Z" : "N/A"}
-              </strong>
-            </span>
-          </div>
 
           {/* Navigation Tabs */}
           <nav
             aria-label="Primary Navigation"
-            className="flex items-center rounded-lg border border-slate-800 bg-slate-900/90 p-1 text-xs font-medium"
+            className="flex items-center gap-1 rounded-xl border border-[#2A3542]/70 bg-[#11161D]/90 p-1 text-xs font-medium"
           >
-            <Link
-              href="/"
-              className={`rounded-md px-3 py-1.5 transition ${
-                pathname === "/"
-                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-                  : "text-slate-300 hover:text-white"
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`relative inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-all ${
+                  item.active
+                    ? "bg-[#1A222B] text-[#4EE1C2] shadow-[inset_0_1px_0_0_rgba(78,225,194,0.2)] border border-[#4EE1C2]/35"
+                    : "text-[#9BA7B4] hover:bg-[#1A222B]/50 hover:text-[#E6EDF3]"
+                }`}
+              >
+                {item.icon}
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Right: Global Status Chips + Operator Controls (Reference Set A) */}
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          {/* Status Chips */}
+          <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
+            {/* 1. Source Mode Chip */}
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-semibold ${
+                sourceMode === "MOCK"
+                  ? "border-[#F59E0B]/40 bg-[#F59E0B]/10 text-[#F59E0B]"
+                  : "border-[#4EE1C2]/35 bg-[#4EE1C2]/10 text-[#4EE1C2]"
               }`}
+              title={modeInfo.description}
             >
-              1-Screen Control & Story
-            </Link>
-            <Link
-              href="/service"
-              className={`rounded-md px-3 py-1.5 transition ${
-                pathname?.startsWith("/service")
-                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-                  : "text-slate-300 hover:text-white"
-              }`}
+              <span className="h-1.5 w-1.5 rounded-full bg-current" />
+              {sourceMode}
+            </span>
+
+            {/* 2. LIVE_EXECUTION_DISABLED Chip */}
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#EF4444]/35 bg-[#EF4444]/10 px-2.5 py-1 font-semibold text-[#EF4444]"
+              title="Live real-money trading is permanently disabled by architecture"
             >
-              Use as Service (API)
-            </Link>
+              <span className="h-1.5 w-1.5 rounded-full bg-[#EF4444]" />
+              LIVE_EXECUTION_DISABLED
+            </span>
+
+            {/* 3. ORDER_PERMISSION_FALSE Chip */}
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#F59E0B]/35 bg-[#F59E0B]/10 px-2.5 py-1 font-semibold text-[#F59E0B]"
+              title="Advisory models and service responses never grant order execution permission"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-[#F59E0B]" />
+              ORDER_PERMISSION_FALSE
+            </span>
+
+            {/* 4. Avalanche Fuji 43113 Chip */}
             <Link
               href="/avalanche"
-              className={`rounded-md px-3 py-1.5 transition ${
-                pathname?.startsWith("/avalanche")
-                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-                  : "text-slate-300 hover:text-white"
-              }`}
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-[#2A3542] bg-[#11161D] px-2.5 py-1 text-[#E6EDF3] hover:border-[#4EE1C2]/40 transition"
+              title="Avalanche Fuji C-Chain (43113) ERC-8004 Identity & Receipt Verifier"
             >
-              Avalanche Fuji (43113)
+              <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#EF4444] text-[8px] font-bold text-white">
+                ▲
+              </span>
+              <span>Avalanche Fuji 43113</span>
             </Link>
-          </nav>
+          </div>
 
-          {/* Operator Controls (View-Only Judge Lock vs Admin) */}
-          <div className="flex items-center gap-2">
+          {/* Action Buttons */}
+          <div className="flex items-center gap-1.5">
             {onRefresh && (
               <button
                 type="button"
                 onClick={onRefresh}
-                className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2.5 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-800 transition"
-                title="Refresh snapshot and events from backend"
+                className="inline-flex items-center gap-1 rounded-lg border border-[#2A3542] bg-[#11161D] px-2.5 py-1.5 text-xs font-medium text-[#9BA7B4] hover:border-[#4EE1C2]/40 hover:text-[#E6EDF3] transition"
+                title={`Sync state (SSE: ${sseState}, Last Cycle: ${lastCycleAt ?? "N/A"}, Market: ${observedAt ?? "N/A"})`}
               >
                 <RefreshCw className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Sync</span>
+                <span className="hidden xl:inline">
+                  {backendLive ? "Live Sync" : "Recorded Proof"}
+                </span>
               </button>
             )}
 
             {adminUnlocked ? (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1">
                 <button
                   type="button"
                   disabled={controlBusy || running}
                   onClick={onStartAgent}
-                  className="inline-flex items-center gap-1 rounded-md border border-emerald-500/40 bg-emerald-500/15 px-2.5 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/25 disabled:opacity-40 transition"
+                  className="inline-flex items-center gap-1 rounded-lg border border-[#4EE1C2]/40 bg-[#4EE1C2]/15 px-2.5 py-1.5 text-xs font-semibold text-[#4EE1C2] hover:bg-[#4EE1C2]/25 disabled:opacity-40 transition"
                 >
                   <Play className="h-3.5 w-3.5" />
                   Start
@@ -236,7 +205,7 @@ export function HeaderBar({
                   type="button"
                   disabled={controlBusy || !running}
                   onClick={onStopAgent}
-                  className="inline-flex items-center gap-1 rounded-md border border-rose-500/40 bg-rose-500/15 px-2.5 py-1.5 text-xs font-semibold text-rose-300 hover:bg-rose-500/25 disabled:opacity-40 transition"
+                  className="inline-flex items-center gap-1 rounded-lg border border-[#EF4444]/40 bg-[#EF4444]/15 px-2.5 py-1.5 text-xs font-semibold text-[#EF4444] hover:bg-[#EF4444]/25 disabled:opacity-40 transition"
                 >
                   <Square className="h-3.5 w-3.5" />
                   Stop
@@ -246,18 +215,18 @@ export function HeaderBar({
               <button
                 type="button"
                 onClick={onOpenAdminModal}
-                className="inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-900/90 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:border-slate-600 hover:text-white transition"
-                title="Public view-only judge mode has zero trade/control privileges. Click to unlock operator controls if you have the local admin secret."
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[#2A3542] bg-[#11161D] px-2.5 py-1.5 text-xs font-medium text-[#9BA7B4] hover:border-[#4EE1C2]/40 hover:text-[#E6EDF3] transition"
+                title="View-Only Judge Mode active. Click to enter local operator secret."
               >
-                <Lock className="h-3.5 w-3.5 text-amber-400" />
-                <span>View-Only Judge Mode</span>
+                <Lock className="h-3.5 w-3.5 text-[#F59E0B]" />
+                <span className="hidden md:inline">Judge Lock</span>
               </button>
             )}
 
             <button
               type="button"
               onClick={onInspectProof}
-              className="inline-flex items-center gap-1.5 rounded-md border border-indigo-500/50 bg-indigo-500/20 px-3 py-1.5 text-xs font-semibold text-indigo-200 hover:bg-indigo-500/30 transition"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[#4EE1C2] px-3 py-1.5 text-xs font-semibold text-[#0A0D10] hover:bg-[#4EE1C2]/90 transition"
             >
               <FileCode2 className="h-3.5 w-3.5" />
               <span>Inspect Proof</span>

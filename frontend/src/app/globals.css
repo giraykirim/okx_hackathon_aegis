@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --aegis-bg: #0a0d10;
+  --aegis-surface: #11161d;
+  --aegis-surface-alt: #1a222b;
+  --aegis-border: #2a3542;
+  --aegis-mint: #4ee1c2;
+  --aegis-teal: #0f6b5f;
+  --aegis-text: #e6edf3;
+  --aegis-text-secondary: #9ba7b4;
+  --aegis-text-muted: #6e7785;
+  --aegis-info: #3b82f6;
+  --aegis-success: #22c55e;
+  --aegis-warning: #f59e0b;
+  --aegis-critical: #ef4444;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--aegis-bg);
+  --color-foreground: var(--aegis-text);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--aegis-bg);
+  color: var(--aegis-text);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
 }
+
+/* Reference Set D Surface & Card Elevations */
+.aegis-card {
+  background: linear-gradient(180deg, rgba(26, 34, 43, 0.55) 0%, rgba(17, 22, 29, 0.92) 100%);
+  border: 1px solid rgba(42, 53, 66, 0.72);
+  box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+.aegis-card-hero {
+  background: radial-gradient(600px circle at 12% 50%, rgba(78, 225, 194, 0.085), transparent 65%),
+    linear-gradient(180deg, rgba(26, 34, 43, 0.68) 0%, rgba(17, 22, 29, 0.95) 100%);
+  border: 1px solid rgba(78, 225, 194, 0.24);
+  box-shadow: 0 20px 44px -16px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(78, 225, 194, 0.12);
+}
+
+.aegis-shield-ring {
+  background: radial-gradient(circle, rgba(78, 225, 194, 0.14) 0%, rgba(15, 107, 95, 0.04) 68%, transparent 100%);
+  box-shadow: 0 0 36px rgba(78, 225, 194, 0.16), inset 0 0 18px rgba(78, 225, 194, 0.12);
+}
+
+/* Smooth SVG Sparkline & Bar Animations */
+@keyframes aegis-draw-line {
+  from {
+    stroke-dashoffset: 240;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes aegis-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aegis-grow-bar {
+  from {
+    transform: scaleY(0.15);
+    opacity: 0.3;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: aegis-draw-line 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-up {
+  animation: aegis-fade-up 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-grow-bar {
+  transform-origin: bottom;
+  animation: aegis-grow-bar 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+

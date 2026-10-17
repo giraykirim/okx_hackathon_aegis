@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { ArrowUpRight, Cpu, ShieldCheck } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { AdminUnlockModal } from "@/components/AdminUnlockModal";
-import { EventTimelineAndCapabilities } from "@/components/EventTimelineAndCapabilities";
-import { ExplainableVerdictCard } from "@/components/ExplainableVerdictCard";
+import { AnimatedMetricCards } from "@/components/AnimatedMetricCards";
 import { HeaderBar } from "@/components/HeaderBar";
+import { HeroDecisionCard } from "@/components/HeroDecisionCard";
+import { OverviewBottomPanels } from "@/components/OverviewBottomPanels";
 import { PipelineSteps } from "@/components/PipelineSteps";
 import { ProofDrawerModal } from "@/components/ProofDrawerModal";
 import {
@@ -23,6 +23,7 @@ import type { EventItem, Metrics, Snapshot } from "@/lib/types";
 import { buildPipelineSteps, type PipelineStepView } from "@/lib/view-helpers";
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [snapshot, setSnapshot] = React.useState<Snapshot>(
     RECORDED_SNAPSHOT_MARKET_ONLY
   );
@@ -41,9 +42,6 @@ export default function DashboardPage() {
     React.useState<DemoPresetKey>("real_atk_no_trade");
   const [selectedStepKey, setSelectedStepKey] = React.useState<
     PipelineStepView["key"] | null
-  >(null);
-  const [highlightedEventId, setHighlightedEventId] = React.useState<
-    string | null
   >(null);
 
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
@@ -84,7 +82,6 @@ export default function DashboardPage() {
     }
   }, [activePreset]);
 
-  // Initial fetch + periodic poll fallback
   React.useEffect(() => {
     syncFromApi();
     const timer = setInterval(() => {
@@ -124,7 +121,7 @@ export default function DashboardPage() {
     es.addEventListener("aegis", handleAegisEvent);
 
     es.onerror = () => {
-      setSseState((prev) => (prev === "LIVE" ? "FALLBACK" : "FALLBACK"));
+      setSseState("FALLBACK");
       es.close();
     };
 
@@ -137,7 +134,6 @@ export default function DashboardPage() {
   const handleSelectPreset = (preset: DemoPresetKey) => {
     setActivePreset(preset);
     setSelectedStepKey(null);
-    setHighlightedEventId(null);
 
     if (preset === "real_atk_no_trade") {
       setSnapshot(RECORDED_SNAPSHOT_MARKET_ONLY);
@@ -252,25 +248,18 @@ export default function DashboardPage() {
 
   const handleSelectStep = (step: PipelineStepView) => {
     setSelectedStepKey(step.key);
-    if (step.evidenceId) {
-      setHighlightedEventId(step.evidenceId);
-      const el = document.getElementById(`event-${step.evidenceId}`);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
-    }
   };
 
   const handleInspectEvidenceId = (id: string) => {
-    setHighlightedEventId(id);
-    const el = document.getElementById(`event-${id}`);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
+    router.push(`/activity?eventId=${id}`);
   };
 
+  const displayTime = snapshot.last_cycle_at
+    ? snapshot.last_cycle_at.replace("T", " ").slice(0, 19) + " UTC"
+    : "2026-10-17 11:39:35 UTC";
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-[#0A0D10] text-[#E6EDF3]">
       <HeaderBar
         sourceMode={snapshot.source_mode}
         running={snapshot.running}
@@ -287,68 +276,46 @@ export default function DashboardPage() {
         onRefresh={syncFromApi}
       />
 
-      <main className="mx-auto max-w-7xl space-y-4 px-4 py-5">
+      <main className="mx-auto max-w-7xl space-y-5 px-4 py-6">
         {controlError && (
-          <div className="flex items-center justify-between rounded-lg border border-rose-500/40 bg-rose-950/30 px-4 py-2.5 font-mono text-xs text-rose-200">
+          <div className="flex items-center justify-between rounded-xl border border-[#EF4444]/40 bg-[#EF4444]/10 px-4 py-2.5 font-mono text-xs text-[#EF4444]">
             <span>Operator Control Error: {controlError}</span>
             <button
               type="button"
               onClick={() => setControlError(null)}
-              className="underline hover:text-white"
+              className="underline hover:text-[#E6EDF3]"
             >
               Dismiss
             </button>
           </div>
         )}
 
-        {/* Quick Jury Pitch & Navigation Strip */}
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-3.5">
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-[11px] font-bold uppercase text-emerald-400">
-                1. OKX Agent Trade Kit (ATK)
-              </span>
-              <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
-                PASS (MARKET_ONLY)
-              </span>
+        {/* Overview Hero Header (Reference Set A) */}
+        <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+          <div>
+            <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9BA7B4]">
+              OVERVIEW
             </div>
-            <p className="mt-1 text-xs text-slate-300">
-              Real Node subprocess execution of <code className="font-mono">@okx_ai/okx-trade-cli@1.4.8</code> (`site=tr`) with SHA-256 stdout digests.
+            <h1 className="mt-1 text-2xl font-bold tracking-tight text-[#E6EDF3] sm:text-3xl">
+              AI-Powered Pre-Trade Risk Monitoring
+            </h1>
+            <p className="mt-1 text-sm text-[#9BA7B4]">
+              Observing markets. Evaluating opportunities. Enforcing deterministic risk policies. Always on your side.
             </p>
           </div>
 
-          <Link
-            href="/service"
-            className="group rounded-xl border border-slate-800 bg-slate-900/50 p-3.5 hover:border-indigo-500/50 transition"
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-[11px] font-bold uppercase text-indigo-400">
-                2. B2B Risk Check Service (`/api/v1/risk/evaluate`)
-              </span>
-              <ArrowUpRight className="h-4 w-4 text-slate-400 group-hover:text-indigo-300" />
-            </div>
-            <p className="mt-1 text-xs text-slate-300">
-              External pre-trade operational evaluation (`order_permission=false`). OKX.AI compatible — <strong className="text-amber-300">NOT_LISTED</strong>.
-            </p>
-          </Link>
-
-          <Link
-            href="/avalanche"
-            className="group rounded-xl border border-slate-800 bg-slate-900/50 p-3.5 hover:border-sky-500/50 transition"
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-[11px] font-bold uppercase text-sky-400">
-                3. Avalanche Fuji (Chain 43113)
-              </span>
-              <ArrowUpRight className="h-4 w-4 text-slate-400 group-hover:text-sky-300" />
-            </div>
-            <p className="mt-1 text-xs text-slate-300">
-              ERC-8004 identity registration & <code className="font-mono">RiskDecisionRegistry</code> SHA-256 receipt verifier (off-chain runtime).
-            </p>
-          </Link>
+          <div className="flex items-center gap-3 font-mono text-xs text-[#9BA7B4]">
+            <span>{displayTime}</span>
+            <span className="inline-flex items-center gap-1.5 font-medium text-[#4EE1C2]">
+              <span className="h-2 w-2 rounded-full bg-[#22C55E] animate-pulse" />
+              {backendLive
+                ? "System Online (Live FastAPI)"
+                : "Monitoring Ready (Verified Evidence)"}
+            </span>
+          </div>
         </div>
 
-        {/* Scenario Switcher: Real ATK Market vs Synthetic Unsafe Veto */}
+        {/* Segmented Scenario Switcher */}
         <ScenarioSwitcher
           activePreset={activePreset}
           onSelectPreset={handleSelectPreset}
@@ -358,27 +325,33 @@ export default function DashboardPage() {
           busy={controlBusy}
         />
 
-        {/* 1-Screen Story: 7-Step Pipeline */}
-        <PipelineSteps
-          steps={pipelineSteps}
-          selectedStepKey={selectedStepKey}
-          onSelectStep={handleSelectStep}
-        />
-
-        {/* Explainable Result Card */}
-        <ExplainableVerdictCard
+        {/* Hero Latest Decision Card (Reference Set A) */}
+        <HeroDecisionCard
           decision={snapshot.latest_decision}
           classification={snapshot.classification}
           observation={snapshot.observation}
           onInspectEvidenceId={handleInspectEvidenceId}
         />
 
-        {/* Live Event Timeline + Capabilities + Metrics */}
-        <EventTimelineAndCapabilities
+        {/* Compact 7-Stage Decision Pipeline (Reference Set A) */}
+        <PipelineSteps
+          steps={pipelineSteps}
+          selectedStepKey={selectedStepKey}
+          onSelectStep={handleSelectStep}
+        />
+
+        {/* 4 Animated Metric Cards with Sparklines (Reference Set A & D) */}
+        <AnimatedMetricCards
+          metrics={metrics}
+          eventsCount={events.length}
+          sourceMode={snapshot.source_mode}
+        />
+
+        {/* Latest Activity Preview + System Status Panel (Reference Set A) */}
+        <OverviewBottomPanels
           events={events}
           capabilities={snapshot.capabilities}
-          metrics={metrics}
-          highlightedEventId={highlightedEventId}
+          runId={snapshot.run_id}
         />
       </main>
 
