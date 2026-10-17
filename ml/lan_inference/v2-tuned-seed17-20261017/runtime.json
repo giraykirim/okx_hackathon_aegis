@@ -1,0 +1,31 @@
+{
+  "pid": 7964,
+  "host": "0.0.0.0",
+  "port": 8771,
+  "model_version": "aegis-laya-v2-tuned-seed17-ea5f9f0bffee",
+  "checkpoint_version": "ea5f9f0bffee1af32f2b7aeebc3fb6cd9a55163c0458cb0087f90fef608a83bd",
+  "selected": "v2-tuned-seed17",
+  "checkpoint_hashes": {
+    "model.safetensors": "39c37c9d071bc5cb219a8b504630b44cf43e1a6ff76895a23666ab429ed17f91",
+    "questions.json": "8caa8e6f75f6b381f60ef9bb23a751be95baeb2ca1b655daf27b45c903d261f8",
+    "rl_agent_config.json": "e803634c9621e32699cc14234d31a8c6da45f13494907bca6230ade2bd4e3d91",
+    "train_report.json": "22e1b1f3f58e6b8e5dcb1010fe09f52718ad7e99eab8788d1d2ba2ca2cf69466",
+    "encoder\\config.json": "8525cf5ff496c47b5feacf2464bc658c608102894f348f6171542d73de3bbf33",
+    "tokenizer\\tokenizer.json": "0b3214f8efe1327290428b84e5d344ff3f2442686c1b89fb7b42c13a79ce6779",
+    "tokenizer\\tokenizer_config.json": "e07bcb74963b20b1193332afd3541b36dea30db1e4183d4002d739d5a4dfd5d2"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "laya": "0.4.8",
+  "torch": "2.14.1+cu130",
+  "warmup_real_inference": {
+    "label": "CONTINUE",
+    "confidence": 0.2149,
+    "abstained": false,
+    "model_version": "aegis-laya-v2-tuned-seed17-ea5f9f0bffee",
+    "latency_ms": 747.228
+  },
+  "shadow_only": true,
+  "execution_authority": false,
+  "production_approved": false,
+  "auth": "NONE_ISOLATED_HACKATHON_LAN_ONLY"
+}
