@@ -1,0 +1,12 @@
+# AEGIS service amendment — 17 October 2026
+
+Retain all existing runtime code and API shapes. Person 1 owns backend/**, contracts/**, docs/atk/** and docs/product/**. The new positioning is operational pre-trade assessment for other trading-agent developers, with self-monitoring and an auditable demo.
+
+1. Freeze contracts/openapi.yaml byte-for-byte at SHA-256 `a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae`. Validate its paths/components against the running app without regenerating it. Export only the additive service paths and their schemas to contracts/service-openapi.yaml.
+2. Add a separately authenticated, rate-limited `/api/v1/risk/evaluate`. Accept only an intended cash spot action and quantity; do not accept balance, freshness, model labels, permission or account flags as facts. Source market/instrument state through a separate credential-free official ATK instance. Account context is explicitly unavailable for external callers, so never issue approval or send an order. Run LAYA/EVREN adapters or declare their existing fallbacks. Return a deterministic assessment, limitations, provenance, correlation ID and result hash. Audit it separately from actual trading decisions.
+3. Add public `/api/v1/service` metadata with implemented auth/rate limits, target customer, illustrative pricing, not-listed marketplace status and no invented public origin. No payments, customer trading authority, or listing certification is implied.
+4. Instrument market-only ATK subprocess calls with actual argv, run ID, request/market timestamps, elapsed time, source mode, status, byte hash and validated-result hash. Emit these receipts into existing Event.details; preserve the Event schema.
+5. Test first: v2 hash/projection, caller spoofing rejection, no trading/intent side effects, unavailable models/account fail-closed, private credentials excluded, auth/limits/deadlines, receipt hash and actual HTTP lifecycle.
+6. Capture real backend HTTP/SSE/service evidence; publish a machine-readable 100-point rubric evidence manifest, short status/next-command note, two-minute demo runbook, product/pricing and official OKX.AI listing research.
+
+Smallest executable service choice: a market-only partial assessment that always withholds execution approval when account provenance is missing. An endpoint trusting caller-supplied account flags would break the safety boundary; a broker-authorized account integration is deferred rather than simulated. Optional audit receipt deployment and Fuji identity remain Person 3's work.

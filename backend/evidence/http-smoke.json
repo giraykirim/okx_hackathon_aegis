@@ -1,0 +1,1156 @@
+{
+  "recorded_at": "2026-10-17T09:31:39.986527+00:00",
+  "source_mode": "MARKET_ONLY",
+  "checks": {
+    "read_routes": {
+      "health": 200,
+      "snapshot": 200,
+      "events": 200,
+      "decisions": 200,
+      "metrics": 200,
+      "web3/identity": 200,
+      "capabilities": 200
+    },
+    "unauthenticated_control": "PASS: HTTP 401",
+    "scenario_mode_isolation": "PASS: HTTP 409",
+    "sse_resume": {
+      "status": "PASS",
+      "event_id": "60d70118e0db4a2fa47a11e0e5294c5e"
+    },
+    "autonomous_http_cycle": {
+      "status": "PASS",
+      "snapshot": {
+        "running": false,
+        "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+        "source_mode": "MARKET_ONLY",
+        "last_cycle_at": "2026-10-17T09:31:41.342044Z",
+        "observation": {
+          "symbol": "BTC-USDT",
+          "observed_at": "2026-10-17T09:31:40.129000Z",
+          "price": "81682",
+          "ask": "81683.4",
+          "bid": "81683.3",
+          "min_size": "0.00002",
+          "lot_size": "1E-8",
+          "tick_size": "0.1",
+          "instrument_live": true,
+          "account_known": false,
+          "exposure_quote": "0",
+          "quote_available": "0",
+          "base_available": "0",
+          "account_observed_at": null,
+          "external_open_orders": false
+        },
+        "classification": {
+          "label": "REVIEW",
+          "confidence": 0.0,
+          "abstained": true,
+          "model_version": "advisory-fallback",
+          "latency_ms": 0.0
+        },
+        "latest_decision": {
+          "id": "51a8b7e86c9c4c33b480da0736974141",
+          "timestamp": "2026-10-17T09:31:41.340557Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "symbol": "BTC-USDT",
+          "proposed_action": "NO_TRADE",
+          "laya_label": "REVIEW",
+          "laya_confidence": 0.0,
+          "llm_summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
+          "evidence_ids": [
+            "80c97da470004648bef092156791356c",
+            "5311348fab024611a3f2db2be8ca4c9a",
+            "90efdd614e894a0cb06a1fd081e562ad",
+            "a31cc5a8727242a4ad94b66a0547d633",
+            "09e8d5f6dc1c431a847b105307722daa",
+            "1956981c657d4c7cb7dad43833647cba"
+          ],
+          "risk_approved": false,
+          "risk_reasons": [
+            "execution_disabled",
+            "approval_unavailable",
+            "unknown_account",
+            "laya_not_clear",
+            "no_trade_proposed",
+            "invalid_quantity"
+          ],
+          "execution_status": "NOT_SENT",
+          "venue_order_id": null,
+          "source_mode": "MARKET_ONLY",
+          "intent_id": "ea0d25b2127b4b1bbadcc88a0097f3c1",
+          "quantity": "0",
+          "venue_state": null,
+          "limit_price": null
+        },
+        "capabilities": {
+          "ATK_MARKET": {
+            "status": "PASS",
+            "evidence": [
+              "Official @okx_ai/okx-trade-cli@1.4.8 ticker + instruments returned JSON",
+              "site=tr",
+              "exchange_timestamp=2026-10-17T09:31:40.129000+00:00"
+            ],
+            "checked_at": "2026-10-17T09:31:41.337967Z"
+          },
+          "ATK_ACCOUNT": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          },
+          "ATK_DEMO": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          },
+          "EVREN": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          },
+          "LAYA": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          },
+          "ERC8004": {
+            "status": "NOT_TESTED",
+            "evidence": [],
+            "checked_at": null
+          }
+        },
+        "identity": {
+          "chain_id": 43113,
+          "registry_address": null,
+          "agent_id": null,
+          "agent_uri": null,
+          "owner": null,
+          "registration_tx_hash": null,
+          "tx_hash": null,
+          "verified": false,
+          "verification_checked_at": null,
+          "verification_status": "NOT_TESTED"
+        },
+        "execution_enabled": false
+      },
+      "events": [
+        {
+          "id": "ba0abef004d44b8db7ccf54f69ed9f70",
+          "timestamp": "2026-10-17T09:03:58.078889Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "START",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Autonomous cycle started",
+          "details": {},
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "710efcb880544668a12864b09e5b7c41",
+          "timestamp": "2026-10-17T09:03:59.323657Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "OBSERVE",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market observation",
+          "details": {
+            "symbol": "BTC-USDT",
+            "observed_at": "2026-10-17T09:03:57.968000Z",
+            "price": "81714.9",
+            "ask": "81724.4",
+            "bid": "81724.3",
+            "min_size": "0.00002",
+            "lot_size": "1E-8",
+            "tick_size": "0.1",
+            "instrument_live": true,
+            "account_known": false,
+            "exposure_quote": "0",
+            "quote_available": "0",
+            "base_available": "0",
+            "account_observed_at": null,
+            "external_open_orders": false
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "424ada6f5891408f9242e834b8e7375b",
+          "timestamp": "2026-10-17T09:03:59.324311Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "CLASSIFY",
+          "severity": "INFO",
+          "actor": "laya",
+          "message": "Operational risk classified",
+          "details": {
+            "label": "REVIEW",
+            "confidence": 0.0,
+            "abstained": true,
+            "model_version": "advisory-fallback",
+            "latency_ms": 0.0
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "16f7ea0dc6a74323a35735c0b31a6d61",
+          "timestamp": "2026-10-17T09:03:59.324684Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "REASON",
+          "severity": "INFO",
+          "actor": "evren",
+          "message": "Typed proposal received",
+          "details": {
+            "action": "NO_TRADE",
+            "symbol": "BTC-USDT",
+            "quantity": "0",
+            "intent_id": "1bfbf21971534bb580c446e361638e40",
+            "summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "b74e634fd4fe44c4b38a37550585f284",
+          "timestamp": "2026-10-17T09:03:59.325009Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "RISK_GATE",
+          "severity": "WARNING",
+          "actor": "policy",
+          "message": "Order vetoed",
+          "details": {
+            "approved": false,
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "no_trade_proposed",
+              "invalid_quantity"
+            ],
+            "limit_price": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "00773abd78fe41f992c99ee438dc87f9",
+          "timestamp": "2026-10-17T09:03:59.325248Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "NO_TRADE",
+          "severity": "INFO",
+          "actor": "policy",
+          "message": "No order sent",
+          "details": {
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "no_trade_proposed",
+              "invalid_quantity"
+            ]
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "ef7462874a7f4beca39a9cb036d06529",
+          "timestamp": "2026-10-17T09:03:59.325978Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "AUDIT",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Cycle persisted",
+          "details": {
+            "decision_id": "bad904f66f104789ad633754bf2cbbbd",
+            "execution_status": "NOT_SENT"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "1fc210875fa64f8c81bcadefb369dc95",
+          "timestamp": "2026-10-17T09:03:59.520742Z",
+          "run_id": "a40939adb44e4703b20b6c0c32ce4ab4",
+          "type": "STOP",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Agent stopped; no new cycles will be started",
+          "details": {},
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "d301a705f4ba40e5a70003d17dc146c6",
+          "timestamp": "2026-10-17T09:24:44.608470Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "START",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Autonomous cycle started",
+          "details": {},
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "df832d972d804acd8f45a79150cf77d8",
+          "timestamp": "2026-10-17T09:24:45.904345Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "8fcd1f20510c4b3f90a28778c2347e2c",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "ticker",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "ticker",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:24:44.609061Z",
+            "completed_at": "2026-10-17T09:24:45.382134Z",
+            "market_timestamp": "2026-10-17T09:24:45.119000Z",
+            "source_mode": "MARKET_ONLY",
+            "run_id": "281942e3622745e0986fd50a51dc98d8",
+            "status": "PASS",
+            "result_sha256": "27dc714748d3812c1a6ff5b051019e655861c9dc244d6c59610ad4f0d3edc9d2",
+            "stdout_sha256": "0d47667d3bd8e29a529d831cd5fd1bd08b7be268b2e9bc7aee794a5475b0f36f",
+            "elapsed_ms": 772.3553749965504,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "5922c80b176c493495d0e8bdadb73686",
+          "timestamp": "2026-10-17T09:24:45.904715Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "b6bfa364b921469b98ec82aef85274ce",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "instruments",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "instruments",
+              "--instType",
+              "SPOT",
+              "--instId",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:24:45.382373Z",
+            "completed_at": "2026-10-17T09:24:45.904191Z",
+            "market_timestamp": null,
+            "source_mode": "MARKET_ONLY",
+            "run_id": "281942e3622745e0986fd50a51dc98d8",
+            "status": "PASS",
+            "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+            "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+            "elapsed_ms": 521.3542499986943,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "75e1e94cb5a84091b876ba13cafccbbc",
+          "timestamp": "2026-10-17T09:24:45.905029Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "OBSERVE",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market observation",
+          "details": {
+            "symbol": "BTC-USDT",
+            "observed_at": "2026-10-17T09:24:45.119000Z",
+            "price": "81717.8",
+            "ask": "81717.8",
+            "bid": "81717.7",
+            "min_size": "0.00002",
+            "lot_size": "1E-8",
+            "tick_size": "0.1",
+            "instrument_live": true,
+            "account_known": false,
+            "exposure_quote": "0",
+            "quote_available": "0",
+            "base_available": "0",
+            "account_observed_at": null,
+            "external_open_orders": false
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "c4d18f4a7ab349938ab6f2ecac0a539a",
+          "timestamp": "2026-10-17T09:24:45.905280Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "CLASSIFY",
+          "severity": "INFO",
+          "actor": "laya",
+          "message": "Operational risk classified",
+          "details": {
+            "label": "REVIEW",
+            "confidence": 0.0,
+            "abstained": true,
+            "model_version": "advisory-fallback",
+            "latency_ms": 0.0
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "e71484292b64462ead4a086d44c9e529",
+          "timestamp": "2026-10-17T09:24:45.905484Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "REASON",
+          "severity": "INFO",
+          "actor": "evren",
+          "message": "Typed proposal received",
+          "details": {
+            "action": "NO_TRADE",
+            "symbol": "BTC-USDT",
+            "quantity": "0",
+            "intent_id": "ee8a9e10caf14e6087bdb6be1cf2ec48",
+            "summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "283e4e87122643b3a9ccc8e4835282f0",
+          "timestamp": "2026-10-17T09:24:45.905692Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "RISK_GATE",
+          "severity": "WARNING",
+          "actor": "policy",
+          "message": "Order vetoed",
+          "details": {
+            "approved": false,
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "no_trade_proposed",
+              "invalid_quantity"
+            ],
+            "limit_price": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "03e4b4e3c31e4102881762258f81dac2",
+          "timestamp": "2026-10-17T09:24:45.905815Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "NO_TRADE",
+          "severity": "INFO",
+          "actor": "policy",
+          "message": "No order sent",
+          "details": {
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "no_trade_proposed",
+              "invalid_quantity"
+            ]
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "f061919bc38e4b21abf1bb7746834c9a",
+          "timestamp": "2026-10-17T09:24:45.906158Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "AUDIT",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Cycle persisted",
+          "details": {
+            "decision_id": "82ce2d2cea3b43a8a918c77aff93ee47",
+            "execution_status": "NOT_SENT"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "19a5f4405ee0408787ac1ad6fb7c6d09",
+          "timestamp": "2026-10-17T09:24:46.061568Z",
+          "run_id": "281942e3622745e0986fd50a51dc98d8",
+          "type": "STOP",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Agent stopped; no new cycles will be started",
+          "details": {},
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "91bb14dac1434ff6aab8b78469aa4acb",
+          "timestamp": "2026-10-17T09:25:21.335764Z",
+          "run_id": "30a7bfb37f684328a2fb52b386def71f",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "b8244764297b416d879b1f55cb62b8f4",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "ticker",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "ticker",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:25:20.199942Z",
+            "completed_at": "2026-10-17T09:25:20.791128Z",
+            "market_timestamp": "2026-10-17T09:25:19.668000Z",
+            "source_mode": "MARKET_ONLY",
+            "run_id": "30a7bfb37f684328a2fb52b386def71f",
+            "status": "PASS",
+            "result_sha256": "45ecf90d93a87973daecf76277b877c9ea561d4798d087de3a8a1abc5fb3ee4f",
+            "stdout_sha256": "854ba82b9631ed45b23efe126b829c521765c44068865a0cc6b8cf9861c3afba",
+            "elapsed_ms": 591.1329160007881,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "3290e6d407c24b1fb43b00b126c488f7",
+          "timestamp": "2026-10-17T09:25:21.336247Z",
+          "run_id": "30a7bfb37f684328a2fb52b386def71f",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "92573ed1b16545ac929734f2270076f2",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "instruments",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "instruments",
+              "--instType",
+              "SPOT",
+              "--instId",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:25:20.791298Z",
+            "completed_at": "2026-10-17T09:25:21.335468Z",
+            "market_timestamp": null,
+            "source_mode": "MARKET_ONLY",
+            "run_id": "30a7bfb37f684328a2fb52b386def71f",
+            "status": "PASS",
+            "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+            "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+            "elapsed_ms": 544.1263329994399,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "714612c8b94e43e4bbca27908f657255",
+          "timestamp": "2026-10-17T09:25:21.336730Z",
+          "run_id": "30a7bfb37f684328a2fb52b386def71f",
+          "type": "SERVICE_ASSESSMENT",
+          "severity": "WARNING",
+          "actor": "risk-service",
+          "message": "Assessment recorded; no order permission or execution authority",
+          "details": {
+            "assessment_id": "30a7bfb37f684328a2fb52b386def71f",
+            "timestamp": "2026-10-17T09:25:20.199794Z",
+            "run_id": "30a7bfb37f684328a2fb52b386def71f",
+            "request": {
+              "symbol": "BTC-USDT",
+              "action": "BUY",
+              "quantity": "0.0001",
+              "client_request_id": "proof-small_intent"
+            },
+            "source_mode": "MARKET_ONLY",
+            "assessment": "REVIEW",
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "insufficient_quote"
+            ],
+            "execution_authority": false,
+            "order_permission": false,
+            "account_provenance": "UNAVAILABLE",
+            "market_provenance": {
+              "status": "PASS",
+              "source": "OFFICIAL_OKX_ATK",
+              "site": "tr",
+              "market_timestamp": "2026-10-17T09:25:19.668000Z",
+              "receipts": [
+                {
+                  "id": "b8244764297b416d879b1f55cb62b8f4",
+                  "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+                  "operation": "ticker",
+                  "command": [
+                    "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                    "--import",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                    "market",
+                    "ticker",
+                    "BTC-USDT",
+                    "--site",
+                    "tr",
+                    "--demo",
+                    "--json"
+                  ],
+                  "site": "tr",
+                  "requested_at": "2026-10-17T09:25:20.199942Z",
+                  "completed_at": "2026-10-17T09:25:20.791128Z",
+                  "market_timestamp": "2026-10-17T09:25:19.668000Z",
+                  "source_mode": "MARKET_ONLY",
+                  "run_id": "30a7bfb37f684328a2fb52b386def71f",
+                  "status": "PASS",
+                  "result_sha256": "45ecf90d93a87973daecf76277b877c9ea561d4798d087de3a8a1abc5fb3ee4f",
+                  "stdout_sha256": "854ba82b9631ed45b23efe126b829c521765c44068865a0cc6b8cf9861c3afba",
+                  "elapsed_ms": 591.1329160007881,
+                  "error_type": null
+                },
+                {
+                  "id": "92573ed1b16545ac929734f2270076f2",
+                  "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+                  "operation": "instruments",
+                  "command": [
+                    "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                    "--import",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                    "market",
+                    "instruments",
+                    "--instType",
+                    "SPOT",
+                    "--instId",
+                    "BTC-USDT",
+                    "--site",
+                    "tr",
+                    "--demo",
+                    "--json"
+                  ],
+                  "site": "tr",
+                  "requested_at": "2026-10-17T09:25:20.791298Z",
+                  "completed_at": "2026-10-17T09:25:21.335468Z",
+                  "market_timestamp": null,
+                  "source_mode": "MARKET_ONLY",
+                  "run_id": "30a7bfb37f684328a2fb52b386def71f",
+                  "status": "PASS",
+                  "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+                  "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+                  "elapsed_ms": 544.1263329994399,
+                  "error_type": null
+                }
+              ]
+            },
+            "market_checks": {
+              "status": "PASS",
+              "reasons": [],
+              "policy_limit_price": "82529.4"
+            },
+            "classification": {
+              "label": "REVIEW",
+              "confidence": 0.0,
+              "abstained": true,
+              "model_version": "advisory-fallback",
+              "latency_ms": 0.0
+            },
+            "laya_status": "UNAVAILABLE",
+            "evren_status": "FALLBACK",
+            "analysis_summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
+            "limitations": [
+              "Pre-trade operational assessment only; never an execution approval or financial advice",
+              "External account balances, exposure and prior orders are unavailable and are not inferred",
+              "Caller intent is untrusted input; market and instrument facts come from server-side official ATK",
+              "An assessment is a timestamped observation, not a guarantee of later venue conditions"
+            ],
+            "evidence_ids": [
+              "91bb14dac1434ff6aab8b78469aa4acb",
+              "3290e6d407c24b1fb43b00b126c488f7"
+            ],
+            "assessment_sha256": "de580407c45e17d31d2ea57aee7292300c69564a983a4c87711597a4437e1320"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "38b4fb59623948ad8fb211f97007f546",
+          "timestamp": "2026-10-17T09:25:22.641984Z",
+          "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "ef93d0e67c19459288cf5394f9023177",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "ticker",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "ticker",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:25:21.339450Z",
+            "completed_at": "2026-10-17T09:25:22.070249Z",
+            "market_timestamp": "2026-10-17T09:25:21.474000Z",
+            "source_mode": "MARKET_ONLY",
+            "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+            "status": "PASS",
+            "result_sha256": "0317a935eff6c39a08518bdb2899e9beeef3dad075066273ab2846d97baf3a89",
+            "stdout_sha256": "bad2faea2ca0de7f0b3b7d1cf01e8411401046bf3d047e7c2b28d25f60008277",
+            "elapsed_ms": 730.7400000136113,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "c2d79a77d26e4c10a5743da561a25b5d",
+          "timestamp": "2026-10-17T09:25:22.642269Z",
+          "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "13aaacca11e34d2b81f53c9c756e3562",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "instruments",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "instruments",
+              "--instType",
+              "SPOT",
+              "--instId",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:25:22.070699Z",
+            "completed_at": "2026-10-17T09:25:22.641740Z",
+            "market_timestamp": null,
+            "source_mode": "MARKET_ONLY",
+            "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+            "status": "PASS",
+            "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+            "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+            "elapsed_ms": 570.9973750053905,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "9d25829c5dbe49db92cd758a13326a54",
+          "timestamp": "2026-10-17T09:25:22.642686Z",
+          "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+          "type": "SERVICE_ASSESSMENT",
+          "severity": "WARNING",
+          "actor": "risk-service",
+          "message": "Assessment recorded; no order permission or execution authority",
+          "details": {
+            "assessment_id": "09e89bfc781a47d5b48e492ffb09af8d",
+            "timestamp": "2026-10-17T09:25:21.339306Z",
+            "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+            "request": {
+              "symbol": "BTC-USDT",
+              "action": "BUY",
+              "quantity": "1",
+              "client_request_id": "proof-excess_notional"
+            },
+            "source_mode": "MARKET_ONLY",
+            "assessment": "HALT",
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "excess_order_notional",
+              "excess_exposure",
+              "insufficient_quote"
+            ],
+            "execution_authority": false,
+            "order_permission": false,
+            "account_provenance": "UNAVAILABLE",
+            "market_provenance": {
+              "status": "PASS",
+              "source": "OFFICIAL_OKX_ATK",
+              "site": "tr",
+              "market_timestamp": "2026-10-17T09:25:21.474000Z",
+              "receipts": [
+                {
+                  "id": "ef93d0e67c19459288cf5394f9023177",
+                  "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+                  "operation": "ticker",
+                  "command": [
+                    "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                    "--import",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                    "market",
+                    "ticker",
+                    "BTC-USDT",
+                    "--site",
+                    "tr",
+                    "--demo",
+                    "--json"
+                  ],
+                  "site": "tr",
+                  "requested_at": "2026-10-17T09:25:21.339450Z",
+                  "completed_at": "2026-10-17T09:25:22.070249Z",
+                  "market_timestamp": "2026-10-17T09:25:21.474000Z",
+                  "source_mode": "MARKET_ONLY",
+                  "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+                  "status": "PASS",
+                  "result_sha256": "0317a935eff6c39a08518bdb2899e9beeef3dad075066273ab2846d97baf3a89",
+                  "stdout_sha256": "bad2faea2ca0de7f0b3b7d1cf01e8411401046bf3d047e7c2b28d25f60008277",
+                  "elapsed_ms": 730.7400000136113,
+                  "error_type": null
+                },
+                {
+                  "id": "13aaacca11e34d2b81f53c9c756e3562",
+                  "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+                  "operation": "instruments",
+                  "command": [
+                    "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+                    "--import",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+                    "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+                    "market",
+                    "instruments",
+                    "--instType",
+                    "SPOT",
+                    "--instId",
+                    "BTC-USDT",
+                    "--site",
+                    "tr",
+                    "--demo",
+                    "--json"
+                  ],
+                  "site": "tr",
+                  "requested_at": "2026-10-17T09:25:22.070699Z",
+                  "completed_at": "2026-10-17T09:25:22.641740Z",
+                  "market_timestamp": null,
+                  "source_mode": "MARKET_ONLY",
+                  "run_id": "09e89bfc781a47d5b48e492ffb09af8d",
+                  "status": "PASS",
+                  "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+                  "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+                  "elapsed_ms": 570.9973750053905,
+                  "error_type": null
+                }
+              ]
+            },
+            "market_checks": {
+              "status": "FAIL",
+              "reasons": [
+                "excess_order_notional"
+              ],
+              "policy_limit_price": "82529.4"
+            },
+            "classification": {
+              "label": "REVIEW",
+              "confidence": 0.0,
+              "abstained": true,
+              "model_version": "advisory-fallback",
+              "latency_ms": 0.0
+            },
+            "laya_status": "UNAVAILABLE",
+            "evren_status": "FALLBACK",
+            "analysis_summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
+            "limitations": [
+              "Pre-trade operational assessment only; never an execution approval or financial advice",
+              "External account balances, exposure and prior orders are unavailable and are not inferred",
+              "Caller intent is untrusted input; market and instrument facts come from server-side official ATK",
+              "An assessment is a timestamped observation, not a guarantee of later venue conditions"
+            ],
+            "evidence_ids": [
+              "38b4fb59623948ad8fb211f97007f546",
+              "c2d79a77d26e4c10a5743da561a25b5d"
+            ],
+            "assessment_sha256": "117d41f6c415892739107100f83a1ce81f0e5f31ef13d7eb4597f9d1c40f2b5d"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "60d70118e0db4a2fa47a11e0e5294c5e",
+          "timestamp": "2026-10-17T09:31:40.027466Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "START",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Autonomous cycle started",
+          "details": {},
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "1dbb7a5d18c04639b2168099d64b2212",
+          "timestamp": "2026-10-17T09:31:41.338096Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "2fde83fe23a6486b812bfdb77907cfec",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "ticker",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "ticker",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:31:40.027907Z",
+            "completed_at": "2026-10-17T09:31:40.694645Z",
+            "market_timestamp": "2026-10-17T09:31:40.129000Z",
+            "source_mode": "MARKET_ONLY",
+            "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+            "status": "PASS",
+            "result_sha256": "349cec024efa28050fe2c5ee9ea7ff2291f90717e63215980d51aa9e9471c7c0",
+            "stdout_sha256": "7db2851113bbb5123056482f11e1a8c19ab0a4174a889006b78050312c6a5a5c",
+            "elapsed_ms": 666.7434999981197,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "00320c73065643358f610aecf1b0804a",
+          "timestamp": "2026-10-17T09:31:41.338838Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "ATK_RECEIPT",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market subprocess receipt",
+          "details": {
+            "id": "9e8e65532ec1419785dd5c4662f0833d",
+            "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+            "operation": "instruments",
+            "command": [
+              "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+              "--import",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+              "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+              "market",
+              "instruments",
+              "--instType",
+              "SPOT",
+              "--instId",
+              "BTC-USDT",
+              "--site",
+              "tr",
+              "--demo",
+              "--json"
+            ],
+            "site": "tr",
+            "requested_at": "2026-10-17T09:31:40.694883Z",
+            "completed_at": "2026-10-17T09:31:41.337845Z",
+            "market_timestamp": null,
+            "source_mode": "MARKET_ONLY",
+            "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+            "status": "PASS",
+            "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+            "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+            "elapsed_ms": 642.9705829941668,
+            "error_type": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "80c97da470004648bef092156791356c",
+          "timestamp": "2026-10-17T09:31:41.339249Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "OBSERVE",
+          "severity": "INFO",
+          "actor": "atk",
+          "message": "Official ATK market observation",
+          "details": {
+            "symbol": "BTC-USDT",
+            "observed_at": "2026-10-17T09:31:40.129000Z",
+            "price": "81682",
+            "ask": "81683.4",
+            "bid": "81683.3",
+            "min_size": "0.00002",
+            "lot_size": "1E-8",
+            "tick_size": "0.1",
+            "instrument_live": true,
+            "account_known": false,
+            "exposure_quote": "0",
+            "quote_available": "0",
+            "base_available": "0",
+            "account_observed_at": null,
+            "external_open_orders": false
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "5311348fab024611a3f2db2be8ca4c9a",
+          "timestamp": "2026-10-17T09:31:41.339623Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "CLASSIFY",
+          "severity": "INFO",
+          "actor": "laya",
+          "message": "Operational risk classified",
+          "details": {
+            "label": "REVIEW",
+            "confidence": 0.0,
+            "abstained": true,
+            "model_version": "advisory-fallback",
+            "latency_ms": 0.0,
+            "availability": "UNAVAILABLE"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "90efdd614e894a0cb06a1fd081e562ad",
+          "timestamp": "2026-10-17T09:31:41.339982Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "REASON",
+          "severity": "INFO",
+          "actor": "evren",
+          "message": "Typed proposal received",
+          "details": {
+            "action": "NO_TRADE",
+            "symbol": "BTC-USDT",
+            "quantity": "0",
+            "intent_id": "ea0d25b2127b4b1bbadcc88a0097f3c1",
+            "summary": "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
+            "availability": "FALLBACK"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "a31cc5a8727242a4ad94b66a0547d633",
+          "timestamp": "2026-10-17T09:31:41.340352Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "RISK_GATE",
+          "severity": "WARNING",
+          "actor": "policy",
+          "message": "Order vetoed",
+          "details": {
+            "approved": false,
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "no_trade_proposed",
+              "invalid_quantity"
+            ],
+            "limit_price": null
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "09e8d5f6dc1c431a847b105307722daa",
+          "timestamp": "2026-10-17T09:31:41.340577Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "NO_TRADE",
+          "severity": "INFO",
+          "actor": "policy",
+          "message": "No order sent",
+          "details": {
+            "reasons": [
+              "execution_disabled",
+              "approval_unavailable",
+              "unknown_account",
+              "laya_not_clear",
+              "no_trade_proposed",
+              "invalid_quantity"
+            ]
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "1956981c657d4c7cb7dad43833647cba",
+          "timestamp": "2026-10-17T09:31:41.340754Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "VERIFY",
+          "severity": "INFO",
+          "actor": "policy",
+          "message": "NOT_SENT: policy path made no submission call",
+          "details": {
+            "execution_status": "NOT_SENT",
+            "venue_reconciliation": "NOT_REQUIRED"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "5a9ca4da954643d08cddeccbdc3fcb11",
+          "timestamp": "2026-10-17T09:31:41.341839Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "AUDIT",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Cycle persisted",
+          "details": {
+            "decision_id": "51a8b7e86c9c4c33b480da0736974141",
+            "execution_status": "NOT_SENT"
+          },
+          "source_mode": "MARKET_ONLY"
+        },
+        {
+          "id": "611a1d3c30f94f9c9ed89146c6e69ee9",
+          "timestamp": "2026-10-17T09:31:41.471806Z",
+          "run_id": "a1c815a4ef9843b8b5d09d547f7633c0",
+          "type": "STOP",
+          "severity": "INFO",
+          "actor": "agent",
+          "message": "Agent stopped; no new cycles will be started",
+          "details": {},
+          "source_mode": "MARKET_ONLY"
+        }
+      ]
+    }
+  }
+}

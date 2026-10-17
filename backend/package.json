@@ -1,0 +1,7 @@
+{
+  "name": "aegis-atk-runtime",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {"node": ">=18"},
+  "dependencies": {"@okx_ai/okx-trade-cli": "1.4.8", "@okx_ai/okx-trade-mcp": "1.4.8"}
+}

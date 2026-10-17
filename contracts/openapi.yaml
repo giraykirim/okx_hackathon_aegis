@@ -1,0 +1,730 @@
+openapi: 3.1.0
+info:
+  title: AEGIS Person 1 API
+  description: Off-chain demo-only agent runtime. ERC-8004 identity is a separate
+    testnet registration.
+  version: 2.0.0
+paths:
+  /api/health:
+    get:
+      summary: Health
+      operationId: health_api_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+  /api/snapshot:
+    get:
+      summary: Snapshot
+      operationId: snapshot_api_snapshot_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+  /api/events:
+    get:
+      summary: Events
+      operationId: events_api_events_get
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          minimum: 1
+          default: 100
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+                title: Response Events Api Events Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/decisions:
+    get:
+      summary: Decisions
+      operationId: decisions_api_decisions_get
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 500
+          minimum: 1
+          default: 50
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Decision'
+                title: Response Decisions Api Decisions Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/metrics:
+    get:
+      summary: Metrics
+      operationId: metrics_api_metrics_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metrics'
+  /api/web3/identity:
+    get:
+      summary: Identity
+      operationId: identity_api_web3_identity_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+  /api/capabilities:
+    get:
+      summary: Capabilities
+      operationId: capabilities_api_capabilities_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: '#/components/schemas/Capability'
+                type: object
+                title: Response Capabilities Api Capabilities Get
+  /api/agent/start:
+    post:
+      summary: Start
+      operationId: start_api_agent_start_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlState'
+      security:
+      - HTTPBearer: []
+  /api/agent/stop:
+    post:
+      summary: Stop
+      operationId: stop_api_agent_stop_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlState'
+      security:
+      - HTTPBearer: []
+  /api/demo/scenario:
+    post:
+      summary: Scenario
+      operationId: scenario_api_demo_scenario_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Decision'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /api/stream:
+    get:
+      summary: Stream
+      operationId: stream_api_stream_get
+      parameters:
+      - name: last-event-id
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 128
+          - type: 'null'
+          title: Last-Event-Id
+      responses:
+        '200':
+          description: SSE event replay followed by new events; resume with Last-Event-ID.
+          content:
+            text/event-stream:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Capability:
+      properties:
+        status:
+          type: string
+          enum:
+          - PASS
+          - FAIL
+          - NOT_TESTED
+          title: Status
+          default: NOT_TESTED
+        evidence:
+          items:
+            type: string
+          type: array
+          title: Evidence
+        checked_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Checked At
+      additionalProperties: false
+      type: object
+      title: Capability
+    Classification:
+      properties:
+        label:
+          type: string
+          enum:
+          - CONTINUE
+          - REVIEW
+          - HALT
+          title: Label
+        confidence:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Confidence
+        abstained:
+          type: boolean
+          title: Abstained
+        model_version:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Model Version
+        latency_ms:
+          type: number
+          minimum: 0.0
+          title: Latency Ms
+      additionalProperties: false
+      type: object
+      required:
+      - label
+      - confidence
+      - abstained
+      - model_version
+      - latency_ms
+      title: Classification
+    ControlState:
+      properties:
+        running:
+          type: boolean
+          title: Running
+        run_id:
+          type: string
+          title: Run Id
+        source_mode:
+          type: string
+          enum:
+          - MOCK
+          - MARKET_ONLY
+          - OKX_DEMO
+          title: Source Mode
+      additionalProperties: false
+      type: object
+      required:
+      - running
+      - run_id
+      - source_mode
+      title: ControlState
+    Decision:
+      properties:
+        id:
+          type: string
+          title: Id
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        run_id:
+          type: string
+          title: Run Id
+        symbol:
+          type: string
+          const: BTC-USDT
+          title: Symbol
+        proposed_action:
+          type: string
+          enum:
+          - NO_TRADE
+          - BUY
+          - SELL
+          title: Proposed Action
+        laya_label:
+          type: string
+          enum:
+          - CONTINUE
+          - REVIEW
+          - HALT
+          title: Laya Label
+        laya_confidence:
+          type: number
+          title: Laya Confidence
+        llm_summary:
+          type: string
+          title: Llm Summary
+        evidence_ids:
+          items:
+            type: string
+          type: array
+          title: Evidence Ids
+        risk_approved:
+          type: boolean
+          title: Risk Approved
+        risk_reasons:
+          items:
+            type: string
+          type: array
+          title: Risk Reasons
+        execution_status:
+          type: string
+          enum:
+          - NOT_SENT
+          - PENDING
+          - VERIFIED
+          - FAILED
+          - UNKNOWN
+          title: Execution Status
+        venue_order_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Venue Order Id
+        source_mode:
+          type: string
+          enum:
+          - MOCK
+          - MARKET_ONLY
+          - OKX_DEMO
+          title: Source Mode
+        intent_id:
+          type: string
+          title: Intent Id
+        quantity:
+          type: string
+          title: Quantity
+        venue_state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Venue State
+        limit_price:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Limit Price
+      additionalProperties: false
+      type: object
+      required:
+      - run_id
+      - symbol
+      - proposed_action
+      - laya_label
+      - laya_confidence
+      - llm_summary
+      - evidence_ids
+      - risk_approved
+      - risk_reasons
+      - execution_status
+      - source_mode
+      - intent_id
+      - quantity
+      title: Decision
+    Event:
+      properties:
+        id:
+          type: string
+          title: Id
+        timestamp:
+          type: string
+          format: date-time
+          title: Timestamp
+        run_id:
+          type: string
+          title: Run Id
+        type:
+          type: string
+          title: Type
+        severity:
+          type: string
+          enum:
+          - INFO
+          - WARNING
+          - ERROR
+          title: Severity
+        actor:
+          type: string
+          title: Actor
+        message:
+          type: string
+          title: Message
+        details:
+          additionalProperties: true
+          type: object
+          title: Details
+        source_mode:
+          type: string
+          enum:
+          - MOCK
+          - MARKET_ONLY
+          - OKX_DEMO
+          title: Source Mode
+      additionalProperties: false
+      type: object
+      required:
+      - run_id
+      - type
+      - severity
+      - actor
+      - message
+      - source_mode
+      title: Event
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Health:
+      properties:
+        status:
+          type: string
+          const: ok
+          title: Status
+          default: ok
+        running:
+          type: boolean
+          title: Running
+        source_mode:
+          type: string
+          enum:
+          - MOCK
+          - MARKET_ONLY
+          - OKX_DEMO
+          title: Source Mode
+        live_execution_enabled:
+          type: boolean
+          const: false
+          title: Live Execution Enabled
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - running
+      - source_mode
+      title: Health
+    Identity:
+      properties:
+        chain_id:
+          type: integer
+          const: 43113
+          title: Chain Id
+          default: 43113
+        registry_address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Registry Address
+        agent_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Id
+        agent_uri:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Uri
+        owner:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Owner
+        registration_tx_hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Registration Tx Hash
+        tx_hash:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tx Hash
+        verified:
+          type: boolean
+          title: Verified
+          default: false
+        verification_checked_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Verification Checked At
+        verification_status:
+          type: string
+          const: NOT_TESTED
+          title: Verification Status
+          default: NOT_TESTED
+      additionalProperties: false
+      type: object
+      title: Identity
+    Metrics:
+      properties:
+        decisions:
+          type: integer
+          title: Decisions
+        vetoed:
+          type: integer
+          title: Vetoed
+        verified_exchange_orders:
+          type: integer
+          title: Verified Exchange Orders
+        mock_executions:
+          type: integer
+          title: Mock Executions
+        unresolved_orders:
+          type: integer
+          title: Unresolved Orders
+        pnl:
+          type: 'null'
+          title: Pnl
+      additionalProperties: false
+      type: object
+      required:
+      - decisions
+      - vetoed
+      - verified_exchange_orders
+      - mock_executions
+      - unresolved_orders
+      title: Metrics
+    Observation:
+      properties:
+        symbol:
+          type: string
+          const: BTC-USDT
+          title: Symbol
+        observed_at:
+          type: string
+          format: date-time
+          title: Observed At
+        price:
+          type: string
+          title: Price
+        ask:
+          type: string
+          title: Ask
+        bid:
+          type: string
+          title: Bid
+        min_size:
+          type: string
+          title: Min Size
+        lot_size:
+          type: string
+          title: Lot Size
+        tick_size:
+          type: string
+          title: Tick Size
+          default: '0.1'
+        instrument_live:
+          type: boolean
+          title: Instrument Live
+        account_known:
+          type: boolean
+          title: Account Known
+          default: false
+        exposure_quote:
+          type: string
+          title: Exposure Quote
+          default: '0'
+        quote_available:
+          type: string
+          title: Quote Available
+          default: '0'
+        base_available:
+          type: string
+          title: Base Available
+          default: '0'
+        account_observed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Account Observed At
+        external_open_orders:
+          type: boolean
+          title: External Open Orders
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - symbol
+      - observed_at
+      - price
+      - ask
+      - bid
+      - min_size
+      - lot_size
+      - instrument_live
+      title: Observation
+    ScenarioRequest:
+      properties:
+        scenario:
+          type: string
+          enum:
+          - normal
+          - stale_feed
+          - laya_halt
+          - excess_exposure
+          - invalid_quantity
+          - missing_approval
+          - unknown_order
+          - duplicate_intent
+          title: Scenario
+      additionalProperties: false
+      type: object
+      required:
+      - scenario
+      title: ScenarioRequest
+    Snapshot:
+      properties:
+        running:
+          type: boolean
+          title: Running
+        run_id:
+          type: string
+          title: Run Id
+        source_mode:
+          type: string
+          enum:
+          - MOCK
+          - MARKET_ONLY
+          - OKX_DEMO
+          title: Source Mode
+        last_cycle_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Cycle At
+        observation:
+          anyOf:
+          - $ref: '#/components/schemas/Observation'
+          - type: 'null'
+        classification:
+          anyOf:
+          - $ref: '#/components/schemas/Classification'
+          - type: 'null'
+        latest_decision:
+          anyOf:
+          - $ref: '#/components/schemas/Decision'
+          - type: 'null'
+        capabilities:
+          additionalProperties:
+            $ref: '#/components/schemas/Capability'
+          type: object
+          title: Capabilities
+        identity:
+          $ref: '#/components/schemas/Identity'
+        execution_enabled:
+          type: boolean
+          title: Execution Enabled
+      additionalProperties: false
+      type: object
+      required:
+      - running
+      - run_id
+      - source_mode
+      - last_cycle_at
+      - observation
+      - classification
+      - latest_decision
+      - capabilities
+      - identity
+      - execution_enabled
+      title: Snapshot
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

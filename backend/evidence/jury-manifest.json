@@ -1,0 +1,425 @@
+{
+  "schema_version": "1.0.0",
+  "recorded_at": "2026-10-17T09:31:47.529949+00:00",
+  "rubric_source": {
+    "authority": "User-supplied official workbook excerpt in authorized amendment",
+    "workbook": "Agentic_Hackathon_Judge_Criteria.xlsx",
+    "sheet": "Criteria",
+    "range": "A1:F8",
+    "workbook_file_independently_inspected": false
+  },
+  "total_possible_points": 100,
+  "self_awarded_score": null,
+  "status_semantics": "PASS verifies only stated scope/evidence, not earned rubric points or production readiness",
+  "ownership": {
+    "person_1": [
+      "backend/**",
+      "contracts/**",
+      "docs/atk/**",
+      "docs/product/**"
+    ],
+    "person_3_coordination": "Written handoff; user reports no chat and no Prompt 00 implementation"
+  },
+  "tests": {
+    "status": "PASS",
+    "tests": 97,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamps": [
+      "2026-10-17T12:31:45.956597+03:00"
+    ]
+  },
+  "contracts": {
+    "v2_status": "FROZEN_UNCHANGED",
+    "v2_sha256": "a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae",
+    "additive": "contracts/service-openapi.yaml"
+  },
+  "official_atk": {
+    "status": "PASS",
+    "transport": "backend Node official CLI subprocess",
+    "receipts": [
+      {
+        "id": "4c2506b4ef0341d79694d28fd6523e39",
+        "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+        "operation": "ticker",
+        "command": [
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "--import",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "market",
+          "ticker",
+          "BTC-USDT",
+          "--site",
+          "tr",
+          "--demo",
+          "--json"
+        ],
+        "site": "tr",
+        "requested_at": "2026-10-17T09:31:41.666911Z",
+        "completed_at": "2026-10-17T09:31:42.388226Z",
+        "market_timestamp": "2026-10-17T09:31:41.126000Z",
+        "source_mode": "MARKET_ONLY",
+        "run_id": "bd8032749ad94df9a4dc8689832ee658",
+        "status": "PASS",
+        "result_sha256": "40fb4002f182d41dc13a0637843dfc6a77921a37df05ebe2bbe007817e64b226",
+        "stdout_sha256": "011119fc532f4235f23f8a4e0874f62cb89016ff452ff43aa539b421066e7c50",
+        "elapsed_ms": 721.3207090098877,
+        "error_type": null
+      },
+      {
+        "id": "b1cdd74edb634b9c98078fff87a4abde",
+        "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+        "operation": "instruments",
+        "command": [
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "--import",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "market",
+          "instruments",
+          "--instType",
+          "SPOT",
+          "--instId",
+          "BTC-USDT",
+          "--site",
+          "tr",
+          "--demo",
+          "--json"
+        ],
+        "site": "tr",
+        "requested_at": "2026-10-17T09:31:42.388570Z",
+        "completed_at": "2026-10-17T09:31:42.949709Z",
+        "market_timestamp": null,
+        "source_mode": "MARKET_ONLY",
+        "run_id": "bd8032749ad94df9a4dc8689832ee658",
+        "status": "PASS",
+        "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+        "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+        "elapsed_ms": 561.1447499977658,
+        "error_type": null
+      },
+      {
+        "id": "643e4c6a32804e1cb9e584fb1db6383d",
+        "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+        "operation": "ticker",
+        "command": [
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "--import",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "market",
+          "ticker",
+          "BTC-USDT",
+          "--site",
+          "tr",
+          "--demo",
+          "--json"
+        ],
+        "site": "tr",
+        "requested_at": "2026-10-17T09:31:42.955441Z",
+        "completed_at": "2026-10-17T09:31:43.491960Z",
+        "market_timestamp": "2026-10-17T09:31:43.133000Z",
+        "source_mode": "MARKET_ONLY",
+        "run_id": "5647b919af6e4d9b8851e8376369486e",
+        "status": "PASS",
+        "result_sha256": "b4b4a7d137fdd7499d56115fd83367f57ba60fd415f7afa540a8a6260d310908",
+        "stdout_sha256": "8597f27947fbe888136d7f42afde63690b8566d6a69d416631efbbef2c9ad184",
+        "elapsed_ms": 536.523374990793,
+        "error_type": null
+      },
+      {
+        "id": "b0b09035f75c41cfa6e77b40c7dfe7e3",
+        "toolkit": "@okx_ai/okx-trade-cli@1.4.8",
+        "operation": "instruments",
+        "command": [
+          "/Users/giraykirim/.nvm/versions/node/v24.13.1/bin/node",
+          "--import",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/aegis/atk-isolation.mjs",
+          "/Users/giraykirim/Desktop/okx_hackathon_aegis/backend/node_modules/@okx_ai/okx-trade-cli/dist/index.js",
+          "market",
+          "instruments",
+          "--instType",
+          "SPOT",
+          "--instId",
+          "BTC-USDT",
+          "--site",
+          "tr",
+          "--demo",
+          "--json"
+        ],
+        "site": "tr",
+        "requested_at": "2026-10-17T09:31:43.492159Z",
+        "completed_at": "2026-10-17T09:31:44.035430Z",
+        "market_timestamp": null,
+        "source_mode": "MARKET_ONLY",
+        "run_id": "5647b919af6e4d9b8851e8376369486e",
+        "status": "PASS",
+        "result_sha256": "8dd53d12d6afb5dcd9b66ed5dedb7a8261a1a6533bae5394e04c886f6c8a4206",
+        "stdout_sha256": "5e0604008de930fbfd3b2de5c163adc765c9ac5a787dfe9fcf74fce4fdf6ace2",
+        "elapsed_ms": 543.2776249945164,
+        "error_type": null
+      }
+    ]
+  },
+  "external_service": {
+    "status": "PASS",
+    "scope": "local real HTTP operational assessment only",
+    "execution_authority": false,
+    "public_deployment": "NOT_TESTED"
+  },
+  "exchange_writes_attempted": 0,
+  "live_execution": "DISABLED",
+  "models": {
+    "LAYA": "NOT_TESTED",
+    "EVREN_AUTHENTICATED": "NOT_TESTED"
+  },
+  "avalanche": {
+    "identity": "NOT_TESTED",
+    "decision_receipts": "NOT_TESTED",
+    "latency_ms": null,
+    "fees": null
+  },
+  "okx_ai": {
+    "research": "VERIFIED",
+    "feasibility": "POSSIBLE",
+    "listing": "NOT_LISTED",
+    "listing_url": null
+  },
+  "immediate_blockers": [
+    "No agreed public host/origin; Person 3 work not started",
+    "No local EVREN key/account-discovered model",
+    "No RTX LAN LAYA URL/benchmark",
+    "No isolated confirmed regional demo account",
+    "No verified Fuji contracts/read-back"
+  ],
+  "next_command": "cd backend && uv run python -m scripts.prove_service",
+  "rubric": [
+    {
+      "id": "A",
+      "name": "Innovation & Real-World Value",
+      "weight": 25,
+      "items": [
+        {
+          "name": "Originality",
+          "weight": 10,
+          "status": "NOT_TESTED",
+          "scope": "Novelty is for jury assessment; no independent novelty claim",
+          "evidence": []
+        },
+        {
+          "name": "Clear problem and target user",
+          "weight": 5,
+          "status": "PASS",
+          "scope": "Written positioning, not validated customer demand",
+          "evidence": [
+            "docs/product/service.md"
+          ]
+        },
+        {
+          "name": "Market potential / business model",
+          "weight": 5,
+          "status": "PASS",
+          "scope": "Documented price hypothesis; no billing/revenue claim",
+          "evidence": [
+            "docs/product/service.md",
+            "backend/evidence/amendment-http.json"
+          ]
+        },
+        {
+          "name": "Ready to go market",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "Local prototype; no public host/SLA/customer onboarding",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Agentic Design",
+      "weight": 20,
+      "items": [
+        {
+          "name": "Autonomy end-to-end",
+          "weight": 10,
+          "status": "PASS",
+          "scope": "Actual autonomous MARKET_ONLY cycle with declared model fallbacks",
+          "evidence": [
+            "backend/evidence/http-smoke.json"
+          ]
+        },
+        {
+          "name": "Reasoning and tool/API selection",
+          "weight": 10,
+          "status": "NOT_TESTED",
+          "scope": "Allowlisted multi-step tools run; real EVREN/LAYA unavailable",
+          "evidence": [
+            "backend/evidence/http-smoke.json",
+            "backend/evidence/amendment-http.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Demo & Presentation",
+      "weight": 20,
+      "items": [
+        {
+          "name": "Working live demo",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "Local HTTP backend demonstrated; integrated public product pending",
+          "evidence": [
+            "backend/evidence/amendment-http.json"
+          ]
+        },
+        {
+          "name": "UX design",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "Person 3 frontend not implemented",
+          "evidence": []
+        },
+        {
+          "name": "Pitch quality & Q&A",
+          "weight": 10,
+          "status": "NOT_TESTED",
+          "scope": "Two-minute runbook written; presentation not rehearsed/graded",
+          "evidence": [
+            "docs/product/demo-2-minutes.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Technical Execution",
+      "weight": 15,
+      "items": [
+        {
+          "name": "Working deployed product",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "Loopback only; public deployment not verified",
+          "evidence": []
+        },
+        {
+          "name": "Architecture quality",
+          "weight": 5,
+          "status": "PASS",
+          "scope": "Boundaries, tests and contract compatibility verified; quality score belongs to jury",
+          "evidence": [
+            "backend/evidence/tests.xml",
+            "contracts/openapi.yaml",
+            "contracts/service-openapi.yaml"
+          ]
+        },
+        {
+          "name": "Technical difficulty",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "Real CUDA and on-chain receipt work pending other owners",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Avalanche Integration",
+      "weight": 10,
+      "items": [
+        {
+          "name": "C-Chain or Avalanche L1 deployment",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "No verified deployed identity/receipt contract/runtime",
+          "evidence": [
+            "docs/product/person3-handoff.md"
+          ]
+        },
+        {
+          "name": "Avalanche strengths",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "No measured issue-confirm-verify latency/fees; no custom L1/interchain claim",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "name": "OKX Integration",
+      "weight": 10,
+      "items": [
+        {
+          "name": "Official OKX agent tooling",
+          "weight": 5,
+          "status": "PASS",
+          "scope": "Running backend executed actual pinned ATK CLI market reads",
+          "evidence": [
+            "backend/evidence/amendment-http.json",
+            "docs/atk/evidence.md"
+          ]
+        },
+        {
+          "name": "Could be listed on OKX.AI",
+          "weight": 5,
+          "status": "NOT_TESTED",
+          "scope": "Official requirements researched; feasibility POSSIBLE; NOT_LISTED",
+          "evidence": [
+            "docs/product/okx-ai-listing.md"
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "contracts/openapi.yaml",
+      "sha256": "a437caaa81ae590fc258aa0aeeb6498b1c38ec745483a701a4b2f0c66314d5ae"
+    },
+    {
+      "path": "contracts/service-openapi.yaml",
+      "sha256": "3a2f7795028040f5912f502dd0455255b80970291c539b8ae6aabeeded2e670e"
+    },
+    {
+      "path": "backend/evidence/tests.xml",
+      "sha256": "2fcec1e5275b17db3b6a04161adef67ee5b32dbd9094eab0627a53f33e29fe49"
+    },
+    {
+      "path": "backend/evidence/http-smoke.json",
+      "sha256": "16d2d33c9a558b5e187200c898eb8264b609d2fe97eedf411835f4376c4c124e"
+    },
+    {
+      "path": "backend/evidence/amendment-http.json",
+      "sha256": "ea43ea8f42ffb74ddcad61b42588f8ccc8936fa133802be10939668a9deeba50"
+    },
+    {
+      "path": "backend/evidence/latest.json",
+      "sha256": "a8bd93a69b322559d07b349e7e5cd55c45c1e1d32c0eb040887ec9e274600e41"
+    },
+    {
+      "path": "docs/product/service.md",
+      "sha256": "faa394eff3660b828df94bd1d1ceaf45718167765c82d41bf077e676986f4b8a"
+    },
+    {
+      "path": "docs/product/demo-2-minutes.md",
+      "sha256": "49f911c9787109fbcf4bc6a40d8d1f06331ea7d004a48f706639dce854a0ef63"
+    },
+    {
+      "path": "docs/product/okx-ai-listing.md",
+      "sha256": "c7a37eab35d7eb29e02c36384c5274d3f9eabdfe76b27abc8ca2ef3de9b3721c"
+    },
+    {
+      "path": "docs/product/person3-handoff.md",
+      "sha256": "836eb0c375c82d27dc4373e284ab2615ec7e2e130f87cee5f114759a923bf574"
+    },
+    {
+      "path": "docs/atk/evidence.md",
+      "sha256": "f03aa01aa45bded8fea35000250456f9224510c039365991d35ee658bdc5d7b5"
+    }
+  ]
+}

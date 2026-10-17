@@ -1,0 +1,239 @@
+import asyncio
+import json
+import secrets
+from contextlib import asynccontextmanager
+from typing import Annotated, Literal
+
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
+from fastapi.security import APIKeyHeader, HTTPAuthorizationCredentials, HTTPBearer
+from starlette.responses import StreamingResponse
+
+from .agent import Agent
+from .models import (
+    AwareDatetime,
+    Capability,
+    Classification,
+    Decision,
+    Event,
+    Identity,
+    Observation,
+    SourceMode,
+    StrictModel,
+)
+from .request_limits import RiskRequestLimit
+from .risk_service import RiskService
+from .service_models import RiskAssessment, RiskRequest, ServiceInfo
+from .settings import Settings
+
+
+class Health(StrictModel):
+    status: Literal["ok"] = "ok"
+    running: bool
+    source_mode: SourceMode
+    live_execution_enabled: Literal[False] = False
+
+
+class ControlState(StrictModel):
+    running: bool
+    run_id: str
+    source_mode: SourceMode
+
+
+class ScenarioRequest(StrictModel):
+    scenario: Literal[
+        "normal",
+        "stale_feed",
+        "laya_halt",
+        "excess_exposure",
+        "invalid_quantity",
+        "missing_approval",
+        "unknown_order",
+        "duplicate_intent",
+    ]
+
+
+class Metrics(StrictModel):
+    decisions: int
+    vetoed: int
+    verified_exchange_orders: int
+    mock_executions: int
+    unresolved_orders: int
+    pnl: None = None
+
+
+class Snapshot(StrictModel):
+    running: bool
+    run_id: str
+    source_mode: SourceMode
+    last_cycle_at: AwareDatetime | None
+    observation: Observation | None
+    classification: Classification | None
+    latest_decision: Decision | None
+    capabilities: dict[str, Capability]
+    identity: Identity
+    execution_enabled: bool
+
+
+def create_app(settings: Settings | None = None) -> FastAPI:
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        app.state.agent = Agent(settings or Settings())
+        app.state.control_lock = asyncio.Lock()
+        app.state.risk_service = RiskService(app.state.agent.settings, app.state.agent.store)
+        yield
+        await app.state.risk_service.close()
+        await app.state.agent.close()
+
+    app = FastAPI(
+        title="AEGIS Person 1 API",
+        version="2.0.0",
+        lifespan=lifespan,
+        description="Off-chain demo-only agent runtime. ERC-8004 identity is a separate testnet registration.",
+    )
+    bearer = HTTPBearer(auto_error=False)
+    app.add_middleware(RiskRequestLimit)
+
+    def agent(request: Request) -> Agent:
+        return request.app.state.agent
+
+    def control_auth(
+        runtime: Annotated[Agent, Depends(agent)],
+        credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer)],
+    ):
+        expected = runtime.settings.control_token
+        if not expected or not expected.get_secret_value():
+            raise HTTPException(503, "Control disabled: configure AEGIS_CONTROL_TOKEN locally")
+        if (
+            credentials is None
+            or credentials.scheme.lower() != "bearer"
+            or not secrets.compare_digest(
+                credentials.credentials.encode(), expected.get_secret_value().encode()
+            )
+        ):
+            raise HTTPException(401, "Invalid control token", headers={"WWW-Authenticate": "Bearer"})
+
+    Runtime = Annotated[Agent, Depends(agent)]
+    service_key_header = APIKeyHeader(name="X-AEGIS-Key", scheme_name="AEGISServiceKey", auto_error=False)
+
+    def service_auth(request: Request, supplied: Annotated[str | None, Depends(service_key_header)]):
+        expected = request.app.state.agent.settings.service_api_key
+        if not expected or not expected.get_secret_value():
+            raise HTTPException(503, "Assessment service disabled: configure its separate key locally")
+        if supplied is None or not secrets.compare_digest(
+            supplied.encode(), expected.get_secret_value().encode()
+        ):
+            raise HTTPException(401, "Invalid assessment service credential")
+
+    @app.get("/api/v1/service", response_model=ServiceInfo)
+    async def service_info(request: Request):
+        return request.app.state.risk_service.info()
+
+    @app.post(
+        "/api/v1/risk/evaluate",
+        response_model=RiskAssessment,
+        dependencies=[Depends(service_auth)],
+        responses={
+            408: {"description": "Request body deadline exceeded"},
+            413: {"description": "Request exceeds 2048 bytes"},
+            401: {"description": "Invalid service key"},
+            429: {"description": "Busy or rate limited"},
+            503: {"description": "Service key not configured"},
+        },
+    )
+    async def evaluate_risk(body: RiskRequest, request: Request):
+        return await request.app.state.risk_service.evaluate(body)
+
+    @app.get("/api/health", response_model=Health)
+    async def health(runtime: Runtime):
+        return Health(running=runtime.running, source_mode=runtime.settings.source_mode)
+
+    @app.get("/api/snapshot", response_model=Snapshot)
+    async def snapshot(runtime: Runtime):
+        return runtime.snapshot()
+
+    @app.get("/api/events", response_model=list[Event])
+    async def events(runtime: Runtime, limit: int = Query(100, ge=1, le=1000)):
+        return runtime.store.events(limit)
+
+    @app.get("/api/decisions", response_model=list[Decision])
+    async def decisions(runtime: Runtime, limit: int = Query(50, ge=1, le=500)):
+        return runtime.store.decisions(limit)
+
+    @app.get("/api/metrics", response_model=Metrics)
+    async def metrics(runtime: Runtime):
+        return runtime.store.metrics()
+
+    @app.get("/api/web3/identity", response_model=Identity)
+    async def identity():
+        # Person 3 owns actual Fuji registration and independent owner/URI read-back.
+        # No operator-supplied JSON can elevate this to verified.
+        return Identity()
+
+    @app.get("/api/capabilities", response_model=dict[str, Capability])
+    async def capabilities(runtime: Runtime):
+        return runtime.capabilities()
+
+    @app.post("/api/agent/start", response_model=ControlState, dependencies=[Depends(control_auth)])
+    async def start(request: Request, runtime: Runtime):
+        async with request.app.state.control_lock:
+            await runtime.start()
+        return ControlState(
+            running=runtime.running, run_id=runtime.run_id, source_mode=runtime.settings.source_mode
+        )
+
+    @app.post("/api/agent/stop", response_model=ControlState, dependencies=[Depends(control_auth)])
+    async def stop(request: Request, runtime: Runtime):
+        async with request.app.state.control_lock:
+            await runtime.stop()
+        return ControlState(
+            running=runtime.running, run_id=runtime.run_id, source_mode=runtime.settings.source_mode
+        )
+
+    @app.post("/api/demo/scenario", response_model=Decision, dependencies=[Depends(control_auth)])
+    async def scenario(body: ScenarioRequest, runtime: Runtime):
+        if runtime.settings.source_mode != "MOCK":
+            raise HTTPException(409, "Scenarios are available only in MOCK mode")
+        return runtime.store.sanitize((await runtime.cycle(body.scenario)).model_dump(mode="json"))
+
+    @app.get(
+        "/api/stream",
+        response_class=StreamingResponse,
+        responses={
+            200: {
+                "description": "SSE event replay followed by new events; resume with Last-Event-ID.",
+                "content": {"text/event-stream": {"schema": {"type": "string"}}},
+            }
+        },
+    )
+    async def stream(
+        request: Request,
+        runtime: Runtime,
+        last_event_id: Annotated[str | None, Header(max_length=128)] = None,
+    ):
+        async def generate():
+            cursor = last_event_id
+            if cursor is None:
+                batch = runtime.store.events(100)
+            else:
+                batch = runtime.store.events(100, after=cursor)
+            heartbeat = 0
+            while not await request.is_disconnected():
+                for event in batch:
+                    cursor = event["id"]
+                    yield f"id: {cursor}\nevent: aegis\ndata: {json.dumps(event)}\n\n"
+                if heartbeat % 15 == 0:
+                    yield ": heartbeat\n\n"
+                heartbeat += 1
+                await asyncio.sleep(1)
+                batch = runtime.store.events(100, after=cursor) if cursor else runtime.store.events(100)
+
+        return StreamingResponse(
+            generate(),
+            media_type="text/event-stream",
+            headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+        )
+
+    return app
+
+
+app = create_app()
