@@ -17,6 +17,9 @@ import {
 } from "lucide-react";
 import { AdminUnlockModal } from "@/components/AdminUnlockModal";
 import { HeaderBar } from "@/components/HeaderBar";
+import { FujiWalletPanel } from "@/components/FujiWalletPanel";
+import { FujiIdentityPanel } from "@/components/FujiIdentityPanel";
+import { AGENT_METADATA_URI } from "@/lib/fuji-identity";
 import { ProofDrawerModal } from "@/components/ProofDrawerModal";
 import {
   RECORDED_EVENTS_MARKET_ONLY,
@@ -93,9 +96,7 @@ export default function AvalanchePage() {
   const [customAgentId, setCustomAgentId] = React.useState("");
   const [customTxHash, setCustomTxHash] = React.useState("");
   const [customDecisionRegistry, setCustomDecisionRegistry] = React.useState("");
-  const [customDigest, setCustomDigest] = React.useState(
-    "0x166c93073c84eddf94e432f3b0a52a66f60a6c308097beed0527097cfb3c08b2"
-  );
+  const [customDigest, setCustomDigest] = React.useState("");
 
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
   const [adminModalOpen, setAdminModalOpen] = React.useState(false);
@@ -136,7 +137,8 @@ export default function AvalanchePage() {
   ]);
 
   React.useEffect(() => {
-    runVerification();
+    const timer = setTimeout(() => { void runVerification(); }, 0);
+    return () => clearTimeout(timer);
   }, [runVerification]);
 
   const copyValue = (val: string, key: string) => {
@@ -203,6 +205,16 @@ export default function AvalanchePage() {
           </div>
         </div>
 
+        <FujiWalletPanel onVerified={(registry, digest) => {
+          setCustomDecisionRegistry(registry);
+          setCustomDigest(digest);
+        }} />
+        <FujiIdentityPanel onRegistered={proof => {
+          setCustomAgentId(proof.agentId);
+          setCustomTxHash(proof.registrationTxHash);
+          setIdentity({ chain_id: 43113, registry_address: proof.registryAddress, agent_id: proof.agentId, agent_uri: proof.agentURI, owner: proof.owner, registration_tx_hash: proof.registrationTxHash, tx_hash: proof.registrationTxHash, verified: true, verification_checked_at: proof.checkedAt, verification_status: proof.verification_status });
+        }} />
+
         {/* Main 3-Column Grid (Reference Set C: Identity | Latest Proof | Explorer Links + Boundary) */}
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
           {/* Left 5 Cols: ERC-8004 IDENTITY Card */}
@@ -228,7 +240,7 @@ export default function AvalanchePage() {
                   <CheckCircle2 className="h-3.5 w-3.5" />
                   {isIdentityVerified
                     ? "Verified on Avalanche Fuji"
-                    : "Registry Bytecode Verified (43113)"}
+                    : isRegistryBytecodePass ? "Registry Bytecode Verified (43113)" : "Registry verification pending"}
                 </span>
               </div>
 
@@ -250,10 +262,10 @@ export default function AvalanchePage() {
                 </div>
                 <div>
                   <h2 className="text-lg font-bold leading-snug text-[#E6EDF3]">
-                    Registered as an ERC-8004 agent on Avalanche Fuji
+                    {isIdentityVerified ? "Registered as an ERC-8004 agent on Avalanche Fuji" : "ERC-8004 agent registration pending"}
                   </h2>
                   <p className="mt-1 text-xs leading-relaxed text-[#9BA7B4]">
-                    ERC-8004 IdentityRegistry (`AgentIdentity / AGENT`) and ReputationRegistry verified via live Viem RPC read-back on Fuji 43113.
+                    {isIdentityVerified ? "Registered event, owner and public tokenURI independently verified on Fuji 43113." : isRegistryBytecodePass ? "Official registry bytecode verified on Fuji 43113. Agent registration still requires independent verification." : "Waiting for independent Fuji registry verification."}
                   </p>
                 </div>
               </div>
@@ -278,13 +290,13 @@ export default function AvalanchePage() {
                 <div className="flex items-center justify-between gap-3">
                   <dt className="text-[#9BA7B4]">Agent ID</dt>
                   <dd className="flex items-center gap-2 font-mono">
-                    {verifyData?.erc8004_readback.verified && identity.agent_id ? (
+                    {verifyData?.erc8004_readback.verified && (identity.agent_id || customAgentId) ? (
                       <span className="text-[#4EE1C2] font-semibold">
-                        #{identity.agent_id}
+                        #{identity.agent_id || customAgentId}
                       </span>
                     ) : (
                       <span className="text-[#F59E0B]">
-                        NOT_TESTED (Dry-run sim: #264)
+                        NOT_REGISTERED
                       </span>
                     )}
                   </dd>
@@ -295,7 +307,7 @@ export default function AvalanchePage() {
                   <dd className="font-mono text-[#E6EDF3]">
                     {verifyData?.erc8004_readback.owner ||
                       identity.owner ||
-                      "null (Awaiting faucet AVAX mint)"}
+                      "Not registered yet"}
                   </dd>
                 </div>
 
@@ -324,12 +336,12 @@ export default function AvalanchePage() {
                   <dt className="text-[#9BA7B4]">Token URI Descriptor</dt>
                   <dd className="flex items-center gap-1.5 font-mono text-[#4EE1C2]">
                     <a
-                      href="/agent-registration.json"
+                      href={verifyData?.erc8004_readback.agent_uri || identity.agent_uri || AGENT_METADATA_URI}
                       target="_blank"
                       rel="noreferrer"
                       className="hover:underline"
                     >
-                      /agent-registration.json
+                      Public agent-registration.json
                     </a>
                     <ExternalLink className="h-3 w-3" />
                   </dd>
@@ -428,7 +440,7 @@ export default function AvalanchePage() {
                         )}…${verifyData.decision_receipt_readback.run_id_hash.slice(
                           -6
                         )}`
-                      : "0x8a91…e4b2"}
+                      : "UNKNOWN"}
                   </dd>
                 </div>
 
@@ -437,7 +449,7 @@ export default function AvalanchePage() {
                   <dd className="font-mono font-semibold text-[#E6EDF3]">
                     {verifyData?.latest_block_number
                       ? verifyData.latest_block_number.toLocaleString()
-                      : "59,596,568"}
+                      : "UNKNOWN"}
                   </dd>
                 </div>
 
@@ -447,7 +459,7 @@ export default function AvalanchePage() {
                     {verifyData?.checked_at
                       ? verifyData.checked_at.replace("T", " ").slice(0, 19) +
                         " UTC"
-                      : "Live RPC"}
+                      : "NOT_TESTED"}
                   </dd>
                 </div>
 
@@ -527,7 +539,7 @@ export default function AvalanchePage() {
                 </a>
 
                 <a
-                  href="/agent-registration.json"
+                  href={AGENT_METADATA_URI}
                   target="_blank"
                   rel="noreferrer"
                   className="group flex items-center justify-between rounded-xl border border-[#2A3542]/80 bg-[#0A0D10]/70 p-3 transition hover:border-[#4EE1C2]/40"
@@ -537,7 +549,7 @@ export default function AvalanchePage() {
                       ERC-8004 Agent Descriptor
                     </div>
                     <div className="mt-0.5 font-mono text-[10px] text-[#6E7785]">
-                      /agent-registration.json
+                      Public agent-registration.json
                     </div>
                   </div>
                   <ExternalLink className="h-3.5 w-3.5 text-[#6E7785] group-hover:text-[#4EE1C2]" />
@@ -607,7 +619,7 @@ export default function AvalanchePage() {
             {/* Connector 1 */}
             <div className="lg:col-span-2 flex flex-col items-center justify-center text-center">
               <span className="text-[11px] font-medium text-[#9BA7B4]">
-                Decision SHA-256 submitted to registry
+                {isReceiptVerified ? "Decision SHA-256 anchored on Fuji" : "Decision anchoring pending"}
               </span>
               <div className="mt-1.5 h-px w-full border-t border-dashed border-[#4EE1C2]/45" />
             </div>
@@ -623,17 +635,17 @@ export default function AvalanchePage() {
                     On-chain Proof
                   </div>
                   <div className="mt-0.5 text-[11px] text-[#4EE1C2]">
-                    Decision recorded in RiskDecisionRegistry
+                    {isReceiptVerified ? "Decision recorded in RiskDecisionRegistry" : "Receipt verification pending"}
                   </div>
                 </div>
               </div>
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#4EE1C2]" />
+              {isReceiptVerified && <CheckCircle2 className="h-4 w-4 shrink-0 text-[#4EE1C2]" />}
             </div>
 
             {/* Connector 2 */}
             <div className="lg:col-span-1 flex flex-col items-center justify-center text-center">
               <span className="text-[10px] font-medium text-[#9BA7B4]">
-                Linked (ERC-8004)
+                {isIdentityVerified ? "Identity registered (ERC-8004)" : "Identity registration pending"}
               </span>
               <div className="mt-1.5 h-px w-full border-t border-dashed border-[#4EE1C2]/45" />
             </div>
@@ -649,11 +661,11 @@ export default function AvalanchePage() {
                     On-chain Identity
                   </div>
                   <div className="mt-0.5 text-[11px] text-[#4EE1C2]">
-                    Fuji 43113
+                    {isIdentityVerified ? "Registered on Fuji 43113" : "Not registered on Fuji yet"}
                   </div>
                 </div>
               </div>
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#4EE1C2]" />
+              {isIdentityVerified ? <CheckCircle2 className="h-4 w-4 shrink-0 text-[#4EE1C2]" /> : <Info className="h-4 w-4 shrink-0 text-amber-400" />}
             </div>
           </div>
         </section>

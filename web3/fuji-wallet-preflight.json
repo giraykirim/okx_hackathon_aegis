@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-10-17T12:30:15.578Z",
+  "chain_id": 43113,
+  "address": "0xf54acaF3fB26dE7BB1Ae3f45EB9bF1e77A1fe84A",
+  "balance_avax": "0",
+  "local_key_file": "web3/.env",
+  "key_file_mode": "0600",
+  "faucet_url": "https://build.avax.network/console/primary-network/faucet",
+  "broadcasts_attempted": 0,
+  "status": "AWAITING_TEST_AVAX"
+}

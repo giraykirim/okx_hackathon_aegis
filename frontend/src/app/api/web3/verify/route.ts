@@ -4,6 +4,8 @@ import { avalancheFuji } from "viem/chains";
 import { RECORDED_IDENTITY, RECORDED_SERVICE_ASSESSMENTS } from "@/lib/fixtures";
 import { fetchBackendJson } from "@/lib/server-backend";
 import type { Identity } from "@/lib/types";
+import { IDENTITY_REGISTRY, verifyRegistration } from "@/lib/fuji-identity";
+import { identityFromProof, readRegisteredIdentity } from "@/lib/server-fuji-identity";
 
 export const dynamic = "force-dynamic";
 
@@ -102,7 +104,8 @@ export async function GET(request: NextRequest) {
   const backendRes = await fetchBackendJson<Identity>("/api/web3/identity", {
     timeoutMs: 3000,
   });
-  const backendIdentity: Identity = backendRes.data || RECORDED_IDENTITY;
+  const registeredProof = await readRegisteredIdentity().catch(() => null);
+  const backendIdentity: Identity = registeredProof ? identityFromProof(registeredProof) : backendRes.data || RECORDED_IDENTITY;
 
   const registryAddress =
     request.nextUrl.searchParams.get("registry") ||
@@ -213,62 +216,14 @@ export async function GET(request: NextRequest) {
       };
     } else {
       try {
-        const code = await client.getCode({ address: registryAddress });
-        if (!code || code === "0x") {
-          identityReadback = {
-            status: "FAIL",
-            verified: false,
-            registry_address: registryAddress,
-            registry_has_code: false,
-            owner: null,
-            agent_uri: null,
-            tx_receipt_status: "NO_CONTRACT_CODE",
-            note: `No contract bytecode found at ${registryAddress} on Fuji 43113.`,
-          };
-        } else {
-          const tokenId = BigInt(agentId);
-          const [owner, uri] = await Promise.all([
-            client.readContract({
-              address: registryAddress,
-              abi: ERC8004_ABI,
-              functionName: "ownerOf",
-              args: [tokenId],
-            }),
-            client.readContract({
-              address: registryAddress,
-              abi: ERC8004_ABI,
-              functionName: "tokenURI",
-              args: [tokenId],
-            }),
-          ]);
-          let txStatus = "NOT_PROVIDED";
-          if (
-            registrationTxHash &&
-            isHex(registrationTxHash) &&
-            registrationTxHash.length === 66
-          ) {
-            const receipt = await client.getTransactionReceipt({
-              hash: registrationTxHash,
-            });
-            txStatus = receipt.status;
-          }
-          const ok =
-            Boolean(owner) &&
-            Boolean(uri) &&
-            (registrationTxHash ? txStatus === "success" : true);
-          identityReadback = {
-            status: ok ? "PASS" : "FAIL",
-            verified: ok,
-            registry_address: registryAddress,
-            registry_has_code: true,
-            owner,
-            agent_uri: uri,
-            tx_receipt_status: txStatus,
-            note: ok
-              ? "Independent Viem read-back on Fuji 43113 confirmed ownerOf(agentId) and tokenURI(agentId)."
-              : "Contract read succeeded (`ownerOf`), but non-empty `tokenURI` or registration tx receipt did not pass.",
-          };
-        }
+        if (registryAddress.toLowerCase() !== IDENTITY_REGISTRY.toLowerCase() || !registrationTxHash || !/^0x[\da-f]{64}$/i.test(registrationTxHash)) throw new Error("Official AEGIS registration transaction required.");
+        const proof = registeredProof?.registrationTxHash === registrationTxHash ? registeredProof : await verifyRegistration(client, registrationTxHash as `0x${string}`);
+        if (proof.agentId !== BigInt(agentId).toString()) throw new Error("Agent ID does not match the actual Registered event.");
+        identityReadback = {
+          status: "PASS", verified: true, registry_address: registryAddress, registry_has_code: true,
+          owner: proof.owner, agent_uri: proof.agentURI, tx_receipt_status: "success",
+          note: "Verified AEGIS registration transaction, official Registered event, exact account/metadata URI, ownerOf and tokenURI on Fuji.",
+        };
       } catch (err) {
         identityReadback = {
           status: "FAIL",

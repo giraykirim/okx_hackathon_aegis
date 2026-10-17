@@ -1,0 +1,62 @@
+{
+  "checked_at": "2026-10-17T13:26:09.614Z",
+  "chain_id": 43113,
+  "network": "Avalanche Fuji Testnet (C-Chain)",
+  "rpc_url": "https://avalanche-fuji-c-chain-rpc.publicnode.com",
+  "rpc_connected": true,
+  "rpc_chain_id": 43113,
+  "latest_block_number": 59600707,
+  "official_erc8004_registries": {
+    "identity_registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "identity_registry_has_code": true,
+    "identity_registry_name": "AgentIdentity",
+    "identity_registry_symbol": "AGENT",
+    "reputation_registry": "0x8004B663056A597Dffe9eCcC1965A193B7388713",
+    "reputation_registry_has_code": true
+  },
+  "backend_identity": {
+    "chain_id": 43113,
+    "registry_address": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "agent_id": "273",
+    "agent_uri": "https://gist.githubusercontent.com/giraykirim/367b45ff5fce169bf1e7a1447eb88d91/raw/agent-registration.json",
+    "owner": "0x3754131A55d043fC49eB93cEBfB381953cA41bB8",
+    "registration_tx_hash": "0x7b61d86a11c815b301d44d6062c938bd7c8995c9d81332f9bb476c0bc436f08b",
+    "tx_hash": "0x7b61d86a11c815b301d44d6062c938bd7c8995c9d81332f9bb476c0bc436f08b",
+    "verified": true,
+    "verification_checked_at": "2026-10-17T13:26:10.083Z",
+    "verification_status": "VERIFIED_ON_CHAIN"
+  },
+  "erc8004_readback": {
+    "status": "PASS",
+    "verified": true,
+    "registry_address": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "registry_has_code": true,
+    "owner": "0x3754131A55d043fC49eB93cEBfB381953cA41bB8",
+    "agent_uri": "https://gist.githubusercontent.com/giraykirim/367b45ff5fce169bf1e7a1447eb88d91/raw/agent-registration.json",
+    "tx_receipt_status": "success",
+    "note": "Verified AEGIS registration transaction, official Registered event, exact account/metadata URI, ownerOf and tokenURI on Fuji."
+  },
+  "reputation_readback": {
+    "status": "PASS",
+    "registry_address": "0x8004B663056A597Dffe9eCcC1965A193B7388713",
+    "linked_identity_registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "feedback_count": 0,
+    "summary_display": "No independent feedback yet",
+    "note": "On-chain ReputationRegistry queried for agentId=273; 0 third-party feedbacks recorded."
+  },
+  "decision_receipt_readback": {
+    "status": "PASS",
+    "verified": true,
+    "contract_address": "0x5ae5642cd6a02e0834b3fba822d442429aeadc5f",
+    "decision_hash": "0x0fa71a805298f0f63ce6b994a9aa12bdc7a22e8560d903ef13cd6556ec3e6d26",
+    "run_id_hash": "0xc6fa53dd134208e68340bbebd34cee6bc6af9a0671d650b2f87e0e3c9d1143ae",
+    "policy_version_hash": "0x8cf3204e7ffcf85ac7c849fb0231382df78d44c6887739db77d2eb4004c412c6",
+    "exists_on_chain": true,
+    "caller": "0x3754131A55d043fC49eB93cEBfB381953cA41bB8",
+    "timestamp_unix": 1792242033,
+    "verdict_code": 2,
+    "local_evm_unit_tests": "PASS (3/3 in web3/tests/risk-decision-registry.test.ts)",
+    "note": "Independent Fuji read-back verified decisionHash anchored by 0x3754131A55d043fC49eB93cEBfB381953cA41bB8 at unix=1792242033."
+  },
+  "architecture_boundary": "Agent reasoning/inference (LAYA, EVREN) and OKX ATK trading run OFF-CHAIN. Fuji contracts supply ERC-8004 identity and SHA-256 decision receipt anchoring only."
+}

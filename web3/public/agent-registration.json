@@ -1,0 +1,44 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AEGIS",
+  "description": "AEGIS provides advisory pre-trade risk checks and an autonomous monitoring runtime. Python policy, official OKX Agent Trade Kit observations, EVREN reasoning and the planned LAYA classifier execute off-chain. A recorded HALT assessment is anchored on Avalanche Fuji. AEGIS is registered as Agent #273 on Fuji; the public assessment service is not deployed; live exchange execution is disabled.",
+  "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cmVjdCB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgcng9IjQ4IiBmaWxsPSIjMEEwRDEwIi8+PHBhdGggZD0iTTEyOCAyOCAyMTQgNjJ2NjNjMCA0OC0zNyA4MC04NiAxMDMtNDktMjMtODYtNTUtODYtMTAzVjYyeiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNEVFMUMyIiBzdHJva2Utd2lkdGg9IjEyIi8+PHRleHQgeD0iMTI4IiB5PSIxNjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiM0RUUxQzIiPkE8L3RleHQ+PC9zdmc+",
+  "services": [],
+  "x402Support": false,
+  "active": false,
+  "registrations": [
+    {
+      "agentId": 273,
+      "agentRegistry": "eip155:43113:0x8004A818BFB912233c491871b3d84c89A494BD9e"
+    }
+  ],
+  "supportedTrust": [],
+  "aegisMetadata": {
+    "chainId": 43113,
+    "network": "avalanche-fuji",
+    "offChainRuntime": true,
+    "onChainInference": false,
+    "liveExecutionEnabled": false,
+    "orderPermissionDelegation": false,
+    "publicServiceStatus": "NOT_DEPLOYED",
+    "identityRegistrationStatus": "REGISTERED",
+    "officialIdentityRegistry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "receiptProof": {
+      "contractAddress": "0x5ae5642cd6a02e0834b3fba822d442429aeadc5f",
+      "deployTransactionHash": "0x7cb24d8f07bf936d5b2224e047690b114102221369339b1a44cd412cd0db7ba3",
+      "recordTransactionHash": "0xcb226fb049a7052ca8889d585dfcb3a1cf66528e318a60c7ff2c9b43a67de2f1",
+      "assessmentSha256": "0x0fa71a805298f0f63ce6b994a9aa12bdc7a22e8560d903ef13cd6556ec3e6d26",
+      "verdict": "HALT",
+      "verifiedAt": "2026-10-17T13:02:11.269Z",
+      "scope": "Hash commitment to a recorded off-chain assessment. Not on-chain inference, model correctness certification or exchange order authorization."
+    },
+    "note": "Public metadata is hosted independently of the local application. Agent identity and the HALT receipt are verified on Fuji. No public API endpoint is advertised; registration does not authorize exchange execution.",
+    "identityProof": {
+      "agentId": "273",
+      "owner": "0x3754131A55d043fC49eB93cEBfB381953cA41bB8",
+      "registrationTxHash": "0x7b61d86a11c815b301d44d6062c938bd7c8995c9d81332f9bb476c0bc436f08b",
+      "blockNumber": "59600465",
+      "checkedAt": "2026-10-17T13:24:43.583Z"
+    }
+  }
+}

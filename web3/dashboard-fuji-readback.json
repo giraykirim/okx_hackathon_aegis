@@ -1,0 +1,62 @@
+{
+  "checked_at": "2026-10-17T13:03:18.895Z",
+  "chain_id": 43113,
+  "network": "Avalanche Fuji Testnet (C-Chain)",
+  "rpc_url": "https://api.avax-test.network/ext/bc/C/rpc",
+  "rpc_connected": true,
+  "rpc_chain_id": 43113,
+  "latest_block_number": 59599755,
+  "official_erc8004_registries": {
+    "identity_registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "identity_registry_has_code": true,
+    "identity_registry_name": "AgentIdentity",
+    "identity_registry_symbol": "AGENT",
+    "reputation_registry": "0x8004B663056A597Dffe9eCcC1965A193B7388713",
+    "reputation_registry_has_code": true
+  },
+  "backend_identity": {
+    "chain_id": 43113,
+    "registry_address": null,
+    "agent_id": null,
+    "agent_uri": null,
+    "owner": null,
+    "registration_tx_hash": null,
+    "tx_hash": null,
+    "verified": false,
+    "verification_checked_at": null,
+    "verification_status": "NOT_TESTED"
+  },
+  "erc8004_readback": {
+    "status": "NOT_TESTED",
+    "verified": false,
+    "registry_address": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "registry_has_code": true,
+    "owner": null,
+    "agent_uri": null,
+    "tx_receipt_status": "NOT_TESTED",
+    "note": "Verified official Fuji ERC-8004 IdentityRegistry bytecode at 0x8004A818BFB912233c491871b3d84c89A494BD9e (AgentIdentity / AGENT) and ReputationRegistry at 0x8004B663056A597Dffe9eCcC1965A193B7388713. AEGIS agentId registration is NOT_TESTED until a funded Fuji wallet registers a public HTTPS agentURI."
+  },
+  "reputation_readback": {
+    "status": "READ_ONLY_READY",
+    "registry_address": "0x8004B663056A597Dffe9eCcC1965A193B7388713",
+    "linked_identity_registry": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+    "feedback_count": 0,
+    "summary_display": "No independent feedback yet",
+    "note": "Verified ReputationRegistry.getIdentityRegistry() -> 0x8004A818BFB912233c491871b3d84c89A494BD9e. No agentId minted yet; self-feedback is forbidden."
+  },
+  "decision_receipt_readback": {
+    "status": "PASS",
+    "verified": true,
+    "contract_address": "0x5ae5642cd6a02e0834b3fba822d442429aeadc5f",
+    "decision_hash": "0x0fa71a805298f0f63ce6b994a9aa12bdc7a22e8560d903ef13cd6556ec3e6d26",
+    "run_id_hash": "0xc6fa53dd134208e68340bbebd34cee6bc6af9a0671d650b2f87e0e3c9d1143ae",
+    "policy_version_hash": "0x8cf3204e7ffcf85ac7c849fb0231382df78d44c6887739db77d2eb4004c412c6",
+    "exists_on_chain": true,
+    "caller": "0x3754131A55d043fC49eB93cEBfB381953cA41bB8",
+    "timestamp_unix": 1792242033,
+    "verdict_code": 2,
+    "local_evm_unit_tests": "PASS (3/3 in web3/tests/risk-decision-registry.test.ts)",
+    "note": "Independent Fuji read-back verified decisionHash anchored by 0x3754131A55d043fC49eB93cEBfB381953cA41bB8 at unix=1792242033."
+  },
+  "architecture_boundary": "Agent reasoning/inference (LAYA, EVREN) and OKX ATK trading run OFF-CHAIN. Fuji contracts supply ERC-8004 identity and SHA-256 decision receipt anchoring only."
+}

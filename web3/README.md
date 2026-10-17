@@ -2,6 +2,30 @@
 
 Owned by **Person 3** (`web3/**`). See [`PROOF.md`](./PROOF.md) for the complete verification report and Snowtrace links.
 
+## Verified MetaMask Fuji update — 2026-10-17
+
+The operator signed three real Fuji transactions through `/avalanche` using MetaMask account `0x3754131A55d043fC49eB93cEBfB381953cA41bB8`. `RiskDecisionRegistry` is deployed at `0x5ae5642cd6a02e0834b3fba822d442429aeadc5f`; the recorded backend HALT digest is anchored and independently verified. See [`metamask-fuji-proof.json`](./metamask-fuji-proof.json), the updated [`fuji-proof-manifest.json`](./fuji-proof-manifest.json), and [browser signing instructions](../docs/product/METAMASK_FUJI.md). ERC-8004 **Agent #273 is registered and independently verified**, including the actual Registered event, owner and public tokenURI. See [`registration-proof.json`](./registration-proof.json).
+
+Reproduce the actual proof with this **read-only** command (no key needed):
+
+```sh
+./node_modules/.bin/tsx scripts/verify-metamask.ts \
+  --deploy-tx 0x7cb24d8f07bf936d5b2224e047690b114102221369339b1a44cd412cd0db7ba3 \
+  --record-tx 0xcb226fb049a7052ca8889d585dfcb3a1cf66528e318a60c7ff2c9b43a67de2f1
+```
+
+Reproduce identity verification without a key or new transaction:
+
+```sh
+FUJI_RPC_URL=https://avalanche-fuji-c-chain-rpc.publicnode.com \
+./node_modules/.bin/tsx scripts/verify-identity-metamask.ts \
+  --tx 0x7b61d86a11c815b301d44d6062c938bd7c8995c9d81332f9bb476c0bc436f08b
+```
+
+The official Avalanche public RPC returned HTTP 429 during verification. The read-only verifier and local frontend accept `FUJI_RPC_URL`; independent verification succeeded through PublicNode Fuji after checking chain ID 43113. No write is retried on RPC failure. The frontend BFF freshly verifies chain data; the frozen FastAPI identity DTO remains unchanged. Public metadata advertises no available public API (`active=false`, `services=[]`).
+
+The `.env` disposable key generated earlier belongs to a different unused wallet. It is not the MetaMask signing account. The legacy `prove:fuji` script below is a separate server-key deployment workflow, not the verification command for this MetaMask deployment; running it can submit new transactions or replace its manifest. Use the read-only command above for the jury replay.
+
 ## Nonnegotiable Architectural Boundary
 - **Off-Chain Runtime (M2 FastAPI + Official OKX ATK CLI + RTX 4070 LAN):**
   - Deterministic Python risk policy, official `@okx_ai/okx-trade-cli@1.4.8` subprocess observations, LAYA operational classifier (`CONTINUE` / `REVIEW` / `HALT`), and EVREN bounded reasoning all execute **OFF-CHAIN**.
@@ -18,7 +42,7 @@ Owned by **Person 3** (`web3/**`). See [`PROOF.md`](./PROOF.md) for the complete
 - [`scripts/compile.ts`](./scripts/compile.ts) — Compiles `RiskDecisionRegistry.sol` into [`artifacts/RiskDecisionRegistry.json`](./artifacts/RiskDecisionRegistry.json).
 - [`scripts/verify-fuji.ts`](./scripts/verify-fuji.ts) — Standalone read-only Viem verifier.
 - [`agent-registration.template.json`](./agent-registration.template.json) & [`erc8004-registration.template.json`](./erc8004-registration.template.json) — ERC-8004 v1 registration JSON templates (`services: []`, `x402Support: false`, `active: true`, `registrations: []`).
-- [`registration-proof.json`](./registration-proof.json) & [`fuji-proof-manifest.json`](./fuji-proof-manifest.json) — Machine-readable verification proofs (`verified: false`, `status: "NOT_TESTED"` until funded wallet broadcasts).
+- [`registration-proof.json`](./registration-proof.json) & [`fuji-proof-manifest.json`](./fuji-proof-manifest.json) — Machine-readable actual Fuji verification proofs (`verified: true`), with confirmation latency explicitly unmeasured.
 - [`tests/risk-decision-registry.test.ts`](./tests/risk-decision-registry.test.ts) — Local EVM (`@ethereumjs/vm`) unit + backend audit integration suite (`3/3 PASS`).
 - [`PROOF.md`](./PROOF.md) — Detailed proof report, Snowtrace links, and mentor bonus confirmation note.
 

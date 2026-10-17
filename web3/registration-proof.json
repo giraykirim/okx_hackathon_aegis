@@ -1,20 +1,27 @@
 {
   "chainId": 43113,
   "registryAddress": "0x8004A818BFB912233c491871b3d84c89A494BD9e",
+  "agentId": "273",
+  "owner": "0x3754131A55d043fC49eB93cEBfB381953cA41bB8",
+  "agentURI": "https://gist.githubusercontent.com/giraykirim/367b45ff5fce169bf1e7a1447eb88d91/raw/agent-registration.json",
+  "registrationTxHash": "0x7b61d86a11c815b301d44d6062c938bd7c8995c9d81332f9bb476c0bc436f08b",
+  "explorerUrl": "https://testnet.snowtrace.io/tx/0x7b61d86a11c815b301d44d6062c938bd7c8995c9d81332f9bb476c0bc436f08b",
+  "verified": true,
+  "verification_status": "VERIFIED_ON_CHAIN",
+  "checkedAt": "2026-10-17T13:24:43.583Z",
+  "blockNumber": "59600465",
+  "gas_used": "250000",
+  "effective_gas_price_wei": "1000000010",
+  "fee_wei": "250000002500000",
+  "timestamp": "2026-10-17T13:24:43.583Z",
   "reputationRegistryAddress": "0x8004B663056A597Dffe9eCcC1965A193B7388713",
-  "agentId": null,
-  "owner": null,
-  "registrationTxHash": null,
-  "explorerUrl": null,
-  "agentURI": null,
-  "timestamp": "2026-10-17T10:56:55.975Z",
-  "verified": false,
-  "verification_status": "NOT_TESTED",
-  "reason": "FUJI_TEST_WALLET_PRIVATE_KEY not configured locally. No on-chain write attempted; zero fabricated IDs or tx hashes.",
   "reputation": {
-    "status": "READ_ONLY_READY",
-    "feedback_count": 0,
-    "summary_display": "No independent feedback yet",
-    "note": "Self-feedback is disallowed by protocol rules; no agentId minted yet."
-  }
+    "status": "PASS",
+    "feedback_count": "0",
+    "summary_display": "No independent feedback yet"
+  },
+  "private_key_loaded": false,
+  "writes_attempted_by_verifier": 0,
+  "measured_confirmation_ms": null,
+  "timing_note": "Post-confirmation independent verification; no confirmation latency claimed."
 }

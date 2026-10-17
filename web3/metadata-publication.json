@@ -1,0 +1,15 @@
+{
+  "published_at": "2026-10-17T13:25:33.187036+00:00",
+  "provider": "GITHUB_PUBLIC_GIST",
+  "gist_id": "367b45ff5fce169bf1e7a1447eb88d91",
+  "gist_url": "https://gist.github.com/giraykirim/367b45ff5fce169bf1e7a1447eb88d91",
+  "agent_uri": "https://gist.githubusercontent.com/giraykirim/367b45ff5fce169bf1e7a1447eb88d91/raw/agent-registration.json",
+  "verified_response_url": "https://gist.githubusercontent.com/giraykirim/367b45ff5fce169bf1e7a1447eb88d91/raw/agent-registration.json",
+  "http_status": 200,
+  "authentication_sent": false,
+  "content_type": "text/plain; charset=utf-8",
+  "content_sha256": "756b81b47bd00b65d7c9799ba1ed93e7aee0d46611288a007d5feb68ba133751",
+  "matches_reviewed_local_file": true,
+  "public_backend_deployed": false,
+  "agent_registered": true
+}
