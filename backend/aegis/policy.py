@@ -18,6 +18,8 @@ def check(
     run_order_count: int = 0,
     max_run_notional: Decimal = Decimal("25"),
     max_run_orders: int = 1,
+    max_exposure_quote: Decimal = Decimal("1000"),
+    laya_advisory: bool = False,
 ) -> GateResult:
     """Final authority. Operational CONTINUE is only one prerequisite."""
     reasons = []
@@ -54,7 +56,11 @@ def check(
             reasons.append("stale_account")
     elif source_mode == "OKX_DEMO":
         reasons.append("unknown_account_timestamp")
-    if classification.label != "CONTINUE" or classification.abstained or classification.confidence < 0.8:
+    if laya_advisory and source_mode in {"MOCK", "OKX_DEMO"}:
+        # Advisory mode: an explicit LAYA HALT still vetoes; abstention/low confidence does not.
+        if classification.label == "HALT":
+            reasons.append("laya_not_clear")
+    elif classification.label != "CONTINUE" or classification.abstained or classification.confidence < 0.8:
         reasons.append("laya_not_clear")
     if proposal.action == "NO_TRADE":
         reasons.append("no_trade_proposed")
@@ -87,8 +93,8 @@ def check(
             reasons.append("excess_order_notional")
         if run_order_count >= max_run_orders or run_reserved_notional + notional > max_run_notional:
             reasons.append("run_budget_exhausted")
-        projected = observation.exposure_quote + (notional if proposal.action == "BUY" else Decimal("0"))
-        if projected > 1000:
+        # Only risk-increasing buys are capped; a bounded sell can only reduce exposure.
+        if proposal.action == "BUY" and observation.exposure_quote + notional > max_exposure_quote:
             reasons.append("excess_exposure")
         if proposal.action == "BUY" and notional > observation.quote_available:
             reasons.append("insufficient_quote")

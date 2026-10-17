@@ -1,0 +1,13 @@
+.env
+.env.*
+.venv
+node_modules
+data
+evidence
+tests
+scripts
+docs
+__pycache__
+.pytest_cache
+.ruff_cache
+*.sqlite3

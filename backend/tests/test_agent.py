@@ -1,4 +1,5 @@
 import asyncio
+from decimal import Decimal
 
 import pytest
 from test_policy import inputs
@@ -303,4 +304,57 @@ async def test_cycle_deadline_audits_and_stops_without_execution(tmp_path, monke
     assert decision.execution_status == "NOT_SENT" and "cycle_timeout" in decision.risk_reasons
     assert not agent.running and agent.stop_requested
     assert agent.store.events()[-1]["type"] == "AUDIT"
+    await agent.close()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("label,submitted", [("REVIEW", True), ("HALT", False)])
+async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(tmp_path, monkeypatch, label, submitted):
+    from aegis.agent import Agent
+    from aegis.models import Classification
+
+    agent = Agent(
+        Settings(
+            source_mode="OKX_DEMO",
+            db_path=tmp_path / "demo-sell.sqlite3",
+            demo_enabled=True,
+            demo_region_confirmed=True,
+            okx_demo_api_key="test-demo",
+            okx_demo_secret_key="test-secret",
+            okx_demo_passphrase="test-pass",
+        )
+    )
+    calls = []
+
+    async def observe():
+        observation = inputs()[0]
+        observation.account_observed_at = observation.observed_at
+        observation.exposure_quote = Decimal("99549.3")
+        observation.base_available = Decimal("1")
+        return observation
+
+    async def classify(*args):
+        return Classification(
+            label=label, confidence=0, abstained=label == "REVIEW", model_version="base", latency_ms=1
+        )
+
+    async def reason(*args):
+        return inputs()[2].model_copy(update={"action": "SELL"})
+
+    async def place(*args):
+        calls.append("place")
+        return "venue-1"
+
+    async def reconcile(*args):
+        return "VERIFIED", "venue-1", "filled"
+
+    monkeypatch.setattr(agent.atk, "observe", observe)
+    monkeypatch.setattr(agent.models, "classify", classify)
+    monkeypatch.setattr(agent.models, "reason", reason)
+    monkeypatch.setattr(agent.atk, "place", place)
+    monkeypatch.setattr(agent.atk, "reconcile", reconcile)
+    decision = await agent.cycle()
+    assert (calls == ["place"]) is submitted
+    assert decision.risk_approved is submitted
+    assert decision.execution_status == ("VERIFIED" if submitted else "NOT_SENT")
     await agent.close()

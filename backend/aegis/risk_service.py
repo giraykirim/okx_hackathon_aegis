@@ -57,6 +57,9 @@ class RiskService:
                 "okx_demo_api_key": None,
                 "okx_demo_secret_key": None,
                 "okx_demo_passphrase": None,
+                # Keep the public assessment inside its own deadline even if the operator raises EVREN's.
+                "evren_timeout_seconds": min(settings.evren_timeout_seconds, 15),
+                "max_exposure_quote": Decimal("1000"),
             }
         )
         self.atk = ATK(public_settings)

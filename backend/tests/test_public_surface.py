@@ -61,3 +61,38 @@ def test_public_service_health_metadata_and_auth_work(tmp_path):
 def test_public_runtime_rejects_exchange_execution_configuration(changes):
     with pytest.raises(ValueError):
         create_public_app(Settings(_env_file=None, **changes))
+
+
+A2MCP_REQUEST = {
+    "request_id": "a2mcp-unit",
+    "symbol": "BTC-USDT",
+    "proposed_action": "BUY",
+    "proposed_notional": "10",
+}
+
+
+def public(tmp_path, **changes):
+    return create_public_app(
+        Settings(_env_file=None, db_path=tmp_path / "public.sqlite3", service_api_key="unit-service", **changes)
+    )
+
+
+def test_keyless_a2mcp_route_is_absent_unless_enabled(tmp_path):
+    with TestClient(public(tmp_path)) as client:
+        assert client.post("/api/v1/a2mcp/risk/evaluate", json=A2MCP_REQUEST).status_code == 404
+
+
+def test_keyless_a2mcp_route_serves_assessment_and_rate_limits(tmp_path):
+    surface = public(tmp_path, service_public_tier=True, service_public_requests_per_minute=1)
+    with TestClient(surface) as client:
+        first = client.post(
+            "/api/v1/a2mcp/risk/evaluate", json=A2MCP_REQUEST, headers={"X-AEGIS-Key": "wrong"}
+        )
+        assert first.status_code == 200
+        assert first.json()["request_id"] == "a2mcp-unit"
+        assert "unit-service" not in first.text
+        second = client.post("/api/v1/a2mcp/risk/evaluate", json={**A2MCP_REQUEST, "request_id": "b"})
+        assert second.status_code == 429
+        assert int(second.headers["Retry-After"]) >= 1
+        # The keyed route still requires its credential.
+        assert client.post("/api/v1/risk/evaluate", json=A2MCP_REQUEST).status_code == 401

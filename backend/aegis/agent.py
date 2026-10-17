@@ -443,6 +443,8 @@ class Agent:
                 run_reserved_notional=run_reserved,
                 max_run_orders=self.settings.max_run_orders,
                 max_run_notional=self.settings.max_run_notional,
+                max_exposure_quote=self.settings.max_exposure_quote,
+                laya_advisory=mode == "OKX_DEMO" and self.settings.laya_gate_demo == "advisory",
             )
             evidence.append(
                 self.emit(
@@ -459,6 +461,8 @@ class Agent:
                             "max_orders": self.settings.max_run_orders,
                             "max_notional": str(self.settings.max_run_notional),
                         },
+                        "max_exposure_quote": str(self.settings.max_exposure_quote),
+                        "laya_gate": self.settings.laya_gate_demo if mode == "OKX_DEMO" else "required",
                     },
                 )
             )

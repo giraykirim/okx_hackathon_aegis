@@ -151,3 +151,35 @@ def test_tick_rounding_and_fee_headroom_cannot_exceed_order_cap():
     result = gate(proposal={"quantity": Decimal("0.00049")}, observation={"tick_size": Decimal("1000")})
     assert not result.approved
     assert "excess_order_notional" in result.reasons
+
+
+def test_exposure_cap_only_blocks_risk_increasing_buys():
+    loaded = {"exposure_quote": Decimal("99549"), "base_available": Decimal("1")}
+    assert "excess_exposure" in gate(observation=loaded).reasons
+    assert gate(observation=loaded, proposal={"action": "SELL"}).approved
+    assert gate(observation=loaded, max_exposure_quote=Decimal("200000")).approved
+
+
+@pytest.mark.parametrize(
+    "classification,approved",
+    [
+        ({"label": "REVIEW", "abstained": True, "confidence": 0}, True),
+        ({"label": "CONTINUE", "confidence": 0.01}, True),
+        ({"label": "HALT", "confidence": 0.01}, False),
+    ],
+)
+def test_advisory_laya_only_vetoes_explicit_halt(classification, approved):
+    assert gate(classification=classification, laya_advisory=True).approved is approved
+    assert not gate(classification=classification).approved
+
+
+def test_advisory_laya_never_applies_outside_demo_modes():
+    from aegis.policy import check
+
+    obs, laya, proposal, now = inputs()
+    laya = laya.model_copy(update={"abstained": True})
+    result = check(
+        obs, laya, proposal, now=now, source_mode="LIVE", approval_available=True,
+        unresolved=False, duplicate=False, laya_advisory=True,
+    )
+    assert "laya_not_clear" in result.reasons
