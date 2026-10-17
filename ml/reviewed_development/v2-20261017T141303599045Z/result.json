@@ -1,0 +1,72 @@
+{
+  "run": "ml\\reviewed_development\\v2-20261017T141303599045Z",
+  "dataset": "human_confirmed_unsplit_v2-r169",
+  "policy_version": "aegis-operational-v2-human-preserved",
+  "stages": [
+    {
+      "stage": "dry-run",
+      "exit_code": 0,
+      "command": [
+        "C:\\Users\\hackathon\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\HackathonTools\\python\\tools\\python.exe",
+        "-u",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\scripts\\ml\\reviewed_development_v2.py",
+        "worker",
+        "--run",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\ml\\reviewed_development\\v2-20261017T141303599045Z",
+        "--stage",
+        "dry-run"
+      ]
+    },
+    {
+      "stage": "baseline",
+      "exit_code": 0,
+      "command": [
+        "C:\\Users\\hackathon\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\HackathonTools\\python\\tools\\python.exe",
+        "-u",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\scripts\\ml\\reviewed_development_v2.py",
+        "worker",
+        "--run",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\ml\\reviewed_development\\v2-20261017T141303599045Z",
+        "--stage",
+        "baseline"
+      ]
+    },
+    {
+      "stage": "17",
+      "exit_code": 0,
+      "command": [
+        "C:\\Users\\hackathon\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\HackathonTools\\python\\tools\\python.exe",
+        "-u",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\scripts\\ml\\reviewed_development_v2.py",
+        "worker",
+        "--run",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\ml\\reviewed_development\\v2-20261017T141303599045Z",
+        "--stage",
+        "17"
+      ]
+    },
+    {
+      "stage": "29",
+      "exit_code": 0,
+      "command": [
+        "C:\\Users\\hackathon\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\HackathonTools\\python\\tools\\python.exe",
+        "-u",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\scripts\\ml\\reviewed_development_v2.py",
+        "worker",
+        "--run",
+        "C:\\Users\\hackathon\\Documents\\Codex\\2026-10-16\\bu-bilgisayar-d-n-al-nm\\okx_hackathon_aegis\\ml\\reviewed_development\\v2-20261017T141303599045Z",
+        "--stage",
+        "29"
+      ]
+    }
+  ],
+  "outcome": "DATA/INTEGRATION BLOCKED",
+  "diagnostic_completed": true,
+  "production_approved": false,
+  "execution_authority": false,
+  "selected_checkpoint_replaced": false,
+  "final_test_opened": false,
+  "confidence_validated": false,
+  "orders_sent": 0,
+  "protected_files_unchanged": true
+}

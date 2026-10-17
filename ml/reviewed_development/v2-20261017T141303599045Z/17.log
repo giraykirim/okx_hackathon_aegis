@@ -1,0 +1,36 @@
+train items 145, calibration items 16, eval items 16 (calibration_slice), skipped {}, device cuda
+optimizer budget: 145 train item(s), effective batch up to 1 (micro_batch 1 x grad_accum 1), 1160 optimizer updates over 8 epoch(s)
+C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\aegis\.venv\Lib\site-packages\laya\train.py:724: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scheduler.step()
+epoch 1/8 step 100 loss 1.1751
+epoch 1/8 mean loss 1.1313
+epoch 2/8 step 100 loss 1.0431
+epoch 2/8 mean loss 1.1057
+epoch 3/8 step 100 loss 1.0594
+epoch 3/8 mean loss 1.0935
+epoch 4/8 step 100 loss 1.4266
+epoch 4/8 mean loss 1.0754
+epoch 5/8 step 100 loss 0.7924
+epoch 5/8 mean loss 1.0700
+epoch 6/8 step 100 loss 0.9457
+epoch 6/8 mean loss 1.0561
+epoch 7/8 step 100 loss 1.2481
+epoch 7/8 mean loss 1.0486
+epoch 8/8 step 100 loss 0.8526
+epoch 8/8 mean loss 1.0417
+C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\aegis\.venv\Lib\site-packages\laya\train_cli.py:221: RuntimeWarning: laya.train: choice calibration: fitted on only 16 calibration items
+  summary = finetune(
+
+=== Calibration Evidence (in-sample calibration slice, 16 items; not held-out) ===
+Metric                 Before         After          Delta         
+-----------------------------------------------------------------
+Accuracy               0.1875         0.5000         +0.3125       
+Loss                   1.1708         1.0089         -0.1619       
+ECE                    0.2162         0.0360         -0.1802       
+Brier (multi-class)    0.7143         0.6046         -0.1097       
+Brier (top-1)          0.1990         0.2433         +0.0443       
+Mean Confidence        0.4037         0.5360         +0.1323       
+-----------------------------------------------------------------
+
+Training complete! Model saved to C:\Users\hackathon\Documents\Codex\2026-10-16\bu-bilgisayar-d-n-al-nm\okx_hackathon_aegis\models\reviewed_development\v2-20261017T141303599045Z\seed-17
+{"seed": 17, "status": "COMPLETED_DIAGNOSTIC_ONLY", "wall_seconds": 95.49265329993796}
