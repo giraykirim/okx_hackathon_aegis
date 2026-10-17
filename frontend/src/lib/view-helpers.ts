@@ -90,10 +90,16 @@ export function buildPipelineSteps(
   const runEvents = events.filter((e) => !targetRunId || e.run_id === targetRunId);
   const activeEvents = runEvents.length > 0 ? runEvents : events;
 
-  const findLatestEvent = (types: string[]) => {
+  const findLatestEvent = (typesOrPhases: string[]) => {
     for (let i = activeEvents.length - 1; i >= 0; i--) {
-      if (types.includes(activeEvents[i].type)) {
-        return activeEvents[i];
+      const ev = activeEvents[i];
+      const phase =
+        typeof ev.details?.phase === "string" ? ev.details.phase : undefined;
+      if (
+        typesOrPhases.includes(ev.type) ||
+        (phase && typesOrPhases.includes(phase))
+      ) {
+        return ev;
       }
     }
     return undefined;
@@ -103,8 +109,8 @@ export function buildPipelineSteps(
   const observeEv = findLatestEvent(["OBSERVE"]);
   const classifyEv = findLatestEvent(["CLASSIFY"]);
   const reasonEv = findLatestEvent(["REASON"]);
-  const gateEv = findLatestEvent(["RISK_GATE"]);
-  const actionEv = findLatestEvent(["NO_TRADE", "EXECUTE"]);
+  const gateEv = findLatestEvent(["RISK_GATE", "RISK_CHECK"]);
+  const actionEv = findLatestEvent(["NO_TRADE", "EXECUTE", "ACT"]);
   const verifyEv = findLatestEvent(["VERIFY"]);
   const auditEv = findLatestEvent(["AUDIT"]);
 
@@ -122,16 +128,26 @@ export function buildPipelineSteps(
   const cls = snapshot?.classification;
   const dec = snapshot?.latest_decision;
 
+  const eventDuration = (
+    ev: EventItem | undefined,
+    fallbackStart?: string | null
+  ): number | null => {
+    if (typeof ev?.details?.duration_ms === "number") {
+      return Number(ev.details.duration_ms.toFixed(2));
+    }
+    return diffMs(fallbackStart, ev?.timestamp);
+  };
+
   const layaDuration =
     typeof cls?.latency_ms === "number" && cls.latency_ms > 0
       ? Number(cls.latency_ms.toFixed(2))
-      : diffMs(observeEv?.timestamp, classifyEv?.timestamp);
+      : eventDuration(classifyEv, observeEv?.timestamp);
 
-  const reasonDuration = diffMs(classifyEv?.timestamp, reasonEv?.timestamp);
-  const gateDuration = diffMs(reasonEv?.timestamp, gateEv?.timestamp);
-  const actionDuration = diffMs(gateEv?.timestamp, actionEv?.timestamp);
-  const verifyDuration = diffMs(actionEv?.timestamp, verifyEv?.timestamp);
-  const auditDuration = diffMs(verifyEv?.timestamp, auditEv?.timestamp);
+  const reasonDuration = eventDuration(reasonEv, classifyEv?.timestamp);
+  const gateDuration = eventDuration(gateEv, reasonEv?.timestamp);
+  const actionDuration = eventDuration(actionEv, gateEv?.timestamp);
+  const verifyDuration = eventDuration(verifyEv, actionEv?.timestamp);
+  const auditDuration = eventDuration(auditEv, verifyEv?.timestamp);
 
   const layaAvailability =
     (classifyEv?.details?.availability as string | undefined) ||

@@ -240,10 +240,38 @@ export interface ServiceInfo {
   target_customer: string;
   execution_authority: false;
   public_url: null;
-  deployment_status: "PUBLIC_NOT_VERIFIED";
+  deployment_status: "PUBLIC_NOT_VERIFIED" | "LOCAL_ONLY";
   evaluate_path: "/api/v1/risk/evaluate";
   auth: ServiceAuth;
   pricing: ProposedPricing;
   okx_ai: MarketplaceStatus;
   limitations: string[];
 }
+
+// --- Service 1.1.0 String-Notional Contract (contracts/PERSON3_HANDOFF.md) ---
+
+export type NotionalVerdict =
+  | "UNAVAILABLE"
+  | "BLOCK"
+  | "ALLOW_FOR_FURTHER_CHECKS";
+
+export interface NotionalRiskRequest {
+  request_id: string;
+  symbol: "BTC-USDT";
+  proposed_action: "BUY" | "SELL" | "NO_TRADE";
+  proposed_notional: string;
+  requester_context?: Record<string, unknown> | null;
+}
+
+export interface NotionalRiskResponse {
+  request_id: string;
+  verdict: NotionalVerdict;
+  execution_authorized: false;
+  reason_codes: string[];
+  evidence_ids: string[];
+  evaluated_at: string;
+  source_mode: SourceMode;
+  policy_version: string;
+  chain_receipt: Record<string, unknown> | null;
+}
+

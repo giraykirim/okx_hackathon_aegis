@@ -2,12 +2,13 @@ import { describe, expect, it } from "vitest";
 import {
   RECORDED_EVENTS_MARKET_ONLY,
   RECORDED_MOCK_SCENARIOS,
+  RECORDED_NOTIONAL_ASSESSMENTS,
   RECORDED_SERVICE_ASSESSMENTS,
   RECORDED_SERVICE_INFO,
   RECORDED_SNAPSHOT_MARKET_ONLY,
 } from "../lib/fixtures";
 import { isAdminAuthorized } from "../lib/server-backend";
-import type { Snapshot } from "../lib/types";
+import type { EventItem, Snapshot } from "../lib/types";
 import {
   buildPipelineSteps,
   explainRiskReason,
@@ -87,6 +88,37 @@ describe("AEGIS Person 3 Dashboard Truthfulness & Null-Safety Suite", () => {
     expect(gateStep.status).toBe("VETOED");
   });
 
+  it("exposes all 8 official ATK/MCP capabilities with honest PASS vs NOT_TESTED statuses", () => {
+    const caps = RECORDED_SNAPSHOT_MARKET_ONLY.capabilities;
+    expect(caps.ATK_PACKAGE_INSTALLED?.status).toBe("PASS");
+    expect(caps.ATK_MARKET_READ?.status).toBe("PASS");
+    expect(caps.ATK_MCP_LIST_TOOLS?.status).toBe("PASS");
+    expect(caps.ATK_MCP_CALL_TOOL?.status).toBe("PASS");
+    expect(caps.ATK_TR_ROUTING?.status).toBe("PASS");
+    expect(caps.ATK_DEMO_ACCOUNT_READ?.status).toBe("NOT_TESTED");
+    expect(caps.ATK_DEMO_ORDER_SUBMISSION?.status).toBe("NOT_TESTED");
+    expect(caps.ATK_ORDER_RECONCILIATION?.status).toBe("NOT_TESTED");
+  });
+
+  it("resolves Event.details.phase (OBSERVE/CLASSIFY/REASON/RISK_CHECK/NO_TRADE/VERIFY/AUDIT)", () => {
+    const phaseEvents: EventItem[] = [
+      {
+        id: "ev-phase-test",
+        timestamp: "2026-10-17T10:50:11Z",
+        run_id: RECORDED_SNAPSHOT_MARKET_ONLY.run_id,
+        source_mode: "MARKET_ONLY",
+        type: "PHASE_EVENT",
+        severity: "INFO",
+        actor: "policy",
+        message: "Phase event test",
+        details: { phase: "RISK_CHECK", duration_ms: 42 },
+      },
+    ];
+    const steps = buildPipelineSteps(RECORDED_SNAPSHOT_MARKET_ONLY, phaseEvents);
+    const gateStep = steps.find((s) => s.key === "RISK_GATE")!;
+    expect(gateStep.measuredDurationMs).toBe(42);
+  });
+
   it("distinguishes MOCK scenarios from real exchange execution (execution_status=NOT_SENT)", () => {
     for (const key of Object.keys(RECORDED_MOCK_SCENARIOS) as Array<
       keyof typeof RECORDED_MOCK_SCENARIOS
@@ -102,7 +134,7 @@ describe("AEGIS Person 3 Dashboard Truthfulness & Null-Safety Suite", () => {
     expect(modeBadge.badgeText).toContain("MOCK SCENARIO");
   });
 
-  it("enforces order_permission=false and execution_authority=false on service assessments", () => {
+  it("enforces order_permission=false and execution_authority=false on Service 1.0 and 1.1.0 assessments", () => {
     expect(RECORDED_SERVICE_INFO.execution_authority).toBe(false);
     expect(RECORDED_SERVICE_INFO.public_url).toBeNull();
     expect(RECORDED_SERVICE_INFO.okx_ai.listing_status).toBe("NOT_LISTED");
@@ -117,6 +149,22 @@ describe("AEGIS Person 3 Dashboard Truthfulness & Null-Safety Suite", () => {
     expect(RECORDED_SERVICE_ASSESSMENTS.excess_notional.assessment).toBe("HALT");
     expect(RECORDED_SERVICE_ASSESSMENTS.excess_notional.reasons).toContain(
       "excess_order_notional"
+    );
+
+    expect(
+      RECORDED_NOTIONAL_ASSESSMENTS.market_10_usdt.execution_authorized
+    ).toBe(false);
+    expect(RECORDED_NOTIONAL_ASSESSMENTS.market_10_usdt.verdict).toBe(
+      "UNAVAILABLE"
+    );
+    expect(RECORDED_NOTIONAL_ASSESSMENTS.market_10_usdt.chain_receipt).toBeNull();
+
+    expect(
+      RECORDED_NOTIONAL_ASSESSMENTS.excess_50_usdt.execution_authorized
+    ).toBe(false);
+    expect(RECORDED_NOTIONAL_ASSESSMENTS.excess_50_usdt.verdict).toBe("BLOCK");
+    expect(RECORDED_NOTIONAL_ASSESSMENTS.excess_50_usdt.reason_codes).toContain(
+      "NOTIONAL_CAP_EXCEEDED"
     );
   });
 
@@ -139,3 +187,4 @@ describe("AEGIS Person 3 Dashboard Truthfulness & Null-Safety Suite", () => {
     expect(unknownOrder.title).toContain("Unresolved Prior Order");
   });
 });
+

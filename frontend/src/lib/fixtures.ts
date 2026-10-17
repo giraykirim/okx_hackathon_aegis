@@ -12,6 +12,7 @@ import type {
   Health,
   Identity,
   Metrics,
+  NotionalRiskResponse,
   RiskAssessment,
   ServiceInfo,
   Snapshot,
@@ -121,32 +122,64 @@ export const RECORDED_SNAPSHOT_MARKET_ONLY: Snapshot = {
         "site=tr",
         "exchange_timestamp=2026-10-17T09:31:44.128000+00:00",
       ],
-      checked_at: "2026-10-17T09:31:45.521991Z",
+      checked_at: "2026-10-17T10:52:03.356592Z",
     },
-    ATK_ACCOUNT: {
-      status: "NOT_TESTED",
-      evidence: [],
-      checked_at: null,
+    ATK_PACKAGE_INSTALLED: {
+      status: "PASS",
+      evidence: ["e998a0913d2c4e7797117af0636b8379"],
+      checked_at: "2026-10-17T10:52:02.542400Z",
     },
-    ATK_DEMO: {
+    ATK_MARKET_READ: {
+      status: "PASS",
+      evidence: ["1c91064f89504f2eb0bdf8b7e5fed510"],
+      checked_at: "2026-10-17T10:52:03.356592Z",
+    },
+    ATK_MCP_LIST_TOOLS: {
+      status: "PASS",
+      evidence: ["6be926edf6be4205a0b278d2486cd93c"],
+      checked_at: "2026-10-17T10:52:04.096772Z",
+    },
+    ATK_MCP_CALL_TOOL: {
+      status: "PASS",
+      evidence: ["91a43152bb384db78a4c1b71afa1c260"],
+      checked_at: "2026-10-17T10:52:04.097086Z",
+    },
+    ATK_TR_ROUTING: {
+      status: "PASS",
+      evidence: ["1c91064f89504f2eb0bdf8b7e5fed510"],
+      checked_at: "2026-10-17T10:52:03.356592Z",
+    },
+    ATK_DEMO_ACCOUNT_READ: {
       status: "NOT_TESTED",
-      evidence: [],
-      checked_at: null,
+      evidence: ["e998a0913d2c4e7797117af0636b8379"],
+      checked_at: "2026-10-17T10:52:02.542410Z",
+    },
+    ATK_DEMO_ORDER_SUBMISSION: {
+      status: "NOT_TESTED",
+      evidence: ["e998a0913d2c4e7797117af0636b8379"],
+      checked_at: "2026-10-17T10:52:02.542412Z",
+    },
+    ATK_ORDER_RECONCILIATION: {
+      status: "NOT_TESTED",
+      evidence: ["e998a0913d2c4e7797117af0636b8379"],
+      checked_at: "2026-10-17T10:52:02.542414Z",
     },
     EVREN: {
       status: "NOT_TESTED",
-      evidence: [],
+      evidence: ["Public OpenAPI & /v1/terms/status inspected; local account key pending"],
       checked_at: null,
     },
     LAYA: {
       status: "NOT_TESTED",
-      evidence: [],
+      evidence: ["Advisory fallback active until RTX LAN URL is connected"],
       checked_at: null,
     },
     ERC8004: {
       status: "NOT_TESTED",
-      evidence: [],
-      checked_at: null,
+      evidence: [
+        "Fuji 43113 IdentityRegistry (0x8004A818...4BD9e) & ReputationRegistry (0x8004B663...88713) bytecode verified via Viem probe; agentId mint awaits faucet AVAX",
+      ],
+      checked_at: "2026-10-17T10:56:55.023Z",
     },
   },
   identity: RECORDED_IDENTITY,
@@ -1405,3 +1438,66 @@ export const RECORDED_SERVICE_ASSESSMENTS: {
     assessment_sha256: "166c93073c84eddf94e432f3b0a52a66f60a6c308097beed0527097cfb3c08b2",
   },
 };
+
+/**
+ * Service 1.1.0 String-Notional Recorded Responses (`backend/evidence/notional-market-http.json`
+ * and `contracts/fixtures/risk-notional-mock.response.json`).
+ */
+export const RECORDED_NOTIONAL_ASSESSMENTS: Record<
+  "market_10_usdt" | "mock_10_usdt" | "excess_50_usdt",
+  NotionalRiskResponse
+> = {
+  market_10_usdt: {
+    request_id: "market-notional-proof-001",
+    verdict: "UNAVAILABLE",
+    execution_authorized: false,
+    reason_codes: [
+      "ACCOUNT_DATA_UNAVAILABLE",
+      "EXECUTION_NOT_AUTHORIZED",
+      "SERVER_MARKET_OBSERVED",
+    ],
+    evidence_ids: [
+      "c9076a87417347fa87cc56c564183853",
+      "f643e454fea34c409e616da816ae2450",
+      "a974e0e6efb6418e8f3a690984649c8",
+    ],
+    evaluated_at: "2026-10-17T09:50:35.813721Z",
+    source_mode: "MARKET_ONLY",
+    policy_version: "risk-service-1.1.0",
+    chain_receipt: null,
+  },
+  mock_10_usdt: {
+    request_id: "mock-notional-fixture-001",
+    verdict: "UNAVAILABLE",
+    execution_authorized: false,
+    reason_codes: [
+      "ACCOUNT_DATA_UNAVAILABLE",
+      "EXECUTION_NOT_AUTHORIZED",
+      "MOCK_DATA_ONLY",
+      "REAL_MARKET_DATA_UNAVAILABLE",
+      "LAYA_UNAVAILABLE",
+      "EVREN_FALLBACK",
+    ],
+    evidence_ids: ["2e9e62165d3c4543b63d654b5dab7e14"],
+    evaluated_at: "2026-10-17T09:45:37.504981Z",
+    source_mode: "MOCK",
+    policy_version: "risk-service-1.1.0",
+    chain_receipt: null,
+  },
+  excess_50_usdt: {
+    request_id: "market-notional-excess-001",
+    verdict: "BLOCK",
+    execution_authorized: false,
+    reason_codes: [
+      "NOTIONAL_CAP_EXCEEDED",
+      "ACCOUNT_DATA_UNAVAILABLE",
+      "EXECUTION_NOT_AUTHORIZED",
+    ],
+    evidence_ids: ["c9076a87417347fa87cc56c564183853"],
+    evaluated_at: "2026-10-17T09:50:36.110000Z",
+    source_mode: "MARKET_ONLY",
+    policy_version: "risk-service-1.1.0",
+    chain_receipt: null,
+  },
+};
+

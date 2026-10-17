@@ -19,11 +19,17 @@ import { HeaderBar } from "@/components/HeaderBar";
 import { ProofDrawerModal } from "@/components/ProofDrawerModal";
 import {
   RECORDED_EVENTS_MARKET_ONLY,
+  RECORDED_NOTIONAL_ASSESSMENTS,
   RECORDED_SERVICE_ASSESSMENTS,
   RECORDED_SERVICE_INFO,
   RECORDED_SNAPSHOT_MARKET_ONLY,
 } from "@/lib/fixtures";
-import type { RiskAssessment, ServiceInfo, Snapshot } from "@/lib/types";
+import type {
+  NotionalRiskResponse,
+  RiskAssessment,
+  ServiceInfo,
+  Snapshot,
+} from "@/lib/types";
 import { explainRiskReason } from "@/lib/view-helpers";
 
 export default function ServicePage() {
@@ -45,6 +51,26 @@ export default function ServicePage() {
     "RECORDED_PROOF" | "LIVE"
   >("RECORDED_PROOF");
   const [evalBusy, setEvalBusy] = React.useState(false);
+
+  // Service 1.1.0 String-Notional Contract state (`contracts/PERSON3_HANDOFF.md`)
+  const [notionalPreset, setNotionalPreset] = React.useState<
+    "market_10_usdt" | "mock_10_usdt" | "excess_50_usdt"
+  >("market_10_usdt");
+  const [notionalAmount, setNotionalAmount] = React.useState("10.00");
+  const [notionalAction, setNotionalAction] = React.useState<
+    "BUY" | "SELL" | "NO_TRADE"
+  >("BUY");
+  const [notionalReqId, setNotionalReqId] = React.useState(
+    "market-notional-proof-001"
+  );
+  const [notionalRes, setNotionalRes] = React.useState<NotionalRiskResponse>(
+    RECORDED_NOTIONAL_ASSESSMENTS.market_10_usdt
+  );
+  const [notionalSource, setNotionalSource] = React.useState<
+    "RECORDED_PROOF" | "LIVE"
+  >("RECORDED_PROOF");
+  const [notionalBusy, setNotionalBusy] = React.useState(false);
+
   const [copiedId, setCopiedId] = React.useState<string | null>(null);
 
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
@@ -108,6 +134,64 @@ export default function ServicePage() {
       }
     } finally {
       setEvalBusy(false);
+    }
+  };
+
+  const handleSelectNotionalPreset = (
+    preset: "market_10_usdt" | "mock_10_usdt" | "excess_50_usdt"
+  ) => {
+    setNotionalPreset(preset);
+    if (preset === "market_10_usdt") {
+      setNotionalAmount("10.00");
+      setNotionalAction("BUY");
+      setNotionalReqId("market-notional-proof-001");
+      setNotionalRes(RECORDED_NOTIONAL_ASSESSMENTS.market_10_usdt);
+    } else if (preset === "mock_10_usdt") {
+      setNotionalAmount("10.00");
+      setNotionalAction("BUY");
+      setNotionalReqId("mock-notional-fixture-001");
+      setNotionalRes(RECORDED_NOTIONAL_ASSESSMENTS.mock_10_usdt);
+    } else {
+      setNotionalAmount("50.00");
+      setNotionalAction("BUY");
+      setNotionalReqId("market-notional-excess-001");
+      setNotionalRes(RECORDED_NOTIONAL_ASSESSMENTS.excess_50_usdt);
+    }
+    setNotionalSource("RECORDED_PROOF");
+  };
+
+  const handleEvaluateNotional = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNotionalBusy(true);
+    try {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (adminSecret) {
+        headers["X-AEGIS-Admin-Secret"] = adminSecret;
+      }
+      const res = await fetch("/api/v1/risk/evaluate", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          request_id: notionalReqId || `notional-${Date.now()}`,
+          symbol: "BTC-USDT",
+          proposed_action: notionalAction,
+          proposed_notional: notionalAmount,
+          requester_context: null,
+        }),
+      });
+      if (res.ok) {
+        const data = (await res.json()) as NotionalRiskResponse;
+        setNotionalRes(data);
+        setNotionalSource(
+          res.headers.get("X-AEGIS-Backend-Status") === "LIVE"
+            ? "LIVE"
+            : "RECORDED_PROOF"
+        );
+      }
+    } finally {
+      setNotionalBusy(false);
     }
   };
 
@@ -674,6 +758,200 @@ export default function ServicePage() {
             </div>
           </section>
         </div>
+
+        {/* Service 1.1.0 String-Notional Contract Inspector (`contracts/PERSON3_HANDOFF.md`) */}
+        <section className="rounded-xl border border-indigo-500/30 bg-slate-900/60 p-5 shadow-lg">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded bg-indigo-500/20 px-2.5 py-0.5 font-mono text-xs font-bold text-indigo-300 border border-indigo-500/40">
+                  SERVICE 1.1.0 STRING-NOTIONAL CONTRACT (`contracts/PERSON3_HANDOFF.md`)
+                </span>
+                <span className="rounded bg-rose-500/20 px-2.5 py-0.5 font-mono text-xs font-bold text-rose-300 border border-rose-500/40">
+                  execution_authorized: {String(notionalRes.execution_authorized)}
+                </span>
+                <span className="rounded bg-slate-800 px-2.5 py-0.5 font-mono text-xs text-slate-300">
+                  chain_receipt: {String(notionalRes.chain_receipt)}
+                </span>
+              </div>
+              <h2 className="mt-2 text-sm font-bold text-white">
+                String-Notional Request (`{`{request_id, symbol, proposed_action, proposed_notional, requester_context}`}`) → 10-Field Verdict
+              </h2>
+              <p className="text-xs text-slate-400">
+                Idempotent correlation by `request_id` + effective intent; renders `UNAVAILABLE` / `BLOCK` explicitly with `execution_authorized=false` and `chain_receipt=null`.
+              </p>
+            </div>
+            <span className="rounded bg-slate-800 px-2.5 py-1 font-mono text-[10px] text-slate-300">
+              Proof Source:{" "}
+              {notionalSource === "LIVE"
+                ? "LIVE HTTP (/api/v1/risk/evaluate)"
+                : "Recorded HTTP (notional-market-http.json / risk-notional-mock.response.json)"}
+            </span>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-12">
+            <div className="lg:col-span-5 space-y-3 text-xs">
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleSelectNotionalPreset("market_10_usdt")}
+                  className={`rounded-lg border p-2 text-left transition ${
+                    notionalPreset === "market_10_usdt"
+                      ? "border-amber-500/60 bg-amber-950/30 text-white"
+                      : "border-slate-800 bg-slate-950/60 text-slate-300"
+                  }`}
+                >
+                  <div className="font-mono text-[11px] font-bold text-amber-300">
+                    $10 MARKET_ONLY
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-slate-400">
+                    → `UNAVAILABLE`
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectNotionalPreset("mock_10_usdt")}
+                  className={`rounded-lg border p-2 text-left transition ${
+                    notionalPreset === "mock_10_usdt"
+                      ? "border-sky-500/60 bg-sky-950/30 text-white"
+                      : "border-slate-800 bg-slate-950/60 text-slate-300"
+                  }`}
+                >
+                  <div className="font-mono text-[11px] font-bold text-sky-300">
+                    $10 MOCK Fixture
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-slate-400">
+                    → `UNAVAILABLE`
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectNotionalPreset("excess_50_usdt")}
+                  className={`rounded-lg border p-2 text-left transition ${
+                    notionalPreset === "excess_50_usdt"
+                      ? "border-rose-500/60 bg-rose-950/30 text-white"
+                      : "border-slate-800 bg-slate-950/60 text-slate-300"
+                  }`}
+                >
+                  <div className="font-mono text-[11px] font-bold text-rose-300">
+                    $50 Oversized
+                  </div>
+                  <div className="mt-0.5 text-[10px] text-slate-400">
+                    → `BLOCK` (&gt;$25 cap)
+                  </div>
+                </button>
+              </div>
+
+              <form onSubmit={handleEvaluateNotional} className="space-y-2.5">
+                <div className="grid grid-cols-3 gap-2">
+                  <div>
+                    <label className="block font-mono text-[11px] text-slate-400">
+                      request_id
+                    </label>
+                    <input
+                      type="text"
+                      value={notionalReqId}
+                      onChange={(e) => setNotionalReqId(e.target.value)}
+                      className="mt-1 w-full rounded border border-slate-700 bg-slate-950 px-2 py-1.5 font-mono text-[11px] text-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-mono text-[11px] text-slate-400">
+                      proposed_action
+                    </label>
+                    <select
+                      value={notionalAction}
+                      onChange={(e) =>
+                        setNotionalAction(
+                          e.target.value as "BUY" | "SELL" | "NO_TRADE"
+                        )
+                      }
+                      className="mt-1 w-full rounded border border-slate-700 bg-slate-950 px-2 py-1.5 font-mono text-[11px] text-white"
+                    >
+                      <option value="BUY">BUY</option>
+                      <option value="SELL">SELL</option>
+                      <option value="NO_TRADE">NO_TRADE</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block font-mono text-[11px] text-slate-400">
+                      proposed_notional (USDT)
+                    </label>
+                    <input
+                      type="text"
+                      value={notionalAmount}
+                      onChange={(e) => setNotionalAmount(e.target.value)}
+                      className="mt-1 w-full rounded border border-slate-700 bg-slate-950 px-2 py-1.5 font-mono text-[11px] text-white"
+                    />
+                  </div>
+                </div>
+
+                <pre className="rounded border border-slate-800 bg-slate-950 p-2.5 font-mono text-[11px] text-slate-200">
+                  {JSON.stringify(
+                    {
+                      request_id: notionalReqId,
+                      symbol: "BTC-USDT",
+                      proposed_action: notionalAction,
+                      proposed_notional: notionalAmount,
+                      requester_context: null,
+                    },
+                    null,
+                    2
+                  )}
+                </pre>
+
+                <button
+                  type="submit"
+                  disabled={notionalBusy}
+                  className="w-full rounded-md bg-indigo-500 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-400 disabled:opacity-50"
+                >
+                  {notionalBusy
+                    ? "Evaluating Service 1.1.0..."
+                    : "Evaluate String-Notional Contract (Service 1.1.0)"}
+                </button>
+              </form>
+            </div>
+
+            <div className="lg:col-span-7 space-y-3 text-xs">
+              <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950/80 p-3">
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`rounded px-2.5 py-1 font-mono text-xs font-bold ${
+                      notionalRes.verdict === "BLOCK"
+                        ? "bg-rose-500/20 text-rose-300 border border-rose-500/40"
+                        : "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                    }`}
+                  >
+                    VERDICT: {notionalRes.verdict}
+                  </span>
+                  <span className="rounded bg-rose-500/15 px-2.5 py-1 font-mono text-xs font-bold text-rose-300 border border-rose-500/30">
+                    execution_authorized: {String(notionalRes.execution_authorized)}
+                  </span>
+                </div>
+                <span className="font-mono text-[11px] text-slate-400">
+                  policy_version: {notionalRes.policy_version} · mode: {notionalRes.source_mode}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5">
+                {notionalRes.reason_codes.map((code) => (
+                  <span
+                    key={code}
+                    className="rounded border border-slate-700 bg-slate-950 px-2 py-1 font-mono text-[11px] text-amber-300"
+                  >
+                    {code}
+                  </span>
+                ))}
+              </div>
+
+              <pre className="max-h-52 overflow-auto rounded border border-slate-800 bg-slate-950 p-3 font-mono text-[11px] text-slate-300">
+                {JSON.stringify(notionalRes, null, 2)}
+              </pre>
+            </div>
+          </div>
+        </section>
       </main>
 
       <ProofDrawerModal
