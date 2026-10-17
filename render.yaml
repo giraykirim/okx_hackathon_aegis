@@ -7,7 +7,7 @@ services:
     runtime: docker
     plan: free
     region: frankfurt
-    branch: codex/person1-laya-coordination
+    branch: main
     rootDir: backend
     dockerfilePath: ./Dockerfile
     dockerCommand: uvicorn aegis.app:app --host 0.0.0.0 --port 10000 --workers 1 --no-access-log
@@ -43,7 +43,7 @@ services:
     runtime: docker
     plan: free
     region: frankfurt
-    branch: codex/person1-laya-coordination
+    branch: main
     rootDir: backend
     dockerfilePath: ./Dockerfile
     dockerCommand: uvicorn aegis.public_app:app --host 0.0.0.0 --port 10000 --workers 1 --no-access-log --proxy-headers
