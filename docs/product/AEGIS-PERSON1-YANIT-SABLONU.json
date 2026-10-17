@@ -1,0 +1,1015 @@
+{
+  "document_kind": "PERSON1_EVIDENCE_BASED_RESPONSE",
+  "template_status": "Original AEGIS-PERSON1-YANIT-SABLONU.json was not present in attachment paths or fetched remote tree; this is a complete equivalent response, not a claimed fill of an unseen template.",
+  "checked_at": "2026-10-17T13:39:57.236790+00:00",
+  "backend_commit": "4ff56b7fcfb031f988cd61dd63af89b21953f12a",
+  "baseline_backend_commit": "ecd6d8dd97a19e50538d2deeb2db17e222b4c187",
+  "person2_snapshot_commit": "d6ff7b7380de3f8be2a558174cb67211bae81acf",
+  "remote_main_observed": "b949b19ef9fdf13cd38cb86b4e3963d5e4be609d",
+  "remote_observation_is_not_permanent_latest_claim": true,
+  "branch": "codex/person1-laya-coordination",
+  "automatic_pull_reset_merge_performed": false,
+  "decisions": {
+    "existing_shadow_fallback_demo": "GO",
+    "full_operational_runtime_integration": "NO_GO",
+    "real_or_demo_order_test": "NOT_TESTED_NO_ORDERS_SENT",
+    "independent_model_success": "NOT_TESTED",
+    "training_approved": false,
+    "independent_data_approved": false,
+    "mapping_scope": "Pure inactive builder semantics only; full trusted source coverage and Person 2 ACK pending"
+  },
+  "policy_groups": [
+    {
+      "group_id": "6035c658446bc766",
+      "member_case_ids": [
+        "214b74f9e0c17b654ef3",
+        "7d67d4a0cb7d14d5919b",
+        "4b6da61bd1b356e79b4e",
+        "16dd74f1dbe5fc1d6ef5"
+      ],
+      "context_without_quantity": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 40,
+        "account_known": true,
+        "approval_available": false,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "agreed_label": "REVIEW",
+      "legacy_policy_label": "HALT",
+      "candidate_label": "HALT",
+      "reason": "Human REVIEW preserves investigate-and-refresh semantics; known stale/future data still vetoed by Python.",
+      "policy_revision_required": true,
+      "revision_scope": "Person 2 operational-label policy version bump required; no ML file changed",
+      "effective_deployed_ml_policy": "aegis-operational-v1",
+      "agreed_coordination_policy": "aegis-human-preserved-coordination-v1",
+      "ml_revision_implementation_commit": null,
+      "ml_revision_tests": "NOT_TESTED",
+      "execution_authorized": false,
+      "provenance": [
+        {
+          "case_id": "214b74f9e0c17b654ef3",
+          "scenario_family": "combined_faults",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "combined_faults"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "7d67d4a0cb7d14d5919b",
+          "scenario_family": "combined_faults",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "combined_faults"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "4b6da61bd1b356e79b4e",
+          "scenario_family": "combined_faults",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "combined_faults"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "16dd74f1dbe5fc1d6ef5",
+          "scenario_family": "combined_faults",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "combined_faults"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        }
+      ]
+    },
+    {
+      "group_id": "b507903e784e923b",
+      "member_case_ids": [
+        "cfe02e8db2b2d8a2e7d6",
+        "91f49d0be64e4adb818b",
+        "91ed59096939b1105587",
+        "13945480a47b227ec274"
+      ],
+      "context_without_quantity": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": -2.1,
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "agreed_label": "REVIEW",
+      "legacy_policy_label": "HALT",
+      "candidate_label": "HALT",
+      "reason": "Human REVIEW preserves investigate-and-refresh semantics; known stale/future data still vetoed by Python.",
+      "policy_revision_required": true,
+      "revision_scope": "Person 2 operational-label policy version bump required; no ML file changed",
+      "effective_deployed_ml_policy": "aegis-operational-v1",
+      "agreed_coordination_policy": "aegis-human-preserved-coordination-v1",
+      "ml_revision_implementation_commit": null,
+      "ml_revision_tests": "NOT_TESTED",
+      "execution_authorized": false,
+      "provenance": [
+        {
+          "case_id": "cfe02e8db2b2d8a2e7d6",
+          "scenario_family": "future_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "future_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "91f49d0be64e4adb818b",
+          "scenario_family": "future_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "future_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "91ed59096939b1105587",
+          "scenario_family": "future_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "future_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "13945480a47b227ec274",
+          "scenario_family": "future_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "future_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        }
+      ]
+    },
+    {
+      "group_id": "bd4f3224298b7c68",
+      "member_case_ids": [
+        "356728047d0ec0244c76",
+        "f0bcfd0319dc5b258810",
+        "c8abe434130faa8e9cec",
+        "ffce5f7cf5e3dd49235c"
+      ],
+      "context_without_quantity": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": true,
+        "feed_age_seconds": 15.1,
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": false,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "agreed_label": "REVIEW",
+      "legacy_policy_label": "HALT",
+      "candidate_label": "HALT",
+      "reason": "Human REVIEW preserves investigate-and-refresh semantics; known stale/future data still vetoed by Python.",
+      "policy_revision_required": true,
+      "revision_scope": "Person 2 operational-label policy version bump required; no ML file changed",
+      "effective_deployed_ml_policy": "aegis-operational-v1",
+      "agreed_coordination_policy": "aegis-human-preserved-coordination-v1",
+      "ml_revision_implementation_commit": null,
+      "ml_revision_tests": "NOT_TESTED",
+      "execution_authorized": false,
+      "provenance": [
+        {
+          "case_id": "356728047d0ec0244c76",
+          "scenario_family": "freshness_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "f0bcfd0319dc5b258810",
+          "scenario_family": "freshness_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "c8abe434130faa8e9cec",
+          "scenario_family": "freshness_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "ffce5f7cf5e3dd49235c",
+          "scenario_family": "freshness_boundary",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        }
+      ]
+    },
+    {
+      "group_id": "c328abb0010e5796",
+      "member_case_ids": [
+        "4be2cf411cb79a7eff61",
+        "ddf0b63871129818f07d",
+        "c6e0cddd8b24ccd95fc1",
+        "dd4aa1a8d4888a6e6d7d"
+      ],
+      "context_without_quantity": {
+        "account_known": true,
+        "agents_disagree": false,
+        "api_timeout": false,
+        "approval_available": true,
+        "deployment_integrity_failure": false,
+        "duplicate_intent": false,
+        "excess_exposure": false,
+        "feed_age_seconds": 40,
+        "injection_detected": false,
+        "intent_requested": true,
+        "permission_revoked": false,
+        "site": "tr",
+        "source_mode": "MOCK",
+        "symbol": "BTC-USDT",
+        "unknown_order": false
+      },
+      "agreed_label": "REVIEW",
+      "legacy_policy_label": "HALT",
+      "candidate_label": "HALT",
+      "reason": "Human REVIEW preserves investigate-and-refresh semantics; known stale/future data still vetoed by Python.",
+      "policy_revision_required": true,
+      "revision_scope": "Person 2 operational-label policy version bump required; no ML file changed",
+      "effective_deployed_ml_policy": "aegis-operational-v1",
+      "agreed_coordination_policy": "aegis-human-preserved-coordination-v1",
+      "ml_revision_implementation_commit": null,
+      "ml_revision_tests": "NOT_TESTED",
+      "execution_authorized": false,
+      "provenance": [
+        {
+          "case_id": "4be2cf411cb79a7eff61",
+          "scenario_family": "stale",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "9c49407413049c012728",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "e9ce67833397824dade1",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "3c7cac7cdd5b7f046fd0",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "06a8a78ff3943f811850",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "50cbd55961a9785f7e01",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c09461022826ee92bceb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "44a1b384ee9923d7ad83",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "8277674f0dacfefc5acb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c193ded1e8cb468e6525",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "52e918d616df803d5e9f",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "ddf0b63871129818f07d",
+          "scenario_family": "stale",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "9c49407413049c012728",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "e9ce67833397824dade1",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "3c7cac7cdd5b7f046fd0",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "06a8a78ff3943f811850",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "50cbd55961a9785f7e01",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c09461022826ee92bceb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "44a1b384ee9923d7ad83",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "8277674f0dacfefc5acb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c193ded1e8cb468e6525",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "52e918d616df803d5e9f",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "c6e0cddd8b24ccd95fc1",
+          "scenario_family": "stale",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "9c49407413049c012728",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "e9ce67833397824dade1",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "3c7cac7cdd5b7f046fd0",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "06a8a78ff3943f811850",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "50cbd55961a9785f7e01",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c09461022826ee92bceb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "44a1b384ee9923d7ad83",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "8277674f0dacfefc5acb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c193ded1e8cb468e6525",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "52e918d616df803d5e9f",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "dd4aa1a8d4888a6e6d7d",
+          "scenario_family": "stale",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "9c49407413049c012728",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "e9ce67833397824dade1",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "3c7cac7cdd5b7f046fd0",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "06a8a78ff3943f811850",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "50cbd55961a9785f7e01",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c09461022826ee92bceb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "44a1b384ee9923d7ad83",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "8277674f0dacfefc5acb",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "c193ded1e8cb468e6525",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "HUMAN_CONFIRMED_PARENT_NOT_REVIEW_OF_NEW_ROW",
+              "source_capture_group": "offline-policy-review-1c9cf35",
+              "source_event_group": "stale",
+              "parent_case_id": "52e918d616df803d5e9f",
+              "parent_label": "HALT"
+            },
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "freshness_boundary"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        }
+      ]
+    },
+    {
+      "group_id": "cb09120331fb2593",
+      "member_case_ids": [
+        "e02b03f3d395ffd320fc",
+        "398c877e5cb2d8ba32eb",
+        "b2a49db32bad45e9883d",
+        "20e437c825ae9a7a6773"
+      ],
+      "context_without_quantity": {
+        "symbol": "BTC-USDT",
+        "site": "tr",
+        "source_mode": "MOCK",
+        "intent_requested": false,
+        "feed_age_seconds": 2,
+        "account_known": true,
+        "approval_available": true,
+        "api_timeout": false,
+        "agents_disagree": false,
+        "unknown_order": false,
+        "duplicate_intent": false,
+        "permission_revoked": null,
+        "injection_detected": false,
+        "deployment_integrity_failure": false,
+        "excess_exposure": false
+      },
+      "agreed_label": "CONTINUE",
+      "legacy_policy_label": "CONTINUE",
+      "candidate_label": "REVIEW",
+      "reason": "No requested intent; unknown revocation is not revoked authority. CONTINUE permits monitoring only; null remains null and execution needs positive approval.",
+      "policy_revision_required": false,
+      "revision_scope": "Reject proposed unconditional unknown-permission REVIEW rule for no-intent monitoring; no change required to legacy label",
+      "effective_deployed_ml_policy": "aegis-operational-v1",
+      "agreed_coordination_policy": "aegis-human-preserved-coordination-v1",
+      "ml_revision_implementation_commit": null,
+      "ml_revision_tests": "NOT_TESTED",
+      "execution_authorized": false,
+      "provenance": [
+        {
+          "case_id": "e02b03f3d395ffd320fc",
+          "scenario_family": "unknown_no_trade",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "unknown_no_trade"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "398c877e5cb2d8ba32eb",
+          "scenario_family": "unknown_no_trade",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "unknown_no_trade"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "b2a49db32bad45e9883d",
+          "scenario_family": "unknown_no_trade",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "unknown_no_trade"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        },
+        {
+          "case_id": "20e437c825ae9a7a6773",
+          "scenario_family": "unknown_no_trade",
+          "origin": "SYNTHETIC_DERIVED",
+          "sources": [
+            {
+              "origin": "SYNTHETIC_DERIVED",
+              "source_kind": "AUTHORED_COVERAGE_SPEC",
+              "source_capture_group": "authored-coverage-v2-single-family-batch",
+              "source_event_group": "unknown_no_trade"
+            }
+          ],
+          "matching_offline_trace_ids": [],
+          "source_capture_group": "expanded-development-mixed-ancestry-v2",
+          "independent_incident": false
+        }
+      ]
+    }
+  ],
+  "trusted_context": {
+    "decision": "Separate post-proposal shadow operational context; preserve existing observation classification and HTTP envelope until coordinated activation",
+    "version": "aegis-trusted-context-shadow-v1",
+    "implementation_commit": "4ff56b7fcfb031f988cd61dd63af89b21953f12a",
+    "runtime_enabled": false,
+    "model_state_fields": [
+      {
+        "field": "symbol",
+        "trusted_source_and_time": "Validated Observation, after ATK observation",
+        "missing_null_behavior": "Invalid or unsupported rejected; no tool-text override"
+      },
+      {
+        "field": "site",
+        "trusted_source_and_time": "Settings.okx_site at context build",
+        "missing_null_behavior": "Configured routing intent only; does not prove regional/profile permission"
+      },
+      {
+        "field": "source_mode",
+        "trusted_source_and_time": "Settings.source_mode at context build",
+        "missing_null_behavior": "Only configured typed mode; never requester context"
+      },
+      {
+        "field": "feed_age_seconds",
+        "trusted_source_and_time": "UTC backend now minus Observation.observed_at at build",
+        "missing_null_behavior": "Signed age retained; invalid timestamps reject, never clamp future to fresh"
+      },
+      {
+        "field": "intent_requested",
+        "trusted_source_and_time": "Schema-validated Proposal.action after REASON",
+        "missing_null_behavior": "No proposal → null; only explicit NO_TRADE → false"
+      },
+      {
+        "field": "quantity",
+        "trusted_source_and_time": "Validated Proposal Decimal encoded as string",
+        "missing_null_behavior": "Missing proposal → null; no float conversion; not a filled quantity"
+      },
+      {
+        "field": "account_known",
+        "trusted_source_and_time": "Observation's explicit known-account flag",
+        "missing_null_behavior": "False means unavailable/unknown account; default zero balances are not proof"
+      },
+      {
+        "field": "approval_available",
+        "trusted_source_and_time": "Independent final execution readiness/control check",
+        "missing_null_behavior": "null until explicitly checked; demo_ready alone is not proof of remote profile permissions"
+      },
+      {
+        "field": "api_timeout",
+        "trusted_source_and_time": "Current-cycle bounded transport attempt outcomes",
+        "missing_null_behavior": "null if no complete attempt telemetry; distinguishes pre-submit read failure from submit ambiguity"
+      },
+      {
+        "field": "agents_disagree",
+        "trusted_source_and_time": "Trusted comparison of typed same-scope results, if implemented",
+        "missing_null_behavior": "Currently null: no reliable same-scope comparator implemented"
+      },
+      {
+        "field": "unknown_order",
+        "trusted_source_and_time": "Completed journal query: any UNKNOWN status",
+        "missing_null_behavior": "null if not queried; PENDING ACK is unresolved but is NOT unknown submission"
+      },
+      {
+        "field": "duplicate_intent",
+        "trusted_source_and_time": "Store.duplicate(proposal.intent_id), after proposal, under transaction/claim protection for actual execution",
+        "missing_null_behavior": "null before query/proposal; never an LLM assertion"
+      },
+      {
+        "field": "permission_revoked",
+        "trusted_source_and_time": "Independently observed revoke/control transition",
+        "missing_null_behavior": "Currently null without revocation telemetry; missing configuration is not proof of revocation"
+      },
+      {
+        "field": "injection_detected",
+        "trusted_source_and_time": "Independently checked security finding, not untrusted text or a model assertion",
+        "missing_null_behavior": "Currently null unless an explicit validated detector/test injection supplies it"
+      },
+      {
+        "field": "deployment_integrity_failure",
+        "trusted_source_and_time": "Independent checkpoint/deployment integrity verification",
+        "missing_null_behavior": "Currently null; health/model version alone is not a cryptographic integrity check"
+      },
+      {
+        "field": "excess_exposure",
+        "trusted_source_and_time": "Deterministic Decimal gate/precheck with current known account snapshot and bounded sizing",
+        "missing_null_behavior": "null until that computation is available; no private amounts sent to model"
+      }
+    ],
+    "no_model_identifiers_or_text": true,
+    "unresolved_pending_is_not_unknown_submission": true,
+    "unknown_values_are_not_false": true,
+    "authority": "Python deterministic gate remains final"
+  },
+  "tests": {
+    "evidence_kind": "OFFLINE_BACKEND_TEST",
+    "pytest_command": "AEGIS_OFFLINE_PROOF_PATH=/tmp/aegis-offline-safety.json uv run pytest -q --junitxml=/tmp/aegis-laya-isolated-tests.xml",
+    "passed": 191,
+    "failed": 0,
+    "warnings": 1,
+    "warning": "Third-party Starlette/AnyIO deprecation",
+    "network_socket_and_subprocess_denied": true,
+    "operator_dotenv_disabled_before_collection": true,
+    "lint": "PASS",
+    "frozen_openapi": "PASS",
+    "safety_trace_file": "backend/evidence/laya-offline-safety.json",
+    "safety_scenarios": [
+      "pre_submit_read_timeout",
+      "post_submit_unknown_retry",
+      "permission_revoked",
+      "stale",
+      "future",
+      "missing_approval",
+      "duplicate",
+      "unresolved_ack",
+      "venue_live",
+      "venue_partially_filled",
+      "venue_filled",
+      "venue_canceled",
+      "venue_unrecognized",
+      "ack_duplicate_retry",
+      "safe_no_trade"
+    ],
+    "twenty_cases_checked": "Preserved five groups tested against unchanged execution gate; does not test revised ML policy or model quality",
+    "initial_failure": "Unisolated pre-existing Settings() fallback test inherited local configuration: 189 pass, 1 fail. Fixed by offline test fixture; no exchange submission.",
+    "elapsed_seconds_last_run": 1.6
+  },
+  "lan": {
+    "service_origin": "http://192.168.2.60:8770",
+    "source": "THIS_MAC_TO_PERSON2_PHYSICAL_LAN_DEVICE",
+    "health_status": "PASS_HTTP_200",
+    "schema_status": "PASS_EXACT_5_TYPED_FIELDS",
+    "model_version": "aegis-laya-base-f38a07fa01db",
+    "model_version_match": true,
+    "legacy_observation": "PASS_REVIEW_ABSTAINED_TRUE",
+    "unsupported_input": "PASS_REVIEW_ABSTAINED_TRUE",
+    "full_synthetic_context": "HTTP_200_CONTINUE_CONFIDENCE_0.0035_NOT_EXECUTION_PERMISSION",
+    "unknown_permission": "REVIEW_ABSTAINED_TRUE_UNSUPPORTED_CONTEXT_NOT_A_POLICY_VERDICT",
+    "model_correctness_status": "NOT_TESTED_NO_INDEPENDENT_LABELLED_BENCHMARK",
+    "artifact": "backend/evidence/laya-lan-contract.json",
+    "requests_have_synthetic_market_and_operational_inputs": true,
+    "execution_attempts": 0,
+    "backend_models_classify_adapter": "PASS_REAL_LAN_REVIEW_ABSTAINED_TRUE_VERSION_MATCHED"
+  },
+  "remaining_blockers": [
+    "Person 2 must version/test stale/future operational-label revision; deployed aegis-operational-v1 still conflicts with human REVIEW in 16 examples",
+    "Unknown-permission/no-intent transport currently abstains even though human monitoring label is CONTINUE; do not coerce null to false",
+    "No implemented trusted same-scope disagreement detector, revocation-history signal, injection detector or deployment integrity attestation; leave null",
+    "Inactive builder is not wired after proposal; integration requires joint mapping ACK and end-to-end shadow test",
+    "Selected checkpoint remains base, confidence 0.0035 is below backend threshold 0.8; no independent model quality/training/data approval",
+    "Original response template not found in fetched push; equivalent response supplied"
+  ],
+  "evidence_scope": "Offline fixtures and synthetic LAN inputs are not real ATK/exchange incident evidence; source/derivative groups retained; no independent incident claimed",
+  "no_ml_data_model_frontend_web3_changes_in_this_task": true,
+  "files": {
+    "contract": "contracts/laya-trusted-context-v1.json",
+    "mapping_and_policy": "docs/product/LAYA_PERSON1_COORDINATION.md"
+  },
+  "backend_baseline_matches_fetched_remote_code": true
+}

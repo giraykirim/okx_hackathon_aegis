@@ -1,0 +1,209 @@
+{
+  "evidence_kind": "OFFLINE_BACKEND_TEST",
+  "network_and_subprocess_denied": true,
+  "contains_private_logs": false,
+  "new_seed_timestamp_or_id_is_independent_event": false,
+  "traces": [
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "pre_submit_read_timeout",
+      "scenario": "pre_submit_read_timeout",
+      "derivative_group": "pre_submit_read_timeout",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "NOT_SENT",
+      "unresolved": false
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "post_submit_unknown_retry",
+      "scenario": "post_submit_unknown_retry",
+      "derivative_group": "post_submit_unknown_retry",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "UNKNOWN",
+      "simulated_submits": 1,
+      "retry_vetoes": [
+        "unresolved_prior_order",
+        "duplicate_intent",
+        "run_budget_exhausted"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "permission_revoked",
+      "scenario": "permission_revoked",
+      "derivative_group": "permission_revoked",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "NOT_SENT",
+      "vetoes": [
+        "approval_unavailable"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "stale",
+      "scenario": "stale",
+      "derivative_group": "stale",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "risk_approved": false,
+      "vetoes": [
+        "stale_feed"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "future",
+      "scenario": "future",
+      "derivative_group": "future",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "risk_approved": false,
+      "vetoes": [
+        "future_feed"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "missing_approval",
+      "scenario": "missing_approval",
+      "derivative_group": "missing_approval",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "risk_approved": false,
+      "vetoes": [
+        "approval_unavailable"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "duplicate",
+      "scenario": "duplicate",
+      "derivative_group": "duplicate",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "risk_approved": false,
+      "vetoes": [
+        "duplicate_intent"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "unresolved_ack",
+      "scenario": "unresolved_ack",
+      "derivative_group": "unresolved_ack",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "risk_approved": false,
+      "vetoes": [
+        "unresolved_prior_order"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "venue_live",
+      "scenario": "venue_live",
+      "derivative_group": "venue_live",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "PENDING",
+      "venue_state": "live",
+      "filled": false
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "venue_partially_filled",
+      "scenario": "venue_partially_filled",
+      "derivative_group": "venue_partially_filled",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "PENDING",
+      "venue_state": "partially_filled",
+      "filled": false
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "venue_filled",
+      "scenario": "venue_filled",
+      "derivative_group": "venue_filled",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "VERIFIED",
+      "venue_state": "filled",
+      "filled": true
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "venue_canceled",
+      "scenario": "venue_canceled",
+      "derivative_group": "venue_canceled",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "VERIFIED",
+      "venue_state": "canceled",
+      "filled": false
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "venue_unrecognized",
+      "scenario": "venue_unrecognized",
+      "derivative_group": "venue_unrecognized",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "verification_rejected": true
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "ack_duplicate_retry",
+      "scenario": "ack_duplicate_retry",
+      "derivative_group": "ack_duplicate_retry",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "PENDING",
+      "filled": false,
+      "simulated_submits": 1,
+      "retry_vetoes": [
+        "unresolved_prior_order",
+        "duplicate_intent",
+        "run_budget_exhausted"
+      ]
+    },
+    {
+      "evidence_kind": "OFFLINE_BACKEND_TEST",
+      "source_event": "safe_no_trade",
+      "scenario": "safe_no_trade",
+      "derivative_group": "safe_no_trade",
+      "independent_incident": false,
+      "real_network_calls": 0,
+      "real_submission_calls": 0,
+      "execution_status": "NOT_SENT",
+      "risk_approved": false,
+      "event_phases": [
+        "OBSERVE",
+        "CLASSIFY",
+        "REASON",
+        "RISK_GATE",
+        "NO_TRADE",
+        "VERIFY",
+        "AUDIT"
+      ]
+    }
+  ],
+  "backend_commit": "4ff56b7fcfb031f988cd61dd63af89b21953f12a"
+}

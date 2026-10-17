@@ -1,0 +1,194 @@
+{
+  "evidence_kind": "REAL_LAN_CONTRACT_TEST",
+  "checked_at": "2026-10-17T13:38:40.545582+00:00",
+  "service_origin": "http://192.168.2.60:8770",
+  "execution_attempts": 0,
+  "independent_model_success_proven": false,
+  "cases": [
+    {
+      "scenario": "health",
+      "input_source": "REAL_LAN_HEALTH",
+      "request": null,
+      "response": {
+        "status": "ready",
+        "model_version": "aegis-laya-base-f38a07fa01db",
+        "inference_calls": 5,
+        "fallback_calls": 8,
+        "shadow_only": true,
+        "execution_authority": false
+      },
+      "http_status": 200,
+      "wall_latency_ms": 29.492,
+      "exact_five_response_fields": null,
+      "typed_response_valid": null,
+      "expected_model_version_matches": true
+    },
+    {
+      "scenario": "legacy_observation",
+      "input_source": "SYNTHETIC_CONTRACT_FIXTURE",
+      "request": {
+        "state": {
+          "symbol": "BTC-USDT",
+          "observed_at": "2026-10-17T13:38:40.105050+00:00",
+          "price": "50000",
+          "ask": "50001",
+          "bid": "49999",
+          "min_size": "0.00001",
+          "lot_size": "0.00000001",
+          "tick_size": "0.1",
+          "instrument_live": true,
+          "account_known": false,
+          "exposure_quote": "0",
+          "quote_available": "0",
+          "base_available": "0",
+          "account_observed_at": null,
+          "external_open_orders": false
+        },
+        "run_id": "LAN_CONTRACT_PROBE",
+        "correlation_id": "LAN_CONTRACT_PROBE"
+      },
+      "response": {
+        "label": "REVIEW",
+        "confidence": 0.0,
+        "abstained": true,
+        "model_version": "aegis-laya-base-f38a07fa01db",
+        "latency_ms": 0.016
+      },
+      "http_status": 200,
+      "wall_latency_ms": 31.877,
+      "exact_five_response_fields": true,
+      "typed_response_valid": true,
+      "expected_model_version_matches": true
+    },
+    {
+      "scenario": "unsupported",
+      "input_source": "SYNTHETIC_CONTRACT_FIXTURE",
+      "request": {
+        "state": {
+          "unsupported": true
+        },
+        "run_id": "LAN_CONTRACT_PROBE",
+        "correlation_id": "LAN_CONTRACT_PROBE"
+      },
+      "response": {
+        "label": "REVIEW",
+        "confidence": 0.0,
+        "abstained": true,
+        "model_version": "aegis-laya-base-f38a07fa01db",
+        "latency_ms": 0.014
+      },
+      "http_status": 200,
+      "wall_latency_ms": 27.237,
+      "exact_five_response_fields": true,
+      "typed_response_valid": true,
+      "expected_model_version_matches": true
+    },
+    {
+      "scenario": "candidate_operational_NOT_YET_COORDINATED",
+      "input_source": "SYNTHETIC_CONTRACT_FIXTURE",
+      "request": {
+        "state": {
+          "operational": {
+            "symbol": "BTC-USDT",
+            "site": "tr",
+            "source_mode": "MARKET_ONLY",
+            "feed_age_seconds": 0,
+            "intent_requested": false,
+            "quantity": "0",
+            "account_known": false,
+            "approval_available": false,
+            "api_timeout": false,
+            "agents_disagree": false,
+            "unknown_order": false,
+            "duplicate_intent": false,
+            "permission_revoked": false,
+            "injection_detected": false,
+            "deployment_integrity_failure": false,
+            "excess_exposure": false
+          }
+        },
+        "run_id": "LAN_CONTRACT_PROBE",
+        "correlation_id": "LAN_CONTRACT_PROBE"
+      },
+      "response": {
+        "label": "CONTINUE",
+        "confidence": 0.0035,
+        "abstained": false,
+        "model_version": "aegis-laya-base-f38a07fa01db",
+        "latency_ms": 308.232
+      },
+      "http_status": 200,
+      "wall_latency_ms": 328.738,
+      "exact_five_response_fields": true,
+      "typed_response_valid": true,
+      "expected_model_version_matches": true
+    },
+    {
+      "scenario": "candidate_unknown_permission",
+      "input_source": "SYNTHETIC_CONTRACT_FIXTURE",
+      "request": {
+        "state": {
+          "operational": {
+            "symbol": "BTC-USDT",
+            "site": "tr",
+            "source_mode": "MARKET_ONLY",
+            "feed_age_seconds": 0,
+            "intent_requested": false,
+            "quantity": "0",
+            "account_known": false,
+            "approval_available": false,
+            "api_timeout": false,
+            "agents_disagree": false,
+            "unknown_order": false,
+            "duplicate_intent": false,
+            "permission_revoked": null,
+            "injection_detected": false,
+            "deployment_integrity_failure": false,
+            "excess_exposure": false
+          }
+        },
+        "run_id": "LAN_CONTRACT_PROBE",
+        "correlation_id": "LAN_CONTRACT_PROBE"
+      },
+      "response": {
+        "label": "REVIEW",
+        "confidence": 0.0,
+        "abstained": true,
+        "model_version": "aegis-laya-base-f38a07fa01db",
+        "latency_ms": 0.045
+      },
+      "http_status": 200,
+      "wall_latency_ms": 22.543,
+      "exact_five_response_fields": true,
+      "typed_response_valid": true,
+      "expected_model_version_matches": true
+    }
+  ],
+  "backend_commit": "4ff56b7fcfb031f988cd61dd63af89b21953f12a",
+  "schema_status": "PASS",
+  "independent_model_correctness_status": "NOT_TESTED",
+  "full_runtime_mapping_status": "NO_GO",
+  "backend_adapter_probe": {
+    "evidence_kind": "REAL_LAN_BACKEND_ADAPTER_TEST",
+    "input_source": "SYNTHETIC_OBSERVATION",
+    "classification": {
+      "label": "REVIEW",
+      "confidence": 0.0,
+      "abstained": true,
+      "model_version": "aegis-laya-base-f38a07fa01db",
+      "latency_ms": 31.834207999054343
+    },
+    "metadata": {
+      "availability": "AVAILABLE",
+      "source": "LAN",
+      "reason_code": "VALIDATED",
+      "model": null,
+      "model_version": "aegis-laya-base-f38a07fa01db",
+      "reported_label": "REVIEW",
+      "advisory_only": true
+    },
+    "capability": "PASS",
+    "interpretation": "Transport/schema/version pass only; not full-context inference or model-quality approval",
+    "execution_attempts": 0
+  }
+}
