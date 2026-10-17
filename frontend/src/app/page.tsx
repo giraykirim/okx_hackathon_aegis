@@ -441,6 +441,8 @@ export default function DashboardPage() {
           runId={snapshot.run_id}
           backendLive={backendLive}
           sourceMode={snapshot.source_mode}
+          layaAbstained={snapshot.classification?.abstained ?? true}
+          executionEnabled={snapshot.execution_enabled}
         />
       </main>
 

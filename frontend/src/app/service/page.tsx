@@ -55,6 +55,7 @@ export default function ServicePage() {
     "LIVE" | "RECORDED_PROOF"
   >("RECORDED_PROOF");
   const [evalBusy, setEvalBusy] = React.useState(false);
+  const [assessmentError, setAssessmentError] = React.useState<string | null>(null);
 
   // Service 1.1.0 String-Notional Contract state (`contracts/PERSON3_HANDOFF.md`)
   const [notionalPreset, setNotionalPreset] = React.useState<
@@ -84,6 +85,7 @@ export default function ServicePage() {
     "LIVE" | "RECORDED_PROOF"
   >("RECORDED_PROOF");
   const [notionalBusy, setNotionalBusy] = React.useState(false);
+  const [notionalError, setNotionalError] = React.useState<string | null>(null);
 
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
   const [adminModalOpen, setAdminModalOpen] = React.useState(false);
@@ -134,6 +136,7 @@ export default function ServicePage() {
   const handleEvaluate = async (e: React.FormEvent) => {
     e.preventDefault();
     setEvalBusy(true);
+    setAssessmentError(null);
     try {
       const headers: Record<string, string> = {
         "Content-Type": "application/json",
@@ -151,6 +154,7 @@ export default function ServicePage() {
           client_request_id: `ui-eval-${Date.now()}`,
         }),
       });
+      if (!res.ok) throw new Error(`Assessment failed (HTTP ${res.status}). Check operator access, input and service availability; no order was sent.`);
       if (res.ok) {
         const data = (await res.json()) as RiskAssessment;
         setAssessment(data);
@@ -161,6 +165,8 @@ export default function ServicePage() {
             : "RECORDED_PROOF"
         );
       }
+    } catch (error) {
+      setAssessmentError(error instanceof Error ? error.message : "Assessment unavailable; no order was sent.");
     } finally {
       setEvalBusy(false);
     }
@@ -215,6 +221,7 @@ export default function ServicePage() {
   const handleEvaluateNotional = async (e: React.FormEvent) => {
     e.preventDefault();
     setNotionalBusy(true);
+    setNotionalError(null);
     try {
       const effectiveNotional =
         notionalAction === "NO_TRADE" ? "0" : notionalAmount;
@@ -235,6 +242,10 @@ export default function ServicePage() {
           requester_context: null,
         }),
       });
+      if (!res.ok) throw new Error(res.status === 409
+        ? "Request ID already belongs to a different intent. Restore the original inputs or use a new request ID."
+        : res.status === 429 ? "Service rate/concurrency limit reached. Wait before evaluating again; no order was sent."
+        : `Evaluation unavailable (HTTP ${res.status}). Check input, operator access and backend availability; no order was sent.`);
       if (res.ok) {
         const data = (await res.json()) as NotionalRiskResponse;
         setNotionalRes(data);
@@ -249,6 +260,8 @@ export default function ServicePage() {
             : "RECORDED_PROOF"
         );
       }
+    } catch (error) {
+      setNotionalError(error instanceof Error ? error.message : "Evaluation unavailable; no order was sent.");
     } finally {
       setNotionalBusy(false);
     }
@@ -328,11 +341,10 @@ export default function ServicePage() {
                 </strong>
                 . External trading agents call AEGIS before submitting an order;
                 AEGIS fetches independent server-side OKX ATK market &
-                instrument facts, runs LAYA/EVREN checks, applies deterministic
-                sizing/freshness rules, and returns a SHA-256 signed{" "}
-                <code className="font-mono text-[#F59E0B]">REVIEW</code> or{" "}
-                <code className="font-mono text-[#EF4444]">HALT</code>{" "}
-                assessment.
+                instrument facts and applies deterministic sizing/freshness rules.
+                The quantity API also requests LAYA/EVREN analysis and returns an
+                assessment with a SHA-256 digest. The string-notional API returns
+                an advisory verdict with evidence IDs; it does not call the models.
               </p>
             </div>
 
@@ -346,7 +358,7 @@ export default function ServicePage() {
               <div className="mt-1">
                 Public URL:{" "}
                 <span className="text-[#6E7785]">
-                  {serviceInfo.public_url ?? "null (Loopback only; not invented)"}
+                  {serviceInfo.public_url ?? "null (No permanent public origin configured)"}
                 </span>
               </div>
               <div className="mt-1">
@@ -498,8 +510,8 @@ export default function ServicePage() {
                 </h2>
               </div>
               <span className="font-mono text-[11px] text-[#F59E0B]">
-                Measured Pre-Trade Check Latency: ~1.1s – 1.4s (`721ms` ticker +
-                `561ms` instruments; NOT sub-ms HFT)
+                Measured timings are recorded per request in tool-call evidence;
+                no latency SLA is established.
               </span>
             </div>
 
@@ -515,7 +527,8 @@ export default function ServicePage() {
                 </div>
                 <p className="mt-1 text-[#9BA7B4]">
                   `GET /api/v1/service` + `POST /api/v1/risk/evaluate` with
-                  `X-AEGIS-Key`, rate limit (`30 rpm`), and `assessment_sha256`.
+                  `X-AEGIS-Key`, rate limit ({serviceInfo.auth.requests_per_minute} rpm),
+                  typed verdicts and evidence IDs. Quantity responses also carry a digest.
                 </p>
               </div>
 
@@ -529,8 +542,9 @@ export default function ServicePage() {
                   </span>
                 </div>
                 <p className="mt-1 text-[#9BA7B4]">
-                  Server-side `@okx_ai/okx-trade-cli@1.4.8` subprocess reads
-                  (`ticker` + `instruments` on `site=tr`) with SHA-256 receipts.
+                  Server-side official ATK MCP/CLI reads (`ticker` + `instruments`
+                  on `site=tr`) with hashed evidence. Inspect the response receipts
+                  for the transport actually used.
                 </p>
               </div>
 
@@ -560,8 +574,9 @@ export default function ServicePage() {
                   </span>
                 </div>
                 <p className="mt-1 text-[#9BA7B4]">
-                  OKX Agentic Wallet binding & A2MCP pay-per-call USDT/USDG SDK
-                  settlement (`payment_integration: NOT_IMPLEMENTED`).
+                  Paid x402 settlement is not implemented. It is unnecessary for
+                  the proposed free pilot; marketplace caller authentication still
+                  needs verification.
                 </p>
               </div>
 
@@ -575,8 +590,9 @@ export default function ServicePage() {
                   </span>
                 </div>
                 <p className="mt-1 text-[#9BA7B4]">
-                  Requires verified public HTTPS origin (`deployment_status:
-                  LOCAL_ONLY`) and OKX.AI provider onboarding review.
+                  Requires durable public HTTPS, a compliant endpoint and actual
+                  provider registration/review. A temporary tunnel and wallet login
+                  do not establish a listing.
                 </p>
               </div>
             </div>
@@ -594,7 +610,7 @@ export default function ServicePage() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-1 font-mono text-[#4EE1C2] hover:underline"
               >
-                Inspect Agent Card (`/.well-known/erc8004-agent.json`){" "}
+                Inspect ERC-8004 Metadata (`/.well-known/erc8004-agent.json`){" "}
                 <FileCode2 className="h-3.5 w-3.5" />
               </a>
             </div>
@@ -728,6 +744,7 @@ export default function ServicePage() {
                     ? "Run Live Server Assessment (POST /api/v1/risk/evaluate)"
                     : "Run Pre-Trade Assessment"}
                 </button>
+                {assessmentError && <p role="alert" className="text-xs text-[#F59E0B]">{assessmentError}</p>}
               </form>
             </div>
 
@@ -931,7 +948,7 @@ export default function ServicePage() {
               <h2 className="mt-2 text-base font-bold text-[#E6EDF3]">
                 String-Notional Request (`
                 {`{request_id, symbol, proposed_action, proposed_notional, requester_context}`}
-                `) → 10-Field Verdict
+                `) → 9-Field Verdict
               </h2>
               <p className="text-xs text-[#9BA7B4]">
                 Idempotent correlation by `request_id` + effective intent;
@@ -1097,6 +1114,7 @@ export default function ServicePage() {
                     ? "Evaluating Service 1.1.0..."
                     : "Evaluate String-Notional Contract (Service 1.1.0)"}
                 </button>
+                {notionalError && <p role="alert" className="text-xs text-[#F59E0B]">{notionalError}</p>}
               </form>
             </div>
 

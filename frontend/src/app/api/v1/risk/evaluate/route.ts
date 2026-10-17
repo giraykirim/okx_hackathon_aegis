@@ -25,6 +25,9 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ detail: "Invalid JSON payload" }, { status: 400 });
   }
+  if (body === null || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ detail: "Expected a JSON object" }, { status: 400 });
+  }
 
   const isNotionalContract = typeof body.proposed_notional === "string";
 
@@ -42,7 +45,8 @@ export async function POST(request: Request) {
           "X-AEGIS-Key": serviceKey,
         },
         body: JSON.stringify(body),
-        timeoutMs: 12000,
+        // Backend assessment has a 30s total budget plus a bounded body read.
+        timeoutMs: 40000,
       }
     );
 

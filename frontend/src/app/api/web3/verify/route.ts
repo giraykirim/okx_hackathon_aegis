@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createPublicClient, http, isAddress, isHex, keccak256, toBytes } from "viem";
+import { createPublicClient, encodeFunctionData, http, isAddress, isHex, keccak256, toBytes } from "viem";
 import { avalancheFuji } from "viem/chains";
 import { RECORDED_IDENTITY, RECORDED_SERVICE_ASSESSMENTS } from "@/lib/fixtures";
 import { fetchBackendJson } from "@/lib/server-backend";
 import type { Identity } from "@/lib/types";
 import { IDENTITY_REGISTRY, verifyRegistration } from "@/lib/fuji-identity";
 import { identityFromProof, readRegisteredIdentity } from "@/lib/server-fuji-identity";
+import { EXPECTED_FUJI_ACCOUNT, RECEIPT_ABI } from "@/lib/fuji-wallet";
 
 export const dynamic = "force-dynamic";
 
@@ -259,6 +260,7 @@ export async function GET(request: NextRequest) {
     timestamp_unix: number | null;
     verdict_code: number | null;
     local_evm_unit_tests: string;
+    transaction_hash: string | null;
     note: string;
   } = {
     status: "NOT_TESTED",
@@ -272,6 +274,7 @@ export async function GET(request: NextRequest) {
     timestamp_unix: null,
     verdict_code: null,
     local_evm_unit_tests: "PASS (3/3 in web3/tests/risk-decision-registry.test.ts)",
+    transaction_hash: null,
     note: "RiskDecisionRegistry.sol is compiled and verified in local EVM unit tests with real backend assessment hashes; live Fuji deployment awaits a disposable wallet funded with faucet AVAX (status=NOT_TESTED).",
   };
 
@@ -306,6 +309,18 @@ export async function GET(request: NextRequest) {
           functionName: "getDecisionReceipt",
           args: [normalizedDigest as `0x${string}`],
         });
+        let transactionHash: string | null = null;
+        const sampleTx = process.env.RISK_DECISION_SAMPLE_TX_HASH;
+        if (exists && sampleTx && /^0x[\da-f]{64}$/i.test(sampleTx)) {
+          try {
+            const hash = sampleTx as `0x${string}`;
+            const [tx, confirmed] = await Promise.all([client.getTransaction({ hash }), client.getTransactionReceipt({ hash })]);
+            const expectedInput = encodeFunctionData({ abi: RECEIPT_ABI, functionName: "recordDecision", args: [normalizedDigest as `0x${string}`, runIdHash, policyVersionHash, verdictCode] });
+            if (confirmed.status === "success" && tx.to?.toLowerCase() === decisionRegistryAddress.toLowerCase() &&
+                tx.from.toLowerCase() === EXPECTED_FUJI_ACCOUNT.toLowerCase() && caller.toLowerCase() === tx.from.toLowerCase() &&
+                tx.value === BigInt(0) && tx.input.toLowerCase() === expectedInput.toLowerCase()) transactionHash = hash;
+          } catch { /* Stored receipt may be readable while transaction linkage is unavailable. */ }
+        }
         receiptReadback = {
           status: exists ? "PASS" : "NOT_TESTED",
           verified: exists,
@@ -316,6 +331,7 @@ export async function GET(request: NextRequest) {
             ? policyVersionHash
             : computedPolicyVersionHash,
           exists_on_chain: exists,
+          transaction_hash: transactionHash,
           caller: exists ? caller : null,
           timestamp_unix: exists ? Number(timestamp) : null,
           verdict_code: exists ? Number(verdictCode) : null,

@@ -1,15 +1,18 @@
 import asyncio
 import hashlib
 import json
-from decimal import Decimal
+import time
+from decimal import ROUND_FLOOR, Decimal
 
 from fastapi import HTTPException
 
-from .models import Event, utcnow
+from .models import Classification, Event, Observation, Proposal, utcnow
+from .policy import check
 from .service_models import RiskEvaluationRequest, RiskEvaluationResponse
 from .store import RequestConflictError
 
 POLICY_VERSION = "risk-service-1.1.0"
+IMPLEMENTATION_REVISION = "shared-deterministic-gate-2026-10-17"
 
 
 class NotionalService:
@@ -21,7 +24,9 @@ class NotionalService:
         mode = service.settings.service_source_mode
         key = service.settings.service_api_key
         namespace = hashlib.sha256(
-            json.dumps([POLICY_VERSION, mode, key.get_secret_value() if key else "disabled"]).encode()
+            json.dumps(
+                [POLICY_VERSION, IMPLEMENTATION_REVISION, mode, key.get_secret_value() if key else "disabled"]
+            ).encode()
         ).hexdigest()
         intent = {
             "symbol": request.symbol,
@@ -50,6 +55,7 @@ class NotionalService:
             reasons.append("NO_TRADE_REQUESTED")
             blocked = True
         receipts = []
+        policy_result, policy_latency_ms = None, None
         if mode == "MOCK":
             reasons.extend(
                 ["MOCK_DATA_ONLY", "REAL_MARKET_DATA_UNAVAILABLE", "LAYA_UNAVAILABLE", "EVREN_FALLBACK"]
@@ -60,18 +66,78 @@ class NotionalService:
                 async with asyncio.timeout(service.settings.service_timeout_seconds):
                     observation = await service.atk.observe()
                 reasons.append("SERVER_MARKET_OBSERVED")
-                age = (utcnow() - observation.observed_at).total_seconds()
-                for failed, code in (
-                    (age > 15, "STALE_FEED"),
-                    (age < -2, "FUTURE_FEED"),
-                    (not observation.instrument_live, "INSTRUMENT_UNAVAILABLE"),
-                    (observation.bid > observation.ask, "CROSSED_QUOTES"),
-                ):
-                    if failed:
-                        blocked = True
-                        reasons.append(code)
+                observation = Observation.model_validate(observation.model_dump())
+                # The public service never borrows an operator account or invents balances.
+                observation = observation.model_copy(
+                    update={
+                        "account_known": False,
+                        "exposure_quote": Decimal(0),
+                        "quote_available": Decimal(0),
+                        "base_available": Decimal(0),
+                        "account_observed_at": None,
+                        "external_open_orders": False,
+                    }
+                )
+                # Derive an assessment-only, lot-aligned quantity from public prices.
+                # This is neither a venue order nor an executable sizing recommendation.
+                units = (
+                    Decimal(request.proposed_notional)
+                    / (max(observation.ask, observation.price) * observation.lot_size)
+                ).to_integral_value(rounding=ROUND_FLOOR)
+                proposal = Proposal(
+                    action=request.proposed_action,
+                    symbol=request.symbol,
+                    quantity=units * observation.lot_size,
+                    intent_id=request.request_id,
+                    summary="Public notional assessment only; no execution authority",
+                )
+                started = time.perf_counter()
+                gate = check(
+                    observation,
+                    Classification(
+                        label="REVIEW",
+                        confidence=0,
+                        abstained=True,
+                        model_version="deterministic-assessment-only",
+                        latency_ms=0,
+                    ),
+                    proposal,
+                    now=utcnow(),
+                    source_mode="MARKET_ONLY",
+                    approval_available=False,
+                    unresolved=False,
+                    duplicate=False,
+                )
+                policy_latency_ms = (time.perf_counter() - started) * 1000
+                policy_result = gate.model_dump(mode="json")
+                # Unknown account placeholders cannot justify balance/exposure findings.
+                account_findings = {
+                    "insufficient_quote",
+                    "insufficient_base",
+                    "excess_exposure",
+                    "stale_account",
+                    "unknown_account_timestamp",
+                }
+                findings = [r for r in gate.reasons if r not in account_findings]
+                reasons.extend(r.upper() for r in findings)
+                reasons.extend(["DETERMINISTIC_POLICY_EVALUATED", "MODEL_ANALYSIS_NOT_REQUESTED"])
+                hard = {
+                    "stale_feed",
+                    "future_feed",
+                    "instrument_unavailable",
+                    "invalid_quantity",
+                    "excess_order_notional",
+                    "symbol_not_allowed",
+                    "crossed_quotes",
+                    "invalid_execution_price",
+                    "corrupt_data",
+                }
+                blocked = blocked or bool(hard.intersection(findings))
             except TimeoutError:
                 reasons.append("ASSESSMENT_TIMEOUT")
+            except (ValueError, ArithmeticError):
+                blocked = True
+                reasons.append("CORRUPT_MARKET_DATA")
             except Exception:
                 reasons.append("MARKET_DATA_UNAVAILABLE")
             receipts = service.atk.market_receipts
@@ -102,12 +168,18 @@ class NotionalService:
                 "effective_intent": intent,
                 "requester_context_used": False,
                 "policy_version": POLICY_VERSION,
+                "policy_implementation_revision": IMPLEMENTATION_REVISION,
+                "deterministic_policy": policy_result,
+                "policy_latency_ms": policy_latency_ms,
+                "quantity_source": "SERVER_DERIVED_FROM_PUBLIC_MARKET_NOT_EXECUTABLE"
+                if policy_result
+                else None,
             },
         )
         result = RiskEvaluationResponse(
             request_id=request.request_id,
             verdict="BLOCK" if blocked else "UNAVAILABLE",
-            reason_codes=reasons,
+            reason_codes=list(dict.fromkeys(reasons)),
             evidence_ids=[e.id for e in events] + [audit.id],
             evaluated_at=evaluated_at,
             source_mode=mode,

@@ -80,6 +80,7 @@ interface FujiVerifyResponse {
     timestamp_unix: number | null;
     verdict_code: number | null;
     local_evm_unit_tests: string;
+    transaction_hash?: string | null;
     note: string;
   };
   architecture_boundary: string;
@@ -193,7 +194,7 @@ export default function AvalanchePage() {
     canonicalDecisionHash: decisionDigest,
     contractAddress:
       verifyData?.decision_receipt_readback.contract_address ?? null,
-    txHash: customTxHash || null,
+    txHash: verifyData?.decision_receipt_readback.transaction_hash ?? null,
     verified: verifyData?.decision_receipt_readback.verified ?? false,
   });
 

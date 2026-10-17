@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { RECORDED_SNAPSHOT_MARKET_ONLY } from "@/lib/fixtures";
 import { fetchBackendJson } from "@/lib/server-backend";
 import type { Capability } from "@/lib/types";
+import { readUiIntegrations } from "@/lib/server-capabilities";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +11,8 @@ export async function GET() {
     timeoutMs: 3500,
   });
   if (res.ok && res.data) {
-    return NextResponse.json(res.data, {
+    const integrations = await readUiIntegrations();
+    return NextResponse.json({ ...res.data, ...integrations.capabilities }, {
       headers: {
         "X-AEGIS-Backend-Status": "LIVE",
       },

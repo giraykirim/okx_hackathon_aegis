@@ -20,6 +20,8 @@ interface OverviewBottomPanelsProps {
   runId?: string | null;
   backendLive?: boolean;
   sourceMode?: string;
+  layaAbstained?: boolean;
+  executionEnabled?: boolean;
 }
 
 export function OverviewBottomPanels({
@@ -28,6 +30,8 @@ export function OverviewBottomPanels({
   runId,
   backendLive = false,
   sourceMode = "MARKET_ONLY",
+  layaAbstained = true,
+  executionEnabled = false,
 }: OverviewBottomPanelsProps) {
   const [showAllCapabilities, setShowAllCapabilities] = React.useState(false);
 
@@ -119,6 +123,11 @@ export function OverviewBottomPanels({
     "NOT_TESTED";
 
   const isMock = sourceMode === "MOCK";
+  const policyEvent = [...events].reverse().find(event => event.type === "RISK_GATE" && (!runId || event.run_id === runId));
+  const policyMs = policyEvent?.details?.policy_latency_ms;
+  const measuredPolicy = typeof policyMs === "number" && Number.isFinite(policyMs) && policyMs >= 0;
+  const modelsConnected = backendLive && !isMock && layaStatus === "PASS" && evrenStatus === "PASS";
+  const demoReady = backendLive && executionEnabled && sourceMode === "OKX_DEMO";
 
   const systemRows = [
     {
@@ -126,7 +135,7 @@ export function OverviewBottomPanels({
       status: isMock
         ? "Mock Simulation"
         : backendLive && atkMarketPass
-        ? "Live Connected"
+        ? "Last ATK read verified"
         : atkMarketPass
         ? "Historical ATK Evidence"
         : "Unavailable",
@@ -150,27 +159,25 @@ export function OverviewBottomPanels({
     },
     {
       label: "Risk Engine (Python Policy)",
-      status: backendLive
-        ? "Active (Deterministic)"
-        : "Deterministic Rules Loaded",
-      dot: "bg-[#22C55E]",
-      textClass: "text-[#4EE1C2]",
-      meta: "< 1 ms",
+      status: measuredPolicy ? "Deterministic check recorded" : "Awaiting measured cycle",
+      dot: measuredPolicy ? "bg-[#22C55E]" : "bg-[#6E7785]",
+      textClass: measuredPolicy ? "text-[#4EE1C2]" : "text-[#9BA7B4]",
+      meta: measuredPolicy ? `${policyMs.toFixed(3)} ms` : "NOT_MEASURED",
     },
     {
       label: "AI Models (LAYA / EVREN)",
       status:
-        layaStatus === "PASS" && evrenStatus === "PASS"
-          ? "Live Connected"
+        modelsConnected
+          ? layaAbstained ? "Connected · LAYA abstaining" : "Connected · Advisory only"
           : isMock
           ? "Scripted (Mock)"
           : "Safe Fallback Active",
       dot:
-        layaStatus === "PASS" && evrenStatus === "PASS"
+        modelsConnected && !layaAbstained
           ? "bg-[#22C55E]"
           : "bg-[#F59E0B]",
       textClass:
-        layaStatus === "PASS" && evrenStatus === "PASS"
+        modelsConnected && !layaAbstained
           ? "text-[#4EE1C2]"
           : "text-[#F59E0B]",
       meta: `${layaStatus} / ${evrenStatus}`,
@@ -180,18 +187,18 @@ export function OverviewBottomPanels({
       status:
         erc8004Status === "PASS"
           ? "Registered & Verified"
-          : "ERC-8004 Registry Ready",
+          : "Verification unavailable",
       dot: erc8004Status === "PASS" ? "bg-[#22C55E]" : "bg-[#F59E0B]",
       textClass:
         erc8004Status === "PASS" ? "text-[#4EE1C2]" : "text-[#F59E0B]",
-      meta: erc8004Status === "PASS" ? "Chain 43113" : "Mint pending",
+      meta: erc8004Status === "PASS" ? "Chain 43113" : "NOT_VERIFIED",
     },
     {
       label: "Exchange (Live / Demo Trade)",
-      status: demoStatus === "PASS" ? "Enabled (Demo)" : "Read-only · Disabled",
-      dot: demoStatus === "PASS" ? "bg-[#22C55E]" : "bg-[#6E7785]",
-      textClass: demoStatus === "PASS" ? "text-[#4EE1C2]" : "text-[#9BA7B4]",
-      meta: demoStatus,
+      status: demoReady ? "Demo configured · Policy gated" : "Read-only · Safe",
+      dot: "bg-[#6E7785]",
+      textClass: "text-[#9BA7B4]",
+      meta: `Order proof: ${demoStatus}`,
     },
   ];
 

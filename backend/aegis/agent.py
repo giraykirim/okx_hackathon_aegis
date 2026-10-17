@@ -1,4 +1,5 @@
 import asyncio
+import time
 from datetime import timedelta
 from decimal import Decimal
 
@@ -428,6 +429,7 @@ class Agent:
             approval = (mode == "MOCK" and scenario != "missing_approval") or self.settings.demo_ready()
             approval = approval and not self.stop_requested
             run_orders, run_reserved = self.store.run_budget(self.run_id)
+            policy_started = time.perf_counter()
             gate = check(
                 observation,
                 laya,
@@ -450,6 +452,7 @@ class Agent:
                     severity="INFO" if gate.approved else "WARNING",
                     details={
                         **gate.model_dump(),
+                        "policy_latency_ms": (time.perf_counter() - policy_started) * 1000,
                         "run_budget": {
                             "orders_reserved": run_orders,
                             "notional_reserved": str(run_reserved),
