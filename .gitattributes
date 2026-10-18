@@ -1,1 +1,24 @@
+# Normalize repository text to LF so published digests (computed over LF bytes) stay valid
+# and cross-machine checkouts stay byte-identical. Windows launchers keep CRLF.
+* text=auto eol=lf
+*.md    text eol=lf
+*.json  text eol=lf
+*.jsonl text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.py    text eol=lf
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.mjs   text eol=lf
+*.cjs   text eol=lf
+*.css   text eol=lf
+*.sol   text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+*.toml  text eol=lf
 contracts/** text eol=lf
+
+# Windows wrappers intentionally use CRLF in the working tree.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
