@@ -133,6 +133,13 @@ export interface EvrenModelView {
   pipelineStatus: PipelineStageStatus;
 }
 
+export function isResponseLive(res: Response): boolean {
+  const status =
+    res.headers.get("x-aegis-backend-status") ||
+    res.headers.get("X-AEGIS-Backend-Status");
+  return status?.toUpperCase() === "LIVE";
+}
+
 export function formatRelativeAge(
   isoTimestamp?: string | null,
   nowMs: number = Date.now()

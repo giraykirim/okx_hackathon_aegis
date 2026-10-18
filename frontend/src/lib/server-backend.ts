@@ -21,12 +21,17 @@ export function getBackendBaseUrl(): string {
 
 const LOOPBACK_HOSTS = new Set(["127.0.0.1", "localhost", "[::1]"]);
 
-/** Local `next dev` on a loopback host is the operator's own machine; no judge lock there. */
+/** Local `next dev` on a loopback host or local LAN IP is the operator's own machine; no judge lock there. */
 export function isLocalDevRequest(request: Request): boolean {
   if (process.env.NODE_ENV !== "development") return false;
   const host = (request.headers.get("host") || "").toLowerCase();
   const hostname = host.startsWith("[") ? host.slice(0, host.indexOf("]") + 1) : host.split(":")[0];
-  return LOOPBACK_HOSTS.has(hostname);
+  return (
+    LOOPBACK_HOSTS.has(hostname) ||
+    hostname.startsWith("192.168.") ||
+    hostname.startsWith("10.") ||
+    hostname.startsWith("172.")
+  );
 }
 
 export function isAdminAuthorized(request: Request): {

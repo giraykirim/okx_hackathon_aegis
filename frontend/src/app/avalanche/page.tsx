@@ -31,6 +31,7 @@ import type { Identity, Snapshot } from "@/lib/types";
 import {
   deriveAuditProofState,
   deriveErc8004RegistrationState,
+  isResponseLive,
 } from "@/lib/view-helpers";
 
 interface FujiVerifyResponse {
@@ -110,6 +111,17 @@ export default function AvalanchePage() {
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
   const [adminModalOpen, setAdminModalOpen] = React.useState(false);
   const [adminSecret, setAdminSecret] = React.useState("");
+  const localOperator = React.useSyncExternalStore(
+    () => () => {},
+    () =>
+      process.env.NODE_ENV === "development" &&
+      (["127.0.0.1", "localhost", "[::1]"].includes(window.location.hostname) ||
+        window.location.hostname.startsWith("192.168.") ||
+        window.location.hostname.startsWith("10.") ||
+        window.location.hostname.startsWith("172.")),
+    () => false
+  );
+  const operatorUnlocked = localOperator || Boolean(adminSecret);
 
   const runVerification = React.useCallback(async () => {
     setBusy(true);
@@ -129,9 +141,7 @@ export default function AvalanchePage() {
         fetch(`/api/web3/verify?${qs.toString()}`, { cache: "no-store" }),
       ]);
 
-      setBackendLive(
-        snapRes.headers.get("X-AEGIS-Backend-Status") === "LIVE"
-      );
+      setBackendLive(isResponseLive(snapRes));
 
       if (idRes.ok) {
         setIdentity((await idRes.json()) as Identity);
@@ -210,7 +220,7 @@ export default function AvalanchePage() {
         activeScenario={backendLive ? "live_backend" : "recorded_market_only"}
         onInspectProof={() => setProofModalOpen(true)}
         onOpenAdminModal={() => setAdminModalOpen(true)}
-        adminUnlocked={Boolean(adminSecret)}
+        adminUnlocked={operatorUnlocked}
         onRefresh={runVerification}
       />
 

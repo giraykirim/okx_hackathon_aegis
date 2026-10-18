@@ -29,7 +29,7 @@ import type {
   ServiceInfo,
   Snapshot,
 } from "@/lib/types";
-import { explainRiskReason } from "@/lib/view-helpers";
+import { explainRiskReason, isResponseLive } from "@/lib/view-helpers";
 
 export default function ServicePage() {
   const [snapshot] = React.useState<Snapshot>(RECORDED_SNAPSHOT_MARKET_ONLY);
@@ -90,13 +90,24 @@ export default function ServicePage() {
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
   const [adminModalOpen, setAdminModalOpen] = React.useState(false);
   const [adminSecret, setAdminSecret] = React.useState("");
+  const localOperator = React.useSyncExternalStore(
+    () => () => {},
+    () =>
+      process.env.NODE_ENV === "development" &&
+      (["127.0.0.1", "localhost", "[::1]"].includes(window.location.hostname) ||
+        window.location.hostname.startsWith("192.168.") ||
+        window.location.hostname.startsWith("10.") ||
+        window.location.hostname.startsWith("172.")),
+    () => false
+  );
+  const operatorUnlocked = localOperator || Boolean(adminSecret);
   const [copiedId, setCopiedId] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     (async () => {
       try {
         const res = await fetch("/api/v1/service", { cache: "no-store" });
-        const isLive = res.headers.get("X-AEGIS-Backend-Status") === "LIVE";
+        const isLive = isResponseLive(res);
         setBackendLive(isLive);
         if (res.ok) {
           setServiceInfo((await res.json()) as ServiceInfo);
@@ -160,9 +171,7 @@ export default function ServicePage() {
         setAssessment(data);
         setEvaluatedInputs10({ action: customAction, qty: customQty });
         setAssessmentSource(
-          res.headers.get("X-AEGIS-Backend-Status") === "LIVE"
-            ? "LIVE"
-            : "RECORDED_PROOF"
+          isResponseLive(res) ? "LIVE" : "RECORDED_PROOF"
         );
       }
     } catch (error) {
@@ -255,9 +264,7 @@ export default function ServicePage() {
           amount: effectiveNotional,
         });
         setNotionalSource(
-          res.headers.get("X-AEGIS-Backend-Status") === "LIVE"
-            ? "LIVE"
-            : "RECORDED_PROOF"
+          isResponseLive(res) ? "LIVE" : "RECORDED_PROOF"
         );
       }
     } catch (error) {
@@ -310,7 +317,7 @@ export default function ServicePage() {
         activeScenario={backendLive ? "live_backend" : "recorded_market_only"}
         onInspectProof={() => setProofModalOpen(true)}
         onOpenAdminModal={() => setAdminModalOpen(true)}
-        adminUnlocked={Boolean(adminSecret)}
+        adminUnlocked={operatorUnlocked}
       />
 
       <main className="mx-auto max-w-7xl space-y-5 px-4 py-6">

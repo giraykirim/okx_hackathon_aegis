@@ -24,6 +24,7 @@ import type { Decision, EventItem, Metrics, Snapshot } from "@/lib/types";
 import {
   buildPipelineSteps,
   deriveRuntimeStatusModel,
+  isResponseLive,
   type PipelineStepView,
 } from "@/lib/view-helpers";
 
@@ -57,12 +58,15 @@ export default function DashboardPage() {
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
   const [adminModalOpen, setAdminModalOpen] = React.useState(false);
   const [adminSecret, setAdminSecret] = React.useState("");
-  // Local `next dev` on loopback skips the judge lock; the server enforces the same rule.
+  // Local `next dev` on loopback or local LAN skips the judge lock; the server enforces the same rule.
   const localOperator = React.useSyncExternalStore(
     () => () => {},
     () =>
       process.env.NODE_ENV === "development" &&
-      ["127.0.0.1", "localhost", "[::1]"].includes(window.location.hostname),
+      (["127.0.0.1", "localhost", "[::1]"].includes(window.location.hostname) ||
+        window.location.hostname.startsWith("192.168.") ||
+        window.location.hostname.startsWith("10.") ||
+        window.location.hostname.startsWith("172.")),
     () => false
   );
   const operatorUnlocked = localOperator || Boolean(adminSecret);
@@ -81,7 +85,7 @@ export default function DashboardPage() {
         fetch("/api/decisions?limit=50", { cache: "no-store" }),
       ]);
 
-      const isLive = snapRes.headers.get("X-AEGIS-Backend-Status") === "LIVE";
+      const isLive = isResponseLive(snapRes);
       setBackendLive(isLive);
 
       if (snapRes.ok) {

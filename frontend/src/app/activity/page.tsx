@@ -30,6 +30,7 @@ import {
   RECORDED_SNAPSHOT_MARKET_ONLY,
 } from "@/lib/fixtures";
 import type { EventItem, Snapshot } from "@/lib/types";
+import { isResponseLive } from "@/lib/view-helpers";
 
 const COMBINED_FIXTURE_EVENTS: EventItem[] = [
   ...RECORDED_EVENTS_MARKET_ONLY,
@@ -78,8 +79,19 @@ export default function ActivityPage() {
   const [proofModalOpen, setProofModalOpen] = React.useState(false);
   const [adminModalOpen, setAdminModalOpen] = React.useState(false);
   const [adminSecret, setAdminSecret] = React.useState("");
+  const localOperator = React.useSyncExternalStore(
+    () => () => {},
+    () =>
+      process.env.NODE_ENV === "development" &&
+      (["127.0.0.1", "localhost", "[::1]"].includes(window.location.hostname) ||
+        window.location.hostname.startsWith("192.168.") ||
+        window.location.hostname.startsWith("10.") ||
+        window.location.hostname.startsWith("172.")),
+    () => false
+  );
+  const operatorUnlocked = localOperator || Boolean(adminSecret);
 
-  const [nowMs, setNowMs] = React.useState<number>(1792229505000);
+  const [nowMs, setNowMs] = React.useState<number>(() => Date.now());
 
   // Read optional ?eventId=... query parameter on mount
   React.useEffect(() => {
@@ -102,7 +114,7 @@ export default function ActivityPage() {
         fetch("/api/snapshot", { cache: "no-store" }),
         fetch("/api/events?limit=150", { cache: "no-store" }),
       ]);
-      const isLive = snapRes.headers.get("X-AEGIS-Backend-Status") === "LIVE";
+      const isLive = isResponseLive(snapRes);
       setBackendLive(isLive);
 
       if (snapRes.ok) {
@@ -110,7 +122,8 @@ export default function ActivityPage() {
       }
       if (evRes.ok) {
         const apiEvents = (await evRes.json()) as EventItem[];
-        if (isLive && apiEvents.length > 0) {
+        const evLive = isResponseLive(evRes);
+        if ((isLive || evLive) && apiEvents.length > 0) {
           // Deduplicate by id or timestamp+type+message
           const seen = new Set<string>();
           const deduped: EventItem[] = [];
@@ -130,11 +143,20 @@ export default function ActivityPage() {
   }, []);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => {
+    const initialTimer = setTimeout(() => {
       void syncFromApi();
     }, 0);
-    return () => clearTimeout(timer);
-  }, [syncFromApi]);
+    const intervalTimer = setInterval(() => {
+      setNowMs(Date.now());
+      if (!streamPaused) {
+        void syncFromApi();
+      }
+    }, 5000);
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(intervalTimer);
+    };
+  }, [syncFromApi, streamPaused]);
 
   React.useEffect(() => {
     if (
@@ -373,7 +395,7 @@ export default function ActivityPage() {
         activeScenario={backendLive ? "live_backend" : "recorded_market_only"}
         onInspectProof={() => setProofModalOpen(true)}
         onOpenAdminModal={() => setAdminModalOpen(true)}
-        adminUnlocked={Boolean(adminSecret)}
+        adminUnlocked={operatorUnlocked}
         onRefresh={syncFromApi}
       />
 
