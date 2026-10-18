@@ -1,5 +1,5 @@
 {
-  "pid": 14236,
+  "pid": 5332,
   "host": "0.0.0.0",
   "port": 8771,
   "model_version": "aegis-laya-v2-tuned-seed17-7612b93c13cc",
@@ -22,7 +22,7 @@
     "confidence": 1.0,
     "abstained": false,
     "model_version": "aegis-laya-v2-tuned-seed17-7612b93c13cc",
-    "latency_ms": 901.831
+    "latency_ms": 440.291
   },
   "shadow_only": true,
   "execution_authority": false,

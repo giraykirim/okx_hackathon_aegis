@@ -1389,6 +1389,7 @@ export function deriveTradeCourtSession(params: {
     (explicitCouncilEv?.details?.council as Record<string, unknown> | undefined) ??
     (explicitCouncilEv?.details?.trade_court as Record<string, unknown> | undefined) ??
     (explicitCouncilEv?.details as Record<string, unknown> | undefined) ??
+    (gateEv?.details?.council as Record<string, unknown> | undefined) ??
     (reasonEv?.details?.council as Record<string, unknown> | undefined) ??
     (reasonEv?.details?.trade_court as Record<string, unknown> | undefined);
 

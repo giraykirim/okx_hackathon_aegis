@@ -565,6 +565,124 @@ class Agent:
                 max_exposure_quote=self.settings.max_exposure_quote,
                 laya_advisory=mode == "OKX_DEMO" and self.settings.laya_gate_demo == "advisory",
             )
+            policy_latency_ms = (time.perf_counter() - policy_started) * 1000
+            laya_avail = (
+                "MOCK_SCRIPTED"
+                if mode == "MOCK"
+                else "UNAVAILABLE"
+                if laya.model_version == "advisory-fallback"
+                else "COMPLETED"
+            )
+            evren_avail = (
+                "MOCK_SCRIPTED"
+                if mode == "MOCK"
+                else "COMPLETED"
+                if self.models.capabilities["EVREN"].status == "PASS"
+                else "UNAVAILABLE"
+            )
+            evren_model_name = (
+                self.models.evren_metadata.get("model")
+                if mode != "MOCK" and isinstance(self.models.evren_metadata, dict)
+                else None
+            )
+            council = {
+                "session_id": f"council-{(self.cycle_id or self.run_id)[:12]}",
+                "state": "SKIPPED"
+                if laya.label == "HALT"
+                else "COMPLETED"
+                if laya_avail == "COMPLETED" and evren_avail == "COMPLETED"
+                else "DEGRADED"
+                if "COMPLETED" in (laya_avail, evren_avail)
+                else "COMPLETED"
+                if mode == "MOCK"
+                else "UNAVAILABLE",
+                "headline": "MOCK COUNCIL DELIBERATION — Scripted Scenario"
+                if mode == "MOCK"
+                else "TradeCourt Multi-Seat Pre-Trade Deliberation",
+                "summary": proposal.summary,
+                "total_deliberation_ms": round(float(laya.latency_ms) + policy_latency_ms, 3)
+                if mode != "MOCK"
+                else None,
+                "is_mock": mode == "MOCK",
+                "seats": [
+                    {
+                        "seat_id": "REGIME_MAGISTRATE",
+                        "role_title": "1. Regime Magistrate",
+                        "subtitle": "LAYA Operational Regime Classifier",
+                        "model_name": laya.model_version,
+                        "actor": "mock" if mode == "MOCK" else "laya",
+                        "status": laya_avail,
+                        "stance": "VETO"
+                        if laya.label == "HALT"
+                        else "CAUTION"
+                        if laya.label == "REVIEW" or laya.abstained
+                        else "APPROVE",
+                        "confidence": None if mode == "MOCK" or laya.abstained else float(laya.confidence),
+                        "latency_ms": None if mode == "MOCK" or laya.latency_ms <= 0 else float(laya.latency_ms),
+                        "rationale": f"LAYA classified operational context as {laya.label} (confidence={laya.confidence:.4f}).",
+                        "flagged_rules": ["laya_not_clear"] if laya.label != "CONTINUE" or laya.abstained else [],
+                        "is_mock": mode == "MOCK",
+                    },
+                    {
+                        "seat_id": "OPPORTUNITY_ADVOCATE",
+                        "role_title": "2. Opportunity Advocate",
+                        "subtitle": "EVREN Bounded Thesis & Sizing Seat",
+                        "model_name": evren_model_name,
+                        "actor": "mock" if mode == "MOCK" else "evren",
+                        "status": evren_avail,
+                        "stance": "APPROVE"
+                        if proposal.action in ("BUY", "SELL")
+                        else "ABSTAIN"
+                        if evren_avail == "UNAVAILABLE"
+                        else "CAUTION",
+                        "confidence": None,
+                        "latency_ms": None,
+                        "rationale": f"Proposed {proposal.action} ({proposal.quantity} {proposal.symbol}): {proposal.summary}",
+                        "flagged_rules": ["no_trade_proposed"] if proposal.action == "NO_TRADE" else [],
+                        "is_mock": mode == "MOCK",
+                    },
+                    {
+                        "seat_id": "RISK_PROSECUTOR",
+                        "role_title": "3. Risk Prosecutor",
+                        "subtitle": "Adversarial Counter-Thesis & Safety Audit Seat",
+                        "model_name": evren_model_name,
+                        "actor": "mock" if mode == "MOCK" else "evren",
+                        "status": evren_avail,
+                        "stance": "VETO"
+                        if not gate.approved and proposal.action != "NO_TRADE"
+                        else "CAUTION"
+                        if gate.reasons
+                        else "APPROVE",
+                        "confidence": None,
+                        "latency_ms": None,
+                        "rationale": (
+                            f"Flagged safety conditions: {', '.join(gate.reasons)}"
+                            if gate.reasons
+                            else "All operational and exposure constraints satisfied."
+                        ),
+                        "flagged_rules": list(gate.reasons),
+                        "is_mock": mode == "MOCK",
+                    },
+                    {
+                        "seat_id": "PRESIDING_ARBITER",
+                        "role_title": "4. Presiding Arbiter (Risk Gate)",
+                        "subtitle": "Deterministic Python Execution Boundary",
+                        "model_name": "policy-deterministic-v2",
+                        "actor": "policy",
+                        "status": "COMPLETED",
+                        "stance": "APPROVE" if gate.approved else "VETO",
+                        "confidence": None,
+                        "latency_ms": round(policy_latency_ms, 3),
+                        "rationale": (
+                            "Deterministic Python Risk Gate approved bounded execution."
+                            if gate.approved
+                            else f"Deterministic Python Risk Gate enforced NO_TRADE ({', '.join(gate.reasons)})."
+                        ),
+                        "flagged_rules": list(gate.reasons),
+                        "is_mock": False,
+                    },
+                ],
+            }
             evidence.append(
                 self.emit(
                     "RISK_GATE",
@@ -573,7 +691,7 @@ class Agent:
                     severity="INFO" if gate.approved else "WARNING",
                     details={
                         **gate.model_dump(),
-                        "policy_latency_ms": (time.perf_counter() - policy_started) * 1000,
+                        "policy_latency_ms": policy_latency_ms,
                         "run_budget": {
                             "orders_reserved": run_orders,
                             "notional_reserved": str(run_reserved),
@@ -582,6 +700,7 @@ class Agent:
                         },
                         "max_exposure_quote": str(self.settings.max_exposure_quote),
                         "laya_gate": self.settings.laya_gate_demo if mode == "OKX_DEMO" else "required",
+                        "council": council,
                     },
                 )
             )
