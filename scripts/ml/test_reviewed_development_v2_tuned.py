@@ -32,8 +32,8 @@ class TestReviewedDevelopmentV2Tuned(unittest.TestCase):
             self.assertAlmostEqual(m, 161.0 / 3.0, places=6)
 
     def test_tuned_config_discriminative_lrs_and_fp32(self):
-        self.assertEqual(TUNED_CONFIG["head_lr"], 5e-5)
-        self.assertEqual(TUNED_CONFIG["scorer_lr"], 5e-4)
+        self.assertEqual(TUNED_CONFIG["head_lr"], 7e-5)
+        self.assertEqual(TUNED_CONFIG["scorer_lr"], 1.2e-3)
         self.assertTrue(TUNED_CONFIG["encoder_frozen"])
         self.assertGreater(TUNED_CONFIG["quantity_invariance_weight"], 0.0)
         self.assertGreater(TUNED_CONFIG["safety_penalty_weight"], 0.0)

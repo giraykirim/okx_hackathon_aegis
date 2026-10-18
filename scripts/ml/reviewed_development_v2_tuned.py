@@ -7,7 +7,7 @@ Root-cause fix for LAYA DecisionModel (#963 prior collapse on V2 161-row dataset
    causes self-attention in `self.head` to wash out inter-marker differences and collapse
    predictions to the majority class (`REVIEW`, 76/161 = 47.20%, CONTINUE recall = 0.0).
 2. Using `fp32` (preventing ModernBERT-large `float16` GradScaler overflow), discriminative
-   learning rates (`head_lr = 5e-5`, `scorer_lr = 5e-4`, `weight_decay = 0.0`), inverse-frequency
+   learning rates (`head_lr = 7e-5`, `scorer_lr = 1.2e-3`, `weight_decay = 0.0`), inverse-frequency
    class weighting (`[CONTINUE: 1.4907, REVIEW: 0.7061, HALT: 1.0952]`), a fail-closed safety
    margin against false `CONTINUE` on `REVIEW`/`HALT` cases, and profile quantity-invariance
    regularization across the 4 crossed quantities (`0.00005000..0.00020000`) resolves the collapse.
