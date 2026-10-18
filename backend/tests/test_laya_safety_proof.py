@@ -1,15 +1,13 @@
 """OFFLINE_BACKEND_TEST: injected transports, never genuine ATK/exchange output."""
 
-import asyncio
 import json
 import os
-import socket
-import subprocess
 from datetime import timedelta
 from decimal import Decimal
 from pathlib import Path
 
 import pytest
+from _offline_guard import deny_external_network
 from test_policy import inputs
 
 from aegis.agent import Agent
@@ -23,14 +21,7 @@ RECORDS = []
 
 @pytest.fixture(autouse=True)
 def isolate(monkeypatch):
-    def denied(*args, **kwargs):
-        raise AssertionError("OFFLINE_BACKEND_TEST forbids network/process execution")
-
-    for method in ("connect", "connect_ex"):
-        monkeypatch.setattr(socket.socket, method, denied)
-    monkeypatch.setattr(subprocess, "Popen", denied)
-    monkeypatch.setattr(asyncio, "create_subprocess_exec", denied)
-    monkeypatch.setattr(asyncio, "create_subprocess_shell", denied)
+    deny_external_network(monkeypatch, "OFFLINE_BACKEND_TEST forbids network/process execution")
 
 
 def record(scenario, **outcome):

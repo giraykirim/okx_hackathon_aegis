@@ -1,11 +1,9 @@
 """Offline tests cannot inherit operator credentials or open external transports."""
 
-import asyncio
 import os
-import socket
-import subprocess
 
 import pytest
+from _offline_guard import deny_external_network
 
 from aegis.settings import Settings
 
@@ -27,11 +25,4 @@ def offline_environment(monkeypatch):
         if key.startswith(("AEGIS_", "EVREN_", "OKX_")) and key != "AEGIS_OFFLINE_PROOF_PATH":
             monkeypatch.delenv(key, raising=False)
 
-    def denied(*args, **kwargs):
-        raise AssertionError("Offline pytest forbids external network/process execution")
-
-    monkeypatch.setattr(socket.socket, "connect", denied)
-    monkeypatch.setattr(socket.socket, "connect_ex", denied)
-    monkeypatch.setattr(subprocess, "Popen", denied)
-    monkeypatch.setattr(asyncio, "create_subprocess_exec", denied)
-    monkeypatch.setattr(asyncio, "create_subprocess_shell", denied)
+    deny_external_network(monkeypatch, "Offline pytest forbids external network/process execution")
