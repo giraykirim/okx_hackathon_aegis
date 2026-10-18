@@ -31,7 +31,11 @@ TUNED_META = ROOT / "ml/reviewed_development" / TUNED_RUN_ID / "seed-17.json"
 
 def ensure_selection_file(directory=TUNED_CKPT, meta_path=TUNED_META):
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    hashes = meta["checkpoint_hashes"]
+    hashes = {
+        name: hashlib.file_digest((directory / name).open("rb"), "sha256").hexdigest()
+        for name in meta["checkpoint_hashes"]
+        if (directory / name).is_file()
+    }
     version = hashlib.sha256(
         json.dumps(hashes, sort_keys=True).encode("utf-8")
     ).hexdigest()
@@ -42,11 +46,10 @@ def ensure_selection_file(directory=TUNED_CKPT, meta_path=TUNED_META):
         "source_run": TUNED_RUN_ID,
     }
     sel_file = directory / "selection.json"
-    if not sel_file.exists():
-        sel_file.write_text(
-            json.dumps(selection_obj, indent=2, allow_nan=False) + "\n",
-            encoding="utf-8",
-        )
+    sel_file.write_text(
+        json.dumps(selection_obj, indent=2, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
     return verified_selection(directory)
 
 

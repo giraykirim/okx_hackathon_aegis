@@ -1,9 +1,9 @@
 {
-  "pid": 24808,
+  "pid": 14236,
   "host": "0.0.0.0",
   "port": 8771,
-  "model_version": "aegis-laya-v2-tuned-seed17-7f6e5b070b1d",
-  "checkpoint_version": "7f6e5b070b1d3c9b37363fd3255ecf0bcec6cc23bd23c3997d398cef6d2d66f8",
+  "model_version": "aegis-laya-v2-tuned-seed17-7612b93c13cc",
+  "checkpoint_version": "7612b93c13ccd75059fedf1d5c9540de6ddd04daaa6cd916a50910d7217f4e82",
   "selected": "v2-tuned-seed17",
   "checkpoint_hashes": {
     "model.safetensors": "6bfdbf025ab52e23c2ff364975b03108ad0b42bc2037eb22f59448ef39520205",
@@ -12,7 +12,7 @@
     "train_report.json": "c49fae67da8474e2c70b4de59c09017f68e9a73c7aae9f6cc10faf0f25f60f14",
     "encoder\\config.json": "8525cf5ff496c47b5feacf2464bc658c608102894f348f6171542d73de3bbf33",
     "tokenizer\\tokenizer.json": "0b3214f8efe1327290428b84e5d344ff3f2442686c1b89fb7b42c13a79ce6779",
-    "tokenizer\\tokenizer_config.json": "4fd0734a3efc16861cda2749a9cb2106ca704a121f44375b94feb7853ac1fd17"
+    "tokenizer\\tokenizer_config.json": "5dee4e4e9f2fa05581a00a7f775f3030b0548a1e6fbe9187e3a786115b52f2d2"
   },
   "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
   "laya": "0.4.8",
@@ -21,8 +21,8 @@
     "label": "CONTINUE",
     "confidence": 1.0,
     "abstained": false,
-    "model_version": "aegis-laya-v2-tuned-seed17-7f6e5b070b1d",
-    "latency_ms": 562.701
+    "model_version": "aegis-laya-v2-tuned-seed17-7612b93c13cc",
+    "latency_ms": 901.831
   },
   "shadow_only": true,
   "execution_authority": false,
