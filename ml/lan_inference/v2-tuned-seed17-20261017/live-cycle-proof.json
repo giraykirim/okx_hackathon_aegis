@@ -1,0 +1,150 @@
+﻿{
+    "wall_ms":  2606.0,
+    "decision":  {
+                     "proposed_action":  "NO_TRADE",
+                     "laya_label":  "HALT",
+                     "laya_confidence":  0.7678,
+                     "risk_approved":  false,
+                     "execution_status":  "NOT_SENT",
+                     "risk_reasons":  [
+                                          "execution_disabled",
+                                          "approval_unavailable",
+                                          "unknown_account",
+                                          "laya_not_clear",
+                                          "no_trade_proposed",
+                                          "invalid_quantity"
+                                      ]
+                 },
+    "classify":  [
+                     {
+                         "label":  "HALT",
+                         "confidence":  0.7678,
+                         "abstained":  false,
+                         "model_version":  "aegis-laya-v2-tuned-seed17-7612b93c13cc",
+                         "latency_ms":  417.20559999885154,
+                         "integration":  {
+                                             "availability":  "AVAILABLE",
+                                             "source":  "LAN",
+                                             "reason_code":  "VALIDATED",
+                                             "model":  null,
+                                             "model_version":  "aegis-laya-v2-tuned-seed17-7612b93c13cc",
+                                             "reported_label":  "HALT",
+                                             "advisory_only":  true
+                                         },
+                         "availability":  "AVAILABLE",
+                         "context_version":  "aegis-trusted-context-shadow-v1",
+                         "missing":  [
+                                         "injection_detected",
+                                         "permission_revoked"
+                                     ],
+                         "phase":  "CLASSIFY",
+                         "cycle_id":  "f7cce49850154049b4f146553310914c",
+                         "correlation_id":  "f7cce49850154049b4f146553310914c"
+                     }
+                 ],
+    "council":  [
+                    {
+                        "session_id":  "council-f7cce4985015",
+                        "state":  "SKIPPED",
+                        "headline":  "TradeCourt Multi-Seat Pre-Trade Deliberation",
+                        "summary":  "EVREN unavailable or invalid; deterministic NO_TRADE fallback",
+                        "total_deliberation_ms":  417.398,
+                        "is_mock":  false,
+                        "seats":  [
+                                      {
+                                          "seat_id":  "REGIME_MAGISTRATE",
+                                          "role_title":  "1. Regime Magistrate",
+                                          "subtitle":  "LAYA Operational Regime Classifier",
+                                          "model_name":  "aegis-laya-v2-tuned-seed17-7612b93c13cc",
+                                          "actor":  "laya",
+                                          "status":  "COMPLETED",
+                                          "stance":  "VETO",
+                                          "confidence":  0.7678,
+                                          "latency_ms":  417.20559999885154,
+                                          "rationale":  "LAYA classified operational context as HALT (confidence=0.7678).",
+                                          "flagged_rules":  [
+                                                                "laya_not_clear"
+                                                            ],
+                                          "is_mock":  false
+                                      },
+                                      {
+                                          "seat_id":  "OPPORTUNITY_ADVOCATE",
+                                          "role_title":  "2. Opportunity Advocate",
+                                          "subtitle":  "EVREN Bounded Thesis \u0026 Sizing Seat",
+                                          "model_name":  null,
+                                          "actor":  "evren",
+                                          "status":  "UNAVAILABLE",
+                                          "stance":  "ABSTAIN",
+                                          "confidence":  null,
+                                          "latency_ms":  null,
+                                          "rationale":  "Proposed NO_TRADE (0 BTC-USDT): EVREN unavailable or invalid; deterministic NO_TRADE fallback",
+                                          "flagged_rules":  [
+                                                                "no_trade_proposed"
+                                                            ],
+                                          "is_mock":  false
+                                      },
+                                      {
+                                          "seat_id":  "RISK_PROSECUTOR",
+                                          "role_title":  "3. Risk Prosecutor",
+                                          "subtitle":  "Adversarial Counter-Thesis \u0026 Safety Audit Seat",
+                                          "model_name":  null,
+                                          "actor":  "evren",
+                                          "status":  "UNAVAILABLE",
+                                          "stance":  "CAUTION",
+                                          "confidence":  null,
+                                          "latency_ms":  null,
+                                          "rationale":  "Flagged safety conditions: execution_disabled, approval_unavailable, unknown_account, laya_not_clear, no_trade_proposed, invalid_quantity",
+                                          "flagged_rules":  [
+                                                                "execution_disabled",
+                                                                "approval_unavailable",
+                                                                "unknown_account",
+                                                                "laya_not_clear",
+                                                                "no_trade_proposed",
+                                                                "invalid_quantity"
+                                                            ],
+                                          "is_mock":  false
+                                      },
+                                      {
+                                          "seat_id":  "PRESIDING_ARBITER",
+                                          "role_title":  "4. Presiding Arbiter (Risk Gate)",
+                                          "subtitle":  "Deterministic Python Execution Boundary",
+                                          "model_name":  "policy-deterministic-v2",
+                                          "actor":  "policy",
+                                          "status":  "COMPLETED",
+                                          "stance":  "VETO",
+                                          "confidence":  null,
+                                          "latency_ms":  0.192,
+                                          "rationale":  "Deterministic Python Risk Gate enforced NO_TRADE (execution_disabled, approval_unavailable, unknown_account, laya_not_clear, no_trade_proposed, invalid_quantity).",
+                                          "flagged_rules":  [
+                                                                "execution_disabled",
+                                                                "approval_unavailable",
+                                                                "unknown_account",
+                                                                "laya_not_clear",
+                                                                "no_trade_proposed",
+                                                                "invalid_quantity"
+                                                            ],
+                                          "is_mock":  false
+                                      }
+                                  ]
+                    }
+                ],
+    "event_types":  [
+                        "tool_call",
+                        "tool_call",
+                        "tool_call",
+                        "ATK_RECEIPT",
+                        "ATK_RECEIPT",
+                        "OBSERVE",
+                        "tool_call",
+                        "OBSERVE",
+                        "REASON",
+                        "tool_call",
+                        "CLASSIFY",
+                        "RISK_GATE",
+                        "NO_TRADE",
+                        "VERIFY",
+                        "AUDIT"
+                    ],
+    "recorded_at":  "2026-10-18T11:40:44.7321077Z",
+    "scope":  "One real MARKET_ONLY cycle: official ATK CLI (site=tr) + LAN LAYA :8771 + deterministic policy. EVREN unavailable in this run. No order sent. Single sample, not an SLA."
+}
