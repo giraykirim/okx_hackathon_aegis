@@ -1,0 +1,4 @@
+
+ml/lan_inference/**/serve.log
+*.log
+
