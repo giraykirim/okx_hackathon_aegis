@@ -2,3 +2,9 @@
 ml/lan_inference/**/serve.log
 *.log
 
+# Local development reports and complete test output.
+.devtools/
+scripts/__pycache__/
+scripts/devtools/__pycache__/
+.playwright-cli/
+
