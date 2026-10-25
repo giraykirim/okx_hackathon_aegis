@@ -10,7 +10,7 @@ from fastapi import HTTPException
 
 from .atk import ATK
 from .integrations import Models
-from .models import Capability, Classification, Event, Proposal, new_id, utcnow
+from .models import Capability, Classification, Event, Observation, Proposal, new_id, utcnow
 from .notional_service import NotionalService
 from .policy import check
 from .service_models import (
@@ -33,6 +33,7 @@ HARD_MARKET_REASONS = {
     "symbol_not_allowed",
     "crossed_quotes",
     "invalid_execution_price",
+    "corrupt_data",
 }
 LIMITATIONS = [
     "Pre-trade operational assessment only; never an execution approval or financial advice",
@@ -134,6 +135,14 @@ class RiskService:
                 reasons.append(
                     "market_observation_unavailable" if observation is None else "assessment_unavailable"
                 )
+            # Only a schema-valid observation may supply market provenance. An adapter value that
+            # fails validation (e.g. a corrupt observed_at) is never echoed as a market timestamp.
+            verified = None
+            if observation is not None:
+                try:
+                    verified = Observation.model_validate(observation.model_dump(warnings=False))
+                except (ValueError, TypeError):
+                    verified = None
             if observation is not None:
                 # Revalidate through the original deterministic gate; no order permission can be produced.
                 proposal = Proposal(
@@ -162,6 +171,8 @@ class RiskService:
                     "unknown_account_timestamp",
                 }
                 reasons.extend(r for r in gate.reasons if r not in account_findings)
+                if verified is None and "corrupt_data" not in reasons:
+                    reasons.append("corrupt_data")  # the policy gate applies the same validation
                 limit_price = gate.limit_price
             else:
                 reasons.extend(["unknown_account", "execution_disabled", "approval_unavailable"])
@@ -196,9 +207,9 @@ class RiskService:
                 assessment="HALT" if hard or failed or laya.label == "HALT" else "REVIEW",
                 reasons=list(dict.fromkeys(reasons)),
                 market_provenance=MarketProvenance(
-                    status="PASS" if observation is not None else "UNAVAILABLE",
+                    status="PASS" if verified is not None else "FAIL" if observation is not None else "UNAVAILABLE",
                     site=self.settings.okx_site,
-                    market_timestamp=observation.observed_at if observation else None,
+                    market_timestamp=verified.observed_at if verified is not None else None,
                     receipts=receipts,
                 ),
                 market_checks=MarketChecks(

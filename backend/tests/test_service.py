@@ -2,6 +2,8 @@ import asyncio
 import hashlib
 import json
 from datetime import timedelta
+from decimal import Decimal
+from types import SimpleNamespace
 
 import pytest
 import yaml
@@ -163,6 +165,42 @@ def test_unsafe_server_market_is_halt(tmp_path, monkeypatch, change, reason):
         assert data["assessment"] == "HALT"
         assert reason in data["reasons"]
         assert data["market_checks"]["status"] == "FAIL"
+
+
+@pytest.mark.parametrize(
+    "change,assessment,status",
+    [
+        ({}, "REVIEW", "PASS"),
+        ({"tick_size": Decimal("0")}, "HALT", "FAIL"),
+    ],
+)
+def test_corrupt_server_market_is_hard_halt_and_healthy_stays_review(
+    tmp_path, monkeypatch, change, assessment, status
+):
+    obs = inputs()[0].model_copy(update=change)
+    with client(tmp_path) as api:
+        service, calls = prepare(api, monkeypatch, observation=obs)
+
+        async def classify(*args, **kwargs):
+            calls.append("classify")
+            return inputs()[1]
+
+        async def reason(*args, **kwargs):
+            calls.append("reason")
+            return SimpleNamespace(summary="Deterministic offline summary")
+
+        monkeypatch.setattr(service.models, "classify", classify)
+        monkeypatch.setattr(service.models, "reason", reason)
+        response = api.post("/api/v1/risk/evaluate", json=intent(), headers=headers())
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert calls == ["observe", "classify", "reason"]
+        assert data["assessment"] == assessment
+        assert data["market_checks"]["status"] == status
+        corrupt = "tick_size" in change
+        assert ("corrupt_data" in data["reasons"]) is corrupt
+        assert ("corrupt_data" in data["market_checks"]["reasons"]) is corrupt
+        assert data["execution_authority"] is False and data["order_permission"] is False
 
 
 def test_excess_order_is_halt_with_no_side_effect(tmp_path, monkeypatch):
