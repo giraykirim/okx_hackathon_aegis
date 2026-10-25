@@ -34,6 +34,17 @@ class Settings(BaseSettings):
     max_run_notional: Decimal = Field(default=Decimal("25"), gt=0, le=25, allow_inf_nan=False)
     # Caps risk-increasing BUYs only; demo accounts ship with large preloaded holdings.
     max_exposure_quote: Decimal = Field(default=Decimal("1000"), gt=0, le=1_000_000, allow_inf_nan=False)
+    # Pre-trade cost gate (enforced in OKX_DEMO). No default fee: an unverified schedule blocks.
+    cost_taker_fee_rate: Decimal | None = Field(default=None, ge=0, le=Decimal("0.01"), allow_inf_nan=False)
+    cost_slippage_bps_per_leg: Decimal = Field(default=Decimal("5"), ge=0, le=500, allow_inf_nan=False)
+    cost_uncertainty_bps: Decimal = Field(default=Decimal("5"), ge=0, le=500, allow_inf_nan=False)
+    cost_max_data_age_seconds: float = Field(default=10, gt=0, le=15)
+    cost_max_spread_bps: Decimal = Field(default=Decimal("10"), ge=0, le=500, allow_inf_nan=False)
+    cost_min_net_edge_bps: Decimal = Field(default=Decimal("0"), ge=0, le=1000, allow_inf_nan=False)
+    # A persisted mark older than this is reported as STALE_MARK, never as current.
+    pnl_mark_max_age_seconds: float = Field(default=60, gt=0, le=86400)
+    # A persisted shadow exit assessment older than this is served as STALE, never as current.
+    exit_shadow_max_age_seconds: float = Field(default=60, gt=0, le=86400)
     # OKX_DEMO only: "advisory" lets a LAYA HALT veto while abstention/low confidence does not block.
     laya_gate_demo: Literal["advisory", "required"] = "advisory"
     # Hosted read-only dashboards: start the loop at boot. Ignored unless MARKET_ONLY or MOCK.

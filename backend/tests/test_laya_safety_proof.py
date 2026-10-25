@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 from _offline_guard import deny_external_network
-from test_policy import inputs
+from test_policy import allow_costs, inputs
 
 from aegis.agent import Agent
 from aegis.atk import ATK
@@ -81,6 +81,7 @@ async def install(agent, monkeypatch):
     monkeypatch.setattr(agent.models, "classify", classify)
     monkeypatch.setattr(agent.models, "reason", reason)
     monkeypatch.setattr(Settings, "demo_ready", lambda self: True)
+    allow_costs(agent, monkeypatch)
 
 
 @pytest.mark.asyncio

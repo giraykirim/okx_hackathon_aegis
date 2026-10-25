@@ -108,13 +108,154 @@ export interface Identity {
   verification_status: string;
 }
 
+export interface PnlMark {
+  symbol: string;
+  price: string;
+  bid: string;
+  ask: string;
+  observed_at: string;
+  source: string;
+  age_seconds: number;
+  stale: boolean;
+  max_age_seconds: number;
+}
+
+/** Backend `/api/metrics/pnl` (schema `aegis-demo-pnl-2`); all money values are decimal strings. */
+export interface DemoPnl {
+  schema_version: "aegis-demo-pnl-2";
+  /** Accounting figures are null when an accounting issue makes them unknowable (see `issues`). */
+  realized: string | null;
+  unrealized: string | null;
+  net: string | null;
+  /** Quote-equivalent fee cost (positive = cost, negative = net rebate); already inside net. */
+  fees: string | null;
+  fee_breakdown: Record<string, string>;
+  inventory_qty: string | null;
+  cost_basis: string | null;
+  average_cost: string | null;
+  fill_count: number;
+  unmatched_sell_qty: string;
+  complete: boolean;
+  issues: string[];
+  warnings: string[];
+  ledger: Record<string, unknown>[];
+  mark_price: string | null;
+  mark: PnlMark | null;
+  valuation_status:
+    | "CURRENT_MARK"
+    | "STALE_MARK"
+    | "NO_MARK"
+    | "CLOSED_NO_MARK_NEEDED"
+    | "ACCOUNTING_INCOMPLETE";
+  excluded_unowned_fills: number;
+  method: string;
+  as_of: string;
+}
+
+export interface CostAssessment {
+  status: "APPROVED" | "NO_TRADE" | "REVIEW" | "NOT_APPLICABLE";
+  approved: boolean;
+  reasons: string[];
+  explanation: string;
+  inputs: Record<string, unknown>;
+  breakdown: Record<string, unknown> | null;
+}
+
+/** Backend `/api/metrics/cost-gate` (schema `aegis-cost-gate-1`). */
+export interface CostGateSummary {
+  schema_version: "aegis-cost-gate-1";
+  evaluated_trade_proposals: number;
+  cost_approved: number;
+  blocked_when_enforced: number;
+  would_block_unenforced: number;
+  reason_counts: Record<string, number>;
+  latest: {
+    decision_id: string;
+    source_mode: string;
+    timestamp: string;
+    enforced: boolean;
+    assessment: CostAssessment;
+  } | null;
+}
+
+/** Advisory exit proposal from backend `aegis/exit_plan.py`; never executable. */
+export interface ExitProposal {
+  status: "PROPOSE_REDUCE" | "PROPOSE_CLOSE" | "NO_EXIT" | "REVIEW";
+  reasons: string[];
+  rule_set: "position_reduction_v1";
+  entry_edge_gate_applies: false;
+  executable: false;
+  order_adapter: null;
+  requested_fraction: string;
+  owned_net_btc: string | null;
+  sellable_btc: string | null;
+  proposed_sell_btc: string | null;
+  remaining_btc: string | null;
+  lot_size: string | null;
+  min_size: string | null;
+  reference_bid: string | null;
+  market_observed_at: string | null;
+  market_age_seconds: number | null;
+  explanation: string;
+}
+
+/** One persisted cycle assessment (schema `aegis-exit-shadow-1`). */
+export interface ExitShadowAssessment {
+  schema_version: "aegis-exit-shadow-1";
+  assessment_id: string;
+  run_id: string;
+  cycle_id: string;
+  source_mode: SourceMode;
+  computed_at: string;
+  mode: "SHADOW";
+  orders_sent: false;
+  /** fraction=1 is full-close capacity after lot/minimum limits, not a signal to sell now. */
+  fraction_semantics: "full_close_capacity_not_a_sell_signal";
+  market_source: string | null;
+  /** Market bound the read view re-applies to `proposal.market_observed_at`. */
+  market_max_age_seconds: number;
+  inventory_basis: {
+    fingerprint: string;
+    owned_fill_count: number;
+    excluded_unowned_fills: number;
+    unresolved_demo_orders: number;
+  };
+  proposal: ExitProposal;
+}
+
+/** Backend `/api/metrics/exit-shadow` (schema `aegis-exit-shadow-read-1`); a read never recomputes. */
+export interface ExitShadowRead {
+  schema_version: "aegis-exit-shadow-read-1";
+  mode: "SHADOW";
+  orders_sent: false;
+  executable: false;
+  read_at: string;
+  max_age_seconds: number;
+  state: "NO_ASSESSMENT" | "CURRENT" | "STALE" | "SUPERSEDED";
+  current: boolean;
+  age_seconds: number | null;
+  /** True when the outcome (capacity or lot/minimum result) was derived from market data. */
+  market_dependent: boolean;
+  /** Age of that market observation at read time, judged apart from the record age. */
+  market_age_seconds: number | null;
+  market_max_age_seconds: number | null;
+  not_current_reasons: string[];
+  assessment: ExitShadowAssessment | null;
+}
+
 export interface Metrics {
   decisions: number;
   vetoed: number;
   verified_exchange_orders: number;
   mock_executions: number;
   unresolved_orders: number;
+  /** Account-level profit is deliberately not asserted. */
   pnl: null;
+  /**
+   * Client-side merge of the additive `/api/metrics/pnl` endpoint.
+   * Mark-to-market PnL of verified demo fills only; absent when no fills exist.
+   */
+  demo_pnl?: DemoPnl | null;
 }
 
 export interface Snapshot {

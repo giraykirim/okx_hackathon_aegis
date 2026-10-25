@@ -4,6 +4,8 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { AdminUnlockModal } from "@/components/AdminUnlockModal";
 import { AnimatedMetricCards } from "@/components/AnimatedMetricCards";
+import { DemoPnlPanel, type PnlSourceState } from "@/components/DemoPnlPanel";
+import { ExitShadowPanel, type ExitShadowSourceState } from "@/components/ExitShadowPanel";
 import { HeaderBar } from "@/components/HeaderBar";
 import { HeroDecisionCard } from "@/components/HeroDecisionCard";
 import { OverviewBottomPanels } from "@/components/OverviewBottomPanels";
@@ -20,7 +22,15 @@ import {
   RECORDED_MOCK_SCENARIOS,
   RECORDED_SNAPSHOT_MARKET_ONLY,
 } from "@/lib/fixtures";
-import type { Decision, EventItem, Metrics, Snapshot } from "@/lib/types";
+import type {
+  CostGateSummary,
+  Decision,
+  DemoPnl,
+  EventItem,
+  ExitShadowRead,
+  Metrics,
+  Snapshot,
+} from "@/lib/types";
 import {
   buildPipelineSteps,
   deriveRuntimeStatusModel,
@@ -45,6 +55,12 @@ export default function DashboardPage() {
     RECORDED_METRICS_MARKET_ONLY
   );
   const [backendLive, setBackendLive] = React.useState<boolean>(false);
+  const [demoPnl, setDemoPnl] = React.useState<DemoPnl | null>(null);
+  const [costGate, setCostGate] = React.useState<CostGateSummary | null>(null);
+  const [pnlSource, setPnlSource] = React.useState<PnlSourceState>("UNAVAILABLE");
+  const [exitShadow, setExitShadow] = React.useState<ExitShadowRead | null>(null);
+  const [exitSource, setExitSource] = React.useState<ExitShadowSourceState>("UNAVAILABLE");
+  const [exitReceivedAt, setExitReceivedAt] = React.useState<number | null>(null);
   const [sseState, setSseState] = React.useState<
     "CONNECTING" | "LIVE" | "FALLBACK" | "DISCONNECTED"
   >("CONNECTING");
@@ -76,14 +92,55 @@ export default function DashboardPage() {
   const [controlBusy, setControlBusy] = React.useState(false);
   const [controlError, setControlError] = React.useState<string | null>(null);
 
-  const syncFromApi = React.useCallback(async () => {
+  // The shadow exit record is read as persisted (the GET never triggers a new assessment) and
+  // independently of the other endpoints. Every failed refresh clears it, so a previous capacity
+  // is never left on screen as current; the arrival time lets the panel keep ageing the record.
+  const syncExitShadow = React.useCallback(async () => {
+    let source: ExitShadowSourceState = "UNAVAILABLE";
+    let data: ExitShadowRead | null = null;
     try {
-      const [snapRes, evRes, metRes, decRes] = await Promise.all([
+      const res = await fetch("/api/metrics/exit-shadow", { cache: "no-store" });
+      try {
+        if (res.ok && res.headers.get("X-AEGIS-Backend-Status") === "LIVE") {
+          const body = (await res.json()) as ExitShadowRead | null;
+          if (body?.schema_version === "aegis-exit-shadow-read-1") {
+            source = "LIVE";
+            data = body;
+          }
+        }
+      } catch {
+        // Malformed body: treated like an unavailable backend.
+      }
+    } catch {
+      source = "DISCONNECTED"; // the browser request itself failed
+    }
+    if (activePreset === "real_atk_no_trade") {
+      setExitSource(source);
+      setExitShadow(data);
+      setExitReceivedAt(data ? Date.now() : null);
+    }
+  }, [activePreset]);
+
+  const syncFromApi = React.useCallback(async () => {
+    const exitSync = syncExitShadow();
+    try {
+      const [snapRes, evRes, metRes, decRes, pnlRes, costRes] = await Promise.all([
         fetch("/api/snapshot", { cache: "no-store" }),
         fetch("/api/events?limit=100", { cache: "no-store" }),
         fetch("/api/metrics", { cache: "no-store" }),
         fetch("/api/decisions?limit=50", { cache: "no-store" }),
+        fetch("/api/metrics/pnl", { cache: "no-store" }),
+        fetch("/api/metrics/cost-gate", { cache: "no-store" }),
       ]);
+      // PnL is shown only from a live backend answer; the proxy never substitutes a fixture.
+      const pnlLive = pnlRes.ok && pnlRes.headers.get("X-AEGIS-Backend-Status") === "LIVE";
+      const pnlData = pnlLive ? ((await pnlRes.json()) as DemoPnl | null) : null;
+      const costData = costRes.ok ? ((await costRes.json()) as CostGateSummary) : null;
+      if (activePreset === "real_atk_no_trade") {
+        setPnlSource(pnlLive ? "LIVE" : "UNAVAILABLE");
+        setDemoPnl(pnlData);
+        setCostGate(costData);
+      }
 
       const isLive = isResponseLive(snapRes);
       setBackendLive(isLive);
@@ -103,7 +160,7 @@ export default function DashboardPage() {
       if (metRes.ok) {
         const metData = (await metRes.json()) as Metrics;
         if (activePreset === "real_atk_no_trade") {
-          setMetrics(metData);
+          setMetrics({ ...metData, demo_pnl: pnlData });
         }
       }
       if (decRes.ok) {
@@ -115,7 +172,8 @@ export default function DashboardPage() {
     } catch {
       setBackendLive(false);
     }
-  }, [activePreset]);
+    await exitSync;
+  }, [activePreset, syncExitShadow]);
 
   React.useEffect(() => {
     const initialTimer = setTimeout(() => {
@@ -198,6 +256,12 @@ export default function DashboardPage() {
       mock_laya_halt: "laya_halt",
     };
     const chosen = RECORDED_MOCK_SCENARIOS[mapKey[preset]];
+    setPnlSource("NOT_APPLICABLE");
+    setDemoPnl(null);
+    setCostGate(null);
+    setExitSource("NOT_APPLICABLE");
+    setExitShadow(null);
+    setExitReceivedAt(null);
     setSnapshot(chosen.snapshot);
     setEvents(chosen.events);
     setDecisions([chosen.decision]);
@@ -454,6 +518,12 @@ export default function DashboardPage() {
           eventsCount={events.length}
           sourceMode={snapshot.source_mode}
         />
+
+        {/* Agent-owned demo PnL + pre-trade cost gate (live backend data only) */}
+        <DemoPnlPanel pnl={demoPnl} costGate={costGate} source={pnlSource} />
+
+        {/* SHADOW exit capacity of agent-owned inventory (persisted record; no order path) */}
+        <ExitShadowPanel data={exitShadow} source={exitSource} receivedAt={exitReceivedAt} />
 
         {/* Latest Activity Preview + System Status Panel */}
         <OverviewBottomPanels

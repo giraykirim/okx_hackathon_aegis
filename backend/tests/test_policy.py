@@ -32,6 +32,29 @@ def inputs():
     )
 
 
+def allow_costs(agent, monkeypatch, edge_bps="500"):
+    """Supply the measured edge, fee and liquidity the cost gate needs, for tests of later stages."""
+    from aegis.cost_gate import EdgeEstimate, ExitPlan
+    from aegis.models import utcnow
+
+    agent.settings.cost_taker_fee_rate = Decimal("0.001")
+
+    def edge(features):
+        estimate = EdgeEstimate(
+            expected_return_bps=edge_bps,
+            uncertainty_bps="0",
+            horizon_seconds=900,
+            source="TEST_FIXTURE_OUT_OF_SAMPLE",
+            out_of_sample_validated=True,
+            sample_size=1000,
+            as_of=utcnow(),
+        )
+        return estimate, ExitPlan(horizon_seconds=900)
+
+    monkeypatch.setattr(agent, "trade_edge", edge)
+    monkeypatch.setattr(agent, "market_liquidity", lambda: {"bid_sz": "10", "ask_sz": "10"})
+
+
 def gate(**kwargs):
     from aegis.policy import check
 

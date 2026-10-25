@@ -47,6 +47,10 @@ class ATK:
         self.market_receipts: list[ATKReceipt] = []
         self.journal = ToolJournal(self)
         self.evidence_sink = None
+        # Venue-reported fill of the most recent reconcile() call, if any.
+        self.last_fill: dict | None = None
+        # Top-of-book sizes from the most recent ticker (same response as Observation bid/ask).
+        self.last_top_of_book: dict | None = None
         self.capabilities = {
             "ATK_MARKET": Capability(),
             "ATK_ACCOUNT": Capability(),
@@ -373,6 +377,7 @@ class ATK:
             return stdout
 
     async def observe(self) -> Observation:
+        self.last_top_of_book = None
         ticker = (await self.call("ticker"))[0]
         instrument = (await self.call("instruments"))[0]
         if ticker["instId"] != "BTC-USDT" or instrument["instId"] != "BTC-USDT":
@@ -390,6 +395,11 @@ class ATK:
             tick_size=instrument["tickSz"],
             instrument_live=instrument["state"] == "live" and instrument["instType"] == "SPOT",
         )
+        self.last_top_of_book = {
+            "bid_sz": ticker.get("bidSz") or None,
+            "ask_sz": ticker.get("askSz") or None,
+            "observed_at": observation.observed_at.isoformat(),
+        }
         self.capabilities["ATK_MARKET"] = Capability(
             status="PASS",
             checked_at=utcnow(),
@@ -535,6 +545,7 @@ class ATK:
     ) -> tuple[str, str, str]:
         if limit_price is None:
             raise ValueError("Persisted policy price required for reconciliation")
+        self.last_fill = None
         try:
             row = (await self.call("get", "--instId", "BTC-USDT", "--clOrdId", client_id))[0]
         except ATKCommandError as exc:
@@ -554,6 +565,29 @@ class ATK:
         ):
             raise ValueError("Venue order does not match intent")
         state = row["state"]
+        if state in {"filled", "partially_filled", "canceled", "mmp_canceled"}:
+            # Preserve the venue's own execution figures verbatim for PnL reporting; a canceled
+            # IOC may still carry a partial fill. A missing fee stays None, never "0", and the
+            # execution time is the venue's fillTime, not this read-back's wall clock.
+            self.last_fill = {
+                "schema": 2,
+                "ord_id": row["ordId"],
+                "cl_ord_id": row.get("clOrdId"),
+                "inst_id": row.get("instId"),
+                "side": row.get("side"),
+                "ord_type": row.get("ordType"),
+                "avg_price": row.get("avgPx") or None,
+                "filled_qty": row.get("accFillSz") or None,
+                "fee": row.get("fee") if row.get("fee") not in (None, "") else None,
+                "fee_ccy": row.get("feeCcy") or None,
+                "rebate": row.get("rebate") or "",
+                "rebate_ccy": row.get("rebateCcy") or None,
+                "fill_time_ms": row.get("fillTime") or None,
+                "u_time_ms": row.get("uTime") or None,
+                "c_time_ms": row.get("cTime") or None,
+                "state": state,
+                "source_mode": "OKX_DEMO",
+            }
         if state in {"filled", "canceled", "mmp_canceled"}:
             self.capabilities["ATK_ORDER_RECONCILIATION"] = Capability(
                 status="PASS",

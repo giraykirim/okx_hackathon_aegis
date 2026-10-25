@@ -24,6 +24,8 @@ export function EventTimelineAndCapabilities({
   onSelectEvent,
 }: EventTimelineAndCapabilitiesProps) {
   const [expandedEventIds, setExpandedEventIds] = React.useState<Record<string, boolean>>({});
+  const demoPnl = metrics?.demo_pnl ?? null;
+  const demoNet = demoPnl?.net != null ? Number(demoPnl.net) : null;
 
   const toggleExpand = (id: string) => {
     setExpandedEventIds((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -172,7 +174,7 @@ export function EventTimelineAndCapabilities({
               Audit-Derived Metrics (`/api/metrics`)
             </h3>
             <span className="font-mono text-[11px] text-slate-400">
-              No synthetic PnL
+              PnL only from verified demo fills
             </span>
           </div>
 
@@ -208,12 +210,27 @@ export function EventTimelineAndCapabilities({
               </div>
             </div>
             <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-2.5">
-              <div className="text-[11px] text-slate-400">Realized PnL</div>
+              <div className="text-[11px] text-slate-400">Demo PnL (net)</div>
               <div
-                className="mt-1 font-mono text-sm font-bold text-slate-400"
-                title="Metrics deliberately report pnl=null; no profit claims"
+                className={`mt-1 font-mono text-sm font-bold ${
+                  demoNet == null
+                    ? "text-slate-500"
+                    : demoNet >= 0
+                      ? "text-emerald-400"
+                      : "text-rose-400"
+                }`}
+                title={
+                  demoPnl
+                    ? `${demoPnl.method} · mark ${demoPnl.mark_price ?? "n/a"} · account pnl stays null`
+                    : "No venue-confirmed demo fills recorded yet; account-level pnl remains null"
+                }
               >
-                null (NOT_TESTED)
+                {demoNet == null ? "—" : `${demoPnl?.net} USDT`}
+              </div>
+              <div className="mt-0.5 text-[10px] text-slate-500">
+                {demoPnl
+                  ? `realized ${demoPnl.realized} · fees ${demoPnl.fees}`
+                  : "awaiting verified fills"}
               </div>
             </div>
           </div>

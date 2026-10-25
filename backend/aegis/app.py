@@ -61,6 +61,77 @@ class ScenarioRequest(StrictModel):
     ]
 
 
+class PnlMark(StrictModel):
+    symbol: str
+    price: str
+    bid: str
+    ask: str
+    observed_at: AwareDatetime
+    source: str
+    age_seconds: float
+    stale: bool
+    max_age_seconds: float
+
+
+class DemoPnl(StrictModel):
+    """Additive, versioned demo PnL; the frozen Metrics.pnl stays null."""
+
+    schema_version: Literal["aegis-demo-pnl-2"]
+    # Accounting figures are null when an accounting issue makes them unknowable (see `issues`).
+    realized: str | None
+    unrealized: str | None
+    net: str | None
+    fees: str | None
+    fee_breakdown: dict[str, str]
+    inventory_qty: str | None
+    cost_basis: str | None
+    average_cost: str | None
+    fill_count: int
+    unmatched_sell_qty: str
+    complete: bool
+    issues: list[str]
+    warnings: list[str]
+    ledger: list[dict]
+    mark_price: str | None
+    mark: PnlMark | None
+    valuation_status: Literal[
+        "CURRENT_MARK", "STALE_MARK", "NO_MARK", "CLOSED_NO_MARK_NEEDED", "ACCOUNTING_INCOMPLETE"
+    ]
+    excluded_unowned_fills: int
+    method: str
+    as_of: AwareDatetime
+
+
+class CostGateSummary(StrictModel):
+    schema_version: Literal["aegis-cost-gate-1"]
+    evaluated_trade_proposals: int
+    cost_approved: int
+    blocked_when_enforced: int
+    would_block_unenforced: int
+    reason_counts: dict[str, int]
+    latest: dict | None
+
+
+class ExitShadowRead(StrictModel):
+    """Latest persisted SHADOW exit assessment; reading it never computes or sends anything."""
+
+    schema_version: Literal["aegis-exit-shadow-read-1"]
+    mode: Literal["SHADOW"]
+    orders_sent: Literal[False]
+    executable: Literal[False]
+    read_at: AwareDatetime
+    max_age_seconds: float
+    state: Literal["NO_ASSESSMENT", "CURRENT", "STALE", "SUPERSEDED"]
+    current: bool
+    age_seconds: float | None
+    # Age of the observation behind the capacity, at read time; judged apart from the record age.
+    market_dependent: bool
+    market_age_seconds: float | None
+    market_max_age_seconds: float | None
+    not_current_reasons: list[str]
+    assessment: dict | None
+
+
 class Metrics(StrictModel):
     decisions: int
     vetoed: int
@@ -192,6 +263,24 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get("/api/metrics", response_model=Metrics)
     async def metrics(runtime: Runtime):
         return runtime.store.metrics()
+
+    @app.get("/api/metrics/pnl", response_model=DemoPnl | None)
+    async def demo_pnl(runtime: Runtime):
+        # Additive endpoint: the frozen Metrics schema keeps pnl=null. The mark is the persisted
+        # venue ticker (survives restarts) with its exchange time and staleness.
+        return runtime.store.demo_pnl(mark_max_age_seconds=runtime.settings.pnl_mark_max_age_seconds)
+
+    @app.get("/api/metrics/cost-gate", response_model=CostGateSummary)
+    async def cost_gate(runtime: Runtime):
+        return runtime.store.cost_summary()
+
+    @app.get("/api/metrics/exit-shadow", response_model=ExitShadowRead)
+    async def exit_shadow(runtime: Runtime):
+        # Operator read of the last cycle's SHADOW exit assessment: no cycle, venue call or order.
+        return runtime.store.exit_shadow(
+            max_age_seconds=runtime.settings.exit_shadow_max_age_seconds,
+            source_mode=runtime.settings.source_mode,
+        )
 
     @app.get("/api/web3/identity", response_model=Identity)
     async def identity():

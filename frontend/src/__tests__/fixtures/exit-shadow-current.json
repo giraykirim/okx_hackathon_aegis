@@ -1,0 +1,53 @@
+{
+  "schema_version": "aegis-exit-shadow-read-1",
+  "mode": "SHADOW",
+  "orders_sent": false,
+  "executable": false,
+  "read_at": "2026-10-25T12:00:03.000000Z",
+  "max_age_seconds": 60.0,
+  "state": "CURRENT",
+  "current": true,
+  "age_seconds": 3.0,
+  "market_dependent": true,
+  "market_age_seconds": 3.001,
+  "market_max_age_seconds": 15,
+  "not_current_reasons": [],
+  "assessment": {
+    "schema_version": "aegis-exit-shadow-1",
+    "assessment_id": "a0000000000000000000000000000001",
+    "run_id": "r0000000000000000000000000000001",
+    "cycle_id": "c0000000000000000000000000000001",
+    "source_mode": "OKX_DEMO",
+    "computed_at": "2026-10-25T12:00:00+00:00",
+    "mode": "SHADOW",
+    "orders_sent": false,
+    "fraction_semantics": "full_close_capacity_not_a_sell_signal",
+    "market_source": "OKX ticker and instrument via official ATK",
+    "market_max_age_seconds": 15,
+    "inventory_basis": {
+      "fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+      "owned_fill_count": 1,
+      "excluded_unowned_fills": 0,
+      "unresolved_demo_orders": 0
+    },
+    "proposal": {
+      "status": "PROPOSE_CLOSE",
+      "reasons": [],
+      "rule_set": "position_reduction_v1",
+      "entry_edge_gate_applies": false,
+      "executable": false,
+      "order_adapter": null,
+      "requested_fraction": "1",
+      "owned_net_btc": "0.00019980",
+      "sellable_btc": "0.00019980",
+      "proposed_sell_btc": "0.00019980",
+      "remaining_btc": "0.00000000",
+      "lot_size": "0.00000001",
+      "min_size": "0.00001",
+      "reference_bid": "49999",
+      "market_observed_at": "2026-10-25T11:59:59.999000Z",
+      "market_age_seconds": 0.001,
+      "explanation": "Advisory only: sell 0.00019980 of 0.00019980 owned BTC; not executable and not routed to any order adapter."
+    }
+  }
+}

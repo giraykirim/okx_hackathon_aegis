@@ -35,6 +35,7 @@ def test_all_read_contract_routes_and_empty_state(tmp_path):
             assert response.status_code == 200, response.text
         assert api.get("/api/events").json() == []
         assert api.get("/api/metrics").json()["pnl"] is None
+        assert api.get("/api/metrics/pnl").json() is None
         identity = api.get("/api/web3/identity").json()
         assert identity["verified"] is False and identity["chain_id"] == 43113
         assert identity["agent_id"] is None and identity["verification_status"] == "NOT_TESTED"
@@ -103,6 +104,9 @@ def test_start_stop_and_schema_security(tmp_path):
                 "events",
                 "decisions",
                 "metrics",
+                "metrics/pnl",
+                "metrics/cost-gate",
+                "metrics/exit-shadow",
                 "stream",
                 "agent/start",
                 "agent/stop",
@@ -165,3 +169,85 @@ def test_autostart_only_for_non_executing_modes(tmp_path, monkeypatch, mode, sta
     with TestClient(app):
         pass
     assert bool(calls) is started
+
+
+def test_demo_pnl_is_derived_from_recorded_venue_fills(tmp_path):
+    from decimal import Decimal
+
+    from aegis.models import Proposal
+    from test_policy import inputs
+
+    with client(tmp_path) as api:
+        store = api.app.state.agent.store
+        # Only fills of the agent's own journaled demo intents are counted.
+        for ref in ("intent-buy", "intent-sell"):
+            proposal = Proposal(action="BUY", symbol="BTC-USDT", quantity="0.1", intent_id=ref, summary="t")
+            assert store.claim(proposal, "client-" + ref, "OKX_DEMO")
+            store.order_status(ref, "VERIFIED", "ord-" + ref, "filled")
+        store.record_fill(
+            "intent-buy",
+            {
+                "ord_id": "ord-intent-buy",
+                "decision_id": "client-intent-buy",
+                "intent_id": "intent-buy",
+                "side": "buy",
+                "avg_price": "40000",
+                "filled_qty": "0.1",
+                "fee": "-2",  # OKX: negative = fee charged
+                "fee_ccy": "USDT",
+                "filled_at": "2026-10-21T10:00:00+00:00",
+                "source_mode": "OKX_DEMO",
+            },
+        )
+        store.record_fill(
+            "intent-sell",
+            {
+                "ord_id": "ord-intent-sell",
+                "decision_id": "client-intent-sell",
+                "intent_id": "intent-sell",
+                "side": "sell",
+                "avg_price": "44000",
+                "filled_qty": "0.05",
+                "fee": "-1",
+                "fee_ccy": "USDT",
+                "filled_at": "2026-10-21T10:05:00+00:00",
+                "source_mode": "OKX_DEMO",
+            },
+        )
+        # Non-demo fills must never contribute to demo PnL.
+        store.record_fill(
+            "intent-mock",
+            {
+                "intent_id": "intent-mock",
+                "side": "buy",
+                "avg_price": "1",
+                "filled_qty": "1000",
+                "fee": "0",
+                "fee_ccy": "USDT",
+                "filled_at": "2026-10-21T10:10:00+00:00",
+                "source_mode": "MOCK",
+            },
+        )
+
+        # Without a recorded venue ticker the open inventory cannot be valued.
+        unvalued = api.get("/api/metrics/pnl").json()
+        assert unvalued["fill_count"] == 2 and unvalued["realized"] == "198.00000000"
+        assert unvalued["unrealized"] is None and unvalued["net"] is None
+        assert unvalued["valuation_status"] == "NO_MARK"
+
+        observation = inputs()[0].model_copy(update={"price": Decimal("46000")})
+        store.save_mark(observation)
+        pnl = store.demo_pnl(now=observation.observed_at)
+        assert pnl["fill_count"] == 2
+        assert pnl["realized"] == "198.00000000"
+        assert pnl["unrealized"] == "299.00000000"
+        assert pnl["fees"] == "3.00000000"
+        assert pnl["net"] == "497.00000000"
+        assert pnl["inventory_qty"] == "0.05000000"
+        assert pnl["average_cost"] == "40020.00000000"
+        assert pnl["mark_price"] == "46000.00000000"
+
+        assert api.get("/api/metrics").json()["pnl"] is None
+        demo = api.get("/api/metrics/pnl").json()
+        # The persisted mark survives without any in-memory observation.
+        assert demo["net"] == "497.00000000" and demo["mark"]["price"] == "46000"

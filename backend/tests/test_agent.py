@@ -2,7 +2,7 @@ import asyncio
 from decimal import Decimal
 
 import pytest
-from test_policy import inputs
+from test_policy import allow_costs, inputs
 
 from aegis.settings import Settings
 
@@ -230,6 +230,7 @@ async def test_demo_timeout_is_unknown_and_next_cycle_only_reconciles(tmp_path, 
     monkeypatch.setattr(agent.models, "reason", reason)
     monkeypatch.setattr(agent.atk, "place", place)
     monkeypatch.setattr(agent.atk, "reconcile", reconcile)
+    allow_costs(agent, monkeypatch)
     first = await agent.cycle()
     assert first.execution_status == "UNKNOWN"
     assert agent.store.unresolved()
@@ -343,6 +344,9 @@ async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(
     async def reason(*args, **kwargs):
         return inputs()[2].model_copy(update={"action": "SELL"})
 
+    async def trend():
+        return {"bar": "15m"}
+
     async def place(*args):
         calls.append("place")
         return "venue-1"
@@ -355,6 +359,12 @@ async def test_demo_sell_executes_with_abstaining_laya_and_loaded_account(
     monkeypatch.setattr(agent.models, "reason", reason)
     monkeypatch.setattr(agent.atk, "place", place)
     monkeypatch.setattr(agent.atk, "reconcile", reconcile)
+    monkeypatch.setattr(agent.atk, "trend", trend)
+    from test_owned_sell_boundary import seed_owned_fill
+
+    seed_owned_fill(agent, "owned-sale-fixture", "buy", "0.0001")
+    assert agent.store.demo_pnl()["inventory_qty"] == "0.00010000"
+    allow_costs(agent, monkeypatch)
     decision = await agent.cycle()
     assert (calls == ["place"]) is submitted
     assert decision.risk_approved is submitted
@@ -406,6 +416,7 @@ async def test_not_found_after_submit_resolves_only_when_venue_rejected(
     monkeypatch.setattr(agent.models, "reason", reason)
     monkeypatch.setattr(agent.atk, "place", place)
     monkeypatch.setattr(agent.atk, "call", call)
+    allow_costs(agent, monkeypatch)
     decision = await agent.cycle()
     assert decision.execution_status == expected
     assert bool(agent.store.unresolved()) is (expected == "UNKNOWN")
@@ -553,6 +564,7 @@ async def test_one_trade_per_closed_candle(tmp_path, monkeypatch):
         monkeypatch.setattr(agent.atk, name, fn)
     monkeypatch.setattr(agent.models, "reason", reason)
     monkeypatch.setattr(agent.models, "classify", classify)
+    allow_costs(agent, monkeypatch)
     first, second = await agent.cycle(), await agent.cycle()
     assert first.execution_status == "VERIFIED" and calls == ["place"]
     assert second.proposed_action == "NO_TRADE" and "same" not in second.llm_summary.lower()

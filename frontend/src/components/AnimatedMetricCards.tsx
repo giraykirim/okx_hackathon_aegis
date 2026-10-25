@@ -313,7 +313,14 @@ export function AnimatedMetricCards({
           <span className="font-mono text-[#9BA7B4]">
             Mock fills: {derived.mockExecutions} · Mode: {sourceMode}
           </span>
-          <span className="font-mono text-[#6E7785]">pnl: null</span>
+          <span
+            className="font-mono text-[#6E7785]"
+            title="Account-level pnl is not asserted; demo PnL is mark-to-market from verified fills"
+          >
+            {metrics?.demo_pnl?.net != null
+              ? `demo pnl: ${metrics.demo_pnl.net}`
+              : "pnl: null"}
+          </span>
         </div>
       </div>
     </section>

@@ -4,6 +4,9 @@ from datetime import timedelta
 from decimal import Decimal
 
 from .atk import ATK, ATKCommandError
+from .cost_gate import CostConfig, EdgeEstimate, ExitPlan
+from .cost_gate import evaluate as evaluate_cost
+from .exit_plan import MAX_MARKET_AGE_SECONDS, ExitProposal, propose_exit_from_store
 from .integrations import Models
 from .laya_context import TrustedSignals, build_shadow_context
 from .models import (
@@ -259,6 +262,7 @@ class Agent:
                     venue_state,
                 )
                 self.store.finalize(decision)
+                self._record_fill(row["intent_id"], decision.id, status)
             else:
                 self.store.order_status(row["intent_id"], "UNKNOWN", venue_id, venue_state)
             self.emit(
@@ -267,6 +271,153 @@ class Agent:
                 actor="atk",
                 severity="WARNING" if status == "UNKNOWN" else "INFO",
                 details={"intent_id": row["intent_id"], "status": status, "venue_state": venue_state},
+            )
+        await self._backfill_fills()
+
+    def _record_fill(self, intent_id: str, decision_id: str, status: str):
+        """Persist venue-reported fill figures for PnL; never estimates a missing value."""
+        fill = getattr(self.atk, "last_fill", None)
+        if status not in {"VERIFIED", "PENDING"} or not fill:
+            return
+        if not fill.get("avg_price") or not fill.get("filled_qty"):
+            return
+        try:
+            if Decimal(str(fill["filled_qty"])) <= 0:
+                return
+        except (ArithmeticError, ValueError):
+            return
+        self.store.record_fill(
+            intent_id,
+            {**fill, "intent_id": intent_id, "decision_id": decision_id, "recorded_at": utcnow().isoformat()},
+        )
+
+    async def _backfill_fills(self):
+        """Read-only reconcile of every verified demo intent lacking a current-schema fill record.
+
+        Driven by the intents journal (not a recent-decisions window), so no old order is missed;
+        legacy records are refreshed once to capture venue fillTime and rebate fields.
+        """
+        if self.settings.source_mode != "OKX_DEMO":
+            return
+        current = self.store.fill_intents(schema=2)
+        for row in self.store.verified_demo_intents():
+            if row["intent_id"] in current or row["status"] != "VERIFIED":
+                continue
+            saved = self.store.db.execute(
+                "SELECT body FROM decisions WHERE id=?", (row["client_id"],)
+            ).fetchone()
+            try:
+                decision = Decision.model_validate_json(saved["body"]) if saved else None
+                if decision is None or decision.limit_price is None:
+                    continue
+                proposal = Proposal.model_validate_json(row["proposal"])
+                status, _, _ = await self.atk.reconcile(proposal, row["client_id"], decision.limit_price)
+            except Exception:
+                continue
+            if status == "VERIFIED":
+                self._record_fill(row["intent_id"], row["client_id"], status)
+
+    def owned_sell_reasons(self, proposal: Proposal) -> list[str]:
+        """A demo SELL may only spend the agent's own net inventory from the Store ledger.
+
+        Account base_available may include foreign or preloaded BTC; unknown ownership fails closed.
+        """
+        try:
+            quantity = Decimal(str(proposal.quantity))
+            if not quantity.is_finite() or quantity <= 0:
+                return []  # The policy gate already vetoes invalid quantities.
+        except (ArithmeticError, ValueError, TypeError):
+            return []
+        try:
+            pnl = self.store.demo_pnl()
+            if not isinstance(pnl, dict):
+                return ["owned_inventory_unavailable"]
+            # PnL completeness also covers valuation: a missing mark alone withholds net PnL,
+            # while Store still returns a trusted exact inventory. No accounting issue is allowed.
+            issues = pnl.get("issues")
+            accounting_known = (pnl.get("complete") is True and issues == []) or (
+                pnl.get("complete") is False
+                and pnl.get("valuation_status") == "NO_MARK"
+                and issues == ["mark_price_missing"]
+            )
+            if not accounting_known:
+                return ["owned_inventory_unavailable"]
+            raw = pnl.get("inventory_qty")
+            if not isinstance(raw, str):
+                return ["owned_inventory_unavailable"]
+            owned = Decimal(raw)
+        except Exception:
+            return ["owned_inventory_unavailable"]
+        if not owned.is_finite() or owned < 0:
+            return ["owned_inventory_unavailable"]
+        return ["insufficient_owned_inventory"] if quantity > owned else []
+
+    def trade_edge(self, features: dict | None) -> tuple[EdgeEstimate | None, ExitPlan | None]:
+        """Measured expected edge and exit plan for a proposal.
+
+        No validated return model or exit mechanism exists in this runtime: EVREN's direction
+        and LAYA's confidence are not return forecasts, so nothing is returned and the cost gate
+        routes every trade proposal to REVIEW instead of inventing an edge.
+        """
+        return None, None
+
+    def market_liquidity(self) -> dict | None:
+        return self.atk.last_top_of_book
+
+    def record_exit_shadow(self, observation: Observation | None) -> None:
+        """Persist a SHADOW exit assessment of the agent's verified owned inventory.
+
+        Advisory only: it reuses ``propose_exit_from_store`` and never claims, places or
+        reconciles, and it is independent of EVREN's action and of the entry cost gate.
+        ``fraction=1`` is the full-close capacity after lot/minimum constraints, not a signal to
+        sell now; no stop-loss, take-profit or time-based exit rule exists.
+        """
+        mode = self.settings.source_mode
+        # A scripted MOCK market is not venue data and never supplies instrument constraints.
+        market = None if mode == "MOCK" else observation
+        try:
+            computed_at = utcnow()
+            basis = self.store.exit_inventory_basis()
+            try:
+                proposal = propose_exit_from_store(
+                    self.store, fraction=Decimal(1), observation=market, now=computed_at
+                )
+            except Exception as exc:
+                proposal = ExitProposal(
+                    status="REVIEW",
+                    reasons=["exit_assessment_failed", type(exc).__name__],
+                    requested_fraction="1",
+                    explanation="The shadow exit assessment could not be computed; no quantity proposed.",
+                )
+            self.store.record_exit_assessment(
+                {
+                    "schema_version": "aegis-exit-shadow-1",
+                    "assessment_id": new_id(),
+                    "run_id": self.run_id,
+                    "cycle_id": self.cycle_id or new_id(),
+                    "source_mode": mode,
+                    "computed_at": computed_at.isoformat(),
+                    "mode": "SHADOW",
+                    "orders_sent": False,
+                    "fraction_semantics": "full_close_capacity_not_a_sell_signal",
+                    "market_source": "OKX ticker and instrument via official ATK"
+                    if market is not None
+                    else "MOCK_SCRIPTED_NOT_USED"
+                    if mode == "MOCK"
+                    else None,
+                    # The read view re-judges market age against this bound; the record never refreshes it.
+                    "market_max_age_seconds": MAX_MARKET_AGE_SECONDS,
+                    "inventory_basis": basis,
+                    "proposal": proposal.model_dump(mode="json"),
+                }
+            )
+        except Exception as exc:
+            # The shadow record must never change the cycle's decision path.
+            self.emit(
+                "ERROR",
+                "Shadow exit assessment not persisted",
+                severity="WARNING",
+                details={"error_type": type(exc).__name__},
             )
 
     def mock_inputs(self, scenario: str):
@@ -412,6 +563,7 @@ class Agent:
                             details={"error_type": type(exc).__name__},
                         )
                     )
+                    self.record_exit_shadow(None)
                     decision = Decision(
                         run_id=self.run_id,
                         symbol="BTC-USDT",
@@ -444,6 +596,8 @@ class Agent:
                     details=observation.model_dump(mode="json"),
                 )
             )
+            # After reconcile and this observation, before EVREN: model output cannot hide it.
+            self.record_exit_shadow(observation)
             if mode != "MOCK":
                 # LAYA judges operational context after the proposal (see post-proposal stage below).
                 laya = Classification(
@@ -547,6 +701,9 @@ class Agent:
                 if tool_id not in evidence:
                     evidence.append(tool_id)
             self.last_observation, self.last_classification = observation, laya
+            if mode != "MOCK":
+                # Venue ticker with its exchange time; PnL valuation survives restarts.
+                self.store.save_mark(observation)
             run_orders, run_reserved = self.store.run_budget(self.run_id)
             policy_started = time.perf_counter()
             gate = check(
@@ -565,6 +722,34 @@ class Agent:
                 max_exposure_quote=self.settings.max_exposure_quote,
                 laya_advisory=mode == "OKX_DEMO" and self.settings.laya_gate_demo == "advisory",
             )
+            edge, exit_plan = self.trade_edge(features)
+            cost = evaluate_cost(
+                observation,
+                proposal,
+                now=utcnow(),
+                config=CostConfig.from_settings(self.settings),
+                edge=edge,
+                exit_plan=exit_plan,
+                top_of_book=self.market_liquidity() if mode != "MOCK" else None,
+            )
+            # Enforced wherever an exchange order could follow; MOCK/MARKET_ONLY record it advisory.
+            cost_enforced = mode == "OKX_DEMO"
+            if cost_enforced and cost.status != "NOT_APPLICABLE" and not cost.approved:
+                gate = gate.model_copy(
+                    update={
+                        "approved": False,
+                        "reasons": gate.reasons + [r for r in cost.reasons if r not in gate.reasons],
+                    }
+                )
+            if mode == "OKX_DEMO" and proposal.action == "SELL":
+                owned_reasons = self.owned_sell_reasons(proposal)
+                if owned_reasons:
+                    gate = gate.model_copy(
+                        update={
+                            "approved": False,
+                            "reasons": gate.reasons + [r for r in owned_reasons if r not in gate.reasons],
+                        }
+                    )
             policy_latency_ms = (time.perf_counter() - policy_started) * 1000
             laya_avail = (
                 "MOCK_SCRIPTED"
@@ -701,6 +886,8 @@ class Agent:
                         "max_exposure_quote": str(self.settings.max_exposure_quote),
                         "laya_gate": self.settings.laya_gate_demo if mode == "OKX_DEMO" else "required",
                         "council": council,
+                        "cost_assessment": cost.model_dump(mode="json"),
+                        "cost_gate_enforced": cost_enforced,
                     },
                 )
             )
@@ -719,6 +906,17 @@ class Agent:
                 intent_id=proposal.intent_id,
                 quantity=proposal.quantity,
                 limit_price=gate.limit_price,
+            )
+            self.store.record_cost(
+                decision.id,
+                {
+                    "decision_id": decision.id,
+                    "run_id": self.run_id,
+                    "source_mode": mode,
+                    "timestamp": decision.timestamp.isoformat(),
+                    "enforced": cost_enforced,
+                    "assessment": cost.model_dump(mode="json"),
+                },
             )
             if gate.approved:
                 if mode == "OKX_DEMO":
@@ -799,6 +997,7 @@ class Agent:
                             venue_id,
                             state,
                         )
+                        self._record_fill(decision.intent_id, decision.id, status)
                         if status in {"VERIFIED", "PENDING"} and features:
                             self.last_traded_candle = features.get("candle_open_ts")
                     except Exception:
